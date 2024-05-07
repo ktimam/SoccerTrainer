@@ -75,17 +75,17 @@ void FieldPlayer::Update()
 
   //if no steering force is produced decelerate the player by applying a
   //braking force
-  if (m_pSteering->Force().IsNearZero())
-  {
-      const double BrakingRate = 0.2;// 0.8;
+  //if (m_pSteering->Force().IsNearZero())
+  //{
+  //    const double BrakingRate = 0.2;// 0.8;
 
-    //m_vVelocity = m_vVelocity * BrakingRate;      
-    m_BodyInterface.SetFriction(m_EntityPhysicsID, BrakingRate);
-  }
-  else
-  {
-      m_BodyInterface.SetFriction(m_EntityPhysicsID, 0);
-  }
+  //  //m_vVelocity = m_vVelocity * BrakingRate;      
+  //  m_BodyInterface.SetFriction(m_EntityPhysicsID, BrakingRate);
+  //}
+  //else
+  //{
+  //    m_BodyInterface.SetFriction(m_EntityPhysicsID, 0);
+  //}
   
   //the steering force's side component is a force that rotates the 
   //player about its axis. We must limit the rotation so that a player
