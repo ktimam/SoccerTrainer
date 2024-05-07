@@ -436,19 +436,19 @@ void Wait::Execute(FieldPlayer* player)
   //if the player has been jostled out of position, get back in position  
   if (!player->AtTarget())
   {
-    player->Steering()->ArriveOn();
+      player->Steering()->ArriveOn();
 
-    return;
+      return;
   }
 
   else
   {
-    player->Steering()->ArriveOff();
+      player->Steering()->ArriveOff();
 
-    player->SetVelocity(Vec3(0,0,0));
+      //player->SetVelocity(Vec3(0,0,0));
 
-    //the player should keep his eyes on the ball!
-    player->TrackBall();
+      //the player should keep his eyes on the ball!
+      player->TrackBall();
   }
 
   //if this player's team is controlling AND this player is not the attacker
@@ -482,7 +482,7 @@ void KickBall::Enter(FieldPlayer* player)
 {
   //let the team know this player is controlling
    player->Team()->SetControllingPlayer(player);
-   
+
    //the player can only make so many kick attempts per second.
    if (!player->isReadyForNextKick()) 
    {

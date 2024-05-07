@@ -54,6 +54,7 @@
 #include "Common/Game/EntityManager.h"
 #include "SimSoccer/SoccerPitch.h"
 #include "SimSoccer/SoccerTeam.h"
+#include "SimSoccer/Training/OneVsOne.h"
 #include "SimSoccer/PlayerBase.h"
 #include "SimSoccer/Goalkeeper.h"
 #include "SimSoccer/FieldPlayer.h"

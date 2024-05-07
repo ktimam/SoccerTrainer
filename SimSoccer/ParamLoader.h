@@ -56,10 +56,10 @@ private:
 
 
         PlayerMass = 15;// 3;//GetNextParameterDouble(); 
-        PlayerMaxForce = 10;// 1;//GetNextParameterDouble();    
+        PlayerMaxForce = 40;// 1;//GetNextParameterDouble();    
         PlayerMaxSpeedWithBall = 70;// 1.2;// 3700;//GetNextParameterDouble();   
         PlayerMaxSpeedWithoutBall = 100;// 1.6;// 4000;//GetNextParameterDouble();   
-        PlayerMaxTurnRate = 0.05;// 0.4;//GetNextParameterDouble(); 
+        PlayerMaxTurnRate = 0.01;// 0.4;//GetNextParameterDouble(); 
         PlayerScale = 1;//GetNextParameterDouble();      
         PlayerComfortZone = 60;//GetNextParameterDouble();  
         PlayerKickingAccuracy = 0.99;//GetNextParameterDouble();
@@ -92,7 +92,7 @@ private:
 
         FrameRate = 120;//GetNextParameterInt();
 
-        SeparationCoefficient = 10;//GetNextParameterDouble(); 
+        SeparationCoefficient = 100;//GetNextParameterDouble(); 
         ViewDistance = 30;//GetNextParameterDouble(); 
         bNonPenetrationConstraint = 0;//GetNextParameterBool(); 
 

@@ -1,9 +1,10 @@
 #include "OneVsOne.h"
 
+#include "../SoccerTeam.h"
 #include "../SoccerPitch.h"
 #include "../GoalKeeper.h"
 #include "../FieldPlayer.h"
-#include "../../Common/Game/PhysicsManager.h"
+#include <Common/Game/PhysicsManager.h>
 #include "../ParamLoader.h"
 #include "../GoalKeeperStates.h"
 #include "../../Common/Game/EntityManager.h"

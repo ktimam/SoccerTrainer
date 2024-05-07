@@ -19,7 +19,7 @@
 
 #include "../Common/2D/Wall2D.h"
 #include "../Common/2D/Vector2D.h"
-#include "../Common/Game/PhysicsManager.h"
+#include <Common/Game/PhysicsManager.h>
 #include "constants.h"
 
 class Region;
@@ -102,7 +102,7 @@ public:
   std::vector<Region*> const           Regions()const { return m_Regions; }
   const Region* const GetRegionFromIndex(int idx)                                
   {
-    assert ( (idx > 0) && (idx < m_Regions.size()) );
+    assert ( (idx >= 0) && (idx < m_Regions.size()) );
 
     return m_Regions[idx];
   }

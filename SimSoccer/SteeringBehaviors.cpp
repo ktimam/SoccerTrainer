@@ -185,7 +185,7 @@ Vec3 SteeringBehaviors::Arrive(Vec3    target,
   {
     //because Deceleration is enumerated as an int, this value is required
     //to provide fine tweaking of the deceleration..
-    const double DecelerationTweaker = 0.3;
+    const double DecelerationTweaker = 1;
 
     //calculate the speed required to reach the target given the desired
     //deceleration
