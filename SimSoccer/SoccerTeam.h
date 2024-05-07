@@ -99,7 +99,6 @@ public:
   virtual void Init();
 
   //the usual suspects
-  //void        Render()const;
   void        Update();
 
   //calling this changes the state of all field players to that of 

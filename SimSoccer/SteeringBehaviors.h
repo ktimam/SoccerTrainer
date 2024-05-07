@@ -150,11 +150,6 @@ public:
 
   Vec3 Force()const{return m_vSteeringForce;}
 
-  //renders visual aids and info for seeing how each behavior is
-  //calculated
-  //void      RenderInfo();
-  //void      RenderAids();
-
   Vec3  Target()const{return m_vTarget;}
   void      SetTarget(const Vec3 t){m_vTarget = t;}
 

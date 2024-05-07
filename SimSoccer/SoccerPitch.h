@@ -84,8 +84,6 @@ public:
 
   void CheckGoal();
 
-  //bool  Render();
-
   void  TogglePause(){m_bPaused = !m_bPaused;}
   bool  Paused()const{return m_bPaused;}
 

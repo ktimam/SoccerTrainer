@@ -46,20 +46,6 @@ public:
 
   //Wall2D(std::ifstream& in){Read(in);}
 
-  //virtual void Render(bool RenderNormals = false)const
-  //{
-  //  gdi->Line(m_vA, m_vB);
-
-  //  //render the normals if rqd
-  //  if (RenderNormals)
-  //  {
-  //    int MidX = (int)((m_vA.x+m_vB.x)/2);
-  //    int MidY = (int)((m_vA.y+m_vB.y)/2);
-
-  //    gdi->Line(MidX, MidY, (int)(MidX+(m_vN.x * 5)), (int)(MidY+(m_vN.y * 5)));
-  //  }
-  //}
-
   Vector2D From()const  {return m_vA;}
   void     SetFrom(Vector2D v){m_vA = v; CalculateNormal();}
 

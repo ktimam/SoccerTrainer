@@ -96,8 +96,6 @@ public:
 
   virtual void Update(){}; 
 
-  //virtual void Render()=0;
-  
   virtual bool HandleMessage(const Telegram& msg){return false;}
   
   //entities should be able to read/write their data to a stream

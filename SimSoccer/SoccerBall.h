@@ -55,9 +55,6 @@ public:
   //implement base class Update
   void      Update();
 
-  //implement base class Render
-  //void      Render();
-
   //a soccer ball doesn't need to handle messages
   bool      HandleMessage(const Telegram& msg){return false;}
 

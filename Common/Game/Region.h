@@ -88,8 +88,6 @@ public:
 
   virtual ~Region(){}
 
-  //virtual inline void     Render(bool ShowID)const;
-
   //returns true if the given position lays inside the region. The
   //region modifier can be used to contract the region bounderies
   inline bool     Inside(Vec3 pos, region_modifier r)const;
@@ -138,19 +136,5 @@ inline bool Region::Inside(Vec3 pos, region_modifier r=normal)const
   }
 
 }
-
-//inline void Region::Render(bool ShowID = 0)const
-//{
-//  gdi->HollowBrush();
-//  gdi->GreenPen();
-//  gdi->Rect(m_dLeft, m_dTop, m_dRight, m_dBottom);
-//
-//  if (ShowID)
-//  { 
-//    gdi->TextColor(Cgdi::green);
-//    gdi->TextAtPos(Center(), ttos(ID()));
-//  }
-//}
-
 
 #endif

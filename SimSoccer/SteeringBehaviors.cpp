@@ -298,19 +298,3 @@ Vec3 SteeringBehaviors::Interpose(const SoccerBall* ball,
                 DistFromTarget, normal);
 }
 
-
-//----------------------------- RenderAids -------------------------------
-//
-//------------------------------------------------------------------------
-//void SteeringBehaviors::RenderAids( )
-//{ 
-//  //render the steering force
-//  gdi->RedPen();
-//
-//  gdi->Line(m_pPlayer->Pos(), m_pPlayer->Pos() + m_vSteeringForce * 20);
-//
-//
-//  
-//}
-
-
