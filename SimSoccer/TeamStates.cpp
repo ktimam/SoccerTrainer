@@ -13,9 +13,9 @@
 
 
 
-void ChangePlayerHomeRegions(SoccerTeam* team, const int NewRegions[TeamSize])
+void ChangePlayerHomeRegions(SoccerTeam* team, vector<int> NewRegions)
 {
-  for (int plyr=0; plyr<TeamSize; ++plyr)
+  for (int plyr=0; plyr < NewRegions.size(); ++plyr)
   {
     team->SetPlayerHomeRegion(plyr, NewRegions[plyr]);
   }
@@ -37,18 +37,14 @@ void Attacking::Enter(SoccerTeam* team)
   debug_con << team->Name() << " entering Attacking state" << "";
 #endif
 
-  //these define the home regions for this state of each of the players
-  const int BlueRegions[TeamSize] = {1,12,14,6,4};
-  const int RedRegions[TeamSize] = {16,3,5,9,13};
-
   //set up the player's home regions
   if (team->Color() == SoccerTeam::blue)
   {
-    ChangePlayerHomeRegions(team, BlueRegions);
+    ChangePlayerHomeRegions(team, SoccerTeam::BlueAttackingRegions);
   }
   else
   {
-    ChangePlayerHomeRegions(team, RedRegions);
+    ChangePlayerHomeRegions(team, SoccerTeam::RedAttackingRegions);
   }
 
   //if a player is in either the Wait or ReturnToHomeRegion states, its
@@ -93,18 +89,14 @@ void Defending::Enter(SoccerTeam* team)
   debug_con << team->Name() << " entering Defending state" << "";
 #endif
 
-  //these define the home regions for this state of each of the players
-  const int BlueRegions[TeamSize] = {1,6,8,3,5};
-  const int RedRegions[TeamSize] = {16,9,11,12,14};
-
   //set up the player's home regions
   if (team->Color() == SoccerTeam::blue)
   {
-    ChangePlayerHomeRegions(team, BlueRegions);
+    ChangePlayerHomeRegions(team, SoccerTeam::BlueDefendingRegions);
   }
   else
   {
-    ChangePlayerHomeRegions(team, RedRegions);
+    ChangePlayerHomeRegions(team, SoccerTeam::RedDefendingRegions);
   }
   
   //if a player is in either the Wait or ReturnToHomeRegion states, its

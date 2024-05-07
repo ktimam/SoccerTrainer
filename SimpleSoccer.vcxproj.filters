@@ -995,6 +995,9 @@
     <ClCompile Include="Utils\SoftBodyCreator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SimSoccer\Training\OneVsOne.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimSoccer\SoccerBall.h">
@@ -2504,6 +2507,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Layers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimSoccer\Training\OneVsOne.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

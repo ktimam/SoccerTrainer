@@ -156,6 +156,9 @@ void PlayerBase::FindSupport()const
 
     Team()->SetSupportingPlayer(BestSupportPly);
 
+    if (BestSupportPly == NULL) {
+        return;
+    }
     Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
                             ID(),
                             Team()->SupportingPlayer()->ID(),

@@ -26,6 +26,11 @@
 
 using std::vector;
 
+//these define the home regions for this state of each of the players
+std::vector<int> SoccerTeam::BlueAttackingRegions = { 1,12,14,6,4 };
+std::vector<int> SoccerTeam::RedAttackingRegions  = { 16,3,5,9,13 };
+std::vector<int> SoccerTeam::BlueDefendingRegions = { 1,6,8,3,5 };
+std::vector<int> SoccerTeam::RedDefendingRegions  = { 16,9,11,12,14 };
 
 //----------------------------- ctor -------------------------------------
 //
@@ -51,21 +56,29 @@ SoccerTeam::SoccerTeam(FieldGoal*        home_goal,
   m_pStateMachine->SetPreviousState(Defending::Instance());
   m_pStateMachine->SetGlobalState(NULL);
 
-  //create the players and goalkeeper
-  CreatePlayers();
-  
-  //set default steering behaviors
-  std::vector<PlayerBase*>::iterator it = m_Players.begin();
+}
 
-  for (it; it != m_Players.end(); ++it)
-  {
-    (*it)->Steering()->SeparationOn();   
-  }
+//----------------------- Init -------------------------------------------
+//
+//------------------------------------------------------------------------
+void SoccerTeam::Init()
+{
 
-  //create the sweet spot calculator
-  m_pSupportSpotCalc = new SupportSpotCalculator(Prm.NumSupportSpotsX,
-                                                 Prm.NumSupportSpotsY,
-                                                 this);
+    //create the players and goalkeeper
+    CreatePlayers();
+
+    //set default steering behaviors
+    std::vector<PlayerBase*>::iterator it = m_Players.begin();
+
+    for (it; it != m_Players.end(); ++it)
+    {
+        (*it)->Steering()->SeparationOn();
+    }
+
+    //create the sweet spot calculator
+    m_pSupportSpotCalc = new SupportSpotCalculator(Prm.NumSupportSpotsX,
+        Prm.NumSupportSpotsY,
+        this);
 }
 
 //----------------------- dtor -------------------------------------------

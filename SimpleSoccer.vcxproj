@@ -179,6 +179,7 @@
     <ClCompile Include="Jolt\TriangleSplitter\TriangleSplitterLongestAxis.cpp" />
     <ClCompile Include="Jolt\TriangleSplitter\TriangleSplitterMean.cpp" />
     <ClCompile Include="Jolt\TriangleSplitter\TriangleSplitterMorton.cpp" />
+    <ClCompile Include="SimSoccer\Training\OneVsOne.cpp" />
     <ClCompile Include="SamplesApp.cpp" />
     <ClCompile Include="SimSoccer\FieldGoal.cpp" />
     <ClCompile Include="SimSoccer\FieldPlayer.cpp" />
@@ -675,6 +676,7 @@
     <ClInclude Include="Jolt\TriangleSplitter\TriangleSplitterMean.h" />
     <ClInclude Include="Jolt\TriangleSplitter\TriangleSplitterMorton.h" />
     <ClInclude Include="Layers.h" />
+    <ClInclude Include="SimSoccer\Training\OneVsOne.h" />
     <ClInclude Include="SamplesApp.h" />
     <ClInclude Include="SimSoccer\constants.h" />
     <ClInclude Include="SimSoccer\FieldGoal.h" />

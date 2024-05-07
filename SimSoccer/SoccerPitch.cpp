@@ -11,13 +11,14 @@
 #include "PlayerBase.h"
 #include "TeamStates.h"
 #include "../Common/misc/FrameCounter.h"
+#include "Training/OneVsOne.h"
 
 const int NumRegionsHorizontal = 6; 
 const int NumRegionsVertical   = 3;
 
 //------------------------------- ctor -----------------------------------
 //------------------------------------------------------------------------
-SoccerPitch::SoccerPitch(int cx, int cy):m_cxClient(cx),
+SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
                                          m_cyClient(cy),
                                          m_bPaused(false),
                                          m_bGoalKeeperHasBall(false),
@@ -63,8 +64,17 @@ SoccerPitch::SoccerPitch(int cx, int cy):m_cxClient(cx),
 
   
   //create the teams 
-  m_pRedTeam  = new SoccerTeam(m_pRedGoal, m_pBlueGoal, this, SoccerTeam::red);
-  m_pBlueTeam = new SoccerTeam(m_pBlueGoal, m_pRedGoal, this, SoccerTeam::blue);
+  if (mode == five_vs_five_match) {	  
+	  m_pRedTeam  = new SoccerTeam(m_pRedGoal, m_pBlueGoal, this, SoccerTeam::red);
+	  m_pBlueTeam = new SoccerTeam(m_pBlueGoal, m_pRedGoal, this, SoccerTeam::blue);
+  }
+  else if (mode == one_vs_one) {
+	 m_pRedTeam = new OneVsOne(m_pRedGoal, m_pBlueGoal, this, SoccerTeam::red);
+	 m_pBlueTeam = new OneVsOne(m_pBlueGoal, m_pRedGoal, this, SoccerTeam::blue);
+  }
+
+  m_pRedTeam->Init();
+  m_pBlueTeam->Init();
 
   //make sure each team knows who their opponents are
   m_pRedTeam->SetOpponents(m_pBlueTeam);

@@ -39,7 +39,13 @@ public:
   
   enum team_color {blue, red};
 
-private:
+  //these define the home regions for this state of each of the players
+  static std::vector<int> BlueAttackingRegions;
+  static std::vector<int> RedAttackingRegions;
+  static std::vector<int> BlueDefendingRegions;
+  static std::vector<int> RedDefendingRegions;
+
+protected:
 
    //an instance of the state machine class
   StateMachine<SoccerTeam>*  m_pStateMachine;
@@ -74,7 +80,7 @@ private:
 
 
   //creates all the players for this team
-  void CreatePlayers();
+  virtual void CreatePlayers();
 
   //called each frame. Sets m_pClosestPlayerToBall to point to the player
   //closest to the ball. 
@@ -89,6 +95,8 @@ public:
              team_color   color);
 
   ~SoccerTeam();
+
+  virtual void Init();
 
   //the usual suspects
   //void        Render()const;

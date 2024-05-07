@@ -33,6 +33,7 @@ class PlayerBase;
 class SoccerPitch
 { 
 public:
+    enum game_mode { five_vs_five_match, one_vs_one };
 
   SoccerBall*          m_pBall;
 
@@ -75,7 +76,7 @@ public:
 
 public:
 
-  SoccerPitch(int cxClient, int cyClient);
+  SoccerPitch(int cxClient, int cyClient, game_mode mode = one_vs_one);
 
   ~SoccerPitch();
 
