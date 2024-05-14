@@ -116,7 +116,7 @@ bool RenderSoccerPitch()
     //draw the grass
     gdi->DarkGreenPen();
     gdi->DarkGreenBrush();
-    gdi->Rect(0, 0, g_SoccerPitch->cxClient(), g_SoccerPitch->cyClient());
+    gdi->Rect(0.0f, 0.0f, g_SoccerPitch->cxClient() * PitchWindowRate, g_SoccerPitch->cyClient() * PitchWindowRate);
 
     //render regions
     if (Prm.bRegions)
@@ -127,49 +127,45 @@ bool RenderSoccerPitch()
 
             gdi->HollowBrush();
             gdi->GreenPen();
-            gdi->Rect(g_SoccerPitch->Regions()[r]->Left(), g_SoccerPitch->Regions()[r]->Top(), g_SoccerPitch->Regions()[r]->Right(), g_SoccerPitch->Regions()[r]->Bottom());
+            gdi->Rect(g_SoccerPitch->Regions()[r]->Left() * PitchWindowRate, g_SoccerPitch->Regions()[r]->Top() * PitchWindowRate, g_SoccerPitch->Regions()[r]->Right() * PitchWindowRate, g_SoccerPitch->Regions()[r]->Bottom() * PitchWindowRate);
             
             gdi->TextColor(Cgdi::green);
-            gdi->TextAtPos(Vector2D(g_SoccerPitch->Regions()[r]->Center().GetX(), g_SoccerPitch->Regions()[r]->Center().GetZ()), ttos(g_SoccerPitch->Regions()[r]->ID()));
+            gdi->TextAtPos(Vector2D(g_SoccerPitch->Regions()[r]->Center().GetX() * PitchWindowRate, g_SoccerPitch->Regions()[r]->Center().GetZ() * PitchWindowRate), ttos(g_SoccerPitch->Regions()[r]->ID()));
         }
     }
 
     //render the goals
     gdi->HollowBrush();
     gdi->RedPen();
-    gdi->Rect(g_SoccerPitch->PlayingArea()->Left(), (g_SoccerPitch->cyClient() - Prm.GoalWidth) / 2, g_SoccerPitch->PlayingArea()->Left() + 40, g_SoccerPitch->cyClient() - (g_SoccerPitch->cyClient() - Prm.GoalWidth) / 2);
+    gdi->Rect(g_SoccerPitch->PlayingArea()->Left() * PitchWindowRate, (g_SoccerPitch->cyClient() - Prm.GoalWidth) * PitchWindowRate / 2, g_SoccerPitch->PlayingArea()->Left() * PitchWindowRate + 4, g_SoccerPitch->cyClient() * PitchWindowRate - (g_SoccerPitch->cyClient() - Prm.GoalWidth) * PitchWindowRate / 2);
 
     gdi->BluePen();
-    gdi->Rect(g_SoccerPitch->PlayingArea()->Right(), (g_SoccerPitch->cyClient() - Prm.GoalWidth) / 2, g_SoccerPitch->PlayingArea()->Right() - 40, g_SoccerPitch->cyClient() - (g_SoccerPitch->cyClient() - Prm.GoalWidth) / 2);
+    gdi->Rect(g_SoccerPitch->PlayingArea()->Right() * PitchWindowRate, (g_SoccerPitch->cyClient() - Prm.GoalWidth) * PitchWindowRate / 2, g_SoccerPitch->PlayingArea()->Right() * PitchWindowRate - 4, g_SoccerPitch->cyClient() * PitchWindowRate - (g_SoccerPitch->cyClient() - Prm.GoalWidth) * PitchWindowRate / 2);
 
     //render the pitch markings
     gdi->WhitePen();
-    gdi->Circle(Vector2D(g_SoccerPitch->PlayingArea()->Center().GetX(), g_SoccerPitch->PlayingArea()->Center().GetZ()), g_SoccerPitch->PlayingArea()->Width() * 0.125);
-    gdi->Line(g_SoccerPitch->PlayingArea()->Center().GetX(), g_SoccerPitch->PlayingArea()->Top(), g_SoccerPitch->PlayingArea()->Center().GetX(), g_SoccerPitch->PlayingArea()->Bottom());
+    gdi->Circle(Vector2D(g_SoccerPitch->PlayingArea()->Center().GetX() * PitchWindowRate, g_SoccerPitch->PlayingArea()->Center().GetZ() * PitchWindowRate), g_SoccerPitch->PlayingArea()->Width() * PitchWindowRate * 0.125);
+    gdi->Line(g_SoccerPitch->PlayingArea()->Center().GetX() * PitchWindowRate, g_SoccerPitch->PlayingArea()->Top() * PitchWindowRate, g_SoccerPitch->PlayingArea()->Center().GetX() * PitchWindowRate, g_SoccerPitch->PlayingArea()->Bottom() * PitchWindowRate);
     gdi->WhiteBrush();
-    gdi->Circle(Vector2D(g_SoccerPitch->PlayingArea()->Center().GetX(), g_SoccerPitch->PlayingArea()->Center().GetZ()), 2.0);
+    gdi->Circle(Vector2D(g_SoccerPitch->PlayingArea()->Center().GetX() * PitchWindowRate, g_SoccerPitch->PlayingArea()->Center().GetZ() * PitchWindowRate), 2.0);
 
 
-    //the ball
     gdi->WhitePen();
     gdi->WhiteBrush();
-    //m_pBall->Render();
 
     bool empty = g_LastSnapshot.empty();
     if ( !empty)
     {
         gdi->BlackBrush();
         json::iterator it = g_LastSnapshot["scrn"].begin();
+        //Render the ball
         json::iterator entity_position_json = it.value()["p"].begin();
-        json entity_position_x = entity_position_json.value();
-        json entity_position_y = (++entity_position_json).value();
-        Vector2D entity_position = Vector2D(entity_position_x, entity_position_y);
-        gdi->Circle(entity_position, Prm.BallSize);
+        double entity_position_x = entity_position_json.value();
+        double entity_position_y = (++entity_position_json).value();
+        Vector2D entity_position = Vector2D( entity_position_x * PitchWindowRate, entity_position_y * PitchWindowRate);
+        gdi->Circle(entity_position, Prm.BallSize * PitchWindowRate);
 
         //Render the teams
-        /*m_pRedTeam->Render();
-        m_pBlueTeam->Render(); */
-        // iterate the array
         for (++it; it != g_LastSnapshot["scrn"].end(); ++it) {
 
             int id = it.value()["id"];// .begin().value();
@@ -177,7 +173,7 @@ bool RenderSoccerPitch()
             entity_position_json = it.value()["p"].begin();
             entity_position_x = entity_position_json.value();
             entity_position_y = (++entity_position_json).value();
-            Vector2D entity_position = Vector2D(entity_position_x, entity_position_y);
+            Vector2D entity_position = Vector2D(entity_position_x * PitchWindowRate, entity_position_y * PitchWindowRate);
 
             json::iterator entity_heading_json = it.value()["h"].begin();
             json entity_heading_x = entity_heading_json.value();
@@ -232,18 +228,22 @@ bool RenderSoccerPitch()
             if (Prm.bViewTargets)
             {
                 gdi->RedBrush();
-                gdi->Circle(Vector2D(player->Steering()->Target().GetX(), player->Steering()->Target().GetZ()), 3);
-                gdi->TextAtPos(Vector2D(player->Steering()->Target().GetX(), player->Steering()->Target().GetZ()), ttos(player->ID()));
+                gdi->Circle(Vector2D(player->Steering()->Target().GetX()* PitchWindowRate, player->Steering()->Target().GetZ()* PitchWindowRate), 3);
+                gdi->TextAtPos(Vector2D(player->Steering()->Target().GetX() * PitchWindowRate, player->Steering()->Target().GetZ() * PitchWindowRate), ttos(player->ID()));
             }
             //gdi->WhitePen();
             //gdi->Line(entity_position.x, entity_position.y, player->Steering()->Target().GetX(), player->Steering()->Target().GetZ());
 
 
             gdi->ThickBluePen();
-            double forwardforce = player->Steering()->ForwardComponent()*10;
+            double forwardforce = player->Steering()->ForwardComponent();// *10;
             Vec3 force = player->Heading() * forwardforce;
-            force = force + player->Pos();
+            force = force + Vec3(player->Pos().GetX() * PitchWindowRate,0, player->Pos().GetZ() * PitchWindowRate);
             gdi->Line(entity_position.x, entity_position.y, force.GetX(), force.GetZ());
+
+            /*gdi->ThickGreenPen();
+            Vec3 velocity_target = player->Pos() + player->Velocity();
+            gdi->Line(entity_position.x, entity_position.y, velocity_target.GetX(), velocity_target.GetZ());*/
 #endif
         }
     }
@@ -253,19 +253,20 @@ bool RenderSoccerPitch()
     bool RenderNormals = false;
     for (unsigned int w = 0; w < g_SoccerPitch->Walls().size(); ++w)
     {
-        gdi->Line(g_SoccerPitch->Walls()[w].From(), g_SoccerPitch->Walls()[w].To());
+        gdi->Line(g_SoccerPitch->Walls()[w].From().x * PitchWindowRate, g_SoccerPitch->Walls()[w].From().y * PitchWindowRate, 
+            g_SoccerPitch->Walls()[w].To().x * PitchWindowRate, g_SoccerPitch->Walls()[w].To().y* PitchWindowRate);
 
         //render the normals if rqd
         if (RenderNormals)
         {
-            int MidX = (int)((g_SoccerPitch->Walls()[w].From().x+ g_SoccerPitch->Walls()[w].To().x)/2);
-            int MidY = (int)((g_SoccerPitch->Walls()[w].From().y+ g_SoccerPitch->Walls()[w].To().y)/2);
+            int MidX = (int)((g_SoccerPitch->Walls()[w].From().x+ g_SoccerPitch->Walls()[w].To().x)/2) * PitchWindowRate;
+            int MidY = (int)((g_SoccerPitch->Walls()[w].From().y+ g_SoccerPitch->Walls()[w].To().y)/2) * PitchWindowRate;
 
-            gdi->Line(MidX, MidY, (int)(MidX+(g_SoccerPitch->Walls()[w].Normal().x * 5)), (int)(MidY+(g_SoccerPitch->Walls()[w].Normal().y * 5)));
+            gdi->Line(MidX, MidY, (int)(MidX+(g_SoccerPitch->Walls()[w].Normal().x * PitchWindowRate * 5)), (int)(MidY+(g_SoccerPitch->Walls()[w].Normal().y * PitchWindowRate * 5)));
         }
     }
     gdi->TextColor(Cgdi::black);
-    gdi->TextAtPos((g_SoccerPitch->cxClient() / 2) - 10, 2, GetCurrentTimeString());
+    gdi->TextAtPos((int)(g_SoccerPitch->cxClient() * PitchWindowRate / 2) - 10, 2, GetCurrentTimeString());
 
 #ifdef LIVE_MODE
     //render the sweet spots
@@ -284,23 +285,23 @@ bool RenderSoccerPitch()
         const std::vector<SupportSpotCalculator::SupportSpot>& SupportSpots = ssc->SupportSpots();
         for (unsigned int spt = 0; spt < SupportSpots.size(); ++spt)
         {
-            gdi->Circle(Vector2D(SupportSpots[spt].m_vPos.GetX(), SupportSpots[spt].m_vPos.GetZ()), SupportSpots[spt].m_dScore);
+            gdi->Circle(Vector2D(SupportSpots[spt].m_vPos.GetX()* PitchWindowRate, SupportSpots[spt].m_vPos.GetZ()* PitchWindowRate), SupportSpots[spt].m_dScore);
         }
 
         if (ssc->BestSupportingSpot())
         {
             gdi->GreenPen();
-            gdi->Circle(Vector2D(ssc->BestSupportingSpot()->m_vPos.GetX(), ssc->BestSupportingSpot()->m_vPos.GetZ()), ssc->BestSupportingSpot()->m_dScore);
+            gdi->Circle(Vector2D(ssc->BestSupportingSpot()->m_vPos.GetX()* PitchWindowRate, ssc->BestSupportingSpot()->m_vPos.GetZ()* PitchWindowRate), ssc->BestSupportingSpot()->m_dScore);
         }
     }
 #endif
 // 
     //show the score
     gdi->TextColor(Cgdi::red);
-    gdi->TextAtPos((g_SoccerPitch->cxClient() /2)-50, g_SoccerPitch->cyClient() -18, "Red: " + ttos(g_SoccerPitch->HomeTeam()->OpponentsGoal()->NumGoalsScored()));
+    gdi->TextAtPos((WindowWidth /2)-50, WindowHeight -18, "Red: " + ttos(g_SoccerPitch->HomeTeam()->OpponentsGoal()->NumGoalsScored()));
 
     gdi->TextColor(Cgdi::blue);
-    gdi->TextAtPos((g_SoccerPitch->cxClient() /2)+10, g_SoccerPitch->cyClient() -18, "Blue: " + ttos(g_SoccerPitch->AwayTeam()->OpponentsGoal()->NumGoalsScored()));
+    gdi->TextAtPos((WindowWidth /2)+10, WindowHeight -18, "Blue: " + ttos(g_SoccerPitch->AwayTeam()->OpponentsGoal()->NumGoalsScored()));
 
     return true;
 }
@@ -424,7 +425,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          
          PhysicsManager::Instance()->init();
 
-         g_SoccerPitch = new SoccerPitch(WindowWidth, WindowHeight);
+         g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth);
          g_MatchReplay = new Snapshot();
          //setup the vertex buffers and calculate the bounding radius
          const int NumPlayerVerts = 4;
@@ -530,7 +531,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
             {
                delete g_SoccerPitch;
            
-               g_SoccerPitch = new SoccerPitch(cxClient, cyClient);
+               g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth);
             }
 
             break;
@@ -766,7 +767,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
           }
       }
 
-      while (!timer.ReadyForNextFrame() && msg.message != WM_QUIT)
+      while (Prm.FrameRate != 0 && !timer.ReadyForNextFrame() && msg.message != WM_QUIT)
       {
           Sleep(2);
       }

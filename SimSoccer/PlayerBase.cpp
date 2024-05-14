@@ -46,19 +46,6 @@ PlayerBase::PlayerBase(SoccerTeam* home_team,
    m_iDefaultRegion(home_region),
    m_PlayerRole(role)
 {
-  
-  //setup the vertex buffers and calculate the bounding radius
-  const int NumPlayerVerts = 4;
-  const Vector2D player[NumPlayerVerts] = {Vector2D(-3, 8),
-                                            Vector2D(3,10),
-                                            Vector2D(3,-10),
-                                            Vector2D(-3,-8)};
-
-  for (int vtx=0; vtx<NumPlayerVerts; ++vtx)
-  {
-    m_vecPlayerVB.push_back(player[vtx]);
-  }
-
   //set up the steering behavior class
   m_pSteering = new SteeringBehaviors(this,
                                       m_pTeam->Pitch(),
@@ -222,7 +209,9 @@ bool PlayerBase::BallWithinReceivingRange()const
 
 bool PlayerBase::BallWithinKickingRange()const
 {
-  return ((Ball()->Pos() - Pos()).LengthSq() < Prm.PlayerKickingDistanceSq);
+    if (!PositionInFrontOfPlayer(Ball()->Pos())) return false;
+    double ball_distance_sq = (Ball()->Pos() - Pos()).LengthSq();
+  return (ball_distance_sq < Prm.PlayerKickingDistanceSq);
 }
 
 
@@ -240,7 +229,8 @@ bool PlayerBase::InHomeRegion()const
 
 bool PlayerBase::AtTarget()const
 {
-  return ((Pos() - Steering()->Target()).LengthSq() < Prm.PlayerInTargetRangeSq);
+  Vec3 distance = Pos() - Steering()->Target();
+  return (Vec3(distance.GetX(), 0, distance.GetZ()).LengthSq() < Prm.PlayerInTargetRangeSq);
 }
 
 bool PlayerBase::isClosestTeamMemberToBall()const

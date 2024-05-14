@@ -25,7 +25,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
                                          m_Regions(NumRegionsHorizontal*NumRegionsVertical),
                                          m_bGameOn(false)
 {
-    const float out_area = 20;
+	const float out_area = 2;// 20;
 
   //define the playing area
   m_pPlayingArea = new Region(out_area, out_area, cx- out_area, cy- out_area);
@@ -50,7 +50,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
   //m_PhysicsManager->init();
 
   //create the soccer ball
-  float ball_radius = 3.0f;
+  float ball_radius = 0.11f;// 3.0f;
   RefConst<Shape> sphere_shape = new SphereShape(ball_radius);
   BodyCreationSettings bcs(sphere_shape, Vec3((double)m_cxClient / 2.0, ball_radius/2, (double)m_cyClient / 2.0), Quat::sIdentity(), EMotionType::Dynamic, Layers::MOVING);
   bcs.mOverrideMassProperties = EOverrideMassProperties::CalculateInertia;
@@ -93,10 +93,10 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
   m_vecWalls.push_back(Wall2D(Vector2D(m_pBlueGoal->RightPost().GetX(), m_pBlueGoal->RightPost().GetZ()), BottomRight));
   m_vecWalls.push_back(Wall2D(BottomRight, BottomLeft));
 
-  const float wall_width = 10;
-  const float wall_height = 50;
+  const float wall_width = 0.5;
+  const float wall_height = 1.5;
   const float GoalWidth = Prm.GoalWidth;
-  const float goal_post_width = 5.0f;
+  const float goal_post_width = 0.5;// 5.0f;
   const float half_goal_wall_len = (PlayingArea()->Height() / 2 - GoalWidth / 2) / 2 + goal_post_width;
   const float half_out_wall_len = m_cxClient / 2;
   const float Top = m_pPlayingArea->Top();
@@ -123,7 +123,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 	  BoxShapeSettings goal_wall_shape_settings(Vec3(wall_width, wall_height, half_goal_wall_len));
 	  ShapeSettings::ShapeResult goal_wall_shape_result = goal_wall_shape_settings.Create();
 	  ShapeRefC goal_wall_shape = goal_wall_shape_result.Get();
-	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Left - wall_width, wall_height - 10, Top + half_goal_wall_len - goal_post_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
+	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Left - wall_width, wall_height - 1.5, Top + half_goal_wall_len - goal_post_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
 	  Body* goal_wall = body_interface.CreateBody(goal_wall_settings);
 	  body_interface.AddBody(goal_wall->GetID(), EActivation::DontActivate);
   }
@@ -132,7 +132,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 	  BoxShapeSettings goal_wall_shape_settings(Vec3(wall_width, wall_height, half_goal_wall_len));
 	  ShapeSettings::ShapeResult goal_wall_shape_result = goal_wall_shape_settings.Create();
 	  ShapeRefC goal_wall_shape = goal_wall_shape_result.Get();
-	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Left - wall_width, wall_height - 10, m_pRedGoalRightPost + half_goal_wall_len - goal_post_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
+	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Left - wall_width, wall_height - 1.5, m_pRedGoalRightPost + half_goal_wall_len - goal_post_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
 	  Body* goal_wall = body_interface.CreateBody(goal_wall_settings);
 	  body_interface.AddBody(goal_wall->GetID(), EActivation::DontActivate);
   }
@@ -142,7 +142,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 	  BoxShapeSettings goal_wall_shape_settings(Vec3(wall_width, wall_height, GoalWidth/2));
 	  ShapeSettings::ShapeResult goal_wall_shape_result = goal_wall_shape_settings.Create();
 	  ShapeRefC goal_wall_shape = goal_wall_shape_result.Get();
-	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Left - wall_width - ball_radius*4, wall_height - 40, m_pRedGoalRightPost - GoalWidth/2), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
+	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Left - wall_width - ball_radius*4, wall_height - 2, m_pRedGoalRightPost - GoalWidth/2), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
 	  Body* goal_wall = body_interface.CreateBody(goal_wall_settings);
 	  body_interface.AddBody(goal_wall->GetID(), EActivation::DontActivate);
   }
@@ -151,7 +151,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 	  BoxShapeSettings goal_wall_shape_settings(Vec3(wall_width, wall_height, half_goal_wall_len));
 	  ShapeSettings::ShapeResult goal_wall_shape_result = goal_wall_shape_settings.Create();
 	  ShapeRefC goal_wall_shape = goal_wall_shape_result.Get();
-	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Right + wall_width, wall_height - 10, Top + half_goal_wall_len - goal_post_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
+	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Right + wall_width, wall_height - 1.5, Top + half_goal_wall_len - goal_post_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
 	  Body* goal_wall = body_interface.CreateBody(goal_wall_settings);
 	  body_interface.AddBody(goal_wall->GetID(), EActivation::DontActivate);
   }
@@ -160,7 +160,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 	  BoxShapeSettings goal_wall_shape_settings(Vec3(wall_width, wall_height, half_goal_wall_len));
 	  ShapeSettings::ShapeResult goal_wall_shape_result = goal_wall_shape_settings.Create();
 	  ShapeRefC goal_wall_shape = goal_wall_shape_result.Get();
-	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Right + wall_width, wall_height - 10, m_pBlueGoalRightPost + half_goal_wall_len - goal_post_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
+	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Right + wall_width, wall_height - 1.5, m_pBlueGoalRightPost + half_goal_wall_len - goal_post_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
 	  Body* goal_wall = body_interface.CreateBody(goal_wall_settings);
 	  body_interface.AddBody(goal_wall->GetID(), EActivation::DontActivate);
   }
@@ -170,7 +170,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 	  BoxShapeSettings goal_wall_shape_settings(Vec3(wall_width, wall_height, GoalWidth / 2));
 	  ShapeSettings::ShapeResult goal_wall_shape_result = goal_wall_shape_settings.Create();
 	  ShapeRefC goal_wall_shape = goal_wall_shape_result.Get();
-	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Right + wall_width + ball_radius * 4, wall_height - 40, m_pRedGoalRightPost - GoalWidth / 2), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
+	  BodyCreationSettings goal_wall_settings(goal_wall_shape, RVec3(Right + wall_width + ball_radius * 4, wall_height - 2, m_pRedGoalRightPost - GoalWidth / 2), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
 	  Body* goal_wall = body_interface.CreateBody(goal_wall_settings);
 	  body_interface.AddBody(goal_wall->GetID(), EActivation::DontActivate);
   }
@@ -179,7 +179,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 	  BoxShapeSettings line_wall_shape_settings(Vec3(half_out_wall_len, wall_height, wall_width));
 	  ShapeSettings::ShapeResult line_wall_shape_result = line_wall_shape_settings.Create();
 	  ShapeRefC line_wall_shape = line_wall_shape_result.Get();
-	  BodyCreationSettings line_wall_settings(line_wall_shape, RVec3(half_out_wall_len, wall_height - 10, Top - wall_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
+	  BodyCreationSettings line_wall_settings(line_wall_shape, RVec3(half_out_wall_len, wall_height - 1.5, Top - wall_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
 	  Body* line_wall = body_interface.CreateBody(line_wall_settings);
 	  body_interface.AddBody(line_wall->GetID(), EActivation::DontActivate);
   }
@@ -188,7 +188,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 	  BoxShapeSettings line_wall_shape_settings(Vec3(half_out_wall_len, wall_height, wall_width));
 	  ShapeSettings::ShapeResult line_wall_shape_result = line_wall_shape_settings.Create();
 	  ShapeRefC line_wall_shape = line_wall_shape_result.Get();
-	  BodyCreationSettings line_wall_settings(line_wall_shape, RVec3(half_out_wall_len, wall_height - 10, Bottom + wall_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
+	  BodyCreationSettings line_wall_settings(line_wall_shape, RVec3(half_out_wall_len, wall_height - 1.5, Bottom + wall_width), Quat::sIdentity(), EMotionType::Static, Layers::NON_MOVING);
 	  Body* line_wall = body_interface.CreateBody(line_wall_settings);
 	  body_interface.AddBody(line_wall->GetID(), EActivation::DontActivate);
   }

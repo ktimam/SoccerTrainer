@@ -58,11 +58,11 @@ protected:
   //a lot so it's calculated once each time-step and stored here.
   double                   m_dDistSqToBall;
 
-  
-  //the vertex buffer
-  std::vector<Vector2D>   m_vecPlayerVB;
-  //the buffer for the transformed vertices
-  std::vector<Vector2D>   m_vecPlayerVBTrans;
+  bool m_ActionKickBall = false;
+  Vec3 m_ActionKickBallDirection;
+  float m_ActionKickBallForce;
+
+  bool m_ActionTrackBall = false;
 
 public:
 
@@ -140,6 +140,14 @@ public:
   double       DistToHomeGoal()const;
 
   void        SetDefaultHomeRegion(){m_iHomeRegion = m_iDefaultRegion;}
+
+  void SetActionKickBall(Vec3 kickBallDirection, float kickBallForce) {
+      m_ActionKickBall = true;
+      m_ActionKickBallDirection = kickBallDirection;
+      m_ActionKickBallForce = kickBallForce;
+  }
+
+  void SetActionTrackBall() { m_ActionTrackBall = true; }
 
   SoccerBall* const        Ball()const;
   SoccerPitch* const       Pitch()const;

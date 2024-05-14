@@ -70,29 +70,34 @@ void FieldPlayer::Update()
   //run the logic for the current state
   m_pStateMachine->Update();
 
+  //Perform Actions
+  if (m_ActionKickBall) {
+      m_ActionKickBall = false;
+      Ball()->Kick(m_ActionKickBallDirection, m_ActionKickBallForce);
+  }
+  if (m_ActionTrackBall) {
+      m_ActionTrackBall = false;
+      TrackBall();
+  }
+
   //calculate the combined steering force
   m_pSteering->Calculate();
+  double ForwardForce = m_pSteering->ForwardComponent();
+  double TurningForce = m_pSteering->SideComponent();
 
   //if no steering force is produced decelerate the player by applying a
   //braking force
-  //if (m_pSteering->Force().IsNearZero())
-  //{
-  //    const double BrakingRate = 0.2;// 0.8;
+  if (m_pSteering->Force().IsNearZero())
+  {
+      const double BrakingRate = 0.8;
 
-  //  //m_vVelocity = m_vVelocity * BrakingRate;      
-  //  m_BodyInterface.SetFriction(m_EntityPhysicsID, BrakingRate);
-  //}
-  //else
-  //{
-  //    m_BodyInterface.SetFriction(m_EntityPhysicsID, 0);
-  //}
-  
+      SetVelocity(Velocity() * BrakingRate);
+  }
+
   //the steering force's side component is a force that rotates the 
   //player about its axis. We must limit the rotation so that a player
   //can only turn by PlayerMaxTurnRate rads per update.
-  double TurningForce = m_pSteering->SideComponent();
-
-  Clamp(TurningForce, -Prm.PlayerMaxTurnRate, Prm.PlayerMaxTurnRate);
+  TurningForce = Clamp(TurningForce, -Prm.PlayerMaxTurnRate, Prm.PlayerMaxTurnRate);
 
   //rotate the heading vector
   //Vec2DRotateAroundOrigin(m_vHeading, TurningForce);
@@ -101,34 +106,17 @@ void FieldPlayer::Update()
 
   //make sure the velocity vector points in the same direction as
   //the heading vector
-  //m_vVelocity = m_vHeading * m_vVelocity.Length();
-
-  //and recreate m_vSide
-  //m_vSide = m_vHeading.Perp();
-
+  SetVelocity(Heading() * Velocity().Length());
 
   //now to calculate the acceleration due to the force exerted by
   //the forward component of the steering force in the direction
   //of the player's heading
-  //Vector2D accel = m_vHeading * m_pSteering->ForwardComponent() / Mass();
+  Vec3 Acceleration = Heading() * ForwardForce / Mass();
 
-  Vec3 Acceleration = Heading() * m_pSteering->ForwardComponent() / Mass();
-
-  //m_vVelocity += accel;
   m_BodyInterface.AddLinearVelocity(m_EntityPhysicsID, Acceleration);
 
   //make sure player does not exceed maximum velocity
-  //m_vVelocity.Truncate(m_dMaxSpeed);
   SetVelocity(Vec3::sClamp(Velocity(), Vec3(-m_dMaxSpeed, -m_dMaxSpeed, -m_dMaxSpeed), Vec3(m_dMaxSpeed, m_dMaxSpeed, m_dMaxSpeed)));
-
-  //update the position
-  //m_vPosition += m_vVelocity;
-
-  //enforce a non-penetration constraint if desired
-  /*if(Prm.bNonPenetrationConstraint)
-  {
-    EnforceNonPenetrationContraint(this, AutoList<PlayerBase>::GetAllMembers());
-  }*/
 }
 
 //-------------------- HandleMessage -------------------------------------

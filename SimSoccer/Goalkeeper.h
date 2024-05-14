@@ -30,6 +30,8 @@ private:
   //to ensure he always appears to be watching the ball
   Vec3   m_vLookAt;
 
+  bool m_ActionTrapBall = false;
+
 public:
   
    GoalKeeper(SoccerTeam*        home_team,
@@ -66,6 +68,7 @@ public:
    StateMachine<GoalKeeper>* GetFSM()const{return m_pStateMachine;}
    std::string GetCurrentStateName()const { return std::string(m_pStateMachine->GetNameOfCurrentState()); }
 
+   void SetActionTrapBall() { m_ActionTrapBall = true; }
    
    Vec3    LookAt()const{return m_vLookAt;}
    void        SetLookAt(Vec3 v){m_vLookAt=v;}

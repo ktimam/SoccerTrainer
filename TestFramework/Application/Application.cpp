@@ -287,8 +287,8 @@ void Application::UpdateCamera(float inDeltaTime)
 	// Forward
 	float heading, pitch;
 	GetCameraLocalHeadingAndPitch(heading, pitch);
-	heading += DegreesToRadians(mMouse->GetDX() * 0.01f);
-	pitch = Clamp(pitch - DegreesToRadians(mMouse->GetDY() * 0.01f), -0.49f * JPH_PI, 0.49f * JPH_PI);
+	heading += DegreesToRadians(mMouse->GetDX() * 0.02f);
+	pitch = Clamp(pitch - DegreesToRadians(mMouse->GetDY() * 0.02f), -0.49f * JPH_PI, 0.49f * JPH_PI);
 	mLocalCamera.mForward = Vec3(Cos(pitch) * Cos(heading), Sin(pitch), Cos(pitch) * Sin(heading));
 
 	// Convert to world space

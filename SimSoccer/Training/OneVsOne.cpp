@@ -45,25 +45,25 @@ OneVsOne::~OneVsOne()
 //------------------------------------------------------------------------
 void OneVsOne::CreatePlayers()
 {
-    float player_elevation = 2;
+    float player_elevation = 0.2f;
     // Character size
-    float	cCharacterHeightStanding = 13.5f;
-    float	cCharacterRadiusStanding = 3.0f;
+    float	cCharacterHeightStanding = 1.5f;
+    float	cCharacterRadiusStanding = 0.2f;
+
+    // Create 'player' character
+    Ref<CharacterSettings> settings = new CharacterSettings();
+    settings->mMaxSlopeAngle = DegreesToRadians(45.0f);
+    settings->mLayer = Layers::MOVING;
+    settings->mShape = RotatedTranslatedShapeSettings(Vec3(0, 0.5f * cCharacterHeightStanding + cCharacterRadiusStanding, 0), Quat::sIdentity(), new CapsuleShape(0.5f * cCharacterHeightStanding, cCharacterRadiusStanding)).Create().Get();
+    settings->mFriction = 0.005f;
+    settings->mSupportingVolume = Plane(Vec3::sAxisY(), -cCharacterRadiusStanding); // Accept contacts that touch the lower sphere of the capsule
+    settings->mMass = Prm.PlayerMass;
+    Character* character;
 
     if (Color() == blue)
     {
-        // Create 'player' character
-        Ref<CharacterSettings> settings = new CharacterSettings();
-        settings->mMaxSlopeAngle = DegreesToRadians(45.0f);
-        settings->mLayer = Layers::MOVING;
-        settings->mShape = RotatedTranslatedShapeSettings(Vec3(0, 0.5f * cCharacterHeightStanding + cCharacterRadiusStanding, 0), Quat::sIdentity(), new CapsuleShape(0.5f * cCharacterHeightStanding, cCharacterRadiusStanding)).Create().Get();
-        settings->mFriction = 0.5f;
-        settings->mSupportingVolume = Plane(Vec3::sAxisY(), -cCharacterRadiusStanding); // Accept contacts that touch the lower sphere of the capsule
-        settings->mMass = Prm.PlayerMass;
-        Character* character;
-
         //create the players
-        character = new Character(settings, Vec3(120, player_elevation, 100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+        character = new Character(settings, Vec3(12, player_elevation, 5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
         character->AddToPhysicsSystem(EActivation::Activate);
         m_Players.push_back(new FieldPlayer(this,
             4,
@@ -78,18 +78,8 @@ void OneVsOne::CreatePlayers()
 
     else
     {
-        // Create 'player' character
-        Ref<CharacterSettings> settings = new CharacterSettings();
-        settings->mMaxSlopeAngle = DegreesToRadians(45.0f);
-        settings->mLayer = Layers::MOVING;
-        settings->mShape = RotatedTranslatedShapeSettings(Vec3(0, 0.5f * cCharacterHeightStanding + cCharacterRadiusStanding, 0), Quat::sIdentity(), new CapsuleShape(0.5f * cCharacterHeightStanding, cCharacterRadiusStanding)).Create().Get();
-        settings->mFriction = 0.5f;
-        settings->mSupportingVolume = Plane(Vec3::sAxisY(), -cCharacterRadiusStanding); // Accept contacts that touch the lower sphere of the capsule
-        settings->mMass = Prm.PlayerMass;
-        Character* character;
-
         //create the players
-        character = new Character(settings, Vec3(220, player_elevation, 100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+        character = new Character(settings, Vec3(22, player_elevation, 5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
         character->AddToPhysicsSystem(EActivation::Activate);
         m_Players.push_back(new FieldPlayer(this,
             10,

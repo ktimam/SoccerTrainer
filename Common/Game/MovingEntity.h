@@ -104,7 +104,9 @@ public:
 inline bool MovingEntity::RotateHeadingToFacePosition(Vec3 target)
 {
   Vec3 position = m_BodyInterface.GetCenterOfMassPosition(m_EntityPhysicsID);
-  Vec3 toTarget = (target - position);
+  position = Vec3(position.GetX(), 0, position.GetZ());
+  Vec3 Target = Vec3(target.GetX(),0,target.GetZ());
+  Vec3 toTarget = (Target - position);
   toTarget = toTarget.Normalized();
 
   Vec3 heading = Heading();
@@ -122,30 +124,13 @@ inline bool MovingEntity::RotateHeadingToFacePosition(Vec3 target)
   if (angle > m_dMaxTurnRate) angle = m_dMaxTurnRate;
   
   //return true if the player is facing the target
-  if (angle < 0.05) return true;
+  if (angle < m_dMaxTurnRate) return true;
 
   m_BodyInterface.SetAngularVelocity(m_EntityPhysicsID, Vec3(0,0,0));
-  Rotate(angle);
+  Rotate(-angle);
 
   return false;
 }
-
-
-//------------------------- SetHeading ----------------------------------------
-//
-//  first checks that the given heading is not a vector of zero length. If the
-//  new heading is valid this fumction sets the entity's heading and side 
-//  vectors accordingly
-//-----------------------------------------------------------------------------
-//inline void MovingEntity::SetHeading(Vec3 new_heading)
-//{
-//  assert( (new_heading.LengthSq() - 1.0) < 0.00001);
-//  
-//  m_vHeading = new_heading;
-//
-//  //the side vector must always be perpendicular to the heading
-//  m_vSide = m_vHeading.Perp();
-//}
 
 
 

@@ -497,25 +497,25 @@ void SoccerTeam::ReturnAllFieldPlayersToHome()const
 //------------------------------------------------------------------------
 void SoccerTeam::CreatePlayers()
 {
-    float player_elevation = 2;
-      // Character size
-      float	cCharacterHeightStanding = 13.5f;
-      float	cCharacterRadiusStanding = 3.0f;
+    float player_elevation = 0.2f;
+    // Character size
+    float	cCharacterHeightStanding = 1.5f;
+    float	cCharacterRadiusStanding = 0.2f;
+
+    // Create 'player' character
+    Ref<CharacterSettings> settings = new CharacterSettings();
+    settings->mMaxSlopeAngle = DegreesToRadians(45.0f);
+    settings->mLayer = Layers::MOVING;
+    settings->mShape = RotatedTranslatedShapeSettings(Vec3(0, 0.5f * cCharacterHeightStanding + cCharacterRadiusStanding, 0), Quat::sIdentity(), new CapsuleShape(0.5f * cCharacterHeightStanding, cCharacterRadiusStanding)).Create().Get();
+    settings->mFriction = 0.005f;
+    settings->mSupportingVolume = Plane(Vec3::sAxisY(), -cCharacterRadiusStanding); // Accept contacts that touch the lower sphere of the capsule
+    settings->mMass = Prm.PlayerMass;
+    Character* character;
 
   if (Color() == blue)
   {
-      // Create 'player' character
-      Ref<CharacterSettings> settings = new CharacterSettings();
-      settings->mMaxSlopeAngle = DegreesToRadians(45.0f);
-      settings->mLayer = Layers::MOVING;
-      settings->mShape = RotatedTranslatedShapeSettings(Vec3(0, 0.5f * cCharacterHeightStanding + cCharacterRadiusStanding, 0), Quat::sIdentity(), new CapsuleShape(0.5f * cCharacterHeightStanding, cCharacterRadiusStanding)).Create().Get();
-      settings->mFriction = 0.5f;
-      settings->mSupportingVolume = Plane(Vec3::sAxisY(), -cCharacterRadiusStanding); // Accept contacts that touch the lower sphere of the capsule
-      settings->mMass = Prm.PlayerMass;
-      Character* character;
-
     //goalkeeper
-    character = new Character(settings, Vec3(100, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(6, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
     m_Players.push_back(new GoalKeeper(this,
                                1,
@@ -526,7 +526,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxTurnRate));
  
     //create the players
-    character = new Character(settings, Vec3(120, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(8, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
     m_Players.push_back(new FieldPlayer(this,
                                6,
@@ -539,7 +539,7 @@ void SoccerTeam::CreatePlayers()
 
 
 
-    character = new Character(settings, Vec3(140, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(10, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
         m_Players.push_back(new FieldPlayer(this,
                                8,
@@ -554,7 +554,7 @@ void SoccerTeam::CreatePlayers()
  
 
         
-    character = new Character(settings, Vec3(160, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(12, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
         m_Players.push_back(new FieldPlayer(this,
                                3,
@@ -566,7 +566,7 @@ void SoccerTeam::CreatePlayers()
                                PlayerBase::defender));
 
 
-    character = new Character(settings, Vec3(180, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(14, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
         m_Players.push_back(new FieldPlayer(this,
                                5,
@@ -581,19 +581,8 @@ void SoccerTeam::CreatePlayers()
 
   else
   {
-      // Create 'player' character
-      Ref<CharacterSettings> settings = new CharacterSettings();
-      settings->mMaxSlopeAngle = DegreesToRadians(45.0f);
-      settings->mLayer = Layers::MOVING;
-      settings->mShape = RotatedTranslatedShapeSettings(Vec3(0, 0.5f * cCharacterHeightStanding + cCharacterRadiusStanding, 0), Quat::sIdentity(), new CapsuleShape(0.5f * cCharacterHeightStanding, cCharacterRadiusStanding)).Create().Get();
-      settings->mFriction = 0.5f;
-      settings->mSupportingVolume = Plane(Vec3::sAxisY(), -cCharacterRadiusStanding); // Accept contacts that touch the lower sphere of the capsule
-      settings->mMass = Prm.PlayerMass;
-      Character* character;
-
-
      //goalkeeper
-    character = new Character(settings, Vec3(200, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(20, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate); 
     m_Players.push_back(new GoalKeeper(this,
                                16,
@@ -605,7 +594,7 @@ void SoccerTeam::CreatePlayers()
 
 
     //create the players
-    character = new Character(settings, Vec3(220, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(22, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
     m_Players.push_back(new FieldPlayer(this,
                                9,
@@ -616,7 +605,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::attacker));
 
-    character = new Character(settings, Vec3(240, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(24, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
     m_Players.push_back(new FieldPlayer(this,
                                11,
@@ -629,7 +618,7 @@ void SoccerTeam::CreatePlayers()
 
 
 
-    character = new Character(settings, Vec3(260, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(26, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
     m_Players.push_back(new FieldPlayer(this,
                                12,
@@ -641,7 +630,7 @@ void SoccerTeam::CreatePlayers()
                                PlayerBase::defender));
 
 
-    character = new Character(settings, Vec3(280, player_elevation,100), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character = new Character(settings, Vec3(28, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
     m_Players.push_back(new FieldPlayer(this,
                                14,

@@ -131,8 +131,10 @@ bool GlobalPlayerState::OnMessage(FieldPlayer* player, const Telegram& telegram)
       }
       
       //make the pass   
-      player->Ball()->Kick(receiver->Pos() - player->Ball()->Pos(),
-                           Prm.MaxPassingForce);
+      /*player->Ball()->Kick(receiver->Pos() - player->Ball()->Pos(),
+                           Prm.MaxPassingForce);*/
+      player->SetActionKickBall(receiver->Pos() - player->Ball()->Pos(),
+          Prm.MaxPassingForce);
 
          
 #ifndef LINUX
@@ -295,9 +297,10 @@ void SupportAttacker::Execute(FieldPlayer* player)
     player->Steering()->ArriveOff();
         
     //the player should keep his eyes on the ball!
-    player->TrackBall();
+    //player->TrackBall();
+    player->SetActionTrackBall();
 
-    player->SetVelocity(Vec3(0,0,0));
+    //player->SetVelocity(Vec3(0,0,0));
 
     //if not threatened by another player request a pass
     if (!player->isThreatened())
@@ -448,7 +451,8 @@ void Wait::Execute(FieldPlayer* player)
       //player->SetVelocity(Vec3(0,0,0));
 
       //the player should keep his eyes on the ball!
-      player->TrackBall();
+      //player->TrackBall();
+      player->SetActionTrackBall();
   }
 
   //if this player's team is controlling AND this player is not the attacker
@@ -559,7 +563,8 @@ void KickBall::Execute(FieldPlayer* player)
    Vec3 KickDirection = BallTarget - player->Ball()->Pos();
    KickDirection.SetY(player->Ball()->Pos().GetY());
    
-   player->Ball()->Kick(KickDirection, power);
+   //player->Ball()->Kick(KickDirection, power);
+   player->SetActionKickBall(KickDirection, power);
     
    //change state   
    player->GetFSM()->ChangeState(Wait::Instance());
@@ -592,7 +597,8 @@ void KickBall::Execute(FieldPlayer* player)
 
     Vec3 KickDirection = BallTarget - player->Ball()->Pos();
    
-    player->Ball()->Kick(KickDirection, power);
+    //player->Ball()->Kick(KickDirection, power);
+    player->SetActionKickBall(KickDirection, power);
 
 #ifndef LINUX
     #ifdef PLAYER_STATE_INFO_ON
@@ -678,16 +684,19 @@ void Dribble::Execute(FieldPlayer* player)
 
     //this value works well whjen the player is attempting to control the
     //ball and turn at the same time
-    const double KickingForce = 0.8;
+    const double KickingForce = Prm.MaxDribbleForce * 0.55;
 
-    player->Ball()->Kick(Vec3(direction.x,0, direction.y), KickingForce);
+    //player->Ball()->Kick(Vec3(direction.x,0, direction.y), KickingForce);
+    player->SetActionKickBall(Vec3(direction.x, 0, direction.y), KickingForce);
   }
 
   //kick the ball down the field
   else
   {
-    player->Ball()->Kick(player->Team()->HomeGoal()->Facing(),
-                         Prm.MaxDribbleForce);  
+    /*player->Ball()->Kick(player->Team()->HomeGoal()->Facing(),
+                         Prm.MaxDribbleForce);*/
+    player->SetActionKickBall(player->Team()->HomeGoal()->Facing(),
+        Prm.MaxDribbleForce);
   }
 
   //the player has kicked the ball so he must now change state to follow it
@@ -772,8 +781,9 @@ void ReceiveBall::Execute(FieldPlayer* player)
   {
     player->Steering()->ArriveOff();
     player->Steering()->PursuitOff();
-    player->TrackBall();    
-    player->SetVelocity(Vec3(0,0,0));
+    //player->TrackBall();
+    player->SetActionTrackBall();
+    //player->SetVelocity(Vec3(0,0,0));
   } 
 }
 

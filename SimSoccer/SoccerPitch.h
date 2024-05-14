@@ -76,7 +76,7 @@ public:
 
 public:
 
-  SoccerPitch(int cxClient, int cyClient, game_mode mode = one_vs_one);
+  SoccerPitch(int cxClient, int cyClient, game_mode mode = five_vs_five_match);
 
   ~SoccerPitch();
 

@@ -93,9 +93,10 @@ void TendGoal::Execute(GoalKeeper* keeper)
   //to put the ball back in play
   if (keeper->BallWithinKeeperRange())
   {
-    keeper->Ball()->Trap();
+    //keeper->Ball()->Trap();
+    keeper->SetActionTrapBall();
 
-    keeper->Pitch()->SetGoalKeeperHasBall(true);
+    //keeper->Pitch()->SetGoalKeeperHasBall(true);
 
     keeper->GetFSM()->ChangeState(PutBallBackInPlay::Instance());
 
@@ -204,9 +205,10 @@ void InterceptBall::Execute(GoalKeeper* keeper)
   //ball and puts it back in play
   if (keeper->BallWithinKeeperRange())
   {
-    keeper->Ball()->Trap();
+    //keeper->Ball()->Trap();
+    keeper->SetActionTrapBall();
     
-    keeper->Pitch()->SetGoalKeeperHasBall(true);
+    //keeper->Pitch()->SetGoalKeeperHasBall(true);
 
     keeper->GetFSM()->ChangeState(PutBallBackInPlay::Instance());
 
@@ -257,11 +259,14 @@ void PutBallBackInPlay::Execute(GoalKeeper* keeper)
                               Prm.GoalkeeperMinPassDist))
   {     
     //make the pass   
-    keeper->Ball()->Kick((BallTarget - keeper->Ball()->Pos()).Normalized(),
-                         Prm.MaxPassingForce);
+    /*keeper->Ball()->Kick((BallTarget - keeper->Ball()->Pos()).Normalized(),
+                         Prm.MaxPassingForce);*/
+
+    keeper->SetActionKickBall((BallTarget - keeper->Ball()->Pos()).Normalized(),
+                        Prm.MaxPassingForce);
 
     //goalkeeper no longer has ball 
-    keeper->Pitch()->SetGoalKeeperHasBall(false);
+    //keeper->Pitch()->SetGoalKeeperHasBall(false);
 
     //let the receiving player know the ball's comin' at him
     Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,

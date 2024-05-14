@@ -764,7 +764,7 @@ void SamplesApp::StartTest(const RTTI *inRTTI)
 	// Check if test has settings menu
 	mTestSettingsButton->SetDisabled(!mTest->HasSettingsMenu());
 
-	g_SoccerPitch = new SoccerPitch(WindowWidth, WindowHeight);
+	g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth);
 	g_MatchReplay = new Snapshot();
 }
 
@@ -2556,7 +2556,7 @@ void SamplesApp::ValidateState(StateRecorderImpl &inExpectedState)
 void SamplesApp::GetInitialCamera(CameraState &ioState) const
 {
 	// Default if the test doesn't override it
-	ioState.mPos = GetWorldScale() * RVec3(345,325,460);// 30, 10, 30);
+	ioState.mPos = GetWorldScale() * RVec3( 25, 20, 30);
 	ioState.mForward = Vec3(0,-1,-0.5).Normalized();// -Vec3(ioState.mPos).Normalized();
 	ioState.mFarPlane = 1000.0f;
 

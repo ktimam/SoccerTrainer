@@ -97,35 +97,35 @@ Vec3 SteeringBehaviors::SumForces()
 
   if (On(separation))
   {
-    force += Separation() * m_dMultSeparation;
+    force = Separation() * m_dMultSeparation;
 
     if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
   }    
 
   if (On(seek))
   {
-    force += Seek(m_vTarget);
+    force = Seek(m_vTarget);
 
     if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
   }
 
   if (On(arrive))
   {
-    force += Arrive(m_vTarget, fast);
+    force = Arrive(m_vTarget, fast);
 
     if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
   }
 
   if (On(pursuit))
   {
-    force += Pursuit(m_pBall);
+    force = Pursuit(m_pBall);
 
     if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
   }
 
   if (On(interpose))
   {
-    force += Interpose(m_pBall, m_vTarget, m_dInterposeDist);
+    force = Interpose(m_pBall, m_vTarget, m_dInterposeDist);
 
     if (!AccumulateForce(m_vSteeringForce, force)) return m_vSteeringForce;
   }
@@ -148,7 +148,8 @@ double SteeringBehaviors::ForwardComponent()
 //------------------------------------------------------------------------
 double SteeringBehaviors::SideComponent()
 {
-  return m_pPlayer->Side().Dot(m_vSteeringForce) * m_pPlayer->MaxTurnRate();
+  float dot = m_pPlayer->Side().Dot(m_vSteeringForce);
+  return dot  * m_pPlayer->MaxTurnRate();
 }
 
 
@@ -163,8 +164,10 @@ Vec3 SteeringBehaviors::Seek(Vec3 target)
  
   Vec3 DesiredVelocity = (target - m_pPlayer->Pos()).Normalized()
                             * m_pPlayer->MaxSpeed();
+  DesiredVelocity = DesiredVelocity - m_pPlayer->Velocity();
+  DesiredVelocity.SetY(0);
 
-  return (DesiredVelocity - m_pPlayer->Velocity());
+  return DesiredVelocity;
 }
 
 
@@ -177,6 +180,8 @@ Vec3 SteeringBehaviors::Arrive(Vec3    target,
                                    Deceleration deceleration)
 {
   Vec3 ToTarget = target - m_pPlayer->Pos();
+  ToTarget.SetY(0);
+  //bool infront = m_pPlayer->Heading().Dot(target) > 0;
 
   //calculate the distance to the target
   double dist = ToTarget.Length();
@@ -185,7 +190,7 @@ Vec3 SteeringBehaviors::Arrive(Vec3    target,
   {
     //because Deceleration is enumerated as an int, this value is required
     //to provide fine tweaking of the deceleration..
-    const double DecelerationTweaker = 1;
+    const double DecelerationTweaker = 0.8f;
 
     //calculate the speed required to reach the target given the desired
     //deceleration
@@ -198,8 +203,14 @@ Vec3 SteeringBehaviors::Arrive(Vec3    target,
     //the ToTarget vector because we have already gone to the trouble
     //of calculating its length: dist. 
     Vec3 DesiredVelocity =  ToTarget * speed / dist;
+    DesiredVelocity.SetY(0);
 
-    return (DesiredVelocity - m_pPlayer->Velocity());
+    /*if (m_pPlayer->Role() != PlayerBase::goal_keeper && infront &&
+        (DesiredVelocity.GetX() < m_pPlayer->Velocity().GetX() || DesiredVelocity.GetZ() < m_pPlayer->Velocity().GetZ())) {
+        Vec3(0, 0, 0);
+    }*/
+    Vec3 FinalVelocity = DesiredVelocity - m_pPlayer->Velocity();
+    return Vec3(FinalVelocity.GetX(), 0, FinalVelocity.GetZ());
   }
 
   return Vec3(0,0,0);
@@ -274,6 +285,7 @@ Vec3 SteeringBehaviors::Separation()
     if((*curPlyr != m_pPlayer) && (*curPlyr)->Steering()->Tagged())
     {
       Vec3 ToAgent = m_pPlayer->Pos() - (*curPlyr)->Pos();
+      ToAgent.SetY(0);
 
       //scale the force inversely proportional to the agents distance  
       //from its neighbor.

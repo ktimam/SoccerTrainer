@@ -29,7 +29,7 @@ private:
     ParamLoader()//:iniFileLoaderBase("Params.ini")
     {
 
-        GoalWidth = 100;// GetNextParameterDouble();
+        GoalWidth = 4;// 7.3;// 100;// GetNextParameterDouble();
 
         NumSupportSpotsX = 13;// GetNextParameterInt();
         NumSupportSpotsY = 6;// GetNextParameterInt();
@@ -45,55 +45,55 @@ private:
         ChancePlayerAttemptsPotShot = 0.005;//GetNextParameterDouble();
         ChanceOfUsingArriveTypeReceiveBehavior = 0.5;//GetNextParameterDouble();
 
-        BallSize = 5;//GetNextParameterDouble();    
-        BallMass = 1;//GetNextParameterDouble();    
+        BallSize = 0.22;// 5;//GetNextParameterDouble();    
+        BallMass = 0.5;//GetNextParameterDouble();    
         Friction = -0.015;//GetNextParameterDouble(); 
 
-        KeeperInBallRange = 10;//GetNextParameterDouble();    
-        PlayerInTargetRange = 10;//GetNextParameterDouble(); 
-        PlayerKickingDistance = 6;//GetNextParameterDouble(); 
+        KeeperInBallRange = 1;// 10;//GetNextParameterDouble();    
+        PlayerInTargetRange = 0.2;// 10;//GetNextParameterDouble(); 
+        PlayerKickingDistance = 0.85;// 1;// 6;//GetNextParameterDouble(); 
         PlayerKickFrequency = 8;//GetNextParameterDouble();
 
 
-        PlayerMass = 15;// 3;//GetNextParameterDouble(); 
-        PlayerMaxForce = 40;// 1;//GetNextParameterDouble();    
-        PlayerMaxSpeedWithBall = 70;// 1.2;// 3700;//GetNextParameterDouble();   
-        PlayerMaxSpeedWithoutBall = 100;// 1.6;// 4000;//GetNextParameterDouble();   
-        PlayerMaxTurnRate = 0.01;// 0.4;//GetNextParameterDouble(); 
+        PlayerMass = 50;// 15;// 3;//GetNextParameterDouble(); 
+        PlayerMaxForce = 5;// 450;// 1;//GetNextParameterDouble();    
+        PlayerMaxSpeedWithBall = 7;// 70;// 1.2;// 3700;//GetNextParameterDouble();   
+        PlayerMaxSpeedWithoutBall = 10;// 100;// 1.6;// 4000;//GetNextParameterDouble();   
+        PlayerMaxTurnRate = 0.1;//GetNextParameterDouble(); 
         PlayerScale = 1;//GetNextParameterDouble();      
-        PlayerComfortZone = 60;//GetNextParameterDouble();  
+        PlayerComfortZone = 3;// 60;//GetNextParameterDouble();  
         PlayerKickingAccuracy = 0.99;//GetNextParameterDouble();
 
         NumAttemptsToFindValidStrike = 5;//GetNextParameterInt();
 
 
 
-        MaxDribbleForce = 75;// 1.5;//GetNextParameterDouble(); 
-        MaxShootingForce = 300;// 6;//GetNextParameterDouble();    
-        MaxPassingForce = 150;// 3;//GetNextParameterDouble();  
+        MaxDribbleForce = 0.2;// 0.5;// 1.5;// 75;// 1.5;//GetNextParameterDouble(); 
+        MaxShootingForce = 6;// 6;// 300;// 6;//GetNextParameterDouble();    
+        MaxPassingForce = 3;// 3;// 150;// 3;//GetNextParameterDouble();  
 
-        WithinRangeOfHome = 15;//GetNextParameterDouble();    
-        WithinRangeOfSupportSpot = 15;//GetNextParameterDouble();    
+        WithinRangeOfHome = 0.5;// 15;//GetNextParameterDouble();    
+        WithinRangeOfSupportSpot = 0.5;// 15;//GetNextParameterDouble();    
 
-        MinPassDist = 120;//GetNextParameterDouble();
-        GoalkeeperMinPassDist = 50;//GetNextParameterDouble();
+        MinPassDist = 4;// 120;//GetNextParameterDouble();
+        GoalkeeperMinPassDist = 5;// 50;//GetNextParameterDouble();
 
-        GoalKeeperTendingDistance = 20;//GetNextParameterDouble();    
-        GoalKeeperInterceptRange = 100;//GetNextParameterDouble();
-        BallWithinReceivingRange = 10;//GetNextParameterDouble();
+        GoalKeeperTendingDistance = 2;// 20;//GetNextParameterDouble();    
+        GoalKeeperInterceptRange = 5;// 100;//GetNextParameterDouble();
+        BallWithinReceivingRange = 1;// 10;//GetNextParameterDouble();
 
         bStates = 1;//GetNextParameterBool();    
         bIDs = 1;//GetNextParameterBool(); 
         bSupportSpots = 0;//GetNextParameterBool();     
         bRegions = 0;//GetNextParameterBool();
         bShowControllingTeam = 0;//GetNextParameterBool();
-        bViewTargets = 0;//GetNextParameterBool();
+        bViewTargets = 1;//GetNextParameterBool();
         bHighlightIfThreatened = 0;//GetNextParameterBool();
 
-        FrameRate = 120;//GetNextParameterInt();
+        FrameRate = 240;//GetNextParameterInt();
 
-        SeparationCoefficient = 100;//GetNextParameterDouble(); 
-        ViewDistance = 30;//GetNextParameterDouble(); 
+        SeparationCoefficient = 3;//erDouble(); 
+        ViewDistance = 3;// 30;//GetNextParameterDouble(); 
         bNonPenetrationConstraint = 0;//GetNextParameterBool(); 
 
 
