@@ -2,6 +2,7 @@
 canister = "ICMLPSample"
 did_path = "src/ICMLPSample.did"
 cpp_paths = [
+	"MLPSample.cpp",
 	"af_forge/include/fg/*.h",
 	"af_glad/include/glad/*.h",
 	"af_glad/include/KHR/*.h",
@@ -42,12 +43,85 @@ cpp_paths = [
 	"fftw/reodft/*.c",
 	"fftw/threads/*.h",
 	"fftw/threads/*.c",
+	"nonstd/*.hpp",
+	"oneDNN/*.hpp",
+	"oneDNN/*.h",
+	"oneDNN/*/*.cpp",
+	"oneDNN/*/*.hpp",
+	"oneDNN/*/*.h",
+	"oneDNN/*/*/*.cpp",
+	"oneDNN/*/*/*.hpp",
+	"oneDNN/*/*/*.h",
+	"oneDNN/*/*/*/*.cpp",
+	"oneDNN/*/*/*/*.hpp",
+	"oneDNN/*/*/*/*.h",
+	"oneDNN/*/*/*/*/*.cpp",
+	"oneDNN/*/*/*/*/*.hpp",
+	"oneDNN/*/*/*/*/*.h",
+	"openblas/src/*/*.c",
+	"openblas/src/*/*/*.c",
+	"spdlog/*.h",
+	"spdlog/*/*.h",
+	"spdlog/*/*/*.h",
+	"threads/*.hpp",
+	"flashlight/fl/*.h",
+	"flashlight/fl/*/*.h",
+	"flashlight/fl/*/*.cpp",
+	"flashlight/fl/*/*/*.h",
+	"flashlight/fl/*/*/*.cpp",
+	"flashlight/fl/*/*/*/*.h",
+	"flashlight/fl/*/*/*/*.cpp",
+	"flashlight/fl/*/*/*/*/*.h",
+	"flashlight/fl/*/*/*/*/*.cpp",
+	"flashlight/fl/*/*/*/*/*/*.h",
+	"flashlight/fl/*/*/*/*/*/*.cpp",
 	]
 cpp_include_dirs = [
 	"af_forge/include/",
 	"arrayfire/include/",
+	"oneDNN/src/",
+	"oneDNN/",
+	"arrayfire/src/api/c",
+	"arrayfire/include",
+	"arrayfire/extern/half/include",
+	"arrayfire/src/backend/cpu",
+	"arrayfire/src/backend",
+	"af_glad/include",
+	"af_forge/include",
+	"openblas",
+	"fftw",
+	"./",
 	]
-cpp_compile_flags = ["-D JSON_HAS_FILESYSTEM=0"]
+cpp_compile_flags = [
+    "-MMD", 
+    "-MP", 
+	-D _USE_MATH_DEFINES",
+	-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
+	-D FL_USE_ARRAYFIRE",
+	-D FL_ARRAYFIRE_USE_CPU",
+	-D FL_USE_CPU",
+	-D FL_BACKEND_CPU",
+	-D FL_BACKEND_CUDA=false",
+	-D AF_WITH_CPUID",
+	-D AF_CPU",
+	-D AF_DEBUG",
+	-D SORT_TYPE=double",
+	-D _CRT_SECURE_NO_WARNINGS",
+	-D NOMINMAX",
+	-D AFDLL",
+	-D SMALL_MATRIX_OPT",
+	-D NO_AVX512",
+	-D SMP_SERVER",
+	-D NO_WARMUP",
+	-D MAX_CPU_NUMBER=32",
+	-D MAX_PARALLEL_NUMBER=1",
+	-D NO_AFFINITY",
+	-D BUILD_SINGLE",
+	-D BUILD_DOUBLE",
+	-D BUILD_COMPLEX",
+	-D BUILD_COMPLEX16",
+	-D FFTW_SINGLE",
+	]
 cpp_link_flags = []
 c_paths = []
 c_include_dirs = []
@@ -55,7 +129,14 @@ c_compile_flags = []
 [build-native]
 cpp_paths = ["native/main.cpp"]
 cpp_include_dirs = []
-cpp_compile_flags = []
+cpp_compile_flags = [
+    "-O3",
+    "-flto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+    #"-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+	]
 cpp_link_flags = []
 c_paths = []
 c_include_dirs = []

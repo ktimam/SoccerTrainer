@@ -7142,9 +7142,6 @@
     <ClCompile Include="arrayfire\src\backend\cpu\kernel\sort_by_key\sort_by_key_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="openblas\interface\gemm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="openblas\src\interface\camax.c">
       <Filter>Source Files</Filter>
     </ClCompile>
