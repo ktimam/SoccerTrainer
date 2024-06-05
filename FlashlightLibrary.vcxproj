@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{BCFBBE7D-6BC9-450A-B1B8-54C80FB1F646}</ProjectGuid>
+    <RootNamespace>MLPSample</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_TENSOR_STUB;_CRT_SECURE_NO_WARNINGS;FL_COMPILE_LIBRARY;FL_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\MLPSample - Copy\flashlight\fl\optim\Optimizers.cpp" />
+    <ClCompile Include="flashlight\fl\autograd\Functions.cpp" />
+    <ClCompile Include="flashlight\fl\autograd\tensor\AutogradOps.cpp" />
+    <ClCompile Include="flashlight\fl\autograd\Utils.cpp" />
+    <ClCompile Include="flashlight\fl\autograd\Variable.cpp" />
+    <ClCompile Include="flashlight\fl\common\Defines.cpp" />
+    <ClCompile Include="flashlight\fl\common\DevicePtr.cpp" />
+    <ClCompile Include="flashlight\fl\common\DynamicBenchmark.cpp" />
+    <ClCompile Include="flashlight\fl\common\Histogram.cpp" />
+    <ClCompile Include="flashlight\fl\common\Logging.cpp" />
+    <ClCompile Include="flashlight\fl\common\stacktrace\Backward.cpp" />
+    <ClCompile Include="flashlight\fl\common\Timer.cpp" />
+    <ClCompile Include="flashlight\fl\common\Utils.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\AdaptiveEmbedding.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\AsymmetricConv1D.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\Conformer.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\PositionEmbedding.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\RawWavSpecAugment.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\Residual.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\SinusoidalPositionEmbedding.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\SpecAugment.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\TDSBlock.cpp" />
+    <ClCompile Include="flashlight\fl\contrib\modules\Transformer.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\BatchDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\BlobDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\ConcatDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\FileBlobDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\MemoryBlobDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\MergeDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\PrefetchDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\ResampleDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\ShuffleDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\SpanDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\TensorDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\TransformDataset.cpp" />
+    <ClCompile Include="flashlight\fl\dataset\Utils.cpp" />
+    <ClCompile Include="flashlight\fl\meter\AverageValueMeter.cpp" />
+    <ClCompile Include="flashlight\fl\meter\CountMeter.cpp" />
+    <ClCompile Include="flashlight\fl\meter\EditDistanceMeter.cpp" />
+    <ClCompile Include="flashlight\fl\meter\FrameErrorMeter.cpp" />
+    <ClCompile Include="flashlight\fl\meter\MSEMeter.cpp" />
+    <ClCompile Include="flashlight\fl\meter\TimeMeter.cpp" />
+    <ClCompile Include="flashlight\fl\meter\TopKMeter.cpp" />
+    <ClCompile Include="flashlight\fl\nn\Init.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Activations.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\AdaptiveSoftMax.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\BatchNorm.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Container.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Conv2D.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Dropout.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Embedding.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Identity.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\LayerNorm.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Linear.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Loss.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Module.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Normalize.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Padding.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Pool2D.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\PrecisionCast.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Reorder.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\RNN.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\Transform.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\View.cpp" />
+    <ClCompile Include="flashlight\fl\nn\modules\WeightNorm.cpp" />
+    <ClCompile Include="flashlight\fl\nn\Utils.cpp" />
+    <ClCompile Include="flashlight\fl\optim\Optimizers.cpp" />
+    <ClCompile Include="flashlight\fl\optim\SGDOptimizer.cpp" />
+    <ClCompile Include="flashlight\fl\optim\Utils.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\backend\stub\StubBackend.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\backend\stub\StubTensor.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\DefaultTensorType.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\Index.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\Init.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\Random.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\Shape.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\TensorAdapter.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\TensorBackend.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\TensorBase.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\TensorExtension.cpp" />
+    <ClCompile Include="flashlight\fl\tensor\Types.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MLPSample - Copy\flashlight\fl\optim\optim.h" />
+    <ClInclude Include="..\MLPSample - Copy\flashlight\fl\optim\Optimizers.h" />
+    <ClInclude Include="cereal\access.hpp" />
+    <ClInclude Include="cereal\archives\adapters.hpp" />
+    <ClInclude Include="cereal\archives\binary.hpp" />
+    <ClInclude Include="cereal\archives\json.hpp" />
+    <ClInclude Include="cereal\archives\portable_binary.hpp" />
+    <ClInclude Include="cereal\archives\xml.hpp" />
+    <ClInclude Include="cereal\cereal.hpp" />
+    <ClInclude Include="cereal\details\helpers.hpp" />
+    <ClInclude Include="cereal\details\polymorphic_impl.hpp" />
+    <ClInclude Include="cereal\details\polymorphic_impl_fwd.hpp" />
+    <ClInclude Include="cereal\details\static_object.hpp" />
+    <ClInclude Include="cereal\details\traits.hpp" />
+    <ClInclude Include="cereal\details\util.hpp" />
+    <ClInclude Include="cereal\external\base64.hpp" />
+    <ClInclude Include="cereal\external\rapidjson\allocators.h" />
+    <ClInclude Include="cereal\external\rapidjson\cursorstreamwrapper.h" />
+    <ClInclude Include="cereal\external\rapidjson\document.h" />
+    <ClInclude Include="cereal\external\rapidjson\encodedstream.h" />
+    <ClInclude Include="cereal\external\rapidjson\encodings.h" />
+    <ClInclude Include="cereal\external\rapidjson\error\en.h" />
+    <ClInclude Include="cereal\external\rapidjson\error\error.h" />
+    <ClInclude Include="cereal\external\rapidjson\filereadstream.h" />
+    <ClInclude Include="cereal\external\rapidjson\filewritestream.h" />
+    <ClInclude Include="cereal\external\rapidjson\fwd.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\itoa.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\meta.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\pow10.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\regex.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\stack.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\strtod.h" />
+    <ClInclude Include="cereal\external\rapidjson\internal\swap.h" />
+    <ClInclude Include="cereal\external\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="cereal\external\rapidjson\memorybuffer.h" />
+    <ClInclude Include="cereal\external\rapidjson\memorystream.h" />
+    <ClInclude Include="cereal\external\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="cereal\external\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="cereal\external\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="cereal\external\rapidjson\pointer.h" />
+    <ClInclude Include="cereal\external\rapidjson\prettywriter.h" />
+    <ClInclude Include="cereal\external\rapidjson\rapidjson.h" />
+    <ClInclude Include="cereal\external\rapidjson\reader.h" />
+    <ClInclude Include="cereal\external\rapidjson\schema.h" />
+    <ClInclude Include="cereal\external\rapidjson\stream.h" />
+    <ClInclude Include="cereal\external\rapidjson\stringbuffer.h" />
+    <ClInclude Include="cereal\external\rapidjson\writer.h" />
+    <ClInclude Include="cereal\external\rapidxml\rapidxml.hpp" />
+    <ClInclude Include="cereal\external\rapidxml\rapidxml_iterators.hpp" />
+    <ClInclude Include="cereal\external\rapidxml\rapidxml_print.hpp" />
+    <ClInclude Include="cereal\external\rapidxml\rapidxml_utils.hpp" />
+    <ClInclude Include="cereal\macros.hpp" />
+    <ClInclude Include="cereal\specialize.hpp" />
+    <ClInclude Include="cereal\types\array.hpp" />
+    <ClInclude Include="cereal\types\atomic.hpp" />
+    <ClInclude Include="cereal\types\base_class.hpp" />
+    <ClInclude Include="cereal\types\bitset.hpp" />
+    <ClInclude Include="cereal\types\boost_variant.hpp" />
+    <ClInclude Include="cereal\types\chrono.hpp" />
+    <ClInclude Include="cereal\types\common.hpp" />
+    <ClInclude Include="cereal\types\complex.hpp" />
+    <ClInclude Include="cereal\types\concepts\pair_associative_container.hpp" />
+    <ClInclude Include="cereal\types\deque.hpp" />
+    <ClInclude Include="cereal\types\forward_list.hpp" />
+    <ClInclude Include="cereal\types\functional.hpp" />
+    <ClInclude Include="cereal\types\list.hpp" />
+    <ClInclude Include="cereal\types\map.hpp" />
+    <ClInclude Include="cereal\types\memory.hpp" />
+    <ClInclude Include="cereal\types\optional.hpp" />
+    <ClInclude Include="cereal\types\polymorphic.hpp" />
+    <ClInclude Include="cereal\types\queue.hpp" />
+    <ClInclude Include="cereal\types\set.hpp" />
+    <ClInclude Include="cereal\types\stack.hpp" />
+    <ClInclude Include="cereal\types\string.hpp" />
+    <ClInclude Include="cereal\types\tuple.hpp" />
+    <ClInclude Include="cereal\types\unordered_map.hpp" />
+    <ClInclude Include="cereal\types\unordered_set.hpp" />
+    <ClInclude Include="cereal\types\utility.hpp" />
+    <ClInclude Include="cereal\types\valarray.hpp" />
+    <ClInclude Include="cereal\types\variant.hpp" />
+    <ClInclude Include="cereal\types\vector.hpp" />
+    <ClInclude Include="cereal\version.hpp" />
+    <ClInclude Include="flashlight\fl\autograd\autograd.h" />
+    <ClInclude Include="flashlight\fl\autograd\Functions.h" />
+    <ClInclude Include="flashlight\fl\autograd\tensor\AutogradExtension.h" />
+    <ClInclude Include="flashlight\fl\autograd\tensor\AutogradExtensionBackends.h" />
+    <ClInclude Include="flashlight\fl\autograd\tensor\AutogradOps.h" />
+    <ClInclude Include="flashlight\fl\autograd\Utils.h" />
+    <ClInclude Include="flashlight\fl\autograd\Variable.h" />
+    <ClInclude Include="flashlight\fl\common\common.h" />
+    <ClInclude Include="flashlight\fl\common\Defines.h" />
+    <ClInclude Include="flashlight\fl\common\DevicePtr.h" />
+    <ClInclude Include="flashlight\fl\common\DynamicBenchmark.h" />
+    <ClInclude Include="flashlight\fl\common\Filesystem.h" />
+    <ClInclude Include="flashlight\fl\common\Histogram.h" />
+    <ClInclude Include="flashlight\fl\common\Logging.h" />
+    <ClInclude Include="flashlight\fl\common\Serialization-inl.h" />
+    <ClInclude Include="flashlight\fl\common\Serialization.h" />
+    <ClInclude Include="flashlight\fl\common\stacktrace\Backward.h" />
+    <ClInclude Include="flashlight\fl\common\threadpool\ThreadPool.h" />
+    <ClInclude Include="flashlight\fl\common\Timer.h" />
+    <ClInclude Include="flashlight\fl\common\Types.h" />
+    <ClInclude Include="flashlight\fl\common\Utils.h" />
+    <ClInclude Include="flashlight\fl\contrib\contrib.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\AdaptiveEmbedding.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\AsymmetricConv1D.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\Conformer.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\modules.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\PositionEmbedding.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\RawWavSpecAugment.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\Residual.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\SinusoidalPositionEmbedding.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\SpecAugment.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\TDSBlock.h" />
+    <ClInclude Include="flashlight\fl\contrib\modules\Transformer.h" />
+    <ClInclude Include="flashlight\fl\dataset\BatchDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\BlobDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\ConcatDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\Dataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\DatasetIterator.h" />
+    <ClInclude Include="flashlight\fl\dataset\datasets.h" />
+    <ClInclude Include="flashlight\fl\dataset\FileBlobDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\MemoryBlobDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\MergeDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\PrefetchDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\ResampleDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\ShuffleDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\SpanDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\TensorDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\TransformDataset.h" />
+    <ClInclude Include="flashlight\fl\dataset\Utils.h" />
+    <ClInclude Include="flashlight\fl\flashlight.h" />
+    <ClInclude Include="flashlight\fl\meter\AverageValueMeter.h" />
+    <ClInclude Include="flashlight\fl\meter\CountMeter.h" />
+    <ClInclude Include="flashlight\fl\meter\EditDistanceMeter.h" />
+    <ClInclude Include="flashlight\fl\meter\FrameErrorMeter.h" />
+    <ClInclude Include="flashlight\fl\meter\meters.h" />
+    <ClInclude Include="flashlight\fl\meter\MSEMeter.h" />
+    <ClInclude Include="flashlight\fl\meter\TimeMeter.h" />
+    <ClInclude Include="flashlight\fl\meter\TopKMeter.h" />
+    <ClInclude Include="flashlight\fl\nn\Init.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Activations.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\AdaptiveSoftMax.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\BatchNorm.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Container.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Conv2D.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Dropout.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Embedding.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Identity.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\LayerNorm.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Linear.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Loss.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Module.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\modules.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Normalize.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Padding.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Pool2D.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\PrecisionCast.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Reorder.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\RNN.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\Transform.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\View.h" />
+    <ClInclude Include="flashlight\fl\nn\modules\WeightNorm.h" />
+    <ClInclude Include="flashlight\fl\nn\nn.h" />
+    <ClInclude Include="flashlight\fl\nn\Utils.h" />
+    <ClInclude Include="flashlight\fl\optim\Optimizers.h" />
+    <ClInclude Include="flashlight\fl\optim\SGDOptimizer.h" />
+    <ClInclude Include="flashlight\fl\optim\Utils.h" />
+    <ClInclude Include="flashlight\fl\tensor\backend\stub\StubBackend.h" />
+    <ClInclude Include="flashlight\fl\tensor\backend\stub\StubTensor.h" />
+    <ClInclude Include="flashlight\fl\tensor\DefaultTensorType.h" />
+    <ClInclude Include="flashlight\fl\tensor\Index.h" />
+    <ClInclude Include="flashlight\fl\tensor\Init.h" />
+    <ClInclude Include="flashlight\fl\tensor\Profile.h" />
+    <ClInclude Include="flashlight\fl\tensor\Random.h" />
+    <ClInclude Include="flashlight\fl\tensor\Shape.h" />
+    <ClInclude Include="flashlight\fl\tensor\tensor.h" />
+    <ClInclude Include="flashlight\fl\tensor\TensorAdapter.h" />
+    <ClInclude Include="flashlight\fl\tensor\TensorBackend.h" />
+    <ClInclude Include="flashlight\fl\tensor\TensorBase.h" />
+    <ClInclude Include="flashlight\fl\tensor\TensorExtension.h" />
+    <ClInclude Include="flashlight\fl\tensor\Types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cereal\external\rapidxml\manual.html" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
