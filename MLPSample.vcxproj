@@ -166,7 +166,6 @@
     <ClInclude Include="af_forge\include\forge.h" />
     <ClInclude Include="af_glad\include\glad\glad.h" />
     <ClInclude Include="af_glad\include\KHR\khrplatform.h" />
-    <ClInclude Include="arrayfire\extern\half\include\half.hpp" />
     <ClInclude Include="arrayfire\include\af\algorithm.h" />
     <ClInclude Include="arrayfire\include\af\arith.h" />
     <ClInclude Include="arrayfire\include\af\array.h" />

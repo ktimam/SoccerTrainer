@@ -2082,9 +2082,6 @@
     <ClInclude Include="arrayfire\include\af\version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="arrayfire\extern\half\include\half.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="nonstd\span.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -1,4 +1,0 @@
-service_name: jenkins-ci
-include: [src,include]
-exclude: [src/backend/opencl/cl.hpp, test, include/af/version.h]
-gcov_options: '-lp'

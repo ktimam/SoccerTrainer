@@ -1,0 +1,25 @@
+[build-wasm]
+canister = "ICMLPSample"
+did_path = "src/ICMLPSample.did"
+cpp_paths = [
+	"af_forge/include/fg/*.h",
+	"af_glad/include/glad/*.h",
+	"af_glad/include/KHR/*.h",
+	"af_glad/src/*.c",
+	]
+cpp_include_dirs = [
+	"af_forge/include/fg/"
+	]
+cpp_compile_flags = ["-D JSON_HAS_FILESYSTEM=0"]
+cpp_link_flags = []
+c_paths = []
+c_include_dirs = []
+c_compile_flags = []
+[build-native]
+cpp_paths = ["native/main.cpp"]
+cpp_include_dirs = []
+cpp_compile_flags = []
+cpp_link_flags = []
+c_paths = []
+c_include_dirs = []
+c_compile_flags = []
