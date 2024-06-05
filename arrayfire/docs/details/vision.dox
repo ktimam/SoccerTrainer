@@ -1,0 +1,240 @@
+/**
+\addtogroup arrayfire_func
+@{
+
+\defgroup cv_func_fast fast
+\ingroup featdetect_mat
+
+\brief FAST feature detector
+
+A circle of radius 3 pixels, translating into a total of 16 pixels, is checked
+for sequential segments of pixels much brighter or much darker than the central
+one. For a pixel p to be considered a feature, there must exist a sequential
+segment of arc_length pixels in the circle around it such that all are greather
+than (p + thr) or smaller than (p - thr). After all features in the image are
+detected, if nonmax is true, the non-maximal suppression is applied, checking
+all detected features and the features detected in its 8-neighborhood and
+discard it if its score is non maximal.
+
+=======================================================================
+
+\defgroup cv_func_harris harris
+\ingroup featdetect_mat
+
+\brief Harris corner detector
+
+Compute corners using the Harris corner detector approach. For each pixel, a
+small window is used to calculate the determinant and trace of such a window,
+from which a response is calculated. Pixels are considered corners if they are
+local maximas and have a high positive response.
+
+=======================================================================
+
+\defgroup cv_func_susan susan
+\ingroup featdetect_mat
+
+\brief SUSAN corner detector
+
+SUSAN is an acronym standing for *Smallest Univalue Segment Assimilating Nucleus*. This method
+places a circular disc over the pixel to be tested (a.k.a nucleus) to compute the corner measure
+of that corresponding pixel. The region covered by the circular disc is **M**, and a pixel in this
+region is represented by \f$\vec{m} \in M\f$ where \f$\vec{m}_0\f$ is the nucleus. Every pixel in the region
+is compared to the nucleus using the following comparison function:
+
+\f$ c(\vec{m}) = e^{-{(({I(\vec{m}) - I(\vec{m}_0))} / t})^6}\f$
+
+where *t* is radius of the region, *I* is the brightness of the pixel.
+
+Response of SUSAN operator is given by the following equation:
+
+\f$ R(M) = \begin{cases} g - n(M) \quad \text{if } n(M) < g\\ 0 \quad \text{otherwise},\\ \end{cases}\f$
+
+where \f$ n(M) =  \sum\nolimits_{\vec{m} \in M} c(\vec{m})\f$, g is named the *geometric threshold* and n is the number
+of pixels in the mask which are within **t** of the nucleus.
+
+Importance of the parameters, **t** and **g** is explained below:
+
+- *t* determines how similar points have to be to the nucleusbefore they are considered to
+  be a part of the univalue segment
+- g determines the minimum size of the univalue segment. For a large enough *g*, SUSAN operator becomes
+  an edge dectector.
+
+=======================================================================
+
+\defgroup cv_func_orb orb
+\ingroup featdescriptor_mat
+
+\brief ORB Feature descriptor
+
+Extract ORB descriptors from FAST features that hold higher Harris responses.
+FAST does not compute orientation, thus, orientation of features is calculated
+using the intensity centroid. As FAST is also not multi-scale enabled, a
+multi-scale pyramid is calculated by downsampling the input image multiple
+times followed by FAST feature detection on each scale.
+
+=======================================================================
+
+\defgroup cv_func_sift sift
+\ingroup featdescriptor_mat
+
+\brief SIFT feature detector and descriptor extractor
+
+Detects features and extract descriptors using the Scale Invariant Feature
+Transform (SIFT), by David Lowe.
+
+Lowe, D. G., "Distinctive Image Features from Scale-Invariant Keypoints",
+International Journal of Computer Vision, 60, 2, pp. 91-110, 2004.
+
+=======================================================================
+
+\defgroup cv_func_gloh gloh
+\ingroup featdescriptor_mat
+
+\brief SIFT feature detector and GLOH descriptor extractor
+
+Detects features using the Scale Invariant Feature Transform (SIFT),
+by David Lowe. Descriptors are extracted using Gradient Location and
+Orientation Histogram (GLOH).
+
+Lowe, D. G., "Distinctive Image Features from Scale-Invariant Keypoints",
+International Journal of Computer Vision, 60, 2, pp. 91-110, 2004.
+
+Mikolajczyk, K., and Schmid, C., "A performance evaluation of local
+descriptors", IEEE Transactions on Pattern Analysis and Machine Intelligence,
+10, 27, pp. 1615-1630, 2005.
+
+=======================================================================
+
+\defgroup cv_func_hamming_matcher hammingMatcher
+\ingroup featmatcher_mat
+
+\brief Hamming Matcher
+
+Calculates Hamming distances between two 2-dimensional arrays containing
+features, one of the arrays containing the training data and the other the
+query data. One of the dimensions of the both arrays must be equal among them,
+identifying the length of each feature. The other dimension indicates the
+total number of features in each of the training and query arrays. Two
+1-dimensional arrays are created as results, one containg the smallest N
+distances of the query array and another containing the indices of these
+distances in the training array. The resulting 1-dimensional arrays have length
+equal to the number of features contained in the query array.
+
+=======================================================================
+
+\defgroup cv_func_nearest_neighbour nearestNeighbour
+\ingroup featmatcher_mat
+
+\brief Determine the nearest neighbouring points to a given set of points
+
+A "point" is simply a geometric point's coordinates in an n-dimensional space,
+which can be specified along the dimension specified by `dist_dim` (can be 0 or
+1). A list of such points can be enumerated along the dimension other than the
+one specified by `dist_dim` (excluding dim2 and dim3). By default, `dist_dim` is
+0, so a point's coordinates in this case must be specified along dim0, and the
+list of points must be enumerated along dim1. Consequently, if `dist_dim` is 1,
+then a point's coordinates must be specified along dim1, and the list must be
+enumerated along dim0.
+
+The arrays \p train and \p query are both a list of points, and one must have
+the same data layout as the other. This function calculates which points in the
+\p train are nearest to each point in \p query, based on the distance metric
+specified by \p dist_type: \ref AF_SAD (sum of absolute differences), \ref
+AF_SSD (sum of squared differences, the default option), or \ref AF_SHD (hamming
+distance). The resulting \p n_dist nearest neighboring points are described in
+two output arrays:
+- \p idx:  contains the index of each result that corresponds to the point in
+           \p train
+- \p dist: contains the distance from the query point to the result's
+           corresponding point in \p train
+
+In both the output arrays \p idx and \p dist, the nearest neighbor results for a
+single query are enumerated along dim0, in which the \f$ith\f$ result is the
+\f$ith\f$ nearest point to the query point. The result set for each query point
+is placed along dim1 (columns) of \p idx and \p dist, in the order that the
+queries appear in \p query. Therefore, the output arrays will have a shape of \p
+n_dist \f$\times\f$ the number of queries (regardless of the data layout of the
+input arrays, or the value of `dist_dim`).
+
+For illustration, a simple example is given below for 1 query in 1-dimensional
+space. There are 6 points in \p train, and 3 nearest neighbors are queried for
+(\p n_dist is 3), so there are 3 elements in the results for this single query,
+enumerated along dim0. The results \p idx and \p dist contain the 3 points
+closest to 1.25, ordered from nearest to farthest: point 0 in \p train (1.) with
+an SSD distance of 0.0625 from the query, point 1 (2.) with a distance of
+0.5625, and point 2 (3.) with a distance of 3.0625.
+
+\snippet test/nearest_neighbour.cpp ex_nearest_1
+
+A slightly more complicated example is given below. There are 2 \p query points
+and 6 \p train points, and they are in 3-dimensional space (each point's
+coordinates are specified along dim0, and the list of points is enumerated along
+dim1). Note that in the output arrays \p idx and \p dist, there are 2 sets of
+results now, one for each query. The result set located on the the first column
+of \p idx and \p dist correspond to the first query (the first column in \p
+query), and the result set on the second column of \p idx and \p dist correspond
+to the second query (second column in \p query). Thus, for example, the second
+query point is (7.5, 9., 1.), and the point closest to it in \p train is point
+3, which is (8., 9., 1.), which has a SSD distance of 0.25 from the query point.
+
+\snippet test/nearest_neighbour.cpp ex_nearest_2
+
+Note that it does not make sense for the \p train and \p query array shapes to
+have a third and fourth dimension, because a 2-dimensional array is sufficient
+to describe a list of points, no matter how long the list is or how many
+dimensions in space do the points span. Therefore, this function requires both
+input arrays to be at most 2-dimensional.
+
+=======================================================================
+
+\defgroup cv_func_dog dog
+\ingroup featdetect_mat
+
+\brief Difference of Gaussians
+
+Given an image, this function computes two different versions of smoothed
+input image using the difference smoothing parameters and subtracts one
+from the other and returns the result.
+
+=======================================================================
+
+\defgroup cv_func_match_template matchTemplate
+\ingroup match_mat
+
+\brief Template Matching
+
+Template matching is an image processing technique to find small patches of an image which match a given template image. Currently, this function doesn't support the following three metrics yet.
+- \ref AF_NCC
+- \ref AF_ZNCC
+- \ref AF_SHD
+
+A more in depth discussion about template matching can be found [here](http://en.wikipedia.org/wiki/Template_matching).
+
+=======================================================================
+
+\defgroup cv_func_homography homography
+\ingroup homography_mat
+
+\brief Homography Estimation
+
+Homography estimation find a perspective transform between two sets of 2D points.
+Currently, two methods are supported for the estimation, RANSAC (RANdom SAmple Consensus)
+and LMedS (Least Median of Squares). Both methods work by randomly selecting a subset
+of 4 points of the set of source points, computing the eigenvectors of that set and
+finding the perspective transform. The process is repeated several times, a maximum of
+times given by the value passed to the iterations arguments for RANSAC (for the CPU
+backend, usually less than that, depending on the quality of the dataset, but for CUDA
+and OpenCL backends the transformation will be computed exactly the amount of times
+passed via the iterations parameter), the returned value is the one that matches the
+best number of inliers, which are all of the points that fall within a maximum L2
+distance from the value passed to the inlier_thr argument. For the LMedS case, the
+number of iterations is currently hardcoded to meet the following equation:
+
+\f$ m = \frac{log(1 - P)}{log[1 - {(1 - \epsilon)}^{p}]}\f$,
+
+where \f$ P = 0.99\f$, \f$ \epsilon = 40\%\f$ and \f$ p = 4\f$.
+
+
+
+@}
+*/

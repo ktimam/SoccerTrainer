@@ -1,0 +1,354 @@
+/**
+\addtogroup arrayfire_func
+@{
+
+\defgroup data_func_constant constant
+
+Create an array from a scalar input value.
+
+Generate an array with elements set to a specified value.
+
+\ingroup data_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup data_func_identity identity
+
+Generate an identity matrix.
+
+\code
+array a = identity(5, 3);
+// a [5 3 1 1]
+// 1.0000     0.0000     0.0000
+// 0.0000     1.0000     0.0000
+// 0.0000     0.0000     1.0000
+// 0.0000     0.0000     0.0000
+// 0.0000     0.0000     0.0000
+\endcode
+
+\ingroup data_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup data_func_range range
+
+Generate an array with `[0, n-1]` values along the a specified dimension and
+tiled across other dimensions.
+
+__Examples:__
+
+\snippet test/range.cpp ex_data_func_range
+
+\ingroup data_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup data_func_iota iota
+
+Generate an array with `[0, n-1]` values modified to specified dimensions and
+tiling.
+
+\code
+// Generate [0, 5x3 - 1] in dimensions 5, 3
+array a = iota(dim4(5, 3))
+// a [5 3 1 1]
+// 0.0000     5.0000    10.0000
+// 1.0000     6.0000    11.0000
+// 2.0000     7.0000    12.0000
+// 3.0000     8.0000    13.0000
+// 4.0000     9.0000    14.0000
+
+// Generate [0, 5x3 - 1] in dimensions 5, 3 and then tile once along
+// dim0 and twice along dim1
+array b = iota(dim4(5, 3), dim4(1, 2))
+// b [5 6 1 1]
+// 0.0000     5.0000    10.0000     0.0000     5.0000    10.0000
+// 1.0000     6.0000    11.0000     1.0000     6.0000    11.0000
+// 2.0000     7.0000    12.0000     2.0000     7.0000    12.0000
+// 3.0000     8.0000    13.0000     3.0000     8.0000    13.0000
+// 4.0000     9.0000    14.0000     4.0000     9.0000    14.0000
+\endcode
+
+\ingroup data_mat
+\ingroup arrafire_func
+
+=======================================================================
+
+\defgroup data_func_diag diag
+
+Extract the diagonal from an array.
+
+If `extract` is true, an array is extracted containing diagonal of the matrix,
+while a false condition returns a diagonal matrix.
+
+
+\code
+// Extraction
+array a = randu(dim4(4, 3));
+// a [4 3 1 1]
+// 0.0000     0.5328     0.6793
+// 0.1315     0.2190     0.9347
+// 0.7556     0.0470     0.3835
+// 0.4587     0.6789     0.5194
+
+array b = diag(a);
+// b [3 1 1 1]
+// 0.0000
+// 0.2190
+// 0.3835
+
+array c = diag(a, 1);
+// c [2 1 1 1]
+// 0.5328
+// 0.9347
+
+// Creation
+array a = randu(4);
+// a [4 1 1 1]
+// 0.0000
+// 0.1315
+// 0.7556
+// 0.4587
+
+array b = diag(a, 0, false);
+// b [4 4 1 1]
+// 0.0000     0.0000     0.0000     0.0000
+// 0.0000     0.1315     0.0000     0.0000
+// 0.0000     0.0000     0.7556     0.0000
+// 0.0000     0.0000     0.0000     0.4587
+
+array b = diag(a, -1, false);
+// c [5 5 1 1]
+// 0.0000     0.0000     0.0000     0.0000     0.0000
+// 0.0000     0.0000     0.0000     0.0000     0.0000
+// 0.0000     0.1315     0.0000     0.0000     0.0000
+// 0.0000     0.0000     0.7556     0.0000     0.0000
+// 0.0000     0.0000     0.0000     0.4587     0.0000
+\endcode
+
+\ingroup data_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup manip_func_join join
+
+Join up to 4 arrays along specified dimension.
+
+Requires that all dimensions except the join dimension must be the same for all
+arrays.
+
+\ingroup manip_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup manip_func_tile tile
+
+Generate a tiled array by repeating an array's contents along a specified
+dimension.
+
+Creates copies of the input array and concatenates them with each other, such
+that the output array will have as many copies of the input array as the user
+specifies along each dimension. In this sense, the output array is a set of
+"tiles" where each copy of the input array, including the original, is
+a "tile".
+
+Given below are some examples. The input array looks like this:
+
+\snippet test/tile.cpp ex_tile_input
+
+Here, the input array is tiled along the first dimenson, 2 times:
+
+\snippet test/tile.cpp ex_tile_0_2
+
+Here, the input is tiled along the second dimension, 3 times:
+
+\snippet test/tile.cpp ex_tile_1_3
+
+Lastly, one can also tile along multiple dimensions simultaneously. Here, the
+input is tiled 2 times in the first dimension and 3 times in the second
+dimension:
+
+\snippet test/tile.cpp ex_tile_0_2_and_1_3
+
+\ingroup manip_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup manip_func_reorder reorder
+
+Reorder an array.
+
+Exchanges data of an array such that the requested change in dimension
+is satisfied. The linear ordering of data within the array is preserved.
+
+\code
+a [2 2 3 1]
+    1.0000     3.0000
+    2.0000     4.0000
+
+    1.0000     3.0000
+    2.0000     4.0000
+
+    1.0000     3.0000
+    2.0000     4.0000
+
+
+reorder(a, 1, 0, 2) [2 2 3 1]  // equivalent to a transpose
+    1.0000     2.0000
+    3.0000     4.0000
+
+    1.0000     2.0000
+    3.0000     4.0000
+
+    1.0000     2.0000
+    3.0000     4.0000
+
+
+reorder(a, 2, 0, 1) [3 2 2 1]
+    1.0000     2.0000
+    1.0000     2.0000
+    1.0000     2.0000
+
+    3.0000     4.0000
+    3.0000     4.0000
+    3.0000     4.0000
+\endcode
+
+\ingroup manip_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup manip_func_shift shift
+
+Shift an array.
+
+Circular shift array values along a specified dimesion.
+
+\ingroup manip_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup manip_func_moddims moddims
+
+Modify the dimensions of an array without changing the order of its elements.
+
+This function only modifies array metadata and requires no computation. It is a
+NOOP.
+
+__Examples:__
+
+\snippet test/moddims.cpp ex_data_func_moddims
+
+\ingroup manip_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup manip_func_flat flat
+
+Flatten an array.
+
+Simply returns the array as a vector. This is a NOOP.
+
+\ingroup manip_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup manip_func_flip flip
+
+Flip the input along a specified dimension.
+
+Mirrors the array along the specified dimension.
+
+\ingroup manip_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup data_func_lower lower
+
+Return the lower triangular matrix from an input array.
+
+\ingroup data_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup data_func_upper upper
+
+Return the upper triangular matrix from an input array.
+
+\ingroup data_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup data_func_select select
+
+Select elements based on a conditional array.
+
+Creates a new array that is composed of values either from array `a` or array
+`b`, based on a third conditional array. For all non-zero elements in the
+conditional array, the output array will contain values from `a`. Otherwise the
+output will contain values from `b`.
+
+\snippet test/select.cpp ex_data_select
+
+is equivalent to:
+
+\snippet test/select.cpp ex_data_select_c
+
+The conditional array must be a \ref b8 typed array.
+
+The select function can perform batched operations based on the size of each of
+the inputs. The following table describes the input and output sizes for
+supported batched configurations.
+
+| Output | Condition Array | Array A | Array B |
+|--------|-----------------|---------|---------|
+| (M, N) | (M, 1)          | (M, 1)  | (M, N)  |
+| (M, N) | (M, 1)          | (M, N)  | (M, 1)  |
+| (M, N) | (M, 1)          | (M, N)  | (M, N)  |
+| (M, N) | (M, N)          | (M, 1)  | (M, N)  |
+| (M, N) | (M, N)          | (M, 1)  | (M, N)  |
+
+\ingroup manip_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup data_func_replace replace
+
+Replace elements of an array with elements of another array.
+
+Input values are retained when corresponding elements from the conditional
+array are true. Input values are replaced when corresponding elements from the
+conditional array are false.
+
+\ingroup manip_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+\defgroup data_func_pad pad
+
+Pad an array.
+
+Pad the input array using a constant or values from input along the border.
+
+\ingroup data_mat
+\ingroup arrayfire_func
+
+=======================================================================
+
+@}
+*/

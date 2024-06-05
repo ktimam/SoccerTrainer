@@ -1,0 +1,1095 @@
+
+/*!
+\page image_func_hsv HSV
+
+HSV (Hue, Saturation, Value), also known as HSB (hue, saturation, brightness),
+is often used by artists because it is more natural to think about a color in
+terms of hue and saturation than in terms of additive or subtractive color
+components (as in RGB). HSV is a transformation of RGB colorspace; its
+components and colorimetry are relative to the RGB colorspace from which it was
+derived. Like RGB, HSV also uses 3 values per pixel.
+
+\page image_func_rgb RGB
+
+RGB (Red, Green, Blue) is the most common format used in computer imaging. RGB
+stores individual values for red, green and blue, and hence the 3 values per
+pixel. A combination of these three values produces the gamut of unique colors.
+
+\page image_func_gray GRAY
+
+Grayscale is a single channel color space where pixel value ranges from 0 to 1.
+Zero represents black, one represent white and any value between zero & one is
+a gray value
+
+\page image_func_ycbcr YCbCr
+
+YCbCr is a family of color spaces used as a part of the color image pipeline in video
+and digital photography systems where Y is luma component and Cb & Cr are the blue-difference
+and red-difference chroma components.
+
+*/
+//=================================================================================
+/**
+
+\addtogroup  arrayfire_func
+@{
+
+\defgroup image_func_colorspace colorSpace
+\ingroup colorconv_mat
+
+Colorspace conversion function
+
+\copydoc image_func_rgb
+\copydoc image_func_hsv
+\copydoc image_func_gray
+
+Supported conversions
+
+| From     | To      |
+|:--------:|:-------:|
+| AF_RGB   | AF_GRAY |
+| AF_GRAY  | AF_RGB  |
+| AF_RGB   | AF_HSV  |
+| AF_HSV   | AF_RGB  |
+
+=======================================================================
+
+\defgroup image_func_rgb2hsv rgb2hsv
+\ingroup colorconv_mat
+
+RGB to HSV colorspace converter
+
+\copydoc image_func_rgb
+\copydoc image_func_hsv
+
+=======================================================================
+
+\defgroup image_func_hsv2rgb hsv2rgb
+\ingroup colorconv_mat
+
+HSV to RGB colorspace converter
+
+\copydoc image_func_hsv
+\copydoc image_func_rgb
+
+=======================================================================
+
+\defgroup image_func_rgb2gray rgb2gray
+\ingroup colorconv_mat
+
+RGB to Grayscale colorspace converter
+
+\copydoc image_func_rgb
+\copydoc image_func_gray
+
+The grayscale internsity of a pixel is calculated using the
+following formula:
+
+    \f$gray = R*rPercent + G*gPercent + B*bPercent\f$
+
+=======================================================================
+
+\defgroup image_func_gray2rgb gray2rgb
+\ingroup colorconv_mat
+
+Grayscale to RGB colorspace converter
+
+\copydoc image_func_gray
+\copydoc image_func_rgb
+
+The grayscale internsity of a pixel is calculated using the
+following formula
+
+       \f$R = rFactor * intensity\f$
+
+       \f$G = gFactor * intensity\f$
+
+       \f$B = bFactor * intensity\f$
+
+=======================================================================
+
+\defgroup image_func_rgb2ycbcr rgb2ycbcr
+\ingroup colorconv_mat
+
+RGB to YCbCr colorspace converter
+
+\copydoc image_func_rgb
+\copydoc image_func_ycbcr
+
+Input array to this function should be of real data in the range \f$[0,1]\f$.
+
+The following equations are used to convert image from RGB color space to YCbCr color space.
+
+\f$ Y  = 16 + \displaystyle k_r*R + (1 - \displaystyle k_r- \displaystyle k_b)*G + \displaystyle k_b * B \f$
+
+\f$ Cb =  128 + \frac{\displaystyle 1}{\displaystyle 2} * \frac{\displaystyle B - Y\displaystyle
+}{\displaystyle 1 - \displaystyle k_b} \f$
+
+\f$ Cr =  128 + \frac{\displaystyle 1}{\displaystyle 2} * \frac{\displaystyle R - Y\displaystyle
+}{\displaystyle 1 - \displaystyle k_r} \f$
+
+Output image in YCbCr has following range for their respective channels.
+
+\f$Y -> [16, 219]\f$
+
+\f$Cb-> [16, 240]\f$
+
+\f$Cr-> [16, 240]\f$
+
+Based on the ITU-R BT.xyz[w] standard used, different values of \f$k_b\f$ and \f$k_r\f$ are used
+to do the color space conversion. You can change these values by passing the \ref af_ycc_std enum
+value.
+
+=======================================================================
+
+\defgroup image_func_ycbcr2rgb ycbcr2rgb
+\ingroup colorconv_mat
+
+YCbCr to RGB colorspace converter
+
+\copydoc image_func_ycbcr
+\copydoc image_func_rgb
+
+Input array to this function should be of real data with the following range in
+their respective channels.
+
+\f$Y -> [16, 219]\f$
+
+\f$Cb-> [16, 240]\f$
+
+\f$Cr-> [16, 240]\f$
+
+
+The following equations are used to convert image from RGB color space to YCbCr color space.
+
+\f$ R = \frac{\displaystyle Y - \displaystyle 16}{\displaystyle 219}
+       + \frac{\displaystyle C_r - \displaystyle 128}{\displaystyle 112} * (\displaystyle 1 - \displaystyle k_r) \f$
+
+\f$ G = \frac{\displaystyle Y - \displaystyle 16}{\displaystyle 219}
+       - \frac{\displaystyle C_r - \displaystyle 128}{\displaystyle 112} * (\displaystyle 1 -
+\displaystyle k_r) * \frac{\displaystyle k_r}{\displaystyle 1 - \displaystyle k_b - \displaystyle
+k_r} - \frac{\displaystyle C_b - \displaystyle 128}{\displaystyle 112} * (\displaystyle 1 -
+\displaystyle k_b) * \frac{\displaystyle k_b}{\displaystyle 1 - \displaystyle k_b - \displaystyle
+k_r}\f$
+
+\f$ B = \frac{\displaystyle Y - \displaystyle 16}{\displaystyle 219}
+       + \frac{\displaystyle C_b - \displaystyle 128}{\displaystyle 112} * (\displaystyle 1 - \displaystyle k_b) \f$
+
+Output image in RGB will have values in range \f$[0, 1]\f$.
+
+Based on the ITU-R BT.xyz[w] standard used, different values of \f$k_b\f$ and \f$k_r\f$ are used
+to do the color space conversion. You can change these values by passing the \ref af_ycc_std enum
+value.
+
+=======================================================================
+
+\defgroup image_func_histogram histogram
+\ingroup hist_mat
+
+\brief Histogram of input data
+
+A histogram is a representation of the distribution of given data. This
+representation is essentially a graph consisting of the data range or domain on
+one axis and frequency of occurence on the other axis. All the data in the
+domain is counted in the appropriate bin. The total number of elements
+belonging to each bin is known as the bin's frequency.
+
+The regular histogram function creates bins of equal size between the minimum
+and maximum of the input data (min and max are calculated internally). The histogram min-max
+function takes input parameters minimum and maximum, and divides the bins into
+equal sizes within the range specified by min and max parameters. All values
+less than min in the data range are placed in the first (min) bin and all
+values greater than max will be placed in the last (max) bin.
+
+=======================================================================
+
+\defgroup image_func_histequal histequal
+\ingroup hist_mat
+
+\brief Histogram equalization of input image
+
+Histogram equalization is a method in image processing of contrast adjustment
+using the image's histogram.
+
+Data normalization via histogram equalization
+
+=======================================================================
+
+\defgroup image_func_regions regions
+\ingroup connected_comps_mat
+
+\brief Find blobs in given image.
+
+Given a binary image (with zero representing background pixels), regions
+computes a floating point image where each connected component is labeled
+from 1 to N, the total number of components in the image.
+
+A component is defined as one or more nonzero pixels that are connected by
+the specified connectivity (either 4-way(\ref AF_CONNECTIVITY_4) or
+8-way(\ref AF_CONNECTIVITY_8)) in two dimensions.
+
+\image html regions_8conn.jpg "An example input and output for 8-connectivity"
+
+The default connectivity is \ref AF_CONNECTIVITY_4.
+
+=======================================================================
+
+\defgroup image_func_gauss gaussiankernel
+\ingroup utility_mat
+
+\brief Creates a Gaussian Kernel
+
+This function creates a kernel of a specified size that contains a Gaussian
+distribution. This distribution is normalized to one. This is most commonly
+used when performing a Gaussian blur on an image. The function takes two sets
+of arguments, the size of the kernel (width and height in pixels) and the
+sigma parameters (for row and column) which effect the distribution of the
+weights in the y and x directions, respectively.
+
+Changing sigma causes the weights in each direction to vary. Sigma is calculated
+internally as (0.25 * rows + 0.75) for rows and similarly for columns.
+
+=======================================================================
+
+\defgroup image_func_sobel sobel
+\ingroup imageflt_mat
+
+\brief Sobel Operators
+
+Sobel operators perform a 2-D spatial gradient measurement on an image
+to emphasize the regions of high spatial frequency, namely edges. A more in depth
+discussion on it can be found [here](http://en.wikipedia.org/wiki/Sobel_operator).
+
+=======================================================================
+
+\defgroup image_func_anisotropic_diffusion anisotropicDiffusion
+\ingroup imageflt_mat
+
+\brief Anisotropic Smoothing Filter
+
+Anisotropic diffusion algorithm aims at removing noise in the images while preserving important
+features such as edges. The algorithm essentially creates a scale space representation of the
+original image, where image from previous step is used to create a new version of blurred image
+using the diffusion process. Standard isotropic diffusion methods such as gaussian blur, doesn't
+take into account the local content(smaller neighborhood of current processing pixel) while removing
+noise. Anisotropic diffusion uses the flux equations given below to achieve that. Flux equation is the
+formula used by the diffusion process to determine how much a pixel in neighborhood should contribute to
+the blurring operation being done at the current pixel at a given iteration.
+
+The flux function can be either exponential or quadratic.
+
+<table>
+<caption id="multi row">Available Flux Functions</caption>
+<tr>
+    <td> AF_FLUX_QUADRATIC </td>
+    <td>  \f$ \frac{1}{1 + (\frac{\| \nabla I\|}{K})^2} \f$  </td>
+</tr>
+<tr>
+    <td> AF_FLUX_EXPONENTIAL </td>
+    <td>  \f$ \exp{-(\frac{\| \nabla I\|}{K})^2} \f$  </td>
+</tr>
+</table>
+
+Please be cautious using the time step parameter to the function. Appropriate time steps for solving this type of p.d.e. depend on the dimensionality of the image and the order of the equation. Stable values for most 2D and 3D functions are 0.125 and 0.0625, respectively. The time step values are automatically constrained to the stable value.
+
+Another input parameter to be cautious about is the conductance parameter, lower values strongly preserve image features and vice-versa. For human vision, this value ranges from 0.5 to 2.0.
+
+#### Reference
+Pietro Perona and Jitendra Malik, `Scale-space and edge detection using anisotropic diffusion,` IEEE Transactions on Pattern Analysis Machine Intelligence, vol. 12, pp. 629-639, 1990.
+
+#### Reference
+R. Whitaker and X. Xue. `Variable-Conductance, Level-Set Curvature for Image Denoising`, International Conference on Image Processing, 2001 pp. 142-145, Vol.3.
+
+=======================================================================
+
+\defgroup cv_func_match_template matchTemplate
+\ingroup match_mat
+
+\brief Template Matching
+
+Template matching is an image processing technique to find small patches of an image which
+match a given template image. A more in depth discussion on the topic can be found
+[here](http://en.wikipedia.org/wiki/Template_matching).
+
+=======================================================================
+
+\defgroup image_func_medfilt medfilt
+\ingroup imageflt_mat
+
+\brief Median Filter
+
+A median filter is similar to the arbitrary filter except that instead of a weighted sum,
+the median value of the pixels covered by the kernel is returned.
+
+=======================================================================
+
+\defgroup image_func_minfilt minfilt
+\ingroup imageflt_mat
+
+\brief Find minimum value from a window
+
+minfilt finds the smallest value from a 2D window and assigns it to the current pixel.
+
+=======================================================================
+
+\defgroup image_func_maxfilt maxfilt
+\ingroup imageflt_mat
+
+\brief Find maximum value from a window
+
+maxfilt finds the smallest value from a 2D window and assigns it to the current pixel.
+
+=======================================================================
+
+\defgroup image_func_mean_shift meanshift
+\ingroup imageflt_mat
+
+\brief Meanshift Filter
+
+A meanshift filter is an edge-preserving smoothing filter commonly used in object
+tracking and image segmentation.
+
+This filter replaces each pixel in the image with the mean of the values within a
+given given color and spatial radius. The meanshift filter is an iterative algorithm
+that continues until a maxium number of iterations is met or until the value of the
+means no longer changes.
+
+=======================================================================
+
+\defgroup image_func_bilateral bilateral
+\ingroup imageflt_mat
+
+\brief Bilateral Filter
+
+A bilateral filter is a edge-preserving filter that reduces noise in an image.
+The intensity of each pixel is replaced by a weighted average of the intensities
+of nearby pixels. The weights follow a Gaussian distribution and depend on the
+distance as well as the color distance.
+
+The bilateral filter requires the size of the filter (in pixels) and the upper
+bound on color values, N, where pixel values range from 0–N inclusively.
+
+The return type of the array is f64 for f64 input, f32 for all other input
+types.
+
+=======================================================================
+
+\defgroup image_func_erode erode
+\ingroup morph_mat
+
+\brief Erosion(morphological operator) for images
+
+The erosion function is a morphological transformation on an image that requires two inputs.
+The first is the image to be morphed, and the second is the mask indicating neighborhood that
+must be white in order to preserve each pixel.
+
+In erode, for each pixel, the mask is centered at the pixel. If each pixel of the mask matches
+the corresponding pixel on the image, then no change is made. If there is at least one mismatch,
+then pixels are changed to the background color (black).
+
+For further reference, see: [Erosion (morphology)](http://en.wikipedia.org/wiki/Erosion_(morphology))
+
+Sample input and output are shown below:
+
+<table border=0>
+<tr>
+<td> \image html erode_orig.png "Input Image" </td>
+<td> \image html mask.png "Mask" </td>
+<td> \image html erode_inter.png "Intermediate Result" </td>
+<td> \image html erode.png "Output Image" </td>
+</tr>
+</table>
+
+
+
+\defgroup image_func_erode3d erode3d
+\ingroup morph_mat
+
+\brief Erosion(morphological operator) for volumes
+
+Erosion for a volume is similar to the way erosion works on an image. Only difference is
+that the masking operation is performed on a volume instead of a rectangular region.
+
+For further reference, see: [Erosion (morphology)](http://en.wikipedia.org/wiki/Erosion_(morphology))
+
+
+
+\defgroup image_func_dilate dilate
+\ingroup morph_mat
+
+\brief Dilation(morphological operator) for images
+
+The dilation function takes two pieces of data as inputs. The first is the input image to be
+morphed, and the second is the mask indicating the neighborhood around each pixel to match.
+
+In dilation, for each pixel, the mask is centered at the pixel. If the center pixel of the
+mask matches the corresponding pixel on the image, then the mask is accepted. If the center
+pixels do not matches, then the mask is ignored and no changes are made.
+
+For further reference, see: [Dilation (morphology)](http://en.wikipedia.org/wiki/Dilation_(morphology))
+
+Sample input and output are shown below:
+
+<table border=0>
+<tr>
+<td> \image html dilate_orig.png "Input Image" </td>
+<td> \image html mask.png "Mask" </td>
+<td> \image html dilate_inter.png "Intermediate Result" </td>
+<td> \image html dilate.png "Output Image" </td>
+</tr>
+</table>
+
+
+
+\defgroup image_func_dilate3d dilate3d
+\ingroup morph_mat
+
+\brief Dilation(morphological operator) for volumes
+
+Dilation for a volume is similar to the way dilation works on an image. Only difference is
+that the masking operation is performed on a volume instead of a rectangular region.
+
+For further reference, see: [Dilation (morphology)](http://en.wikipedia.org/wiki/Dilation_(morphology))
+
+
+
+\defgroup imageio_func_load loadImage
+\ingroup imageio_mat
+
+Load an image from disk to an array
+
+Supported formats include JPG, PNG, PPM and other formats supported by freeimage
+
+
+
+\defgroup imageio_func_save saveImage
+\ingroup imageio_mat
+
+Save an array to disk as an image
+
+Supported formats include JPG, PNG, PPM and other formats supported by freeimage
+
+
+\defgroup imageio_func_available isImageIoAvailable
+\ingroup imageio_mat
+
+Returns true if ArrayFire was compiled with ImageIO (FreeImage) support
+
+
+\defgroup imagemem_func_load loadImageMem
+\ingroup imageio_mat
+
+Load an image from memory which is stored as a FreeImage stream (FIMEMORY).
+
+Supported formats include JPG, PNG, PPM and other formats supported by freeimage
+
+
+
+\defgroup imagemem_func_save saveImageMem
+\ingroup imageio_mat
+
+Save an array to memory as an image using FreeImage stream (FIMEMORY).
+
+Supported formats include JPG, PNG, PPM and other formats supported by freeimage
+
+
+\defgroup imagemem_func_delete deleteImageMem
+\ingroup imageio_mat
+
+Delete memory created by saveImageMem and af_save_image_memory function.
+This internally calls FreeImage_CloseMemory.
+
+Supported formats include JPG, PNG, PPM and other formats supported by freeimage
+
+
+\defgroup calc_func_grad grad
+\ingroup calc_mat
+
+Calculate the gradients of the input
+
+\p dx is the gradient along the 1st dimension of \p in.
+\p dy is the gradient along the 2nd dimension of \p in.
+
+The gradients along the first and second dimensions are calculated simultaneously
+
+\code
+
+array in = randu(dim4(5, 3));
+array dx, dy;
+grad(dx, dy, in);
+
+// in [5 3 1 1]
+//  0.0000     0.2190     0.3835
+//  0.1315     0.0470     0.5194
+//  0.7556     0.6789     0.8310
+//  0.4587     0.6793     0.0346
+//  0.5328     0.9347     0.0535
+//
+// dx [5 3 1 1]
+//  0.1315    -0.1719     0.1359
+//  0.3778     0.2300     0.2237
+//  0.1636     0.3161    -0.2424
+// -0.1114     0.1279    -0.3888
+//  0.0741     0.2554     0.0189
+//
+// dy [5 3 1 1]
+//  0.2190     0.1917     0.1645
+// -0.0845     0.1939     0.4724
+// -0.0767     0.0377     0.1521
+//  0.2206    -0.2120    -0.6447
+//  0.4019    -0.2397    -0.8812
+
+\endcode
+
+
+\defgroup transform_func_resize resize
+\ingroup transform_mat
+
+Resize an input image
+
+Resizing an input image can be done using either \ref AF_INTERP_NEAREST,
+\ref AF_INTERP_BILINEAR or \ref AF_INTERP_LOWER, interpolations. Nearest
+interpolation will pick the nearest value to the location, bilinear
+interpolation will do a weighted interpolation for calculate the new size
+and lower interpolation is similar to the nearest, except it will use the
+floor function to get the lower neighbor.
+
+This function does not differentiate between images and data. As long as
+the array is defined and the output dimensions are not 0, it will resize any
+type or size of array.
+
+\code
+array in = iota(dim4(5, 3));
+af_print(resize(2, in, AF_INTERP_NEAREST));
+af_print(resize(2, in, AF_INTERP_BILINEAR));
+
+// in [5 3 1 1]
+// 0.0000     5.0000    10.0000
+// 1.0000     6.0000    11.0000
+// 2.0000     7.0000    12.0000
+// 3.0000     8.0000    13.0000
+// 4.0000     9.0000    14.0000
+//
+// resize(2, in, AF_INTERP_NEAREST) [10 6 1 1]
+// 0.0000     5.0000     5.0000    10.0000    10.0000    10.0000
+// 1.0000     6.0000     6.0000    11.0000    11.0000    11.0000
+// 1.0000     6.0000     6.0000    11.0000    11.0000    11.0000
+// 2.0000     7.0000     7.0000    12.0000    12.0000    12.0000
+// 2.0000     7.0000     7.0000    12.0000    12.0000    12.0000
+// 3.0000     8.0000     8.0000    13.0000    13.0000    13.0000
+// 3.0000     8.0000     8.0000    13.0000    13.0000    13.0000
+// 4.0000     9.0000     9.0000    14.0000    14.0000    14.0000
+// 4.0000     9.0000     9.0000    14.0000    14.0000    14.0000
+// 4.0000     9.0000     9.0000    14.0000    14.0000    14.0000
+//
+// resize(2, in, AF_INTERP_BILINEAR) [10 6 1 1]
+// 0.0000     2.5000     5.0000     7.5000    10.0000    10.0000
+// 0.5000     3.0000     5.5000     8.0000    10.5000    10.5000
+// 1.0000     3.5000     6.0000     8.5000    11.0000    11.0000
+// 1.5000     4.0000     6.5000     9.0000    11.5000    11.5000
+// 2.0000     4.5000     7.0000     9.5000    12.0000    12.0000
+// 2.5000     5.0000     7.5000    10.0000    12.5000    12.5000
+// 3.0000     5.5000     8.0000    10.5000    13.0000    13.0000
+// 3.5000     6.0000     8.5000    11.0000    13.5000    13.5000
+// 4.0000     6.5000     9.0000    11.5000    14.0000    14.0000
+// 4.0000     6.5000     9.0000    11.5000    14.0000    14.0000
+
+\endcode
+
+
+\defgroup transform_func_rotate rotate
+\ingroup transform_mat
+
+\brief Rotate an input image or array
+
+The rotation is done counter-clockwise, with an angle \p theta (in radians),
+using a specified \p method of interpolation to determine the values of the
+output array. Six types of interpolation are currently supported:
+
+- \ref AF_INTERP_NEAREST - nearest value to the location
+- \ref AF_INTERP_BILINEAR - weighted interpolation
+- \ref AF_INTERP_BILINEAR_COSINE - bilinear interpolation with cosine smoothing
+- \ref AF_INTERP_BICUBIC - bicubic interpolation
+- \ref AF_INTERP_BICUBIC_SPLINE - bicubic interpolation with Catmull-Rom splines
+- \ref AF_INTERP_LOWER - floor indexed
+
+Since the output image still needs to be an upright box, \p crop determines how
+to bound the output image, given the now-rotated image. The figure below
+illustrates the effect of changing this parameter.
+
+\image html rotate_illus.png "Effect of \p crop parameter on the output"
+
+Here, the original image is represented by the innermost box with the solid
+black and dashed orange lines, and the (theoretical) rotated image is the box
+with the solid orange lines. If \p crop is true, then the output image's
+dimensions will stay the same as the original image's, but the rotated image's
+portions outside the dashed orange lines will be cropped, and the rest of the
+output image (the area between the solid black and solid orange lines) will be
+filled with zeros. However, if \p crop is false, then the output image's
+dimensions might get bigger (as shown in this illustration), as represented by
+the outermost box with dashed black lines. This change in dimensions is
+necessary to accommodate all of the rotated image's data. The remainder of the
+output image will be filled with zeros, as represented by the area between the
+solid orange lines and dashed black lines. Note that the new dimensions in
+general (beyond this illustration) will be greater than or equal the original
+image's dimensions when \p crop is false.
+
+
+\defgroup transform_func_translate translate
+\ingroup transform_mat
+
+Translate an input image
+
+Translating an image is moving it along 1st and 2nd dimensions by \p trans0
+and \p trans1. Positive values of these will move the data towards negative x
+and negative y whereas negative values of these will move the positive right
+and positive down. See the example below for more.
+
+To specify an output dimension, use the \p odim0 and odim1 for dim0 and dim1
+respectively. The size of 2rd and 3rd dimension is same as input.
+If \p odim0 and odim1 and not defined, then the output dimensions are same as
+the input dimensions and the data out of bounds will be discarded.
+
+All new values that do not map to a location of the input array are set to 0.
+
+Translate is a special case of the \ref af::transform function.
+
+\code
+in [5 3 1 1]
+0.0000     5.0000    10.0000
+1.0000     6.0000    11.0000
+2.0000     7.0000    12.0000
+3.0000     8.0000    13.0000
+4.0000     9.0000    14.0000
+
+// Moves +1 row up and -1 column left (1 column right)
+translate(in, 1, -1, 7, 5, AF_INTERP_NEAREST) [7 5 1 1]
+0.0000     1.0000     6.0000    11.0000     0.0000
+0.0000     2.0000     7.0000    12.0000     0.0000
+0.0000     3.0000     8.0000    13.0000     0.0000
+0.0000     4.0000     9.0000    14.0000     0.0000
+0.0000     0.0000     0.0000     0.0000     0.0000
+0.0000     0.0000     0.0000     0.0000     0.0000
+0.0000     0.0000     0.0000     0.0000     0.0000
+
+// Moves -2 row up (2 rows down) and -1 column left (1 column right)
+translate(in, -2, -1, 6, 4, AF_INTERP_BILINEAR) [6 4 1 1]
+0.0000     0.0000     0.0000     0.0000
+0.0000     0.0000     0.0000     0.0000
+0.0000     0.0000     5.0000    10.0000
+0.0000     1.0000     6.0000    11.0000
+0.0000     2.0000     7.0000    12.0000
+0.0000     3.0000     8.0000    13.0000
+
+\endcode
+
+\defgroup transform_func_scale scale
+\ingroup transform_mat
+
+Scale an input image
+
+Scale is the same functionality as \ref af::resize except that the scale function uses
+the transform kernels. The other difference is that scale does not set boundary
+values to be the boundary of the input array. Instead these are set to 0.
+
+Scale is a special case of the \ref af::transform function.
+
+
+\defgroup transform_func_skew skew
+\ingroup transform_mat
+
+Skew an input image
+
+Skew function skews the input array along dim0 by \p skew0 and along dim1 by
+\p skew1. The skew areguments are in radians.
+Skewing the data means the data remains parallel along 1 dimensions but the
+other dimensions gets moved along based on the angle.
+If both \p skew0 and \p skew1 are specified, then the data will be skewed
+along both directions.
+
+Explicit output dimensions can be specified using \p odim0 and \p odim1.
+
+All new values that do not map to a location of the input array are set to 0.
+
+Skew is a special case of the \ref af::transform function.
+
+
+\defgroup transform_func_transform transform
+\ingroup transform_mat
+
+Transform an input image
+
+The transform function uses an affine or perspective transform matrix to tranform an input
+image into a new one.
+
+If matrix \p tf is is a 3x2 matrix, an affine transformation will be performed. The matrix
+operation is applied to each location (x, y) that is then transformed to (x', y') of the
+new array. Hence the transformation is an element-wise operation.
+
+The operation is as below:\n
+tf = [r00 r10\n
+      r01 r11\n
+      t0  t1]
+
+x' = x * r00 + y * r01 + t0;\n
+y' = x * r10 + y * r11 + t1;
+
+If matrix \p tf is is a 3x3 matrix, a perspective transformation will be performed.
+
+The operation is as below:\n
+tf = [r00 r10 r20\n
+      r01 r11 r21\n
+      t0  t1  t2]
+
+x' = (x * r00 + y * r01 + t0) / (x * r20 + y * r21 + t2);\n
+y' = (x * r10 + y * r11 + t1) / (x * r20 + y * r21 + t2);
+
+The transformation matrix \p tf should always be of type f32.
+
+Interpolation types of \ref AF_INTERP_NEAREST, \ref AF_INTERP_BILINEAR and
+AF_INTERP_LOWER are allowed.
+
+Affine transforms can be used for various purposes. \ref af::translate, \ref af::scale and \ref af::skew
+are specializations of the transform function.
+
+
+\defgroup transform_func_coordinates transformCoordinates
+\ingroup transform_mat
+
+Transform input coordinates
+
+The transform function uses a perspective transform matrix to transform input
+coordinates (given as two dimensions) into a coordinates matrix.
+
+The output is a 4x2 matrix, indicating the coordinates of the 4 bidimensional
+transformed points.
+
+=======================================================================
+
+\defgroup image_func_sat sat
+\ingroup imageflt_mat
+
+\brief Summed Area Tables
+
+Given an image \f$ I: (x,y) \mapsto i \f$ where i is pixel intensity at position \f$(x, y)\f$.
+
+\f$S(x, y) = i(x, y) + S(x-1, y) + S(x, y-1) - S(x-1, y-1)\f$
+
+The output array of this function will have \f$ S(x, y) \f$ values at their corresponding locations, \f$(x,y)\f$
+
+=======================================================================
+
+\defgroup image_func_unwrap unwrap
+\ingroup image_mod_mat
+
+\brief Rearrange windowed sections of an array into columns (or rows)
+
+The figure below illustrates how unwrap works. A moving window (marked by
+orange boxes in the figure) of size `wx` \f$\times \f$ `wy` captures sections of
+the input array, and flattens them into columns (or rows if `is_column` is false)
+of the output array (illustrated in the right image). It starts at the top-left
+section of the input array and moves in column-major order, each time moving in
+strides of `sx` units along the column and `sy` units along the row, whenever it
+exhausts a column (stride size illustrated as the white arrows in the left image,
+and window movement illustrated as the progression of the small yellow numbers on
+the corner of each window). When the remainder of the column or row is not big
+enough to accomodate the window, that remainder is skipped and the window moves
+on (in the figure, the last row is not captured in any of the windows).
+
+Optionally, one can specify that the input image's border be padded (with zeros,
+represented as the gray boxes in the figure) before the moving window starts
+capturing sections. The width of the padding is defined by `px` for the top and
+bottom and `py` for the left and right sides, with maximum values of `wx`-1 and
+`wy`-1, respectively. The moving window then captures sections as if the padding
+is part of the input image, and thus the padding also becomes part of the output
+array's columns (illustrated in the bottom of the right image).
+
+\image html unwrap_640.png "Unwrap on a 3x4 input array, using a 2x2 window, 2x2 stride, 1x1 padding"
+
+In the figure, the stride is set to be equally large as the window size (both
+2x2), and thus the sections that the window captures are distinct. However, when
+the stride is set to the minimum (1x1) and is smaller than the window size, the
+sections overlap (which in turn makes the output's columns overlap as well). The
+window then acts as a perfect "sliding window" in this case (see the first code
+example below). In general, there will be some overlap as long as the stride is
+smaller than the window size (though the overlap decreases as the stride
+approaches the window size), and when the stride is equal or greater than the
+window size, each section (and output column) will be distinct.
+
+For inputs that have more than two dimensions, the unwrap operation will be
+applied to each 2D slice of the input. This is especially useful for
+independently processing each channel of an image (or set of images) - each
+channel (along the third dimension) on the input corresponds to the same channel
+on the output, and each image (along the fourth dimension) on the input
+corresponds to the same image on the output.
+
+The size of the output is shown below. `nsections_dim0` and `nsections_dim1`
+denote how many windows can fit along the column and row, given the padded image
+size, window size, strides, and skips (if any):
+
+\code
+dim4(
+    wx * wy,                               // No. of rows (column height)
+    nsections_dim0 * nsections_dim1,       // No. of columns per channel
+    input.dims(2),                         // No. of channels
+    input.dims(3)                          // No. of images
+)
+\endcode
+
+Here are some code examples that demonstrate unwrap's usage:
+
+\snippet test/unwrap.cpp ex_unwrap
+
+One context where unwrap can be used is pre-processing an array or image for
+making window operations efficient (i.e. convolutions, computing the average
+pixel intensity around a point in an image, etc). Since each window capture is
+laid out as a column in an unwrapped array, vectorized operations can be executed
+efficiently on it (as opposed to strided access of each row in a window in the original
+array).
+
+Note that the actual implementation of unwrap may not match the way the operation
+is described above, but the effect should be the same.
+
+=======================================================================
+
+\defgroup image_func_wrap wrap
+\ingroup image_mod_mat
+
+Performs the opposite of \ref af::unwrap().
+
+More specifically, wrap takes each column (or row if `is_column` is false) of the
+\f$m \times n\f$ input array and reshapes them into `wx` \f$\times\f$ `wy`
+patches (where \f$m =\f$ `wx` \f$\times\f$ `wy`) of the `ox` \f$\times\f$ `oy`
+output array. Wrap is typically used on an array that has been previously
+unwrapped - for example, in the case of image processing, one can unwrap an
+image, process the unwrapped array, and then compose it back into an image using
+wrap. 
+
+The figure below illustrates how wrap works. The process can be visualized as a
+moving window (orange boxes in the figure) taking a column from the input
+(top-left), reshaping it into a patch (bottom-left), and then placing that patch
+on its corresponding position in the output array (right; numbers in yellow show
+correspondence). It starts placing a patch on the output's top-left corner, then
+moves `sx` units along the column, and `sy` units along the row whenever it
+exhausts a column. If padding exists in the input array (gray-filled boxes),
+which typically happens when padding was applied on the previous unwrap, then
+`px` and `py` must be specified in order for the padding to be removed on the
+output array (in the figure, the output array on the right will actually only
+contain the inner boxes, size `ox` \f$\times\f$ `oy`).
+
+\image html wrap_distinct.png "Wrap on a 4x6 input array, using a 2x2 window, 2x2 stride, 1x1 padding. The output array is 3x4"
+
+There are some things that must be considered when wrapping a previously
+unwrapped array. First, wrap must use the same parameters that unwrap used, and
+must use the original array's size (before unwrap) as `ox` and `oy`. This is
+necessary to correctly elicit wrap's behavior as the opposite of unwrap. Second,
+one must consider whether the previous unwrap used a distinct or sliding window
+configuration, since the element-wise mapping from the input array to the output
+depends on the configuration. If the distinct window configuration (the stride is
+at least as large as the window size) was used, then the mapping is
+straightforward - each column will map to a unique section in the output array,
+and therefore each element in the input will map to a unique position in the
+output (shown in the figure above). However, in the case of the sliding window
+configuration (the stride is smaller than the window size), some of the columns
+will map to overlapping sections in the output array, and so elements from
+multiple columns will map to the same position on the output array. Recomposing
+the array then requires some way to choose between competing elements to place in
+that position. To address this contention, wrap simply sums all of the competing
+elements and places the sum in that position. The figure below illustrates this
+behavior: the fourth element of the first column and the third element of the
+second column in the input array both map to the same position on the output
+array, and thus their sum is placed on that position (this happens on the second
+and third column of the input as well - they both map to the third element of the
+second column in the output). Given this behavior, it is up to the user to
+pre-process the input (unwrapped) array (or post-process the output (wrapped)
+array) in a way that somehow takes all of the competing elements into
+consideration.
+
+\image html wrap_sliding.png "Wrap on the same array as above, but with 1x1 stride (sliding window)"
+
+For inputs that have more than two dimensions, the wrap operation will be
+applied to each 2D slice of the input. This is especially useful for
+independently processing each channel of an image (or set of images) - each
+channel (along the third dimension) on the input corresponds to the same channel
+on the output, and each image (along the fourth dimension) on the input
+corresponds to the same image on the output.
+
+Here are some code examples that demonstrate wrap's usage. The first one shows
+wrapping a previously unwrapped array that used a 1x1 padding and a distinct
+window configuration. Notice how the arguments used in unwrap are the same as
+those used in wrap:
+
+\snippet test/wrap.cpp ex_wrap_1
+
+The next one shows what happens when both unwrap and wrap uses the sliding window
+configuration. Notice how the original array is not recovered through wrap;
+instead, overlapping elements are summed, just as described above:
+
+\snippet test/wrap.cpp ex_wrap_2
+
+Note that the actual implementation of unwrap may not match the way the operation
+is visualized above, but the effect should be the same.
+
+=======================================================================
+
+\defgroup image_func_moments moments
+\ingroup moments_mat
+
+The \ref af::moments() function allows for finding different
+properties of image regions. Currently, ArrayFire calculates all first order moments.
+The moments are defined within the \ref af_moment_type enum.
+
+As the enum details, each moment can be returned individually or all first-order
+moments can be calculated at once. This can be done as follows:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.cpp}
+af::array moments = af::moments(input_image, AF_MOMENT_FIRST_ORDER);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is an example of how the shorthand versions might be used to find the area(or gray level sum) and
+center of mass of an image:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.cpp}
+double m00, m01, m10;
+af::moments(&m00, input_image, AF_MOMENT_M00);
+af::moments(&m01, input_image, AF_MOMENT_M01);
+af::moments(&m10, input_image, AF_MOMENT_M10);
+
+double area = m00;
+double x_center = m10 / m00;
+double y_center = m01 / m00;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=======================================================================
+
+\defgroup image_func_canny canny
+\ingroup imageflt_mat
+
+\brief Canny Edge Detector
+
+The Canny edge detector is an edge detection operator that uses a multi-stage algorithm to detect a
+wide range of edges in images. A more in depth discussion on it can be found [here](https://en.wikipedia.org/wiki/Canny_edge_detector).
+
+=======================================================================
+
+\defgroup image_func_iterative_deconv iterativeDeconv
+\ingroup imageflt_mat
+
+\brief Iterative Deconvolution
+
+The following table shows the iteration update equations of the respective
+deconvolution algorithms.
+
+<table>
+<tr><th>Algorithm</th><th>Update Equation</th></tr>
+<tr>
+    <td>LandWeber</td>
+    <td>
+        \f$ \hat{I}_{n} = \hat{I}_{n-1} + \alpha * P^T \otimes (I - P \otimes \hat{I}_{n-1}) \f$
+    </td>
+</tr>
+<tr>
+  <td>Richardson-Lucy</td>
+  <td>
+    \f$ \hat{I}_{n} = \hat{I}_{n-1} . ( \frac{I}{\hat{I}_{n-1} \otimes P} \otimes P^T ) \f$
+  </td>
+</tr>
+</table>
+
+where
+    - \f$ I \f$ is the observed(input/blurred) image
+    - \f$ P \f$ is the point spread function
+    - \f$ P^T \f$ is the transpose of point spread function
+    - \f$ \hat{I}_{n} \f$ is the current iteration's updated image estimate
+    - \f$ \hat{I}_{n-1} \f$ is the previous iteration's image estimate
+    - \f$ \alpha \f$ is the relaxation factor
+    - \f$ \otimes \f$ indicates the convolution operator
+
+Iterative deconvolution function excepts \ref af::array of the following types only:
+    - \ref f32
+    - \ref s16
+    - \ref u16
+    - \ref u8
+
+\note The type of output \ref af::array from deconvolution will be double if
+the input array type is double. For other types, output type will be float.
+Should the caller want to save the image to disk or require the values of output
+to be in a fixed range, that should be done by the caller explicitly.
+
+=======================================================================
+
+\defgroup image_func_inverse_deconv inverseDeconv
+\ingroup imageflt_mat
+
+\brief Inverse Deconvolution
+
+Inverse deconvolution is an linear algorithm i.e. they are non-iterative in
+nature and usually faster than iterative deconvolution algorithms.
+
+Depending on the values passed on to the enum \ref af_inverse_deconv_algo,
+different equations are used to compute the final result.
+
+#### Tikhonov's Deconvolution Method:
+
+The update equation for this algorithm is as follows:
+
+\f[
+\hat{I}_{\omega} = \frac{ I_{\omega} * P^{*}_{\omega} } { |P_{\omega}|^2 + \gamma }
+\f]
+
+where
+    - \f$ I_{\omega} \f$ is the observed(input/blurred) image in frequency domain
+    - \f$ P_{\omega} \f$ is the point spread function in frequency domain
+    - \f$ \gamma \f$ is a user defined regularization constant
+
+Inverse deconvolution function excepts \ref af::array of the following types only:
+    - \ref f32
+    - \ref s16
+    - \ref u16
+    - \ref u8
+
+\note The type of output \ref af::array from deconvolution will be double
+if the input array type is double. Otherwise, it will be float in rest of
+the cases. Should the caller want to save the image to disk or require the
+values of output to be in a fixed range, that should be done by the caller
+explicitly.
+
+=======================================================================
+
+\defgroup image_func_confidence_cc confidenceCC
+\ingroup connected_comps_mat
+
+\brief Segment image based on similar pixel characteristics
+
+This filter is similar to \ref af::regions() (connected components) with additional
+criteria for segmentation. In \ref af::regions(), all connected (\ref af_connectivity)
+pixels connected are considered to be a single component. In this
+variation of connected components, pixels having similar pixel statistics
+of the neighborhoods around a given set of seed points are grouped together.
+
+The parameter \p radius determines the size of neighborhood around a seed point.
+
+Mean (\f$ \mu \f$) and Variance (\f$ \sigma^2 \f$) are the pixel statistics that
+are computed across all neighborhoods around the given set of seed points. The
+pixels which are connected to seed points and lie in the confidence interval
+ (\f$ [\mu - \alpha * \sigma, \mu + \alpha * \sigma] \f$ where \f$ \alpha \f$
+is the parameter \p multiplier) are grouped. \p multiplier can be used to
+control the width of the confidence interval.
+
+This filter follows an iterative approach for fine tuning the segmentation.
+An initial segmenetation followed by a finite number (\p iter) of segmentations
+are performed. The user provided parameter \p iter is only a request and the
+algorithm can prempt the execution if \f$ \sigma^2 \f$ approaches zero. The
+initial segmentation uses the mean and variance calculated from the neighborhoods
+of all the seed points. For subsequent segmentations, all pixels in the previous
+segmentation are used to re-calculate the mean and variance (as opposed to using
+the pixels in the neighborhood of the seed point).
+
+Given below is a sample output for segmenting three different regions of a
+donut using single seed.
+
+<img src="ccc_sample_output.png" align="center" alt="Confidence Connected Components Example"
+width="60%" height="60%"/>
+
+
+
+@}
+*/

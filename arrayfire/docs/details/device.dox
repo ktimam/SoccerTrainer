@@ -1,0 +1,184 @@
+/**
+\addtogroup arrayfire_func
+@{
+
+\defgroup device_func_prop deviceInfo
+\ingroup device_mat
+
+\brief Gets the information about device and platform as strings
+
+\param d_name pointer to a user-allocated char array. Recommended minimum size is 64.
+The name of the device is stored in this array.
+\param d_platform pointer to a user-allocated char array. Recommended minimum size is 10.
+The platform information is stored in this array.
+\param d_toolkit pointer to a user-allocated char array. Recommended minimum size is 64.
+The toolkit information is stored in this array.
+\param d_compute pointer to a user-allocated char array. Recommended minimum size is 10.
+The compute version of the device is stored in this array.
+
+===============================================================================
+
+\defgroup device_func_count getDeviceCount
+\ingroup device_mat
+
+\brief Gets the number of compute devices on the system
+
+Get the number of devices available for the current backend
+
+===============================================================================
+
+\defgroup device_func_get getDevice
+\ingroup device_mat
+
+\brief Get the current device ID
+
+Gets the ID of the current device
+
+===============================================================================
+
+\defgroup device_func_dbl isDoubleAvailable
+\ingroup device_mat
+
+\brief Check if double precision support is available for specified device
+
+These functions check if a device has support to perform double precision
+floating point operations
+
+===============================================================================
+
+\defgroup device_func_half isHalfAvailable
+\ingroup device_mat
+
+\brief Check if half(16-bit) precision floating point support is available for
+       specified device
+
+These functions check if a device has support to perform half precision
+floating point operations
+
+===============================================================================
+
+\defgroup device_func_set setDevice
+\ingroup device_mat
+
+\brief Change current device to specified device
+
+These functions change the current device. Operations after this called will
+be performed on the set device.
+
+===============================================================================
+
+\defgroup device_func_sync sync
+\ingroup device_mat
+
+\brief Blocks until all operations on device are finished
+
+These functions block the calling thread until all of the device operations
+have finished.
+
+===============================================================================
+
+\defgroup device_func_alloc allocV2
+\ingroup device_mat
+
+\brief Allocate memory using the ArrayFire memory manager
+
+This function will allocate memory on the device and return a pointer
+to it. The memory is allocated using ArrayFire's memory manager which
+will defer releasing memory to the driver and reuse the same memory
+for later operations.
+
+This function will return different objects based on the type used. The
+interface returns a void pointer that needs to be cast to the backend
+appropriate memory type.
+
+
+| function                     | CPU | CUDA | OpenCL      |
+|------------------------------|-----|------|-------------|
+| af_alloc_device_v2           | T*  | T*   | cl_mem      |
+| af::allocV2                  | T*  | T*   | cl_mem      |
+| af_alloc_device (deprecated) | T*  | T*   | cl::Buffer* |
+| af::alloc (deprecated)       | T*  | T*   | cl::Buffer* |
+
+CPU Backend
+-----------
+\snippet test/memory.cpp ex_alloc_v2_cpu
+
+CUDA Backend
+------------
+\snippet test/cuda.cu ex_alloc_v2_cuda
+
+OpenCL Backend
+--------------
+\snippet test/ocl_ext_context.cpp ex_alloc_v2_opencl
+
+===============================================================================
+
+\defgroup device_func_free freeV2
+\ingroup device_mat
+
+\brief Returns memory to ArrayFire's memory manager. The memory will
+       return to the memory pool.
+
+Releases control of the memory allocated by af::allocV2 functions to ArrayFire's
+memory manager. ArrayFire may reuse the memory for subsequent operations. This
+memory should not be used by the client after this point.
+
+===============================================================================
+
+\defgroup device_func_pinned pinned
+\ingroup device_mat
+
+\brief Allocate pinned memory using ArrayFire's memory manager.
+
+These functions allocate page locked memory. This type of memory has better
+performance characteristics but require additional care because they are
+a limited resource.
+
+===============================================================================
+
+\defgroup device_func_free_pinned freePinned
+\ingroup device_mat
+
+\brief Free pinned memory allocated by ArrayFire's memory manager
+
+These calls free the pinned memory on host. These functions need to be called on
+pointers allocated using pinned function.
+
+===============================================================================
+
+\defgroup device_func_alloc_host allocHost
+\ingroup device_mat
+
+\brief Allocate memory on host
+
+This function is used for allocating regular memory on host. This is useful
+where the compiler version of ArrayFire library is different from the
+executable's compiler version.
+
+It does not use ArrayFire's memory manager.
+
+===============================================================================
+
+\defgroup device_func_free_host freeHost
+\ingroup device_mat
+
+\brief Free memory allocated on host internally by ArrayFire
+
+This function is used for freeing memory on host that was allocated within
+ArrayFire. This is useful where the compiler version of ArrayFire library is
+different from the executable's compiler version.
+
+It does not use ArrayFire's memory manager.
+
+===============================================================================
+
+\defgroup device_func_mem deviceMemInfo
+\ingroup device_mat
+
+\brief Memory manager related functions
+
+Memory manager related functions
+
+@}
+
+*/

@@ -1,0 +1,150 @@
+# Copyright (c) 2017, ArrayFire
+# All rights reserved.
+#
+# This file is distributed under 3-clause BSD license.
+# The complete license agreement can be obtained at:
+# http://arrayfire.com/licenses/BSD-3-Clause
+
+# ArrayFire
+# ---------
+#
+# IMPORTED Targets
+# ^^^^^^^^^^^^^^^^
+#
+# This is the configuration file for the ArrayFire Library. It provides the
+# following :prop_tgt:`IMPORTED` targets:
+#
+# ``ArrayFire::af``
+#   Target for the ArrayFire Unified backend.
+# ``ArrayFire::afcpu``
+#   Target for the ArrayFire CPU backend.
+# ``ArrayFire::afcuda``
+#   Target for the ArrayFire CUDA backend.
+# ``ArrayFire::afoneapi``
+#   Target for the ArrayFire oneAPI backend.
+# ``ArrayFire::afopencl``
+#   Target for the ArrayFire OpenCL backend.
+#
+# These targets can be used to link with your application using the
+# ``target_link_library`` command. Here is an example of how to use these
+# targets in your application:
+#
+#   add_executable(mybinary source.cpp)
+#   target_link_library(mybinary PRIVATE ArrayFire::afopencl)
+#
+# This example creates a mybinary executable from the source.cpp file and links
+# against the OpenCL backend of ArrayFire library. Note you do *not* need to set
+# the include directories as they are automatically included with the target.
+#
+# This is the recommended way of linking against ArrayFire
+#
+# Legacy Variables
+# ^^^^^^^^^^^^^^^^
+#
+# Additionally, this config file creates the following variables for backward
+# compatibility with legacy cmake files:
+#
+# ``ArrayFire_INCLUDE_DIRS``
+#  Path to ArrayFire's include directory.
+# ``ArrayFire_LIBRARIES``
+#  ArrayFire's libraries. This will default to a GPU backend if one
+#  is found.
+# ``ArrayFire_FOUND``
+#  True if ArrayFire has been located
+#
+# ``ArrayFire_CPU_FOUND``
+#   True of the ArrayFire CPU library has been found.
+# ``ArrayFire_CPU_LIBRARIES``
+#   Location of ArrayFire's CPU library, if found
+#
+# ``ArrayFire_CUDA_FOUND``
+#   True of the ArrayFire CUDA library has been found.
+# ``ArrayFire_CUDA_LIBRARIES``
+#   Location of ArrayFire's CUDA library, if found
+#
+# ``ArrayFire_oneAPI_FOUND``
+#   True of the ArrayFire oneAPI library has been found.
+# ``ArrayFire_oneAPI_LIBRARIES``
+#   Location of ArrayFire's oneAPI library, if found
+#
+# ``ArrayFire_OpenCL_FOUND``
+#   True of the ArrayFire OpenCL library has been found.
+# ``ArrayFire_OpenCL_LIBRARIES``
+#   Location of ArrayFire's OpenCL library, if found
+#
+# ``ArrayFire_Unified_FOUND``
+#   True of the ArrayFire Unified library has been found.
+# ``ArrayFire_Unified_LIBRARIES``
+#   Location of ArrayFire's Unified library, if found
+#
+# It is recommended you use imported targets instead of these variables.
+#
+# You may provide a hint to where ArrayFire's root directory may be located
+# by setting ArrayFire_DIR. You should not need to set this if you installed
+# ArrayFire using the official installers or the package manager(please submit
+# a bug report). If CMake is unable to locate ArrayFire then set the
+# ArrayFire_DIR to the directory of this file.
+#
+# If you are trying to link against a source build then this should be set to
+# the build directory.
+
+@PACKAGE_INIT@
+
+set_and_check(ArrayFire_INCLUDE_DIRS @PACKAGE_INCLUDE_DIRS@)
+
+foreach(backend Unified CPU oneAPI OpenCL CUDA)
+  if(backend STREQUAL "Unified")
+    set(lowerbackend "")
+  else()
+    string(TOLOWER "${backend}" lowerbackend)
+  endif()
+
+  string(TOUPPER "${backend}" upperbackend)
+  if(NOT TARGET ArrayFire::af${lowerbackend} AND NOT TARGET af${lowerbackend})
+    # Either we are not in the ArrayFire project or the target was not built
+    if(EXISTS @PACKAGE_CMAKE_DIR@/ArrayFire${backend}Targets.cmake)
+      include(@PACKAGE_CMAKE_DIR@/ArrayFire${backend}Targets.cmake)
+    endif()
+  endif()
+  if(TARGET ArrayFire::af${lowerbackend})
+    get_property(all_config TARGET ArrayFire::af${lowerbackend} PROPERTY IMPORTED_CONFIGURATIONS)
+    foreach(config IN LISTS all_config)
+      if(NOT all_config)
+        set(all_config "NOCONFIG")
+      endif()
+      get_property(loc TARGET ArrayFire::af${lowerbackend} PROPERTY IMPORTED_LOCATION_${config})
+
+      # break if any of the imported configurations exist. All configs write to the same
+      # location so they are not working as CMake intended. Its fine for single config
+      # installers like ours.
+      if(EXISTS ${loc})
+        set(ArrayFire_${backend}_BINARY_EXISTS TRUE)
+        break()
+      endif()
+    endforeach()
+  endif()
+
+  if((TARGET ArrayFire::af${lowerbackend} AND ArrayFire_${backend}_BINARY_EXISTS) OR TARGET af${lowerbackend})
+      set(ArrayFire_${backend}_FOUND ON)
+      set(ArrayFire_${backend}_LIBRARIES ArrayFire::af${lowerbackend})
+      set(ArrayFire_LIBRARIES ArrayFire::af${lowerbackend})
+  else()
+      set(ArrayFire_${backend}_FOUND OFF)
+  endif()
+
+  # If this project is built as part of the ArrayFire project, make sure the
+  # backends are only enabled if the backend is selected to be built even if
+  # the Binary exists.
+  if(DEFINED AF_BUILD_${upperbackend} AND NOT AF_BUILD_${upperbackend})
+    set(ArrayFire_${backend}_FOUND OFF)
+  endif()
+endforeach()
+
+foreach(_comp ${ArrayFire_FIND_COMPONENTS})
+  if (NOT ArrayFire_${_comp}_FOUND)
+    set(ArrayFire_FOUND False)
+    set(ArrayFire_NOT_FOUND_MESSAGE "Required ArrayFire component ${_comp} not found")
+  endif()
+endforeach()
+
+check_required_components(CPU oneAPI OpenCL CUDA Unified)

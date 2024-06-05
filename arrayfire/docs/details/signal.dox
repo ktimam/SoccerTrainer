@@ -1,0 +1,452 @@
+
+/*!
+
+\page signal_func_conv_desc Convolution
+
+A convolution is a common operation between a source array, a, and a filter (or kernel) array b.
+The answer to the convolution is the same as computing the coefficients in polynomial multiplication,
+if a and b are the coefficients.
+
+Another way to think about it is that the filter kernel is centered on each pixel in a,
+and the output for that pixel or data point is the sum of the products.
+
+Depending on the size of the signal and the filter, any one of the following
+batch mode convolutions take place.
+
+- **No Batch**   - Single filter applied to single input.
+- **Filter is Batched**  - Many filters applied on same input
+- **Signal is Batched**  - Single filter applied to a set of inputs.
+- **Identical Batches** - A set of filters applied onto to a set of inputs in one-to-one correspondence.
+- **Non overlapping Batches** - All batched filters are applied to all batched signals. The batch
+  axis of Signal and Filter **should not** be the same.
+
+\note All non-overlapping(interleaved) convolutions default to frequency domain
+      \ref AF_CONV_FREQ irrespective of the provided convolution mode argument.
+
+
+\page signal_func_fft_desc fft
+
+The Fast Fourier Transform (FFT) is an efficient algorithm to compute the discrete Fourier
+transform (DFT) of a signal or array. This is most commonly used to convert data in the
+time (or space) domain to the frequency domain, Then, the inverse FFT (iFFT) is used to
+return the data to the original domain.
+
+There are numerous algorithms to compute the FFT of an array, and the specifics of the
+algorithm depend on the target hardware. Most algorithms, however, use a Cooley-Tukey
+scheme in a divide-and-conquer approach.
+
+\note There are some convenience functions provided for fft where normalization
+factor is not required as input paramter. In such cases, the normalization
+factor is calculated internally based on the input data provided.
+
+*/
+
+//=====================================================================
+/**
+\addtogroup arrayfire_func
+@{
+
+\defgroup signal_func_convolve convolve (Non-separable)
+\ingroup convolve_mat
+
+\brief Convolution Integral for any(one through three) dimensional data
+
+\copydoc signal_func_conv_desc
+
+This version of convolution function delegates the call to respective
+1D, 2D or 3D convolution functions internally.
+
+Convolution dimensionality is \f$ \min (sd, fd) \f$ where sd & fd are dimensionality of
+signal and filter respectively.  This formulation only decides the dimensionality of convolution.
+
+Given below are some examples on how convolution dimensionality is computed.
+
+| Signal Size    | Filter Size    | Input Rank | Filter Rank | Convolve Dimensionality   |
+|:--------------:|:--------------:|:----------:|:-----------:|:-------------------------:|
+| \dims{m,n,1,1} | \dims{m,1,1,1} |     2      |      1      |   \f$ min(2, 1) => \f$ 1D |
+| \dims{m,1,1,1} | \dims{m,n,1,1} |     1      |      2      |   \f$ min(1, 2) => \f$ 1D |
+| \dims{m,n,1,1} | \dims{m,n,1,1} |     2      |      2      |   \f$ min(2, 2) => \f$ 2D |
+| \dims{m,n,1,1} | \dims{m,n,p,1} |     2      |      3      |   \f$ min(2, 3) => \f$ 2D |
+| \dims{m,n,1,p} | \dims{m,n,1,q} |     4      |      4      |   3D |
+| \dims{m,n,p,1} | \dims{m,n,q,1} |     3      |      3      |   \f$ min(3, 3) => \f$ 3D |
+
+\note In the cases similar to the fifth row of the above table,
+      signal and filter are of rank 4, the function delegates the
+      operation to three dimensional convolution \ref signal_func_convolve3
+
+If the operation you intend to perform doesn't align with what this
+function does, please check the rank specific convolve functions (hyperlinked below)
+documentation to find out more.
+
+- \ref signal_func_convolve1
+- \ref signal_func_convolve2
+- \ref signal_func_convolve3
+
+
+
+
+\defgroup signal_func_convolve_sep convolve (Separable)
+\ingroup convolve_mat
+
+\brief Separable Convolution
+
+Separable Convolution is faster equivalent of the canonical 2D convolution with
+an additional prerequisite that the filter/kernel can be decomposed into two
+separate spatial vectors. A classic example of such separable kernels
+is sobel operator. Given below is decomposition of vertical gradient of sobel operator.
+
+\f$
+\begin{bmatrix}
+-1 & 0 & +1 \\
+-2 & 0 & +2 \\
+-1 & 0 & +1 \\
+\end{bmatrix}
+\f$
+
+can be decomposed into two vectors shown below.
+
+\f$
+\begin{bmatrix}
+1 \\
+2 \\
+1 \\
+\end{bmatrix}
+\f$
+
+\f$
+\begin{bmatrix}
+-1 & 0 & +1 \\
+\end{bmatrix}
+\f$
+
+
+\defgroup signal_func_convolve1 convolve1
+\ingroup convolve_mat
+
+\brief Convolution Integral for one dimensional data
+
+\copydoc signal_func_conv_desc
+
+For one dimensional signals (lets say m is size of 0th axis), below batch operations are possible.
+
+| Signal Size    | Filter Size    | Output Size    | Batch Mode               | Description                                                        |
+| :------------: | :------------: | :------------: | :----------------------: | :----------------------------------------------------------------- |
+| \dims{m,1,1,1} | \dims{m,1,1,1} | \dims{m,1,1,1} | No Batch                 | Output will be a single convolved array                            |
+| \dims{m,1,1,1} | \dims{m,n,1,1} | \dims{m,n,1,1} | Filter is Batched        | n filters applied to same input                                    |
+| \dims{m,n,1,1} | \dims{m,1,1,1} | \dims{m,n,1,1} | Signal is Batched        | 1 filter applied to n inputs                                       |
+| \dims{m,n,p,q} | \dims{m,n,p,q} | \dims{m,n,p,q} | Identical Batches        | n*p*q filters applied to n*p*q inputs in one-to-one correspondence |
+| \dims{m,n,1,1} | \dims{m,1,p,q} | \dims{m,n,p,q} | Non-overlapping batches  | p*q filters applied to n inputs to produce n x p x q results       |
+
+There are various other permutations of signal and filter sizes that fall under
+the category of non-overlapping batch mode that are not listed in the above
+table. For any signal and filter size combination to fall under the
+non-overlapping batch mode, they should satisfy one of the following conditions.
+- Signal and filter size along a given batch axis (\f$ > 1 \f$) should be same.
+- Either signal size or filter size along a given batch axis (\f$ > 1 \f$) should be equal to one.
+
+\note For the above tabular illustrations, we assumed \ref af_conv_mode is \ref AF_CONV_DEFAULT.
+
+
+
+\defgroup signal_func_convolve2 convolve2
+\ingroup convolve_mat
+
+\brief Convolution Integral for two dimensional data
+
+\copydoc signal_func_conv_desc
+
+A detailed explanation of each batch mode for 2D convolutions is provided below.
+Given below are definitions of variables and constants that are used to
+facilitate easy illustration of the operations.
+
+- \f$[M\quad N]\f$, \f$[A\quad B]\f$ are signal, filter sizes along
+  \f$0^{th}\f$ & \f$1^{st}\f$ axes respectively.
+- \f$P\f$ and \f$Q\f$ are two constants, integers greater than one.
+- \f$ p \f$ is an integer variable with range \f$ \ 0 \leq p < P \f$.
+- \f$ q \f$ is an integer variable with range \f$ \ 0 \leq q < Q \f$.
+- O, S and F are notations for Output, Signal and Filter respectively.
+
+We have also used images to showcase some examples which follow the
+below notation.
+
+- Each blue line is a two dimensional matrix.
+- Each orange line indicates a full 2d convolution operation.
+- Suffix of each letter indicates indices along \f$ 3^{rd}\f$ and \f$ 4^{th}\f$
+  axes in the order of appearance from left to right in the suffix.
+- O, S and F are notations for Output, Signal and Filter respectively.
+
+### No Batch
+
+Given below is an example of no batch mode.
+
+\image html "basic.png" "Single 2d convolution with 2d filter"
+
+For input size \dims{M,N,1,1} and filter size \dims{A,B,1,1}, the following set-builder
+notation gives a formal definition of all convolutions performed in this mode.
+
+\shape_eq{O,M,N,1,1} = \convolve_eq{\shape_t{S,M,N,1,1},\shape_t{F,A,B,1,1}}
+
+
+### Batched Filter
+
+Given below is an example of filter batch mode.
+
+\image html "filter.png" "Single signal convolved with many filters independently"
+
+For input size \dims{M,N,1,1} and filter size \dims{A,B,P,1}, the following set-builder
+notation gives a formal definition of all convolutions performed in this mode.
+
+\shape_eq{O,M,N,P,1} = \set_eq{\convolve_t{\shape_t{S,M,N,1,1},\shape_t{f,A,B,p,1}}, \forall \shape_t{f,A,B,p,1} \in \shape_t{F,A,B,P,1}}
+
+
+### Batched Signal
+
+Given below is an example of signal batch mode.
+
+\image html "signal.png" "Single filter convolved with many signals independently"
+
+For input size \dims{M,N,P,1} and filter size \dims{A,B,1,1}, the following set-builder
+notation gives a formal definition of all convolutions performed in this mode.
+
+\shape_eq{O,M,N,P,1} = \set_eq{\convolve_t{\shape_t{s,M,N,p,1},\shape_t{F,A,B,1,1}}, \forall \shape_t{s,M,N,p,1} \in \shape_t{S,M,N,P,1}}
+
+
+### Identical Batch Sizes
+
+Given below is an example of identical batch mode.
+
+\image html "identical.png" "Many signals convolved with many filters in one-on-one manner"
+
+For input size \dims{M,N,P,Q} and filter size \dims{A,B,P,Q}, the following set-builder
+notation gives a formal definition of all convolutions performed in this mode.
+
+\shape_eq{O,M,N,P,Q} = \set_eq{\convolve_t{\shape_t{s,M,N,p,q},\shape_t{f,A,B,p,q}}, \forall \shape_t{s,M,N,p,q} \in \shape_t{S,M,N,P,Q} \land \forall \shape_t{f,M,N,p,q} \in \shape_t{F,M,N,P,Q}}
+
+
+### Non-overlapping Batches
+
+Four different kinds of signal and filter size combinations are handled in this batch mode. Each one
+of them are explained in respective sections below.
+
+#### Combination 1
+
+For input size \dims{M,N,P,1} and filter size \dims{A,B,1,Q}, the following set-builder
+notation gives a formal definition of all convolutions performed in this mode.
+
+\shape_eq{O,M,N,P,Q} = \set_eq{\set_t{\convolve_t{\shape_t{s,M,N,p,1},\shape_t{f,A,B,1,q}}, \forall \shape_t{s,M,N,p,1} \in \shape_t{S,M,N,P,1}}, \forall \shape_t{f,A,B,1,q} \in \shape_t{F,A,B,1,Q}}
+
+Given below is an example of this batch mode.
+
+\image html "non-overlapping_1.png"
+
+#### Combination 2
+
+For input size \dims{M,N,P,1} and filter size \dims{A,B,P,Q}, the following set-builder
+notation gives a formal definition of all convolutions performed in this mode.
+
+\shape_eq{O,M,N,P,Q} = \set_eq{\set_t{\convolve_t{\shape_t{s,M,N,p,1},\shape_t{f,A,B,p,q}}, \forall \shape_t{f,A,B,p,q} \in \shape_t{F,A,B,P,Q}}, \forall \shape_t{s,M,N,p,1} \in \shape_t{S,M,N,P,1}}
+
+Given below is an example of this batch mode.
+
+\image html "non-overlapping_2.png"
+
+#### Combination 3
+
+For input size \dims{M,N,1,P} and filter size \dims{A,B,Q,1}, the following set-builder
+notation gives a formal definition of all convolutions performed in this mode.
+
+\shape_eq{O,M,N,Q,P} = \set_eq{\set_t{\convolve_t{\shape_t{s,M,N,1,p},\shape_t{f,A,B,q,1}}, \forall \shape_t{s,M,N,1,p} \in \shape_t{S,M,N,1,P}}, \forall \shape_t{f,A,B,q,1} \in \shape_t{F,A,B,Q,1}}
+
+Given below is an example of this batch mode.
+
+\image html "non-overlapping_3.png"
+
+#### Combination 4
+
+For input size \dims{M,N,P,Q} and filter size \dims{A,B,P,1}, the following set-builder
+notation gives a formal definition of all convolutions performed in this mode.
+
+\shape_eq{O,M,N,P,Q} = \set_eq{\set_t{\convolve_t{\shape_t{s,M,N,p,q},\shape_t{f,A,B,p,1}}, \forall \shape_t{s,M,N,p,q} \in \shape_t{S,M,N,P,Q}}, \forall \shape_t{f,A,B,p,1} \in \shape_t{F,A,B,P,1}}
+
+Given below is an example of this batch mode.
+
+\image html "non-overlapping_4.png"
+
+
+The batching behavior of convolve2NN functions(\ref af_convolve2_nn() and
+\ref af::convolve2NN() ) is different from convolve2. The new functions can perform 2D
+convolution on 3D signals and filters in a way that is more aligned with
+convolutional neural networks.
+
+| Signal Size         | Filter Size         | Output Size         | Batch Mode     | Description                                         |
+| :-----------------: | :-----------------: | :-----------------: | :------------: | :-------------------------------------------------- |
+| \dims{M, N, 1, 1}   | \dims{M, N, 1, 1}   | \dims{M, N, 1, 1}   | No Batch       | Output will be a single convolved array             |
+| \dims{M, N, 1, 1}   | \dims{M, N, P, 1}   | \dims{M, N, P, 1}   | *Invalid*      | Size along second axis should be same               |
+| \dims{M, N, P, 1}   | \dims{M, N, 1, 1}   | \dims{M, N, P, 1}   | *Invalid*      | Size along second axis should be same               |
+| \dims{M, N, P, 1}   | \dims{M, N, P, 1}   | \dims{M, N, 1, 1}   | No Batch       | 3D Signal and 3D filter convoled to 2D result       |
+| \dims{M, N, P, Qs}  | \dims{M, N, P, Qf}  | \dims{M, N, Qf, Qs} | Batch Qs * Qf  | Qs signals and Qf filters to create Qs * Qf results |
+
+\note For the above tabular illustrations, we will assume \ref af_conv_mode is \ref AF_CONV_DEFAULT.
+
+
+
+\defgroup signal_func_convolve3 convolve3
+\ingroup convolve_mat
+
+\brief Convolution Integral for three dimensional data
+
+\copydoc signal_func_conv_desc
+
+For three dimensional inputs with m, n & p sizes along the 0th, 1st & 2nd axes
+respectively, given below are the possible batch operations.
+
+| Signal Size        | Filter Size        | Output Size        | Batch Mode         | Description                                                |
+| :----------------: | :----------------: | :----------------: | :----------------: |:-----------------------------------------------------------|
+| \dims{m, n, p, 1}  | \dims{a, b, c, 1}  | \dims{m, n, p, 1}  | No Batch           | Output will be a single convolve array                     |
+| \dims{m, n, p, 1}  | \dims{a, b, c, d}  | \dims{m, n, p, d}  | Filter is Batched  | d filters applied to same input                            |
+| \dims{m, n, p, q}  | \dims{a, b, c, 1}  | \dims{m, n, p, q}  | Signal is Batched  | 1 filter applied to q inputs                               |
+| \dims{m, n, p, k}  | \dims{a, b, c, k}  | \dims{m, n, p, k}  | Identical Batches  | k filters applied to k inputs in one-to-one correspondence |
+
+\note For the above tabular illustrations, we assumed \ref af_conv_mode is \ref AF_CONV_DEFAULT.
+
+
+
+\defgroup signal_func_fft fft
+\ingroup fft_mat
+
+\brief Fast Fourier Transform
+
+\copydoc signal_func_fft_desc
+
+
+\defgroup signal_func_fft2 fft2
+\ingroup fft_mat
+
+\brief Fast Fourier Transform
+
+\copydoc signal_func_fft_desc
+
+
+\defgroup signal_func_fft3 fft3
+\ingroup fft_mat
+
+\brief Fast Fourier Transform
+
+\copydoc signal_func_fft_desc
+
+
+\defgroup signal_func_ifft ifft
+\ingroup fft_mat
+
+\brief Fast Fourier Transform
+
+\copydoc signal_func_fft_desc
+
+
+\defgroup signal_func_ifft2 ifft2
+\ingroup fft_mat
+
+\brief Fast Fourier Transform
+
+\copydoc signal_func_fft_desc
+
+
+\defgroup signal_func_ifft3 ifft3
+\ingroup fft_mat
+
+\brief Fast Fourier Transform
+
+\copydoc signal_func_fft_desc
+
+
+\defgroup signal_func_fft_r2c fftR2C
+\ingroup fft_mat
+
+\brief Real to Complex Fast Fourier Transform
+
+
+\defgroup signal_func_fft_c2r fftC2R
+\ingroup fft_mat
+
+\brief Complex to Real Fast Fourier Transform
+
+
+\defgroup signal_func_approx1 approx1
+\ingroup approx_mat
+\brief Interpolation across a single dimension
+
+Performs interpolation on data along a single dimension.
+
+Interpolation is the process of computing for unknown values within a
+continuous range described by a discrete set of known values. These
+known values (`in`) correspond to a uniformly-spaced range of indices
+determined by start and step values, whose defaults are 0.0 and 1.0,
+respectively.
+
+The positions array (`pos`) contains the interpolating points (indices
+whose values we want to find) along a given dimension. Values of **known indices**
+will be looked up in the input array, while values of **unknown indices**
+will be found via interpolation. Indices outside of the index range
+are not extrapolated. Instead, those values are set `off_grid`, whose
+default value is 0.0.
+
+The following image illustrates a simple example (known values
+represented by blue dots, unknown values represented by red dots):
+
+\image html approx1_default_idx.png "approx1() using idx_start=0.0, idx_step=1.0"
+
+Several interpolation methods are supported by approx1:
+
+- Nearest neighbor interpolation - \ref AF_INTERP_NEAREST
+- Linear interpolation (default) - \ref AF_INTERP_LINEAR, \ref AF_INTERP_LINEAR_COSINE
+- Cubic interpolation - \ref AF_INTERP_CUBIC, \ref AF_INTERP_CUBIC_SPLINE
+- Lower interpolation - \ref AF_INTERP_LOWER
+
+Unless specified, linear interpolation is performed by default. Refer
+to \ref af_interp_type for more information about ArrayFire's
+interpolation types.
+
+\defgroup signal_func_approx2 approx2
+\ingroup approx_mat
+\brief Interpolation along two dimensions
+
+Performs interpolation on data along two dimensions.
+
+Interpolation is the process of computing for unknown values within a
+continuous range described by a discrete set of known values. These
+known values correspond to a uniformly-spaced range of indices
+determined by start and step values, whose defaults are 0.0 and 1.0,
+respectively.
+
+The positions arrays (`pos0` and `pos1`) contain the interpolating
+points (indices whose values we want to find) along two given
+dimensions. Values of **known indices** will be looked up in the input
+array, while values of **unknown indices** will be found via
+interpolation. Indices outside of the index range are not
+extrapolated. Instead, those values are set to `off_grid`, whose
+default value is 0.0.
+
+All of the interpolation methods defined in \ref af_interp_type are
+supported by approx2. Unless specified, linear interpolation is
+performed by default.
+
+\defgroup signal_func_fir fir
+\ingroup sigfilt_mat
+
+\brief This function implements a Finite Impulse Filter
+
+Finite impulse filters take an input **x** and a co-efficient array **b** to generate an output **y** such that:
+
+       \f$y[n] = \sum_{i = 0}^N b_i . x[n]\f$
+
+
+\defgroup signal_func_iir iir
+\ingroup sigfilt_mat
+
+\brief This function implements a Infinite Impulse Filter
+
+Iinite impulse filters take an input **x** and a feedforward array **b**, feedback array **a** to generate an output **y** such that:
+
+       \f$\sum_{j = 0}^Q a_j . y[n] = \sum_{i = 0}^P b_i . x[n]\f$
+@}
+*/
