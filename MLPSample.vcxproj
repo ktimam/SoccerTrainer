@@ -150,8 +150,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\MLPSample - Copy\flashlight\fl\optim\optim.h" />
-    <ClInclude Include="..\MLPSample - Copy\flashlight\fl\optim\Optimizers.h" />
     <ClInclude Include="af_forge\include\fg\chart.h" />
     <ClInclude Include="af_forge\include\fg\compute_copy.h" />
     <ClInclude Include="af_forge\include\fg\defines.h" />
@@ -1140,6 +1138,7 @@
     <ClInclude Include="flashlight\fl\nn\modules\WeightNorm.h" />
     <ClInclude Include="flashlight\fl\nn\nn.h" />
     <ClInclude Include="flashlight\fl\nn\Utils.h" />
+    <ClInclude Include="flashlight\fl\optim\optim.h" />
     <ClInclude Include="flashlight\fl\optim\Optimizers.h" />
     <ClInclude Include="flashlight\fl\optim\SGDOptimizer.h" />
     <ClInclude Include="flashlight\fl\optim\Utils.h" />

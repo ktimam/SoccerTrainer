@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MLPSample - Copy\flashlight\fl\optim\Optimizers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MLPSample - Copy\flashlight\fl\optim\optim.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cereal\archives\adapters.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -4708,6 +4702,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fftw\kernel\ifftw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="flashlight\fl\optim\optim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
