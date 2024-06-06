@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_csyrk_"
 #define CHAR_CNAME "cblas_csyrk"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/syrk.c"
+#include "openblas/interface/syrk.c"

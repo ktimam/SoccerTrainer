@@ -5,4 +5,4 @@
 #define CNAME strmm
 #define CHAR_NAME "strmm_"
 #define CHAR_CNAME "strmm"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/trsm.c"
+#include "openblas/interface/trsm.c"

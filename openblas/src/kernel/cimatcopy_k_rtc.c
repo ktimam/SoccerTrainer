@@ -7,4 +7,4 @@
 #define CHAR_NAME "cimatcopy_k_rtc_"
 #define CHAR_CNAME "cimatcopy_k_rtc"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/zimatcopy_rtc.c"
+#include "openblas/kernel/x86_64/../generic/zimatcopy_rtc.c"

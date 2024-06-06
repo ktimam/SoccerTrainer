@@ -8,4 +8,4 @@
 #define CHAR_CNAME "zsyr2k_LT"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/syr2k_k.c"
+#include "openblas/driver/level3/syr2k_k.c"

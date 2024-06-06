@@ -5,4 +5,4 @@
 #define CNAME stpsv_TLN
 #define CHAR_NAME "stpsv_TLN_"
 #define CHAR_CNAME "stpsv_TLN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/tpsv_U.c"
+#include "openblas/driver/level2/tpsv_U.c"

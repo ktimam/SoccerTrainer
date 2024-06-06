@@ -7,4 +7,4 @@
 #define CHAR_CNAME "cblas_zher2"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zher2.c"
+#include "openblas/interface/zher2.c"

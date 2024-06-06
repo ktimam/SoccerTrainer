@@ -5,4 +5,4 @@
 #define CHAR_NAME "cgbmv_"
 #define CHAR_CNAME "cgbmv"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zgbmv.c"
+#include "openblas/interface/zgbmv.c"

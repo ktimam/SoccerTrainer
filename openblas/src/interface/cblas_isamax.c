@@ -6,4 +6,4 @@
 #define CNAME cblas_isamax
 #define CHAR_NAME "cblas_isamax_"
 #define CHAR_CNAME "cblas_isamax"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/imax.c"
+#include "openblas/interface/imax.c"

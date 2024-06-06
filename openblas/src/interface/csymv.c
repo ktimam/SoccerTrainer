@@ -5,4 +5,4 @@
 #define CHAR_NAME "csymv_"
 #define CHAR_CNAME "csymv"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zsymv.c"
+#include "openblas/interface/zsymv.c"

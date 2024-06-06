@@ -5,4 +5,4 @@
 #define CNAME sgemm_otcopy
 #define CHAR_NAME "sgemm_otcopy_"
 #define CHAR_CNAME "sgemm_otcopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/gemm_tcopy_2.c"
+#include "openblas/kernel/x86_64/../generic/gemm_tcopy_2.c"

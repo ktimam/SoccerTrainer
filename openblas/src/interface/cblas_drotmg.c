@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_drotmg_"
 #define CHAR_CNAME "cblas_drotmg"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/rotmg.c"
+#include "openblas/interface/rotmg.c"

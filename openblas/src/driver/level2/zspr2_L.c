@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zspr2_L"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/zspr2_k.c"
+#include "openblas/driver/level2/zspr2_k.c"

@@ -5,4 +5,4 @@
 #define CHAR_NAME "dsymv_U_"
 #define CHAR_CNAME "dsymv_U"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/symv_k.c"
+#include "openblas/kernel/generic/symv_k.c"

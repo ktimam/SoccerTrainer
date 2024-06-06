@@ -5,4 +5,4 @@
 #define CNAME cblas_srotg
 #define CHAR_NAME "cblas_srotg_"
 #define CHAR_CNAME "cblas_srotg"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/rotg.c"
+#include "openblas/interface/rotg.c"

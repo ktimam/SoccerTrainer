@@ -6,4 +6,4 @@
 #define CHAR_NAME "dsymv_L_"
 #define CHAR_CNAME "dsymv_L"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/symv_k.c"
+#include "openblas/kernel/generic/symv_k.c"

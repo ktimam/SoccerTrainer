@@ -6,4 +6,4 @@
 #define CHAR_NAME "ctrsv_NUN_"
 #define CHAR_CNAME "ctrsv_NUN"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/ztrsv_U.c"
+#include "openblas/driver/level2/ztrsv_U.c"

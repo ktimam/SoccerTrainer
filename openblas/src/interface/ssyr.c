@@ -4,4 +4,4 @@
 #define CNAME ssyr
 #define CHAR_NAME "ssyr_"
 #define CHAR_CNAME "ssyr"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/syr.c"
+#include "openblas/interface/syr.c"

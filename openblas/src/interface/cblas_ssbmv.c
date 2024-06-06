@@ -5,4 +5,4 @@
 #define CNAME cblas_ssbmv
 #define CHAR_NAME "cblas_ssbmv_"
 #define CHAR_CNAME "cblas_ssbmv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/sbmv.c"
+#include "openblas/interface/sbmv.c"

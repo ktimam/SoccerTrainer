@@ -4,4 +4,4 @@
 #define CNAME scopy
 #define CHAR_NAME "scopy_"
 #define CHAR_CNAME "scopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/copy.c"
+#include "openblas/interface/copy.c"

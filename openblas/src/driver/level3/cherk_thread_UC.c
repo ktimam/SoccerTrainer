@@ -9,4 +9,4 @@
 #define CHAR_NAME "cherk_thread_UC_"
 #define CHAR_CNAME "cherk_thread_UC"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/zherk_k.c"
+#include "openblas/driver/level3/zherk_k.c"

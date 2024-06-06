@@ -7,4 +7,4 @@
 #define CHAR_CNAME "cblas_zimatcopy"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zimatcopy.c"
+#include "openblas/interface/zimatcopy.c"

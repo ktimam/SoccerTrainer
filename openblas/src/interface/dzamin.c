@@ -8,4 +8,4 @@
 #define CHAR_CNAME "dzamin"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/max.c"
+#include "openblas/interface/max.c"

@@ -5,4 +5,4 @@
 #define CNAME strtri_UU_parallel
 #define CHAR_NAME "strtri_UU_parallel_"
 #define CHAR_CNAME "strtri_UU_parallel"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trtri/trtri_U_parallel.c"
+#include "openblas/lapack/trtri/trtri_U_parallel.c"

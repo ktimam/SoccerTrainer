@@ -4,4 +4,4 @@
 #define CNAME slauum_U_parallel
 #define CHAR_NAME "slauum_U_parallel_"
 #define CHAR_CNAME "slauum_U_parallel"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/lauum/lauum_U_parallel.c"
+#include "openblas/lapack/lauum/lauum_U_parallel.c"

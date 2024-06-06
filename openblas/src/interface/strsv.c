@@ -4,4 +4,4 @@
 #define CNAME strsv
 #define CHAR_NAME "strsv_"
 #define CHAR_CNAME "strsv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/trsv.c"
+#include "openblas/interface/trsv.c"

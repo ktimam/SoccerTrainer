@@ -9,4 +9,4 @@
 #define CHAR_CNAME "ztrsm_LTUU"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trsm_L.c"
+#include "openblas/driver/level3/trsm_L.c"

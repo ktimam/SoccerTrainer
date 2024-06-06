@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zgeadd"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zgeadd.c"
+#include "openblas/interface/zgeadd.c"

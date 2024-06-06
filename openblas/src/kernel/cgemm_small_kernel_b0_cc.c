@@ -7,4 +7,4 @@
 #define CHAR_NAME "cgemm_small_kernel_b0_cc_"
 #define CHAR_CNAME "cgemm_small_kernel_b0_cc"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/zgemm_small_matrix_kernel_tt.c"
+#include "openblas/kernel/x86_64/../generic/zgemm_small_matrix_kernel_tt.c"

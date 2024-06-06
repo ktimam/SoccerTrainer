@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zrotg"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zrotg.c"
+#include "openblas/interface/zrotg.c"

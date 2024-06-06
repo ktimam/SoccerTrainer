@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_caxpyc_"
 #define CHAR_CNAME "cblas_caxpyc"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zaxpy.c"
+#include "openblas/interface/zaxpy.c"

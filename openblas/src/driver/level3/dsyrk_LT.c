@@ -7,4 +7,4 @@
 #define CHAR_NAME "dsyrk_LT_"
 #define CHAR_CNAME "dsyrk_LT"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/syrk_k.c"
+#include "openblas/driver/level3/syrk_k.c"

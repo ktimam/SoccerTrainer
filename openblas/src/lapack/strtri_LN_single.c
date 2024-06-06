@@ -4,4 +4,4 @@
 #define CNAME strtri_LN_single
 #define CHAR_NAME "strtri_LN_single_"
 #define CHAR_CNAME "strtri_LN_single"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trtri/trtri_L_single.c"
+#include "openblas/lapack/trtri/trtri_L_single.c"

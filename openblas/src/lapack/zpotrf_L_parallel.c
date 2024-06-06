@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zpotrf_L_parallel"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/potrf/potrf_L_parallel.c"
+#include "openblas/lapack/potrf/potrf_L_parallel.c"

@@ -5,4 +5,4 @@
 #define CHAR_NAME "ctrsv_"
 #define CHAR_CNAME "ctrsv"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/ztrsv.c"
+#include "openblas/interface/ztrsv.c"

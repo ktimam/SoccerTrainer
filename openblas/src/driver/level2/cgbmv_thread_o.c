@@ -6,4 +6,4 @@
 #define CHAR_NAME "cgbmv_thread_o_"
 #define CHAR_CNAME "cgbmv_thread_o"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/gbmv_thread.c"
+#include "openblas/driver/level2/gbmv_thread.c"

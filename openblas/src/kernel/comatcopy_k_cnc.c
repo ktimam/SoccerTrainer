@@ -6,4 +6,4 @@
 #define CHAR_NAME "comatcopy_k_cnc_"
 #define CHAR_CNAME "comatcopy_k_cnc"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/zomatcopy_cnc.c"
+#include "openblas/kernel/x86_64/../arm/zomatcopy_cnc.c"

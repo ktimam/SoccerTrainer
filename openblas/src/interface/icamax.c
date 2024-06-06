@@ -6,4 +6,4 @@
 #define CHAR_NAME "icamax_"
 #define CHAR_CNAME "icamax"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/imax.c"
+#include "openblas/interface/imax.c"

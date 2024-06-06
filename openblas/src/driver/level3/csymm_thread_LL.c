@@ -8,4 +8,4 @@
 #define CHAR_NAME "csymm_thread_LL_"
 #define CHAR_CNAME "csymm_thread_LL"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/symm_k.c"
+#include "openblas/driver/level3/symm_k.c"

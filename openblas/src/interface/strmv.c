@@ -4,4 +4,4 @@
 #define CNAME strmv
 #define CHAR_NAME "strmv_"
 #define CHAR_CNAME "strmv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/trmv.c"
+#include "openblas/interface/trmv.c"

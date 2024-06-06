@@ -4,4 +4,4 @@
 #define CNAME sger
 #define CHAR_NAME "sger_"
 #define CHAR_CNAME "sger"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/ger.c"
+#include "openblas/interface/ger.c"

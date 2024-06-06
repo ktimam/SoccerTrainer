@@ -8,4 +8,4 @@
 #define CHAR_CNAME "ztrmv_thread_NLN"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/trmv_thread.c"
+#include "openblas/driver/level2/trmv_thread.c"

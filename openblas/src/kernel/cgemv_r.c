@@ -6,4 +6,4 @@
 #define CHAR_NAME "cgemv_r_"
 #define CHAR_CNAME "cgemv_r"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/zgemv_n.c"
+#include "openblas/kernel/x86_64/../arm/zgemv_n.c"

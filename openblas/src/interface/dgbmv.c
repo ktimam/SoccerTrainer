@@ -5,4 +5,4 @@
 #define CHAR_NAME "dgbmv_"
 #define CHAR_CNAME "dgbmv"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/gbmv.c"
+#include "openblas/interface/gbmv.c"

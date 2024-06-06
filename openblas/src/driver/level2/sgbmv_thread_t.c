@@ -5,4 +5,4 @@
 #define CNAME sgbmv_thread_t
 #define CHAR_NAME "sgbmv_thread_t_"
 #define CHAR_CNAME "sgbmv_thread_t"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/gbmv_thread.c"
+#include "openblas/driver/level2/gbmv_thread.c"

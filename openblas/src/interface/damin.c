@@ -7,4 +7,4 @@
 #define CHAR_NAME "damin_"
 #define CHAR_CNAME "damin"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/max.c"
+#include "openblas/interface/max.c"

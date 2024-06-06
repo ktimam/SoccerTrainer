@@ -6,4 +6,4 @@
 #define CHAR_NAME "camax_k_"
 #define CHAR_CNAME "camax_k"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/zamax.c"
+#include "openblas/kernel/x86_64/../arm/zamax.c"

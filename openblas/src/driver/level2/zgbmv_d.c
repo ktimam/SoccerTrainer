@@ -9,4 +9,4 @@
 #define CHAR_CNAME "zgbmv_d"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/zgbmv_k.c"
+#include "openblas/driver/level2/zgbmv_k.c"

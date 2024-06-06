@@ -6,4 +6,4 @@
 #define CHAR_NAME "chpr2_V_"
 #define CHAR_CNAME "chpr2_V"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/zhpr2_k.c"
+#include "openblas/driver/level2/zhpr2_k.c"

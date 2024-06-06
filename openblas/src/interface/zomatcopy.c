@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zomatcopy"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zomatcopy.c"
+#include "openblas/interface/zomatcopy.c"

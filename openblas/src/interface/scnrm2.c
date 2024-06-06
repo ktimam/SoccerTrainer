@@ -5,4 +5,4 @@
 #define CHAR_NAME "scnrm2_"
 #define CHAR_CNAME "scnrm2"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/nrm2.c"
+#include "openblas/interface/nrm2.c"

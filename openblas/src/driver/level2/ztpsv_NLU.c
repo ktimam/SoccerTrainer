@@ -8,4 +8,4 @@
 #define CHAR_CNAME "ztpsv_NLU"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/ztpsv_L.c"
+#include "openblas/driver/level2/ztpsv_L.c"

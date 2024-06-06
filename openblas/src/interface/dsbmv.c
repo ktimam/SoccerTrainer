@@ -5,4 +5,4 @@
 #define CHAR_NAME "dsbmv_"
 #define CHAR_CNAME "dsbmv"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/sbmv.c"
+#include "openblas/interface/sbmv.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dmax_"
 #define CHAR_CNAME "cblas_dmax"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/max.c"
+#include "openblas/interface/max.c"

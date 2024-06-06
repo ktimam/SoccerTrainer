@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zsymm_iltcopy"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/zsymm_lcopy_2.c"
+#include "openblas/kernel/generic/zsymm_lcopy_2.c"

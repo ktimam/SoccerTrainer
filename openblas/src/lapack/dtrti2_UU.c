@@ -6,4 +6,4 @@
 #define CHAR_NAME "dtrti2_UU_"
 #define CHAR_CNAME "dtrti2_UU"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trti2/trti2_U.c"
+#include "openblas/lapack/trti2/trti2_U.c"

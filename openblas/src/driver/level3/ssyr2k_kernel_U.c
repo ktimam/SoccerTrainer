@@ -4,4 +4,4 @@
 #define CNAME ssyr2k_kernel_U
 #define CHAR_NAME "ssyr2k_kernel_U_"
 #define CHAR_CNAME "ssyr2k_kernel_U"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/syr2k_kernel.c"
+#include "openblas/driver/level3/syr2k_kernel.c"

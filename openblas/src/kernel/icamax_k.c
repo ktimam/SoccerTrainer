@@ -6,4 +6,4 @@
 #define CHAR_NAME "icamax_k_"
 #define CHAR_CNAME "icamax_k"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/izamax.c"
+#include "openblas/kernel/x86_64/../arm/izamax.c"

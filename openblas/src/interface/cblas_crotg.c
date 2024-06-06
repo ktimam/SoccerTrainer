@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_crotg_"
 #define CHAR_CNAME "cblas_crotg"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zrotg.c"
+#include "openblas/interface/zrotg.c"

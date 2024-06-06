@@ -5,4 +5,4 @@
 #define CHAR_NAME "cpotrf_U_single_"
 #define CHAR_CNAME "cpotrf_U_single"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/potrf/potrf_U_single.c"
+#include "openblas/lapack/potrf/potrf_U_single.c"

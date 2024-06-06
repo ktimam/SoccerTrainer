@@ -5,4 +5,4 @@
 #define CNAME dsdot_k
 #define CHAR_NAME "dsdot_k_"
 #define CHAR_CNAME "dsdot_k"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/dot.c"
+#include "openblas/kernel/x86_64/../generic/dot.c"

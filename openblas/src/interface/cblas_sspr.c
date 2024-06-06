@@ -5,4 +5,4 @@
 #define CNAME cblas_sspr
 #define CHAR_NAME "cblas_sspr_"
 #define CHAR_CNAME "cblas_sspr"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/spr.c"
+#include "openblas/interface/spr.c"

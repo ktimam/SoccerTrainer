@@ -5,4 +5,4 @@
 #define CNAME cblas_sdot
 #define CHAR_NAME "cblas_sdot_"
 #define CHAR_CNAME "cblas_sdot"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/dot.c"
+#include "openblas/interface/dot.c"

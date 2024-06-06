@@ -5,4 +5,4 @@
 #define CNAME ssyrk_LN
 #define CHAR_NAME "ssyrk_LN_"
 #define CHAR_CNAME "ssyrk_LN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/syrk_k.c"
+#include "openblas/driver/level3/syrk_k.c"

@@ -4,4 +4,4 @@
 #define CNAME sgemm
 #define CHAR_NAME "sgemm_"
 #define CHAR_CNAME "sgemm"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/gemm.c"
+#include "openblas/interface/gemm.c"

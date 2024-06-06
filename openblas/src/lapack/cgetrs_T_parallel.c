@@ -6,4 +6,4 @@
 #define CHAR_NAME "cgetrs_T_parallel_"
 #define CHAR_CNAME "cgetrs_T_parallel"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrs/zgetrs_parallel.c"
+#include "openblas/lapack/getrs/zgetrs_parallel.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "dgemm_otcopy_"
 #define CHAR_CNAME "dgemm_otcopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/gemm_tcopy_2.c"
+#include "openblas/kernel/x86_64/../generic/gemm_tcopy_2.c"

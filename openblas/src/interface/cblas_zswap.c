@@ -7,4 +7,4 @@
 #define CHAR_CNAME "cblas_zswap"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zswap.c"
+#include "openblas/interface/zswap.c"

@@ -7,4 +7,4 @@
 #define CNAME ssymm_RL
 #define CHAR_NAME "ssymm_RL_"
 #define CHAR_CNAME "ssymm_RL"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/symm_k.c"
+#include "openblas/driver/level3/symm_k.c"

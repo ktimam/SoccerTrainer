@@ -4,4 +4,4 @@
 #define CNAME stbsv
 #define CHAR_NAME "stbsv_"
 #define CHAR_CNAME "stbsv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/tbsv.c"
+#include "openblas/interface/tbsv.c"

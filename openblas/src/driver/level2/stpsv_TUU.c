@@ -6,4 +6,4 @@
 #define CNAME stpsv_TUU
 #define CHAR_NAME "stpsv_TUU_"
 #define CHAR_CNAME "stpsv_TUU"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/tpsv_L.c"
+#include "openblas/driver/level2/tpsv_L.c"

@@ -5,4 +5,4 @@
 #define CHAR_NAME "dcopy_"
 #define CHAR_CNAME "dcopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/copy.c"
+#include "openblas/interface/copy.c"

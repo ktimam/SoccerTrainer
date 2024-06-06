@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zdrot"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zrot.c"
+#include "openblas/interface/zrot.c"

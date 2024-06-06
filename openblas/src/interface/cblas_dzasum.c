@@ -7,4 +7,4 @@
 #define CHAR_CNAME "cblas_dzasum"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/asum.c"
+#include "openblas/interface/asum.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "csyr_L_"
 #define CHAR_CNAME "csyr_L"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/zsyr_k.c"
+#include "openblas/driver/level2/zsyr_k.c"

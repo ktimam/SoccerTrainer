@@ -5,4 +5,4 @@
 #define CHAR_NAME "ctrmv_"
 #define CHAR_CNAME "ctrmv"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/ztrmv.c"
+#include "openblas/interface/ztrmv.c"

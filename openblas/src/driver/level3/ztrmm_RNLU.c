@@ -7,4 +7,4 @@
 #define CHAR_CNAME "ztrmm_RNLU"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trmm_R.c"
+#include "openblas/driver/level3/trmm_R.c"

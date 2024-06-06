@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_cmax_"
 #define CHAR_CNAME "cblas_cmax"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/max.c"
+#include "openblas/interface/max.c"

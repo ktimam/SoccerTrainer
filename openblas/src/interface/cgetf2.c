@@ -5,4 +5,4 @@
 #define CHAR_NAME "cgetf2_"
 #define CHAR_CNAME "cgetf2"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/zgetf2.c"
+#include "openblas/interface/lapack/zgetf2.c"

@@ -5,4 +5,4 @@
 #define CNAME smin
 #define CHAR_NAME "smin_"
 #define CHAR_CNAME "smin"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/max.c"
+#include "openblas/interface/max.c"

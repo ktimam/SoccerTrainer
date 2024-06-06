@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zger_thread_V"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/ger_thread.c"
+#include "openblas/driver/level2/ger_thread.c"

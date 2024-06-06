@@ -7,4 +7,4 @@
 #define CHAR_NAME "csyrk_LT_"
 #define CHAR_CNAME "csyrk_LT"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/syrk_k.c"
+#include "openblas/driver/level3/syrk_k.c"

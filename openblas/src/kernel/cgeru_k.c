@@ -5,4 +5,4 @@
 #define CHAR_NAME "cgeru_k_"
 #define CHAR_CNAME "cgeru_k"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/zger.c"
+#include "openblas/kernel/x86_64/../generic/zger.c"

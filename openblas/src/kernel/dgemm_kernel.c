@@ -5,4 +5,4 @@
 #define CHAR_NAME "dgemm_kernel_"
 #define CHAR_CNAME "dgemm_kernel"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/gemmkernel_2x2.c"
+#include "openblas/kernel/x86_64/../generic/gemmkernel_2x2.c"

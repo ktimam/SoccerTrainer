@@ -6,4 +6,4 @@
 #define CHAR_NAME "idmin_"
 #define CHAR_CNAME "idmin"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/imax.c"
+#include "openblas/interface/imax.c"

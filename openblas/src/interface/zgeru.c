@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zgeru"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zger.c"
+#include "openblas/interface/zger.c"

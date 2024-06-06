@@ -5,4 +5,4 @@
 #define CHAR_NAME "dsyr_U_"
 #define CHAR_CNAME "dsyr_U"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/syr_k.c"
+#include "openblas/driver/level2/syr_k.c"

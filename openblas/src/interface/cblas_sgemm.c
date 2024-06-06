@@ -5,4 +5,4 @@
 #define CNAME cblas_sgemm
 #define CHAR_NAME "cblas_sgemm_"
 #define CHAR_CNAME "cblas_sgemm"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/gemm.c"
+#include "openblas/interface/gemm.c"

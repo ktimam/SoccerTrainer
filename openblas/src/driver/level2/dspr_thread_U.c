@@ -5,4 +5,4 @@
 #define CHAR_NAME "dspr_thread_U_"
 #define CHAR_CNAME "dspr_thread_U"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/spr_thread.c"
+#include "openblas/driver/level2/spr_thread.c"

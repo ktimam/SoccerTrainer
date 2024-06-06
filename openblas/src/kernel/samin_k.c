@@ -6,4 +6,4 @@
 #define CNAME samin_k
 #define CHAR_NAME "samin_k_"
 #define CHAR_CNAME "samin_k"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/amin.c"
+#include "openblas/kernel/x86_64/../arm/amin.c"

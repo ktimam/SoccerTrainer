@@ -6,4 +6,4 @@
 #define CNAME strmv_TLU
 #define CHAR_NAME "strmv_TLU_"
 #define CHAR_CNAME "strmv_TLU"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/trmv_U.c"
+#include "openblas/driver/level2/trmv_U.c"

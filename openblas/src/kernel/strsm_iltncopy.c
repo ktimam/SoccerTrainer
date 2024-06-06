@@ -5,4 +5,4 @@
 #define CNAME strsm_iltncopy
 #define CHAR_NAME "strsm_iltncopy_"
 #define CHAR_CNAME "strsm_iltncopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trsm_ltcopy_2.c"
+#include "openblas/kernel/generic/trsm_ltcopy_2.c"

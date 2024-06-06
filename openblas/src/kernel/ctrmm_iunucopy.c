@@ -6,4 +6,4 @@
 #define CHAR_NAME "ctrmm_iunucopy_"
 #define CHAR_CNAME "ctrmm_iunucopy"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/ztrmm_uncopy_2.c"
+#include "openblas/kernel/generic/ztrmm_uncopy_2.c"

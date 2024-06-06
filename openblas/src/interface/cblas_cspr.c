@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_cspr_"
 #define CHAR_CNAME "cblas_cspr"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zspr.c"
+#include "openblas/interface/zspr.c"

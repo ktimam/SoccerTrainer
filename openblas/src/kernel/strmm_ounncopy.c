@@ -5,4 +5,4 @@
 #define CNAME strmm_ounncopy
 #define CHAR_NAME "strmm_ounncopy_"
 #define CHAR_CNAME "strmm_ounncopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trmm_uncopy_2.c"
+#include "openblas/kernel/generic/trmm_uncopy_2.c"

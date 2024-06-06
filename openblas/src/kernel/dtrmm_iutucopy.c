@@ -6,4 +6,4 @@
 #define CHAR_NAME "dtrmm_iutucopy_"
 #define CHAR_CNAME "dtrmm_iutucopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trmm_utcopy_2.c"
+#include "openblas/kernel/generic/trmm_utcopy_2.c"

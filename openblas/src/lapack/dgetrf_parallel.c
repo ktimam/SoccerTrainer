@@ -6,4 +6,4 @@
 #define CHAR_NAME "dgetrf_parallel_"
 #define CHAR_CNAME "dgetrf_parallel"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrf/getrf_parallel.c"
+#include "openblas/lapack/getrf/getrf_parallel.c"

@@ -5,4 +5,4 @@
 #define CNAME cblas_srotmg
 #define CHAR_NAME "cblas_srotmg_"
 #define CHAR_CNAME "cblas_srotmg"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/rotmg.c"
+#include "openblas/interface/rotmg.c"

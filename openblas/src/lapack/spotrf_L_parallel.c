@@ -4,4 +4,4 @@
 #define CNAME spotrf_L_parallel
 #define CHAR_NAME "spotrf_L_parallel_"
 #define CHAR_CNAME "spotrf_L_parallel"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/potrf/potrf_L_parallel.c"
+#include "openblas/lapack/potrf/potrf_L_parallel.c"

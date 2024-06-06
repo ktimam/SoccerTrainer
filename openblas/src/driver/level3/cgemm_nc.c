@@ -6,4 +6,4 @@
 #define CHAR_NAME "cgemm_nc_"
 #define CHAR_CNAME "cgemm_nc"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/gemm.c"
+#include "openblas/driver/level3/gemm.c"

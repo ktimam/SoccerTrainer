@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dgemv_"
 #define CHAR_CNAME "cblas_dgemv"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/gemv.c"
+#include "openblas/interface/gemv.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_ccopy_"
 #define CHAR_CNAME "cblas_ccopy"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/copy.c"
+#include "openblas/interface/copy.c"

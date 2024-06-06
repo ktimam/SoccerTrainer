@@ -8,4 +8,4 @@
 #define CHAR_CNAME "cblas_ztrmm"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/trsm.c"
+#include "openblas/interface/trsm.c"

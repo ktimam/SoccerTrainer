@@ -6,4 +6,4 @@
 #define CHAR_NAME "dgetrf_single_"
 #define CHAR_CNAME "dgetrf_single"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrf/getrf_single.c"
+#include "openblas/lapack/getrf/getrf_single.c"

@@ -5,4 +5,4 @@
 #define CNAME cblas_ssyr2
 #define CHAR_NAME "cblas_ssyr2_"
 #define CHAR_CNAME "cblas_ssyr2"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/syr2.c"
+#include "openblas/interface/syr2.c"

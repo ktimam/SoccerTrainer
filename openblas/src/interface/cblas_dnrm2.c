@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dnrm2_"
 #define CHAR_CNAME "cblas_dnrm2"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/nrm2.c"
+#include "openblas/interface/nrm2.c"

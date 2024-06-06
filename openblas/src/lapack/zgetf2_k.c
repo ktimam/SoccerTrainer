@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zgetf2_k"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getf2/zgetf2_k.c"
+#include "openblas/lapack/getf2/zgetf2_k.c"

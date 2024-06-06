@@ -5,4 +5,4 @@
 #define CHAR_NAME "dneg_tcopy_"
 #define CHAR_CNAME "dneg_tcopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/neg_tcopy_2.c"
+#include "openblas/kernel/x86_64/../generic/neg_tcopy_2.c"

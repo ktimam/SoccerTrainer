@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_cscal_"
 #define CHAR_CNAME "cblas_cscal"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zscal.c"
+#include "openblas/interface/zscal.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dger_"
 #define CHAR_CNAME "cblas_dger"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/ger.c"
+#include "openblas/interface/ger.c"

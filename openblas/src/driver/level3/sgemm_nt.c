@@ -5,4 +5,4 @@
 #define CNAME sgemm_nt
 #define CHAR_NAME "sgemm_nt_"
 #define CHAR_CNAME "sgemm_nt"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/gemm.c"
+#include "openblas/driver/level3/gemm.c"

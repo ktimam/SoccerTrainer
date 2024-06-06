@@ -4,4 +4,4 @@
 #define CNAME spotrf_L_single
 #define CHAR_NAME "spotrf_L_single_"
 #define CHAR_CNAME "spotrf_L_single"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/potrf/potrf_L_single.c"
+#include "openblas/lapack/potrf/potrf_L_single.c"

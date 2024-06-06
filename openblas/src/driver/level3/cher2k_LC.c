@@ -9,4 +9,4 @@
 #define CHAR_NAME "cher2k_LC_"
 #define CHAR_CNAME "cher2k_LC"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/zher2k_k.c"
+#include "openblas/driver/level3/zher2k_k.c"

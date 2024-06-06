@@ -6,4 +6,4 @@
 #define CHAR_NAME "csymm_LU_"
 #define CHAR_CNAME "csymm_LU"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/symm_k.c"
+#include "openblas/driver/level3/symm_k.c"

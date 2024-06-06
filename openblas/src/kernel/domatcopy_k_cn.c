@@ -5,4 +5,4 @@
 #define CHAR_NAME "domatcopy_k_cn_"
 #define CHAR_CNAME "domatcopy_k_cn"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/omatcopy_cn.c"
+#include "openblas/kernel/x86_64/../arm/omatcopy_cn.c"

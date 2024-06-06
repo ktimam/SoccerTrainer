@@ -5,4 +5,4 @@
 #define CHAR_NAME "drot_"
 #define CHAR_CNAME "drot"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/rot.c"
+#include "openblas/interface/rot.c"

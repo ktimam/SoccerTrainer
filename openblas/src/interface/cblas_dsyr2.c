@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dsyr2_"
 #define CHAR_CNAME "cblas_dsyr2"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/syr2.c"
+#include "openblas/interface/syr2.c"

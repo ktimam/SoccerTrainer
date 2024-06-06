@@ -4,4 +4,4 @@
 #define CNAME openblas_get_config
 #define CHAR_NAME "openblas_get_config_"
 #define CHAR_CNAME "openblas_get_config"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/others/openblas_get_config.c"
+#include "openblas/driver/others/openblas_get_config.c"

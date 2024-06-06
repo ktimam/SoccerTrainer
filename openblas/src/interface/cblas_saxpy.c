@@ -5,4 +5,4 @@
 #define CNAME cblas_saxpy
 #define CHAR_NAME "cblas_saxpy_"
 #define CHAR_CNAME "cblas_saxpy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/axpy.c"
+#include "openblas/interface/axpy.c"

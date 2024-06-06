@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_csyr2_"
 #define CHAR_CNAME "cblas_csyr2"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zsyr2.c"
+#include "openblas/interface/zsyr2.c"

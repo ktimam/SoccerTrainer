@@ -4,4 +4,4 @@
 #define CNAME ismax_k
 #define CHAR_NAME "ismax_k_"
 #define CHAR_CNAME "ismax_k"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/imax.c"
+#include "openblas/kernel/x86_64/../arm/imax.c"

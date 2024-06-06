@@ -5,4 +5,4 @@
 #define CHAR_NAME "ctrmm_RNLN_"
 #define CHAR_CNAME "ctrmm_RNLN"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trmm_R.c"
+#include "openblas/driver/level3/trmm_R.c"

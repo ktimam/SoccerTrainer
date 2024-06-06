@@ -6,4 +6,4 @@
 #define CHAR_NAME "ctrsv_TLN_"
 #define CHAR_CNAME "ctrsv_TLN"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/ztrsv_U.c"
+#include "openblas/driver/level2/ztrsv_U.c"

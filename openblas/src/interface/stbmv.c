@@ -4,4 +4,4 @@
 #define CNAME stbmv
 #define CHAR_NAME "stbmv_"
 #define CHAR_CNAME "stbmv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/tbmv.c"
+#include "openblas/interface/tbmv.c"

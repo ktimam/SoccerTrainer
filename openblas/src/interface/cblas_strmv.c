@@ -5,4 +5,4 @@
 #define CNAME cblas_strmv
 #define CHAR_NAME "cblas_strmv_"
 #define CHAR_CNAME "cblas_strmv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/trmv.c"
+#include "openblas/interface/trmv.c"

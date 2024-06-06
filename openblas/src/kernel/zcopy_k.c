@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zcopy_k"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/zcopy.c"
+#include "openblas/kernel/x86_64/../arm/zcopy.c"

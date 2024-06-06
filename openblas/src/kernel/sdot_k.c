@@ -4,4 +4,4 @@
 #define CNAME sdot_k
 #define CHAR_NAME "sdot_k_"
 #define CHAR_CNAME "sdot_k"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/dot.c"
+#include "openblas/kernel/x86_64/../arm/dot.c"

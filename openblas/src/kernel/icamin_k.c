@@ -7,4 +7,4 @@
 #define CHAR_NAME "icamin_k_"
 #define CHAR_CNAME "icamin_k"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/izamin.c"
+#include "openblas/kernel/x86_64/../arm/izamin.c"

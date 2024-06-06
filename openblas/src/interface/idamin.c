@@ -7,4 +7,4 @@
 #define CHAR_NAME "idamin_"
 #define CHAR_CNAME "idamin"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/imax.c"
+#include "openblas/interface/imax.c"

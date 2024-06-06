@@ -5,4 +5,4 @@
 #define CHAR_NAME "dger_k_"
 #define CHAR_CNAME "dger_k"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/ger.c"
+#include "openblas/kernel/generic/ger.c"

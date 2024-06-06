@@ -6,4 +6,4 @@
 #define CHAR_NAME "cgetrf_single_"
 #define CHAR_CNAME "cgetrf_single"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrf/getrf_single.c"
+#include "openblas/lapack/getrf/getrf_single.c"

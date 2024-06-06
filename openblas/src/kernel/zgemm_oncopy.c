@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zgemm_oncopy"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/zgemm_ncopy_2.c"
+#include "openblas/kernel/x86_64/../generic/zgemm_ncopy_2.c"

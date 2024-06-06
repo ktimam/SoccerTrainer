@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_comatcopy_"
 #define CHAR_CNAME "cblas_comatcopy"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zomatcopy.c"
+#include "openblas/interface/zomatcopy.c"

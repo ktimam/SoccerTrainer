@@ -6,4 +6,4 @@
 #define CHAR_NAME "dtrsv_NUU_"
 #define CHAR_CNAME "dtrsv_NUU"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/trsv_U.c"
+#include "openblas/driver/level2/trsv_U.c"

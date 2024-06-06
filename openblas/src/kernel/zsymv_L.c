@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zsymv_L"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/zsymv_k.c"
+#include "openblas/kernel/generic/zsymv_k.c"

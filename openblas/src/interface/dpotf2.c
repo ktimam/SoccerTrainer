@@ -5,4 +5,4 @@
 #define CHAR_NAME "dpotf2_"
 #define CHAR_CNAME "dpotf2"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/potf2.c"
+#include "openblas/interface/lapack/potf2.c"

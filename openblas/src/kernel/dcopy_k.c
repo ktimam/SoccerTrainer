@@ -6,4 +6,4 @@
 #define CHAR_NAME "dcopy_k_"
 #define CHAR_CNAME "dcopy_k"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/copy.c"
+#include "openblas/kernel/x86_64/../arm/copy.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "dtrtri_UU_parallel_"
 #define CHAR_CNAME "dtrtri_UU_parallel"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trtri/trtri_U_parallel.c"
+#include "openblas/lapack/trtri/trtri_U_parallel.c"

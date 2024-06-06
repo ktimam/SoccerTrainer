@@ -6,4 +6,4 @@
 #define CHAR_NAME "csbmv_L_"
 #define CHAR_CNAME "csbmv_L"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/zsbmv_k.c"
+#include "openblas/driver/level2/zsbmv_k.c"

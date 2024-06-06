@@ -4,4 +4,4 @@
 #define CNAME strtri
 #define CHAR_NAME "strtri_"
 #define CHAR_CNAME "strtri"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/trtri.c"
+#include "openblas/interface/lapack/trtri.c"

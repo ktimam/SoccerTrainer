@@ -5,4 +5,4 @@
 #define CNAME strsv_NUU
 #define CHAR_NAME "strsv_NUU_"
 #define CHAR_CNAME "strsv_NUU"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/trsv_U.c"
+#include "openblas/driver/level2/trsv_U.c"

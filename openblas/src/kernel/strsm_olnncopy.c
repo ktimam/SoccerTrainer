@@ -6,4 +6,4 @@
 #define CNAME strsm_olnncopy
 #define CHAR_NAME "strsm_olnncopy_"
 #define CHAR_CNAME "strsm_olnncopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trsm_lncopy_2.c"
+#include "openblas/kernel/generic/trsm_lncopy_2.c"

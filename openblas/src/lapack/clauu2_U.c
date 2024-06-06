@@ -5,4 +5,4 @@
 #define CHAR_NAME "clauu2_U_"
 #define CHAR_CNAME "clauu2_U"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/lauu2/zlauu2_U.c"
+#include "openblas/lapack/lauu2/zlauu2_U.c"

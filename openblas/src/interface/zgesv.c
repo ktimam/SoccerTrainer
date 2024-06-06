@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zgesv"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/gesv.c"
+#include "openblas/interface/lapack/gesv.c"

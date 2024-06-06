@@ -8,4 +8,4 @@
 #define CHAR_NAME "ctrsm_RTUU_"
 #define CHAR_CNAME "ctrsm_RTUU"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trsm_R.c"
+#include "openblas/driver/level3/trsm_R.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_cgeadd_"
 #define CHAR_CNAME "cblas_cgeadd"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zgeadd.c"
+#include "openblas/interface/zgeadd.c"

@@ -5,4 +5,4 @@
 #define CNAME cblas_sgbmv
 #define CHAR_NAME "cblas_sgbmv_"
 #define CHAR_CNAME "cblas_sgbmv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/gbmv.c"
+#include "openblas/interface/gbmv.c"

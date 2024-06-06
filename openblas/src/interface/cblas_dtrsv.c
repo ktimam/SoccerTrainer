@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dtrsv_"
 #define CHAR_CNAME "cblas_dtrsv"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/trsv.c"
+#include "openblas/interface/trsv.c"

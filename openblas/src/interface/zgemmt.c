@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zgemmt"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/gemmt.c"
+#include "openblas/interface/gemmt.c"

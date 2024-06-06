@@ -8,4 +8,4 @@
 #define CHAR_NAME "dtrmm_oltucopy_"
 #define CHAR_CNAME "dtrmm_oltucopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trmm_ltcopy_2.c"
+#include "openblas/kernel/generic/trmm_ltcopy_2.c"

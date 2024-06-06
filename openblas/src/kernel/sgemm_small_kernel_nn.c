@@ -4,4 +4,4 @@
 #define CNAME sgemm_small_kernel_nn
 #define CHAR_NAME "sgemm_small_kernel_nn_"
 #define CHAR_CNAME "sgemm_small_kernel_nn"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/gemm_small_matrix_kernel_nn.c"
+#include "openblas/kernel/x86_64/../generic/gemm_small_matrix_kernel_nn.c"

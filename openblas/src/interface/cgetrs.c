@@ -5,4 +5,4 @@
 #define CHAR_NAME "cgetrs_"
 #define CHAR_CNAME "cgetrs"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/zgetrs.c"
+#include "openblas/interface/lapack/zgetrs.c"

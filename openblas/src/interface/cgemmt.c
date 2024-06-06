@@ -5,4 +5,4 @@
 #define CHAR_NAME "cgemmt_"
 #define CHAR_CNAME "cgemmt"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/gemmt.c"
+#include "openblas/interface/gemmt.c"

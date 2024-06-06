@@ -9,4 +9,4 @@
 #define CHAR_CNAME "ztrmm_LCUN"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trmm_L.c"
+#include "openblas/driver/level3/trmm_L.c"

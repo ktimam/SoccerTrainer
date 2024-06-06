@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zgetrf_parallel"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrf/getrf_parallel.c"
+#include "openblas/lapack/getrf/getrf_parallel.c"

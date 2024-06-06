@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zgetrs_C_single"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrs/zgetrs_single.c"
+#include "openblas/lapack/getrs/zgetrs_single.c"

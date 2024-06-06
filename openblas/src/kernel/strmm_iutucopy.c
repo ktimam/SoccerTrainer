@@ -5,4 +5,4 @@
 #define CNAME strmm_iutucopy
 #define CHAR_NAME "strmm_iutucopy_"
 #define CHAR_CNAME "strmm_iutucopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trmm_utcopy_2.c"
+#include "openblas/kernel/generic/trmm_utcopy_2.c"

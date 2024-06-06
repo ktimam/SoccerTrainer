@@ -5,4 +5,4 @@
 #define CHAR_NAME "dtrmm_LNLN_"
 #define CHAR_CNAME "dtrmm_LNLN"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trmm_L.c"
+#include "openblas/driver/level3/trmm_L.c"

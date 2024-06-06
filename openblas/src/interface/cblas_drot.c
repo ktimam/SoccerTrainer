@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_drot_"
 #define CHAR_CNAME "cblas_drot"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/rot.c"
+#include "openblas/interface/rot.c"

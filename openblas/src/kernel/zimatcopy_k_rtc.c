@@ -8,4 +8,4 @@
 #define CHAR_CNAME "zimatcopy_k_rtc"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/zimatcopy_rtc.c"
+#include "openblas/kernel/x86_64/../generic/zimatcopy_rtc.c"

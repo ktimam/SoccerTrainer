@@ -5,4 +5,4 @@
 #define CHAR_NAME "csyr_"
 #define CHAR_CNAME "csyr"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zsyr.c"
+#include "openblas/interface/zsyr.c"

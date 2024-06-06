@@ -6,4 +6,4 @@
 #define CHAR_NAME "dgetrs_T_single_"
 #define CHAR_CNAME "dgetrs_T_single"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrs/getrs_single.c"
+#include "openblas/lapack/getrs/getrs_single.c"

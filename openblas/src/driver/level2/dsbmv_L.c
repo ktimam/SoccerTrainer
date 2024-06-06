@@ -6,4 +6,4 @@
 #define CHAR_NAME "dsbmv_L_"
 #define CHAR_CNAME "dsbmv_L"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/sbmv_k.c"
+#include "openblas/driver/level2/sbmv_k.c"

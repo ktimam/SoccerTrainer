@@ -5,4 +5,4 @@
 #define CHAR_NAME "dmax_"
 #define CHAR_CNAME "dmax"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/max.c"
+#include "openblas/interface/max.c"

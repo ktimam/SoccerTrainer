@@ -5,4 +5,4 @@
 #define CHAR_NAME "csymv_thread_U_"
 #define CHAR_CNAME "csymv_thread_U"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/symv_thread.c"
+#include "openblas/driver/level2/symv_thread.c"

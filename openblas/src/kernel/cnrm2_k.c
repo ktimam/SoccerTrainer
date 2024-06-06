@@ -5,4 +5,4 @@
 #define CHAR_NAME "cnrm2_k_"
 #define CHAR_CNAME "cnrm2_k"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/znrm2.c"
+#include "openblas/kernel/x86_64/../arm/znrm2.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_ctrmv_"
 #define CHAR_CNAME "cblas_ctrmv"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/ztrmv.c"
+#include "openblas/interface/ztrmv.c"

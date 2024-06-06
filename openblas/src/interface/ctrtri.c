@@ -5,4 +5,4 @@
 #define CHAR_NAME "ctrtri_"
 #define CHAR_CNAME "ctrtri"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/ztrtri.c"
+#include "openblas/interface/lapack/ztrtri.c"

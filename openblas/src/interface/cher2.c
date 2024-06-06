@@ -5,4 +5,4 @@
 #define CHAR_NAME "cher2_"
 #define CHAR_CNAME "cher2"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zher2.c"
+#include "openblas/interface/zher2.c"

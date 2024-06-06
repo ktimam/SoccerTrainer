@@ -5,4 +5,4 @@
 #define CNAME cblas_sscal
 #define CHAR_NAME "cblas_sscal_"
 #define CHAR_CNAME "cblas_sscal"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/scal.c"
+#include "openblas/interface/scal.c"

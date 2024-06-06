@@ -6,4 +6,4 @@
 #define CHAR_NAME "dsyr2_L_"
 #define CHAR_CNAME "dsyr2_L"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/syr2_k.c"
+#include "openblas/driver/level2/syr2_k.c"

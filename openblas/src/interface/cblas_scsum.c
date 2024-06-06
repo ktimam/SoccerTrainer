@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_scsum_"
 #define CHAR_CNAME "cblas_scsum"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/sum.c"
+#include "openblas/interface/sum.c"

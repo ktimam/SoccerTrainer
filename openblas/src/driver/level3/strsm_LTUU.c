@@ -7,4 +7,4 @@
 #define CNAME strsm_LTUU
 #define CHAR_NAME "strsm_LTUU_"
 #define CHAR_CNAME "strsm_LTUU"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trsm_L.c"
+#include "openblas/driver/level3/trsm_L.c"

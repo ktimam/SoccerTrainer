@@ -5,4 +5,4 @@
 #define CNAME cblas_stpmv
 #define CHAR_NAME "cblas_stpmv_"
 #define CHAR_CNAME "cblas_stpmv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/tpmv.c"
+#include "openblas/interface/tpmv.c"

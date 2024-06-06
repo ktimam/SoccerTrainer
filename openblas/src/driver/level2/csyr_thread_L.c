@@ -6,4 +6,4 @@
 #define CHAR_NAME "csyr_thread_L_"
 #define CHAR_CNAME "csyr_thread_L"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/syr_thread.c"
+#include "openblas/driver/level2/syr_thread.c"

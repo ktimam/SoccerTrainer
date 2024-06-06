@@ -5,4 +5,4 @@
 #define CHAR_NAME "dtpsv_"
 #define CHAR_CNAME "dtpsv"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/tpsv.c"
+#include "openblas/interface/tpsv.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "ctpsv_CUN_"
 #define CHAR_CNAME "ctpsv_CUN"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/ztpsv_L.c"
+#include "openblas/driver/level2/ztpsv_L.c"

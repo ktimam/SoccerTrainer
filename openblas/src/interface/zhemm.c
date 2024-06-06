@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zhemm"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/symm.c"
+#include "openblas/interface/symm.c"

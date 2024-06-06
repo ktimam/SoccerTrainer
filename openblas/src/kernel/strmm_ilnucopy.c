@@ -6,4 +6,4 @@
 #define CNAME strmm_ilnucopy
 #define CHAR_NAME "strmm_ilnucopy_"
 #define CHAR_CNAME "strmm_ilnucopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trmm_lncopy_2.c"
+#include "openblas/kernel/generic/trmm_lncopy_2.c"

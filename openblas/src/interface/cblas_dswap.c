@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dswap_"
 #define CHAR_CNAME "cblas_dswap"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/swap.c"
+#include "openblas/interface/swap.c"

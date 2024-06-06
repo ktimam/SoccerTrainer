@@ -6,4 +6,4 @@
 #define CNAME strmm_LTUN
 #define CHAR_NAME "strmm_LTUN_"
 #define CHAR_CNAME "strmm_LTUN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trmm_L.c"
+#include "openblas/driver/level3/trmm_L.c"

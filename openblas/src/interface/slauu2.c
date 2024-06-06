@@ -4,4 +4,4 @@
 #define CNAME slauu2
 #define CHAR_NAME "slauu2_"
 #define CHAR_CNAME "slauu2"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/lauu2.c"
+#include "openblas/interface/lapack/lauu2.c"

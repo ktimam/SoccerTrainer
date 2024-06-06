@@ -5,4 +5,4 @@
 #define CHAR_NAME "caxpy_k_"
 #define CHAR_CNAME "caxpy_k"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/zaxpy.c"
+#include "openblas/kernel/x86_64/../arm/zaxpy.c"

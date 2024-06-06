@@ -4,4 +4,4 @@
 #define CNAME sgeadd
 #define CHAR_NAME "sgeadd_"
 #define CHAR_CNAME "sgeadd"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/geadd.c"
+#include "openblas/interface/geadd.c"

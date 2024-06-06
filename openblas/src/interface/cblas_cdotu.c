@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_cdotu_"
 #define CHAR_CNAME "cblas_cdotu"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zdot.c"
+#include "openblas/interface/zdot.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "idamax_"
 #define CHAR_CNAME "idamax"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/imax.c"
+#include "openblas/interface/imax.c"

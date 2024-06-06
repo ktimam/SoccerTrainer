@@ -5,4 +5,4 @@
 #define CHAR_NAME "claswp_ncopy_"
 #define CHAR_CNAME "claswp_ncopy"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/zlaswp_ncopy_2.c"
+#include "openblas/kernel/x86_64/../generic/zlaswp_ncopy_2.c"

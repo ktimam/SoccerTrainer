@@ -5,4 +5,4 @@
 #define CHAR_NAME "dspr_"
 #define CHAR_CNAME "dspr"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/spr.c"
+#include "openblas/interface/spr.c"

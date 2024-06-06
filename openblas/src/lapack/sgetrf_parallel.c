@@ -5,4 +5,4 @@
 #define CNAME sgetrf_parallel
 #define CHAR_NAME "sgetrf_parallel_"
 #define CHAR_CNAME "sgetrf_parallel"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrf/getrf_parallel.c"
+#include "openblas/lapack/getrf/getrf_parallel.c"

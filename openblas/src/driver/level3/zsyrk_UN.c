@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zsyrk_UN"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/syrk_k.c"
+#include "openblas/driver/level3/syrk_k.c"

@@ -7,4 +7,4 @@
 #define CHAR_NAME "csymm_oltcopy_"
 #define CHAR_CNAME "csymm_oltcopy"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/zsymm_lcopy_2.c"
+#include "openblas/kernel/generic/zsymm_lcopy_2.c"

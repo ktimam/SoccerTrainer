@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zherk_UN"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/zherk_k.c"
+#include "openblas/driver/level3/zherk_k.c"

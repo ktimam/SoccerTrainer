@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zlauum_L_parallel"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/lauum/lauum_L_parallel.c"
+#include "openblas/lapack/lauum/lauum_L_parallel.c"

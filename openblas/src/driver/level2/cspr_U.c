@@ -5,4 +5,4 @@
 #define CHAR_NAME "cspr_U_"
 #define CHAR_CNAME "cspr_U"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/zspr_k.c"
+#include "openblas/driver/level2/zspr_k.c"

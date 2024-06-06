@@ -6,4 +6,4 @@
 #define CHAR_NAME "ctrtri_UU_single_"
 #define CHAR_CNAME "ctrtri_UU_single"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trtri/trtri_U_single.c"
+#include "openblas/lapack/trtri/trtri_U_single.c"

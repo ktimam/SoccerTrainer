@@ -4,4 +4,4 @@
 #define CNAME sgemm_direct_performant
 #define CHAR_NAME "sgemm_direct_performant_"
 #define CHAR_CNAME "sgemm_direct_performant"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/sgemm_direct_performant.c"
+#include "openblas/kernel/x86_64/sgemm_direct_performant.c"

@@ -5,4 +5,4 @@
 #define CHAR_NAME "claswp_"
 #define CHAR_CNAME "claswp"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/zlaswp.c"
+#include "openblas/interface/lapack/zlaswp.c"

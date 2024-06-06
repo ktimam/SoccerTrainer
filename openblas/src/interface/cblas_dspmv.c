@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dspmv_"
 #define CHAR_CNAME "cblas_dspmv"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/spmv.c"
+#include "openblas/interface/spmv.c"

@@ -8,4 +8,4 @@
 #define CHAR_NAME "dtrsm_RTUU_"
 #define CHAR_CNAME "dtrsm_RTUU"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trsm_R.c"
+#include "openblas/driver/level3/trsm_R.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "idamax_k_"
 #define CHAR_CNAME "idamax_k"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/iamax.c"
+#include "openblas/kernel/x86_64/../arm/iamax.c"

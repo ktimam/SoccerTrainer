@@ -7,4 +7,4 @@
 #define CHAR_NAME "dtbmv_TLU_"
 #define CHAR_CNAME "dtbmv_TLU"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/tbmv_U.c"
+#include "openblas/driver/level2/tbmv_U.c"

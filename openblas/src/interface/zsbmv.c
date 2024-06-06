@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zsbmv"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zsbmv.c"
+#include "openblas/interface/zsbmv.c"

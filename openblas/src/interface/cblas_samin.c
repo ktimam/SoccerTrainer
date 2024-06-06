@@ -7,4 +7,4 @@
 #define CNAME cblas_samin
 #define CHAR_NAME "cblas_samin_"
 #define CHAR_CNAME "cblas_samin"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/max.c"
+#include "openblas/interface/max.c"

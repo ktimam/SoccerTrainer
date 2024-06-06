@@ -5,4 +5,4 @@
 #define CHAR_NAME "dlauum_U_single_"
 #define CHAR_CNAME "dlauum_U_single"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/lauum/lauum_U_single.c"
+#include "openblas/lapack/lauum/lauum_U_single.c"

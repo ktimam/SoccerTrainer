@@ -5,4 +5,4 @@
 #define CHAR_NAME "cspr2_"
 #define CHAR_CNAME "cspr2"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zspr2.c"
+#include "openblas/interface/zspr2.c"

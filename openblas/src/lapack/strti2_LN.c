@@ -4,4 +4,4 @@
 #define CNAME strti2_LN
 #define CHAR_NAME "strti2_LN_"
 #define CHAR_CNAME "strti2_LN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trti2/trti2_L.c"
+#include "openblas/lapack/trti2/trti2_L.c"

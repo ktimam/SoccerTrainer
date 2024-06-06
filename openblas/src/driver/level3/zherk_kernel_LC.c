@@ -9,4 +9,4 @@
 #define CHAR_CNAME "zherk_kernel_LC"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/zherk_kernel.c"
+#include "openblas/driver/level3/zherk_kernel.c"

@@ -4,4 +4,4 @@
 #define CNAME gemm_thread_m
 #define CHAR_NAME "gemm_thread_m_"
 #define CHAR_CNAME "gemm_thread_m"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/gemm_thread_m.c"
+#include "openblas/driver/level3/gemm_thread_m.c"

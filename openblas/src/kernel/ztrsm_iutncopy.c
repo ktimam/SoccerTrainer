@@ -6,4 +6,4 @@
 #define CHAR_CNAME "ztrsm_iutncopy"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/ztrsm_utcopy_2.c"
+#include "openblas/kernel/generic/ztrsm_utcopy_2.c"

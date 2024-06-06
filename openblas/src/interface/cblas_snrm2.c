@@ -5,4 +5,4 @@
 #define CNAME cblas_snrm2
 #define CHAR_NAME "cblas_snrm2_"
 #define CHAR_CNAME "cblas_snrm2"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/nrm2.c"
+#include "openblas/interface/nrm2.c"

@@ -5,4 +5,4 @@
 #define CNAME simatcopy_k_rn
 #define CHAR_NAME "simatcopy_k_rn_"
 #define CHAR_CNAME "simatcopy_k_rn"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/imatcopy_rn.c"
+#include "openblas/kernel/x86_64/../generic/imatcopy_rn.c"

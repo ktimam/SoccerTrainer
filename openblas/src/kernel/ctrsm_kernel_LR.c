@@ -9,4 +9,4 @@
 #define CHAR_NAME "ctrsm_kernel_LR_"
 #define CHAR_CNAME "ctrsm_kernel_LR"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/trsm_kernel_LN.c"
+#include "openblas/kernel/x86_64/../generic/trsm_kernel_LN.c"

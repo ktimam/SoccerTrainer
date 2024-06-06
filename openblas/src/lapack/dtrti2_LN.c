@@ -5,4 +5,4 @@
 #define CHAR_NAME "dtrti2_LN_"
 #define CHAR_CNAME "dtrti2_LN"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trti2/trti2_L.c"
+#include "openblas/lapack/trti2/trti2_L.c"

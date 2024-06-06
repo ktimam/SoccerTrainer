@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zgemv_n"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/zgemv_n.c"
+#include "openblas/kernel/x86_64/../arm/zgemv_n.c"

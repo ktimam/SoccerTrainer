@@ -6,4 +6,4 @@
 #define CNAME scabs1
 #define CHAR_NAME "scabs1_"
 #define CHAR_CNAME "scabs1"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/cabs.c"
+#include "openblas/kernel/x86_64/../generic/cabs.c"

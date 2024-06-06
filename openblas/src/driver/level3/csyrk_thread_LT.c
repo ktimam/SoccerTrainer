@@ -8,4 +8,4 @@
 #define CHAR_NAME "csyrk_thread_LT_"
 #define CHAR_CNAME "csyrk_thread_LT"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/syrk_k.c"
+#include "openblas/driver/level3/syrk_k.c"

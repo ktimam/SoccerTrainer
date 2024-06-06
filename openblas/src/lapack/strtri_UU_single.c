@@ -5,4 +5,4 @@
 #define CNAME strtri_UU_single
 #define CHAR_NAME "strtri_UU_single_"
 #define CHAR_CNAME "strtri_UU_single"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trtri/trtri_U_single.c"
+#include "openblas/lapack/trtri/trtri_U_single.c"

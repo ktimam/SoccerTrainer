@@ -5,4 +5,4 @@
 #define CHAR_NAME "cpotrf_U_parallel_"
 #define CHAR_CNAME "cpotrf_U_parallel"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/potrf/potrf_U_parallel.c"
+#include "openblas/lapack/potrf/potrf_U_parallel.c"

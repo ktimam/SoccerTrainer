@@ -7,4 +7,4 @@
 #define CHAR_CNAME "cblas_ztrmv"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/ztrmv.c"
+#include "openblas/interface/ztrmv.c"

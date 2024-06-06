@@ -6,4 +6,4 @@
 #define CNAME sgemm_thread_tt
 #define CHAR_NAME "sgemm_thread_tt_"
 #define CHAR_CNAME "sgemm_thread_tt"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/gemm.c"
+#include "openblas/driver/level3/gemm.c"

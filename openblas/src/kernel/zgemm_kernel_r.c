@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zgemm_kernel_r"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/zgemmkernel_2x2.c"
+#include "openblas/kernel/x86_64/../generic/zgemmkernel_2x2.c"

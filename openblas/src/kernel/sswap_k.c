@@ -4,4 +4,4 @@
 #define CNAME sswap_k
 #define CHAR_NAME "sswap_k_"
 #define CHAR_CNAME "sswap_k"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/swap.c"
+#include "openblas/kernel/x86_64/../arm/swap.c"

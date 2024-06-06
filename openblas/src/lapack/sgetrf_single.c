@@ -5,4 +5,4 @@
 #define CNAME sgetrf_single
 #define CHAR_NAME "sgetrf_single_"
 #define CHAR_CNAME "sgetrf_single"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrf/getrf_single.c"
+#include "openblas/lapack/getrf/getrf_single.c"

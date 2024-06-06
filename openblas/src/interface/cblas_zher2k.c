@@ -8,4 +8,4 @@
 #define CHAR_CNAME "cblas_zher2k"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/syr2k.c"
+#include "openblas/interface/syr2k.c"

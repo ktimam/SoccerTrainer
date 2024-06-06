@@ -8,4 +8,4 @@
 #define CHAR_CNAME "ztbmv_thread_TUU"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/tbmv_thread.c"
+#include "openblas/driver/level2/tbmv_thread.c"

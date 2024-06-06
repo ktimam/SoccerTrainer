@@ -5,4 +5,4 @@
 #define CHAR_NAME "dtrtri_LN_single_"
 #define CHAR_CNAME "dtrtri_LN_single"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trtri/trtri_L_single.c"
+#include "openblas/lapack/trtri/trtri_L_single.c"

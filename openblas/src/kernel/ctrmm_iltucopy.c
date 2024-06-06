@@ -7,4 +7,4 @@
 #define CHAR_NAME "ctrmm_iltucopy_"
 #define CHAR_CNAME "ctrmm_iltucopy"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/ztrmm_ltcopy_2.c"
+#include "openblas/kernel/generic/ztrmm_ltcopy_2.c"

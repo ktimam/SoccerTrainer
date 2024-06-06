@@ -5,4 +5,4 @@
 #define CHAR_NAME "cdot_"
 #define CHAR_CNAME "cdot"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zdot.c"
+#include "openblas/interface/zdot.c"

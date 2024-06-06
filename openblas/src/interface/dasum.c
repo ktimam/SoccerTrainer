@@ -5,4 +5,4 @@
 #define CHAR_NAME "dasum_"
 #define CHAR_CNAME "dasum"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/asum.c"
+#include "openblas/interface/asum.c"

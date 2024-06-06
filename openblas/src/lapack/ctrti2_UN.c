@@ -5,4 +5,4 @@
 #define CHAR_NAME "ctrti2_UN_"
 #define CHAR_CNAME "ctrti2_UN"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trti2/ztrti2_U.c"
+#include "openblas/lapack/trti2/ztrti2_U.c"

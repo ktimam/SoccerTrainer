@@ -6,4 +6,4 @@
 #define CHAR_NAME "dlaswp_minus_"
 #define CHAR_CNAME "dlaswp_minus"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/laswp/generic/laswp_k_4.c"
+#include "openblas/lapack/laswp/generic/laswp_k_4.c"

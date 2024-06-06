@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zgemm_cr"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/gemm.c"
+#include "openblas/driver/level3/gemm.c"

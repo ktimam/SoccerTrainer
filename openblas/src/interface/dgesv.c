@@ -5,4 +5,4 @@
 #define CHAR_NAME "dgesv_"
 #define CHAR_CNAME "dgesv"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/gesv.c"
+#include "openblas/interface/lapack/gesv.c"

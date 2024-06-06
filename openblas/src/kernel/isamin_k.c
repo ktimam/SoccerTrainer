@@ -6,4 +6,4 @@
 #define CNAME isamin_k
 #define CHAR_NAME "isamin_k_"
 #define CHAR_CNAME "isamin_k"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/iamin.c"
+#include "openblas/kernel/x86_64/../arm/iamin.c"

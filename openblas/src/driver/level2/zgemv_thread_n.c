@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zgemv_thread_n"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/gemv_thread.c"
+#include "openblas/driver/level2/gemv_thread.c"

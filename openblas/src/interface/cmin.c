@@ -6,4 +6,4 @@
 #define CHAR_NAME "cmin_"
 #define CHAR_CNAME "cmin"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/max.c"
+#include "openblas/interface/max.c"

@@ -7,4 +7,4 @@
 #define CHAR_NAME "dtrmm_ounucopy_"
 #define CHAR_CNAME "dtrmm_ounucopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trmm_uncopy_2.c"
+#include "openblas/kernel/generic/trmm_uncopy_2.c"

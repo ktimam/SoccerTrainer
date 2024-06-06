@@ -5,4 +5,4 @@
 #define CNAME cblas_somatcopy
 #define CHAR_NAME "cblas_somatcopy_"
 #define CHAR_CNAME "cblas_somatcopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/omatcopy.c"
+#include "openblas/interface/omatcopy.c"

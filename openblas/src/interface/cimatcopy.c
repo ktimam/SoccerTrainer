@@ -5,4 +5,4 @@
 #define CHAR_NAME "cimatcopy_"
 #define CHAR_CNAME "cimatcopy"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zimatcopy.c"
+#include "openblas/interface/zimatcopy.c"

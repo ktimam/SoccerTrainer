@@ -6,4 +6,4 @@
 #define CHAR_NAME "ctrsm_LRLN_"
 #define CHAR_CNAME "ctrsm_LRLN"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trsm_L.c"
+#include "openblas/driver/level3/trsm_L.c"

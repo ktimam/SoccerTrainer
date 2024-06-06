@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dgeadd_"
 #define CHAR_CNAME "cblas_dgeadd"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/geadd.c"
+#include "openblas/interface/geadd.c"

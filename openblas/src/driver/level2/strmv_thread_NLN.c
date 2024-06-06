@@ -5,4 +5,4 @@
 #define CNAME strmv_thread_NLN
 #define CHAR_NAME "strmv_thread_NLN_"
 #define CHAR_CNAME "strmv_thread_NLN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/trmv_thread.c"
+#include "openblas/driver/level2/trmv_thread.c"

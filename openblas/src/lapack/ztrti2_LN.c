@@ -6,4 +6,4 @@
 #define CHAR_CNAME "ztrti2_LN"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trti2/ztrti2_L.c"
+#include "openblas/lapack/trti2/ztrti2_L.c"

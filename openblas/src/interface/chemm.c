@@ -6,4 +6,4 @@
 #define CHAR_NAME "chemm_"
 #define CHAR_CNAME "chemm"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/symm.c"
+#include "openblas/interface/symm.c"

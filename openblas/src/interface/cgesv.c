@@ -5,4 +5,4 @@
 #define CHAR_NAME "cgesv_"
 #define CHAR_CNAME "cgesv"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/gesv.c"
+#include "openblas/interface/lapack/gesv.c"

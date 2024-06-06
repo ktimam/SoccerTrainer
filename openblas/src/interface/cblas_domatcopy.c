@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_domatcopy_"
 #define CHAR_CNAME "cblas_domatcopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/omatcopy.c"
+#include "openblas/interface/omatcopy.c"

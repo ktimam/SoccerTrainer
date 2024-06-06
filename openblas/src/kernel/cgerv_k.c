@@ -6,4 +6,4 @@
 #define CHAR_NAME "cgerv_k_"
 #define CHAR_CNAME "cgerv_k"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/zger.c"
+#include "openblas/kernel/x86_64/../generic/zger.c"

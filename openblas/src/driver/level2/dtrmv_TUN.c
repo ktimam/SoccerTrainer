@@ -6,4 +6,4 @@
 #define CHAR_NAME "dtrmv_TUN_"
 #define CHAR_CNAME "dtrmv_TUN"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/trmv_L.c"
+#include "openblas/driver/level2/trmv_L.c"

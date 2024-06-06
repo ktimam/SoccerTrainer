@@ -5,4 +5,4 @@
 #define CHAR_NAME "dtrsm_"
 #define CHAR_CNAME "dtrsm"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/trsm.c"
+#include "openblas/interface/trsm.c"

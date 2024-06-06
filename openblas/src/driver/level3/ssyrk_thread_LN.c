@@ -6,4 +6,4 @@
 #define CNAME ssyrk_thread_LN
 #define CHAR_NAME "ssyrk_thread_LN_"
 #define CHAR_CNAME "ssyrk_thread_LN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/syrk_k.c"
+#include "openblas/driver/level3/syrk_k.c"

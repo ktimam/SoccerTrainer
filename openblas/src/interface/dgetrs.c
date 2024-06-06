@@ -5,4 +5,4 @@
 #define CHAR_NAME "dgetrs_"
 #define CHAR_CNAME "dgetrs"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/getrs.c"
+#include "openblas/interface/lapack/getrs.c"

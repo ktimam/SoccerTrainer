@@ -7,4 +7,4 @@
 #define CHAR_CNAME "cblas_dzsum"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/sum.c"
+#include "openblas/interface/sum.c"

@@ -8,4 +8,4 @@
 #define CHAR_NAME "cblas_idamin_"
 #define CHAR_CNAME "cblas_idamin"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/imax.c"
+#include "openblas/interface/imax.c"

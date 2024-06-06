@@ -6,4 +6,4 @@
 #define CHAR_NAME "dgemm_oncopy_"
 #define CHAR_CNAME "dgemm_oncopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/gemm_ncopy_2.c"
+#include "openblas/kernel/x86_64/../generic/gemm_ncopy_2.c"

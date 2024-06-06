@@ -6,4 +6,4 @@
 #define CNAME ssymm_thread_LU
 #define CHAR_NAME "ssymm_thread_LU_"
 #define CHAR_CNAME "ssymm_thread_LU"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/symm_k.c"
+#include "openblas/driver/level3/symm_k.c"

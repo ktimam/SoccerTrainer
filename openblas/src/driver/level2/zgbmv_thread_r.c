@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zgbmv_thread_r"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/gbmv_thread.c"
+#include "openblas/driver/level2/gbmv_thread.c"

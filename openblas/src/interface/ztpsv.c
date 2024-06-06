@@ -6,4 +6,4 @@
 #define CHAR_CNAME "ztpsv"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/ztpsv.c"
+#include "openblas/interface/ztpsv.c"

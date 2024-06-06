@@ -5,4 +5,4 @@
 #define CHAR_NAME "dgbmv_thread_n_"
 #define CHAR_CNAME "dgbmv_thread_n"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/gbmv_thread.c"
+#include "openblas/driver/level2/gbmv_thread.c"

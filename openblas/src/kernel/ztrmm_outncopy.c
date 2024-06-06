@@ -7,4 +7,4 @@
 #define CHAR_CNAME "ztrmm_outncopy"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/ztrmm_utcopy_2.c"
+#include "openblas/kernel/generic/ztrmm_utcopy_2.c"

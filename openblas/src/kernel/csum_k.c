@@ -5,4 +5,4 @@
 #define CHAR_NAME "csum_k_"
 #define CHAR_CNAME "csum_k"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/zsum.c"
+#include "openblas/kernel/x86_64/../arm/zsum.c"

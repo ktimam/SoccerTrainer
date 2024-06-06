@@ -5,4 +5,4 @@
 #define CHAR_NAME "dtrmm_iunncopy_"
 #define CHAR_CNAME "dtrmm_iunncopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trmm_uncopy_2.c"
+#include "openblas/kernel/generic/trmm_uncopy_2.c"

@@ -7,4 +7,4 @@
 #define CHAR_NAME "dtrsm_olnncopy_"
 #define CHAR_CNAME "dtrsm_olnncopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trsm_lncopy_2.c"
+#include "openblas/kernel/generic/trsm_lncopy_2.c"

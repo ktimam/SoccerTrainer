@@ -5,4 +5,4 @@
 #define CHAR_NAME "csrot_"
 #define CHAR_CNAME "csrot"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zrot.c"
+#include "openblas/interface/zrot.c"

@@ -7,4 +7,4 @@
 #define CNAME strmm_RTUU
 #define CHAR_NAME "strmm_RTUU_"
 #define CHAR_CNAME "strmm_RTUU"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trmm_R.c"
+#include "openblas/driver/level3/trmm_R.c"

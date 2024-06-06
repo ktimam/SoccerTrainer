@@ -4,4 +4,4 @@
 #define CNAME strmv_NUN
 #define CHAR_NAME "strmv_NUN_"
 #define CHAR_CNAME "strmv_NUN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/trmv_U.c"
+#include "openblas/driver/level2/trmv_U.c"

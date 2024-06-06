@@ -6,4 +6,4 @@
 #define CHAR_CNAME "ztrtri_UN_single"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trtri/trtri_U_single.c"
+#include "openblas/lapack/trtri/trtri_U_single.c"

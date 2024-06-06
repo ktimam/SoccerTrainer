@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zdscal"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zscal.c"
+#include "openblas/interface/zscal.c"

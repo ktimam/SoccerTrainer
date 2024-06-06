@@ -5,4 +5,4 @@
 #define CNAME sgemm_small_kernel_b0_tn
 #define CHAR_NAME "sgemm_small_kernel_b0_tn_"
 #define CHAR_CNAME "sgemm_small_kernel_b0_tn"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/gemm_small_matrix_kernel_tn.c"
+#include "openblas/kernel/x86_64/../generic/gemm_small_matrix_kernel_tn.c"

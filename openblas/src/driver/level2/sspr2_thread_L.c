@@ -5,4 +5,4 @@
 #define CNAME sspr2_thread_L
 #define CHAR_NAME "sspr2_thread_L_"
 #define CHAR_CNAME "sspr2_thread_L"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/spr2_thread.c"
+#include "openblas/driver/level2/spr2_thread.c"

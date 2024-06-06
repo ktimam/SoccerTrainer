@@ -7,4 +7,4 @@
 #define CHAR_NAME "ctrsv_RLU_"
 #define CHAR_CNAME "ctrsv_RLU"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/ztrsv_L.c"
+#include "openblas/driver/level2/ztrsv_L.c"

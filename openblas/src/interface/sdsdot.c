@@ -4,4 +4,4 @@
 #define CNAME sdsdot
 #define CHAR_NAME "sdsdot_"
 #define CHAR_CNAME "sdsdot"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/sdsdot.c"
+#include "openblas/interface/sdsdot.c"

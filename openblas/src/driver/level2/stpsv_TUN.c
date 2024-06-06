@@ -5,4 +5,4 @@
 #define CNAME stpsv_TUN
 #define CHAR_NAME "stpsv_TUN_"
 #define CHAR_CNAME "stpsv_TUN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/tpsv_L.c"
+#include "openblas/driver/level2/tpsv_L.c"

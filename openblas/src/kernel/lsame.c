@@ -5,4 +5,4 @@
 #define CNAME lsame
 #define CHAR_NAME "lsame_"
 #define CHAR_CNAME "lsame"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/lsame.c"
+#include "openblas/kernel/x86_64/../generic/lsame.c"

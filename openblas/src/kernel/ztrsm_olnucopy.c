@@ -9,4 +9,4 @@
 #define CHAR_CNAME "ztrsm_olnucopy"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/ztrsm_lncopy_2.c"
+#include "openblas/kernel/generic/ztrsm_lncopy_2.c"

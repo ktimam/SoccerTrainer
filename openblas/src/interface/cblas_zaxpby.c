@@ -7,4 +7,4 @@
 #define CHAR_CNAME "cblas_zaxpby"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zaxpby.c"
+#include "openblas/interface/zaxpby.c"

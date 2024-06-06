@@ -5,4 +5,4 @@
 #define CNAME cblas_scopy
 #define CHAR_NAME "cblas_scopy_"
 #define CHAR_CNAME "cblas_scopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/copy.c"
+#include "openblas/interface/copy.c"

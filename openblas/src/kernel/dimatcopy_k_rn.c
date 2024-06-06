@@ -6,4 +6,4 @@
 #define CHAR_NAME "dimatcopy_k_rn_"
 #define CHAR_CNAME "dimatcopy_k_rn"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/imatcopy_rn.c"
+#include "openblas/kernel/x86_64/../generic/imatcopy_rn.c"

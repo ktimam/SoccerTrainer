@@ -5,4 +5,4 @@
 #define CHAR_NAME "dgemm_"
 #define CHAR_CNAME "dgemm"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/gemm.c"
+#include "openblas/interface/gemm.c"

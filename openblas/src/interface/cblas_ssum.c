@@ -5,4 +5,4 @@
 #define CNAME cblas_ssum
 #define CHAR_NAME "cblas_ssum_"
 #define CHAR_CNAME "cblas_ssum"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/sum.c"
+#include "openblas/interface/sum.c"

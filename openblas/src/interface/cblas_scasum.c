@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_scasum_"
 #define CHAR_CNAME "cblas_scasum"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/asum.c"
+#include "openblas/interface/asum.c"

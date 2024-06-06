@@ -6,4 +6,4 @@
 #define CHAR_NAME "dgemm_small_kernel_b0_nt_"
 #define CHAR_CNAME "dgemm_small_kernel_b0_nt"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/gemm_small_matrix_kernel_nt.c"
+#include "openblas/kernel/x86_64/../generic/gemm_small_matrix_kernel_nt.c"

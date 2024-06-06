@@ -5,4 +5,4 @@
 #define CHAR_NAME "dsum_"
 #define CHAR_CNAME "dsum"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/sum.c"
+#include "openblas/interface/sum.c"

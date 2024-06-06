@@ -7,4 +7,4 @@
 #define CHAR_NAME "dgemm_thread_nn_"
 #define CHAR_CNAME "dgemm_thread_nn"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/gemm.c"
+#include "openblas/driver/level3/gemm.c"

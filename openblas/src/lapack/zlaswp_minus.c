@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zlaswp_minus"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/laswp/generic/zlaswp_k_4.c"
+#include "openblas/lapack/laswp/generic/zlaswp_k_4.c"

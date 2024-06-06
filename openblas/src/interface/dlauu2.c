@@ -5,4 +5,4 @@
 #define CHAR_NAME "dlauu2_"
 #define CHAR_CNAME "dlauu2"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/lauu2.c"
+#include "openblas/interface/lapack/lauu2.c"

@@ -7,4 +7,4 @@
 #define CHAR_NAME "dsymm_oltcopy_"
 #define CHAR_CNAME "dsymm_oltcopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/symm_lcopy_2.c"
+#include "openblas/kernel/generic/symm_lcopy_2.c"

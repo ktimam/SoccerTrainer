@@ -5,4 +5,4 @@
 #define CNAME ssymv_L
 #define CHAR_NAME "ssymv_L_"
 #define CHAR_CNAME "ssymv_L"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/symv_k.c"
+#include "openblas/kernel/generic/symv_k.c"

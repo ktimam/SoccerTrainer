@@ -6,4 +6,4 @@
 #define CHAR_NAME "csymm_outcopy_"
 #define CHAR_CNAME "csymm_outcopy"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/zsymm_ucopy_2.c"
+#include "openblas/kernel/generic/zsymm_ucopy_2.c"

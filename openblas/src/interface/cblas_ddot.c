@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_ddot_"
 #define CHAR_CNAME "cblas_ddot"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/dot.c"
+#include "openblas/interface/dot.c"

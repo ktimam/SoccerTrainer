@@ -5,4 +5,4 @@
 #define CHAR_NAME "scsum_"
 #define CHAR_CNAME "scsum"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/sum.c"
+#include "openblas/interface/sum.c"

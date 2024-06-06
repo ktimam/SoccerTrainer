@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zsbmv_thread_U"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/sbmv_thread.c"
+#include "openblas/driver/level2/sbmv_thread.c"

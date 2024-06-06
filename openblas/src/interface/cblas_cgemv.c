@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_cgemv_"
 #define CHAR_CNAME "cblas_cgemv"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zgemv.c"
+#include "openblas/interface/zgemv.c"

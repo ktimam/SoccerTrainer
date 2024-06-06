@@ -5,4 +5,4 @@
 #define CNAME sgetrs_T_parallel
 #define CHAR_NAME "sgetrs_T_parallel_"
 #define CHAR_CNAME "sgetrs_T_parallel"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/getrs/getrs_parallel.c"
+#include "openblas/lapack/getrs/getrs_parallel.c"

@@ -7,4 +7,4 @@
 #define CHAR_NAME "chpr_thread_L_"
 #define CHAR_CNAME "chpr_thread_L"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/spr_thread.c"
+#include "openblas/driver/level2/spr_thread.c"

@@ -7,4 +7,4 @@
 #define CHAR_NAME "chemm_RU_"
 #define CHAR_CNAME "chemm_RU"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/zhemm_k.c"
+#include "openblas/driver/level3/zhemm_k.c"

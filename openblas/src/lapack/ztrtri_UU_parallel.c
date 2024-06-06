@@ -7,4 +7,4 @@
 #define CHAR_CNAME "ztrtri_UU_parallel"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/lapack/trtri/trtri_U_parallel.c"
+#include "openblas/lapack/trtri/trtri_U_parallel.c"

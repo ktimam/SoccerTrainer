@@ -8,4 +8,4 @@
 #define CHAR_NAME "dsymm_RL_"
 #define CHAR_CNAME "dsymm_RL"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/symm_k.c"
+#include "openblas/driver/level3/symm_k.c"

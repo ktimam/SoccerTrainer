@@ -8,4 +8,4 @@
 #define CHAR_CNAME "zher_thread_L"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/syr_thread.c"
+#include "openblas/driver/level2/syr_thread.c"

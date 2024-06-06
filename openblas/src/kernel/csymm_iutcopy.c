@@ -5,4 +5,4 @@
 #define CHAR_NAME "csymm_iutcopy_"
 #define CHAR_CNAME "csymm_iutcopy"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/zsymm_ucopy_2.c"
+#include "openblas/kernel/generic/zsymm_ucopy_2.c"

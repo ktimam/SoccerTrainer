@@ -5,4 +5,4 @@
 #define CHAR_NAME "dimatcopy_"
 #define CHAR_CNAME "dimatcopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/imatcopy.c"
+#include "openblas/interface/imatcopy.c"

@@ -5,4 +5,4 @@
 #define CHAR_NAME "dger_thread_"
 #define CHAR_CNAME "dger_thread"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/ger_thread.c"
+#include "openblas/driver/level2/ger_thread.c"

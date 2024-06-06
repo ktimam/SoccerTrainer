@@ -5,4 +5,4 @@
 #define CNAME cblas_stpsv
 #define CHAR_NAME "cblas_stpsv_"
 #define CHAR_CNAME "cblas_stpsv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/tpsv.c"
+#include "openblas/interface/tpsv.c"

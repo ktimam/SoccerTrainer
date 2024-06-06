@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zpotrf"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/zpotrf.c"
+#include "openblas/interface/lapack/zpotrf.c"

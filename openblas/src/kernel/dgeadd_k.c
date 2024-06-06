@@ -5,4 +5,4 @@
 #define CHAR_NAME "dgeadd_k_"
 #define CHAR_CNAME "dgeadd_k"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/geadd.c"
+#include "openblas/kernel/x86_64/../generic/geadd.c"

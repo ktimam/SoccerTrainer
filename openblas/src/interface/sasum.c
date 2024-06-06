@@ -4,4 +4,4 @@
 #define CNAME sasum
 #define CHAR_NAME "sasum_"
 #define CHAR_CNAME "sasum"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/asum.c"
+#include "openblas/interface/asum.c"

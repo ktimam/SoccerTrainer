@@ -6,4 +6,4 @@
 #define CHAR_NAME "cgerc_"
 #define CHAR_CNAME "cgerc"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/zger.c"
+#include "openblas/interface/zger.c"

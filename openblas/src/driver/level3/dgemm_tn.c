@@ -6,4 +6,4 @@
 #define CHAR_NAME "dgemm_tn_"
 #define CHAR_CNAME "dgemm_tn"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/gemm.c"
+#include "openblas/driver/level3/gemm.c"

@@ -7,4 +7,4 @@
 #define CHAR_NAME "cblas_ctrmm_"
 #define CHAR_CNAME "cblas_ctrmm"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/trsm.c"
+#include "openblas/interface/trsm.c"

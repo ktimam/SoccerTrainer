@@ -5,4 +5,4 @@
 #define CNAME cblas_strsv
 #define CHAR_NAME "cblas_strsv_"
 #define CHAR_CNAME "cblas_strsv"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/trsv.c"
+#include "openblas/interface/trsv.c"

@@ -7,4 +7,4 @@
 #define CHAR_NAME "dtrsm_outucopy_"
 #define CHAR_CNAME "dtrsm_outucopy"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/generic/trsm_utcopy_2.c"
+#include "openblas/kernel/generic/trsm_utcopy_2.c"

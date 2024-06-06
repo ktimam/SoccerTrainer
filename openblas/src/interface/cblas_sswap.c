@@ -5,4 +5,4 @@
 #define CNAME cblas_sswap
 #define CHAR_NAME "cblas_sswap_"
 #define CHAR_CNAME "cblas_sswap"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/swap.c"
+#include "openblas/interface/swap.c"

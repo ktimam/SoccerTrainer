@@ -4,4 +4,4 @@
 #define CNAME spotf2
 #define CHAR_NAME "spotf2_"
 #define CHAR_CNAME "spotf2"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/potf2.c"
+#include "openblas/interface/lapack/potf2.c"

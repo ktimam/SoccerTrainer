@@ -6,4 +6,4 @@
 #define CHAR_CNAME "zgetrs"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/zgetrs.c"
+#include "openblas/interface/lapack/zgetrs.c"

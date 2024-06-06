@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_ctpsv_"
 #define CHAR_CNAME "cblas_ctpsv"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/ztpsv.c"
+#include "openblas/interface/ztpsv.c"

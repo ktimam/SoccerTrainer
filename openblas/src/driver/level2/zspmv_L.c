@@ -7,4 +7,4 @@
 #define CHAR_CNAME "zspmv_L"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/zspmv_k.c"
+#include "openblas/driver/level2/zspmv_k.c"

@@ -4,4 +4,4 @@
 #define CNAME strsv_NLN
 #define CHAR_NAME "strsv_NLN_"
 #define CHAR_CNAME "strsv_NLN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/trsv_L.c"
+#include "openblas/driver/level2/trsv_L.c"

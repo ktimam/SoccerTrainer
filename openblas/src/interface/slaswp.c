@@ -4,4 +4,4 @@
 #define CNAME slaswp
 #define CHAR_NAME "slaswp_"
 #define CHAR_CNAME "slaswp"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/lapack/laswp.c"
+#include "openblas/interface/lapack/laswp.c"

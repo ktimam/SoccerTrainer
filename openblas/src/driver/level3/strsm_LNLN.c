@@ -4,4 +4,4 @@
 #define CNAME strsm_LNLN
 #define CHAR_NAME "strsm_LNLN_"
 #define CHAR_CNAME "strsm_LNLN"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level3/trsm_L.c"
+#include "openblas/driver/level3/trsm_L.c"

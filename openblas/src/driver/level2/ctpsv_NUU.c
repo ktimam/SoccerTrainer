@@ -7,4 +7,4 @@
 #define CHAR_NAME "ctpsv_NUU_"
 #define CHAR_CNAME "ctpsv_NUU"
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/ztpsv_U.c"
+#include "openblas/driver/level2/ztpsv_U.c"

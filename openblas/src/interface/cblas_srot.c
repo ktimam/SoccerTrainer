@@ -5,4 +5,4 @@
 #define CNAME cblas_srot
 #define CHAR_NAME "cblas_srot_"
 #define CHAR_CNAME "cblas_srot"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/rot.c"
+#include "openblas/interface/rot.c"

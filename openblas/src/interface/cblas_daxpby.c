@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_daxpby_"
 #define CHAR_CNAME "cblas_daxpby"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/axpby.c"
+#include "openblas/interface/axpby.c"

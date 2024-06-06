@@ -5,4 +5,4 @@
 #define CNAME isamax
 #define CHAR_NAME "isamax_"
 #define CHAR_CNAME "isamax"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/imax.c"
+#include "openblas/interface/imax.c"

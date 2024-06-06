@@ -4,4 +4,4 @@
 #define CNAME slaswp_ncopy
 #define CHAR_NAME "slaswp_ncopy_"
 #define CHAR_CNAME "slaswp_ncopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../generic/laswp_ncopy_2.c"
+#include "openblas/kernel/x86_64/../generic/laswp_ncopy_2.c"

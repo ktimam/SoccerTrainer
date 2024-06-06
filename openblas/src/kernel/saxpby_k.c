@@ -4,4 +4,4 @@
 #define CNAME saxpby_k
 #define CHAR_NAME "saxpby_k_"
 #define CHAR_CNAME "saxpby_k"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/kernel/x86_64/../arm/axpby.c"
+#include "openblas/kernel/x86_64/../arm/axpby.c"

@@ -6,4 +6,4 @@
 #define CHAR_NAME "cblas_dspr_"
 #define CHAR_CNAME "cblas_dspr"
 #define DOUBLE
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/spr.c"
+#include "openblas/interface/spr.c"

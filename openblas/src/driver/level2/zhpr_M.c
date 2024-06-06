@@ -8,4 +8,4 @@
 #define CHAR_CNAME "zhpr_M"
 #define DOUBLE
 #define COMPLEX
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/driver/level2/zhpr_k.c"
+#include "openblas/driver/level2/zhpr_k.c"

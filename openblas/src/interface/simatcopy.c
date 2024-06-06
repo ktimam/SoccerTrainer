@@ -4,4 +4,4 @@
 #define CNAME simatcopy
 #define CHAR_NAME "simatcopy_"
 #define CHAR_CNAME "simatcopy"
-#include "C:/Kiko/MyProjects/Samples/Flashlight/OpenBLAS/interface/imatcopy.c"
+#include "openblas/interface/imatcopy.c"
