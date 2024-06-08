@@ -6,7 +6,7 @@
 
 JPH_SUPPRESS_WARNINGS_STD_BEGIN
 #include <atomic>
-#include <mutex>
+//#include <mutex>
 #include <condition_variable>
 JPH_SUPPRESS_WARNINGS_STD_END
 
@@ -14,8 +14,8 @@ JPH_NAMESPACE_BEGIN
 
 // Things we're using from STL
 using std::atomic;
-using std::mutex;
-using std::condition_variable;
+//using std::mutex;
+//using std::condition_variable;
 
 /// Implements a semaphore
 /// When we switch to C++20 we can use counting_semaphore to unify this
@@ -42,8 +42,8 @@ private:
 	void *				mSemaphore;										///< The semaphore is an expensive construct so we only acquire/release it if we know that we need to wait/have waiting threads
 #else
 	// Other platforms: Emulate a semaphore using a mutex, condition variable and count
-	mutex				mLock;
-	condition_variable	mWaitVariable;
+	//mutex				mLock;
+	//condition_variable	mWaitVariable;
 	int					mCount = 0;
 #endif
 };

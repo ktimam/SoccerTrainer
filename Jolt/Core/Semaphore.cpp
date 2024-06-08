@@ -50,10 +50,10 @@ void Semaphore::Release(uint inNumber)
 #else
 	// std::lock_guard lock(mLock);
 	mCount += (int)inNumber;
-	if (inNumber > 1)
+	/*if (inNumber > 1)
 		mWaitVariable.notify_all();
 	else
-		mWaitVariable.notify_one();
+		mWaitVariable.notify_one();*/
 #endif
 }
 
@@ -71,9 +71,9 @@ void Semaphore::Acquire(uint inNumber)
 			WaitForSingleObject(mSemaphore, INFINITE);
 	}
 #else
-	std::unique_lock lock(mLock);
+	//std::unique_lock lock(mLock);
 	mCount -= (int)inNumber;
-	mWaitVariable.wait(lock, [this]() { return mCount >= 0; });
+	//mWaitVariable.wait(lock, [this]() { return mCount >= 0; });
 #endif
 }
 
