@@ -69,9 +69,9 @@ void sort_index(Array<T> &okey, Array<uint> &oval, const Array<T> &in,
                                 bool isAscending);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 // INSTANTIATE(cfloat)
-// INSTANTIATE(cdouble)
+// //INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(char)

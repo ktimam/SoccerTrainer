@@ -34,25 +34,25 @@ AFAPI af_cfloat stdev(const array& in, const af_var_bias bias) {
     return {static_cast<float>(real), static_cast<float>(imag)};
 }
 
-template<>
-AFAPI af_cdouble stdev(const array& in, const af_var_bias bias) {
-    double real, imag;
-    AF_THROW(af_stdev_all_v2(&real, &imag, in.get(), bias));
-    return {real, imag};
-}
+//template<>
+//AFAPI af_cdouble stdev(const array& in, const af_var_bias bias) {
+//    double real, imag;
+//    AF_THROW(af_stdev_all_v2(&real, &imag, in.get(), bias));
+//    return {real, imag};
+//}
 
 template<>
 AFAPI af_cfloat stdev(const array& in) {
     return stdev<af_cfloat>(in, AF_VARIANCE_POPULATION);
 }
 
-template<>
-AFAPI af_cdouble stdev(const array& in) {
-    return stdev<af_cdouble>(in, AF_VARIANCE_POPULATION);
-}
+//template<>
+//AFAPI af_cdouble stdev(const array& in) {
+//    return stdev<af_cdouble>(in, AF_VARIANCE_POPULATION);
+//}
 
 INSTANTIATE_STDEV(float);
-INSTANTIATE_STDEV(double);
+//INSTANTIATE_STDEV(double);
 INSTANTIATE_STDEV(int);
 INSTANTIATE_STDEV(unsigned int);
 INSTANTIATE_STDEV(long long);

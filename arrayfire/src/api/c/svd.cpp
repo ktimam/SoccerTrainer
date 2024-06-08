@@ -21,7 +21,7 @@
 using af::dim4;
 using af::dtype_traits;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using std::min;
@@ -86,9 +86,9 @@ af_err af_svd(af_array *u, af_array *s, af_array *vt, const af_array in) {
         }
 
         switch (type) {
-            case f64: svd<double>(s, u, vt, in); break;
+            //case f64: svd<float>(s, u, vt, in); break;
             case f32: svd<float>(s, u, vt, in); break;
-            case c64: svd<cdouble>(s, u, vt, in); break;
+            //case c64: svd<cdouble>(s, u, vt, in); break;
             case c32: svd<cfloat>(s, u, vt, in); break;
             default: TYPE_ERROR(1, type);
         }
@@ -115,9 +115,9 @@ af_err af_svd_inplace(af_array *u, af_array *s, af_array *vt, af_array in) {
         DIM_ASSERT(3, dims[0] >= dims[1]);
 
         switch (type) {
-            case f64: svdInPlace<double>(s, u, vt, in); break;
+            //case f64: svdInPlace<float>(s, u, vt, in); break;
             case f32: svdInPlace<float>(s, u, vt, in); break;
-            case c64: svdInPlace<cdouble>(s, u, vt, in); break;
+            //case c64: svdInPlace<cdouble>(s, u, vt, in); break;
             case c32: svdInPlace<cfloat>(s, u, vt, in); break;
             default: TYPE_ERROR(1, type);
         }

@@ -50,35 +50,35 @@ struct dtype_traits<std::complex<float> > {
     static const char* getName() { return "std::complex<float>"; }
 };
 
-template<>
-struct dtype_traits<double> {
-    enum {
-        af_type = f64 ,
-        ctype = f32
-    };
-    typedef double base_type;
-    static const char* getName() { return "double"; }
-};
+//template<>
+//struct dtype_traits<float> {
+//    enum {
+//        af_type = f64 ,
+//        ctype = f32
+//    };
+//    typedef double base_type;
+//    static const char* getName() { return "double"; }
+//};
 
-template<>
-struct dtype_traits<af::cdouble> {
-    enum {
-        af_type = c64 ,
-        ctype = c64
-    };
-    typedef double base_type;
-    static const char* getName() { return "std::complex<double>"; }
-};
+//template<>
+//struct dtype_traits<af::cdouble> {
+//    enum {
+//        af_type = c64 ,
+//        ctype = c64
+//    };
+//    typedef double base_type;
+//    static const char* getName() { return "std::complex<float>"; }
+//};
 
-template<>
-struct dtype_traits<std::complex<double> > {
-    enum {
-        af_type = c64 ,
-        ctype = c64
-    };
-    typedef double base_type;
-    static const char* getName() { return "std::complex<double>"; }
-};
+//template<>
+//struct dtype_traits<std::complex<float> > {
+//    enum {
+//        af_type = c64 ,
+//        ctype = c64
+//    };
+//    typedef double base_type;
+//    static const char* getName() { return "std::complex<float>"; }
+//};
 
 template<>
 struct dtype_traits<char> {

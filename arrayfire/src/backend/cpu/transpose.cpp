@@ -46,8 +46,8 @@ void transpose_inplace(Array<T> &in, const bool conjugate) {
 
 INSTANTIATE(float)
 INSTANTIATE(cfloat)
-INSTANTIATE(double)
-INSTANTIATE(cdouble)
+//INSTANTIATE(double)
+//INSTANTIATE(cdouble)
 INSTANTIATE(char)
 INSTANTIATE(int)
 INSTANTIATE(uint)

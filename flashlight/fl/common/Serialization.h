@@ -168,7 +168,7 @@ versioned(T&& t, uint32_t minVersion, uint32_t maxVersion = UINT32_MAX);
  * Serialize an object of type T as another type S using static_cast on-the-fly.
  * Only intended to wrap arguments of `FL_SAVE_LOAD*` macros.
  *
- * Example: `FL_SAVE_LOAD(fl::serializeAs<double>(x))`
+ * Example: `FL_SAVE_LOAD(fl::serializeAs<float>(x))`
  */
 template <typename S, typename T>
 detail::SerializeAs<S, T> serializeAs(T&& t);

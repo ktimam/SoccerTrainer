@@ -45,7 +45,7 @@ af_err af_bilateral(af_array *out, const af_array in, const float ssigma,
 
         af_array output = nullptr;
         switch (type) {
-            case f64: output = bilateral<double>(in, ssigma, csigma); break;
+            //case f64: output = bilateral<float>(in, ssigma, csigma); break;
             case f32: output = bilateral<float>(in, ssigma, csigma); break;
             case b8: output = bilateral<char>(in, ssigma, csigma); break;
             case s32: output = bilateral<int>(in, ssigma, csigma); break;

@@ -133,7 +133,7 @@ unsigned rank(const array &in, const double tol) {
     }
 
 INSTANTIATE_DET(float, af_cfloat)
-INSTANTIATE_DET(double, af_cdouble)
+//INSTANTIATE_DET(double, af_cdouble)
 
 double norm(const array &in, const normType type, const double p,
             const double q) {

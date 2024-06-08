@@ -268,9 +268,9 @@ int CNAME(BLASLONG m, FLOAT *a, FLOAT *x, BLASLONG incx, FLOAT *buffer, int nthr
 
   args.m = m;
 
-  args.a = (void *)a;
-  args.b = (void *)x;
-  args.c = (void *)(buffer);
+  args.a = (float *)a;
+  args.b = (float *)x;
+  args.c = (float *)(buffer);
 
   args.ldb = incx;
   args.ldc = incx;

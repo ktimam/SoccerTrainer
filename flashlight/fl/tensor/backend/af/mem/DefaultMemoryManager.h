@@ -11,7 +11,9 @@
 
 #include <functional>
 #include <memory>
+#ifdef MULTITHREADING_SAFE
 #include <mutex>
+#endif
 #include <unordered_map>
 #include <vector>
 
@@ -118,7 +120,9 @@ class DefaultMemoryManager : public MemoryManagerAdapter {
   DefaultMemoryManager& operator=(const DefaultMemoryManager& other) = delete;
   DefaultMemoryManager& operator=(const DefaultMemoryManager&& other) = delete;
 
+#ifdef MULTITHREADING_SAFE
   std::mutex memoryMutex;
+#endif
   // backend-specific
   std::vector<MemoryInfo> memory;
   // backend-agnostic

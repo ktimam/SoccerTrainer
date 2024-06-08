@@ -88,9 +88,9 @@ using Node_ptr = std::shared_ptr<Node>;
 static const char *getFullName(af::dtype type) {
     switch (type) {
         case f32: return detail::getFullName<float>();
-        case f64: return detail::getFullName<double>();
+        //case f64: return detail::getFullName<float>();
         case c32: return detail::getFullName<detail::cfloat>();
-        case c64: return detail::getFullName<detail::cdouble>();
+        //case c64: return detail::getFullName<detail::cdouble>();
         case u32: return detail::getFullName<unsigned>();
         case s32: return detail::getFullName<int>();
         case u64: return detail::getFullName<unsigned long long>();
@@ -107,9 +107,9 @@ static const char *getFullName(af::dtype type) {
 static const char *getShortName(af::dtype type) {
     switch (type) {
         case f32: return detail::shortname<float>();
-        case f64: return detail::shortname<double>();
+        //case f64: return detail::shortname<float>();
         case c32: return detail::shortname<detail::cfloat>();
-        case c64: return detail::shortname<detail::cdouble>();
+        //case c64: return detail::shortname<detail::cdouble>();
         case u32: return detail::shortname<unsigned>();
         case s32: return detail::shortname<int>();
         case u64: return detail::shortname<unsigned long long>();

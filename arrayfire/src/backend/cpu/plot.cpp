@@ -43,7 +43,7 @@ void copy_plot(const Array<T> &P, fg_plot plot) {
 #define INSTANTIATE(T) template void copy_plot<T>(const Array<T> &, fg_plot);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)

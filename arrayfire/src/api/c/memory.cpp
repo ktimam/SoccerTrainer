@@ -27,7 +27,7 @@
 
 using af::dim4;
 using arrayfire::common::half;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createDeviceDataArray;
 using detail::deviceMemoryInfo;
@@ -68,15 +68,15 @@ af_err af_device_array(af_array *arr, void *data, const unsigned ndims,
             case f32:
                 res = getHandle(createDeviceDataArray<float>(d, data));
                 break;
-            case f64:
-                res = getHandle(createDeviceDataArray<double>(d, data));
-                break;
+            /*case f64:
+                res = getHandle(createDeviceDataArray<float>(d, data));
+                break;*/
             case c32:
                 res = getHandle(createDeviceDataArray<cfloat>(d, data));
                 break;
-            case c64:
+            /*case c64:
                 res = getHandle(createDeviceDataArray<cdouble>(d, data));
-                break;
+                break;*/
             case s32:
                 res = getHandle(createDeviceDataArray<int>(d, data));
                 break;
@@ -121,9 +121,9 @@ af_err af_get_device_ptr(void **data, const af_array arr) {
         switch (type) {
             // FIXME: Perform copy if memory not continuous
             case f32: *data = getDevicePtr(getArray<float>(arr)); break;
-            case f64: *data = getDevicePtr(getArray<double>(arr)); break;
+            //case f64: *data = getDevicePtr(getArray<float>(arr)); break;
             case c32: *data = getDevicePtr(getArray<cfloat>(arr)); break;
-            case c64: *data = getDevicePtr(getArray<cdouble>(arr)); break;
+            //case c64: *data = getDevicePtr(getArray<cdouble>(arr)); break;
             case s32: *data = getDevicePtr(getArray<int>(arr)); break;
             case u32: *data = getDevicePtr(getArray<uint>(arr)); break;
             case s64: *data = getDevicePtr(getArray<intl>(arr)); break;
@@ -155,9 +155,9 @@ af_err af_lock_array(const af_array arr) {
 
         switch (type) {
             case f32: lockArray<float>(arr); break;
-            case f64: lockArray<double>(arr); break;
+            //case f64: lockArray<float>(arr); break;
             case c32: lockArray<cfloat>(arr); break;
-            case c64: lockArray<cdouble>(arr); break;
+            //case c64: lockArray<cdouble>(arr); break;
             case s32: lockArray<int>(arr); break;
             case u32: lockArray<uint>(arr); break;
             case s64: lockArray<intl>(arr); break;
@@ -187,9 +187,9 @@ af_err af_is_locked_array(bool *res, const af_array arr) {
 
         switch (type) {
             case f32: *res = checkUserLock<float>(arr); break;
-            case f64: *res = checkUserLock<double>(arr); break;
+            //case f64: *res = checkUserLock<float>(arr); break;
             case c32: *res = checkUserLock<cfloat>(arr); break;
-            case c64: *res = checkUserLock<cdouble>(arr); break;
+            //case c64: *res = checkUserLock<cdouble>(arr); break;
             case s32: *res = checkUserLock<int>(arr); break;
             case u32: *res = checkUserLock<uint>(arr); break;
             case s64: *res = checkUserLock<intl>(arr); break;
@@ -220,9 +220,9 @@ af_err af_unlock_array(const af_array arr) {
 
         switch (type) {
             case f32: unlockArray<float>(arr); break;
-            case f64: unlockArray<double>(arr); break;
+            //case f64: unlockArray<float>(arr); break;
             case c32: unlockArray<cfloat>(arr); break;
-            case c64: unlockArray<cdouble>(arr); break;
+            //case c64: unlockArray<cdouble>(arr); break;
             case s32: unlockArray<int>(arr); break;
             case u32: unlockArray<uint>(arr); break;
             case s64: unlockArray<intl>(arr); break;

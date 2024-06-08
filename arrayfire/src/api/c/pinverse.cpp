@@ -36,7 +36,7 @@ using arrayfire::common::cast;
 using arrayfire::common::modDims;
 using detail::arithOp;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::createSelectNode;
@@ -61,10 +61,10 @@ Array<T> getSubArray(const Array<T> &in, const bool copy, uint dim0begin = 0,
                      uint dim2begin = 0, uint dim2end = 0, uint dim3begin = 0,
                      uint dim3end = 0) {
     vector<af_seq> seqs = {
-        {static_cast<double>(dim0begin), static_cast<double>(dim0end), 1.},
-        {static_cast<double>(dim1begin), static_cast<double>(dim1end), 1.},
-        {static_cast<double>(dim2begin), static_cast<double>(dim2end), 1.},
-        {static_cast<double>(dim3begin), static_cast<double>(dim3end), 1.}};
+        {static_cast<float>(dim0begin), static_cast<float>(dim0end), 1.},
+        {static_cast<float>(dim1begin), static_cast<float>(dim1end), 1.},
+        {static_cast<float>(dim2begin), static_cast<float>(dim2end), 1.},
+        {static_cast<float>(dim3begin), static_cast<float>(dim3end), 1.}};
     return createSubArray<T>(in, seqs, copy);
 }
 
@@ -108,7 +108,7 @@ Array<T> pinverseSvd(const Array<T> &in, const double tol) {
     // Build relative tolerance array
     Array<Tr> sVecMax    = reduce<af_max_t, Tr, Tr>(sVec, 0);
     Array<T> sVecMaxCast = cast<T, Tr>(sVecMax);
-    double tolMulShape   = tol * static_cast<double>(max(M, N));
+    double tolMulShape   = tol * static_cast<float>(max(M, N));
     Array<T> tolMulShapeArr =
         createValueArray<T>(sVecMaxCast.dims(), scalar<T>(tolMulShape));
     Array<T> relTol =
@@ -188,9 +188,9 @@ af_err af_pinverse(af_array *out, const af_array in, const double tol,
 
         switch (type) {
             case f32: output = pinverse<float>(in, tol); break;
-            case f64: output = pinverse<double>(in, tol); break;
+            //case f64: output = pinverse<float>(in, tol); break;
             case c32: output = pinverse<cfloat>(in, tol); break;
-            case c64: output = pinverse<cdouble>(in, tol); break;
+            //case c64: output = pinverse<cdouble>(in, tol); break;
             default: TYPE_ERROR(1, type);
         }
         swap(*out, output);

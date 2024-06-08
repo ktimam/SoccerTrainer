@@ -43,9 +43,9 @@ void select_scalar(Array<T> &out, const Array<char> &cond, const Array<T> &a,
                                           const Array<T> &a, const T &b);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(intl)

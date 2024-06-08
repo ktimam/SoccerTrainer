@@ -18,7 +18,7 @@
 
 using af::dim4;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using std::swap;
@@ -66,9 +66,9 @@ af_err af_qr(af_array *q, af_array *r, af_array *tau, const af_array in) {
 
         switch (type) {
             case f32: qr<float>(q, r, tau, in); break;
-            case f64: qr<double>(q, r, tau, in); break;
+            //case f64: qr<float>(q, r, tau, in); break;
             case c32: qr<cfloat>(q, r, tau, in); break;
-            case c64: qr<cdouble>(q, r, tau, in); break;
+            //case c64: qr<cdouble>(q, r, tau, in); break;
             default: TYPE_ERROR(1, type);
         }
     }
@@ -97,9 +97,9 @@ af_err af_qr_inplace(af_array *tau, af_array in) {
         af_array out;
         switch (type) {
             case f32: out = qr_inplace<float>(in); break;
-            case f64: out = qr_inplace<double>(in); break;
+            //case f64: out = qr_inplace<float>(in); break;
             case c32: out = qr_inplace<cfloat>(in); break;
-            case c64: out = qr_inplace<cdouble>(in); break;
+            //case c64: out = qr_inplace<cdouble>(in); break;
             default: TYPE_ERROR(1, type);
         }
         swap(*tau, out);

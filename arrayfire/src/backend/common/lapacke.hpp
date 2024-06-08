@@ -11,7 +11,7 @@
 #include <backend.hpp>
 #include <types.hpp>
 
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 
 #define LAPACK_FUNC(X, T)                                                      \

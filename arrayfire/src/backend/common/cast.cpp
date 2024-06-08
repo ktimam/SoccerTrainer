@@ -11,7 +11,7 @@
 #include <handle.hpp>
 
 using arrayfire::common::half;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -33,9 +33,9 @@ detail::Array<To> castArray(const af_array &in) {
 
     switch (info.getType()) {
         case f32: return common::cast<To, float>(getArray<float>(in));
-        case f64: return common::cast<To, double>(getArray<double>(in));
+        //case f64: return common::cast<To, double>(getArray<float>(in));
         case c32: return common::cast<To, cfloat>(getArray<cfloat>(in));
-        case c64: return common::cast<To, cdouble>(getArray<cdouble>(in));
+        //case c64: return common::cast<To, cdouble>(getArray<cdouble>(in));
         case s32: return common::cast<To, int>(getArray<int>(in));
         case u32: return common::cast<To, uint>(getArray<uint>(in));
         case u8: return common::cast<To, uchar>(getArray<uchar>(in));
@@ -51,9 +51,9 @@ detail::Array<To> castArray(const af_array &in) {
 }
 
 template detail::Array<float> castArray(const af_array &in);
-template detail::Array<double> castArray(const af_array &in);
+//template detail::Array<float> castArray(const af_array &in);
 template detail::Array<cfloat> castArray(const af_array &in);
-template detail::Array<cdouble> castArray(const af_array &in);
+//template detail::Array<cdouble> castArray(const af_array &in);
 template detail::Array<int> castArray(const af_array &in);
 template detail::Array<uint> castArray(const af_array &in);
 template detail::Array<uchar> castArray(const af_array &in);

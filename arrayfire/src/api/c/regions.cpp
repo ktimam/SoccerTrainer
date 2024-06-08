@@ -43,7 +43,7 @@ af_err af_regions(af_array *out, const af_array in,
         af_array output;
         switch (type) {
             case f32: output = regions<float>(in, connectivity); break;
-            case f64: output = regions<double>(in, connectivity); break;
+            //case f64: output = regions<float>(in, connectivity); break;
             case s32: output = regions<int>(in, connectivity); break;
             case u32: output = regions<uint>(in, connectivity); break;
             case s16: output = regions<short>(in, connectivity); break;

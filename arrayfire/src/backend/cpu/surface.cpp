@@ -44,7 +44,7 @@ void copy_surface(const Array<T> &P, fg_surface surface) {
     template void copy_surface<T>(const Array<T> &, fg_surface);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)

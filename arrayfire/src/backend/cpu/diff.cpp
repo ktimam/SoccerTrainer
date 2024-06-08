@@ -49,9 +49,9 @@ Array<T> diff2(const Array<T> &in, const int dim) {
     template Array<T> diff2<T>(const Array<T> &in, const int dim);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(intl)

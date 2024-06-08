@@ -78,10 +78,10 @@ af_err af_harris(af_features *out, const af_array in,
 
         af_dtype type = info.getType();
         switch (type) {
-            case f64:
+            /*case f64:
                 *out = harris<double, double>(in, max_corners, min_response,
                                               sigma, filter_len, k_thr);
-                break;
+                break;*/
             case f32:
                 *out = harris<float, float>(in, max_corners, min_response,
                                             sigma, filter_len, k_thr);

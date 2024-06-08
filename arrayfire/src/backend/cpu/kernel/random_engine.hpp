@@ -64,7 +64,7 @@ static float getFloatNegative11(uint *val, uint index) {
     // Conversion to floats adapted from Random123
     constexpr float factor =
         ((1.0) /
-         (static_cast<double>(std::numeric_limits<int>::max()) + (1.0)));
+         (static_cast<float>(std::numeric_limits<int>::max()) + (1.0)));
     constexpr float half_factor = ((0.5f) * factor);
 
     return fmaf(static_cast<float>(val[index]), factor, half_factor);
@@ -149,10 +149,10 @@ float transform<float>(uint *val, uint index) {
     return 1.f - getFloat01(val, index);
 }
 
-template<>
-double transform<double>(uint *val, uint index) {
-    return 1. - getDouble01(val, index);
-}
+//template<>
+//double transform<float>(uint *val, uint index) {
+//    return 1. - getDouble01(val, index);
+//}
 
 template<>
 arrayfire::common::half transform<arrayfire::common::half>(uint *val,
@@ -264,10 +264,10 @@ void boxMullerTransform(data_t<T> *const out1, data_t<T> *const out2,
     *out2 = r * cos(theta);
 }
 
-void boxMullerTransform(uint val[4], double *temp) {
-    boxMullerTransform<double>(&temp[0], &temp[1], getDoubleNegative11(val, 0),
-                               getDouble01(val, 1));
-}
+//void boxMullerTransform(uint val[4], double *temp) {
+//    boxMullerTransform<float>(&temp[0], &temp[1], getDoubleNegative11(val, 0),
+//                               getDouble01(val, 1));
+//}
 
 void boxMullerTransform(uint val[4], float *temp) {
     boxMullerTransform<float>(&temp[0], &temp[1], getFloatNegative11(val, 0),

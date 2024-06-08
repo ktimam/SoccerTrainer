@@ -15,7 +15,7 @@
 
 using af::dim4;
 using arrayfire::common::integralImage;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -39,7 +39,7 @@ af_err af_sat(af_array* out, const af_array in) {
 
         af_array output = 0;
         switch (inputType) {
-            case f64: output = sat<double, double>(in); break;
+            //case f64: output = sat<double, double>(in); break;
             case f32: output = sat<float, float>(in); break;
             case s32: output = sat<int, int>(in); break;
             case u32: output = sat<uint, uint>(in); break;

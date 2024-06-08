@@ -306,7 +306,7 @@ namespace half_float
 		template<typename T> struct is_float<volatile T> : is_float<T> {};
 		template<typename T> struct is_float<const volatile T> : is_float<T> {};
 		template<> struct is_float<float> : true_type {};
-		template<> struct is_float<double> : true_type {};
+		template<> struct is_float<float> : true_type {};
 		template<> struct is_float<long double> : true_type {};
 	#endif
 
@@ -324,7 +324,7 @@ namespace half_float
 		template<> struct bits<float> { typedef std::uint_least32_t type; };
 
 		/// Unsigned integer of (at least) 64 bits width.
-		template<> struct bits<double> { typedef std::uint_least64_t type; };
+		//template<> struct bits<float> { typedef std::uint_least64_t type; };
 	#else
 		/// Unsigned integer of (at least) 16 bits width.
 		typedef unsigned short uint16;
@@ -334,10 +334,10 @@ namespace half_float
 
 		#if HALF_ENABLE_CPP11_LONG_LONG
 			/// Unsigned integer of (at least) 64 bits width.
-			template<> struct bits<double> : conditional<std::numeric_limits<unsigned long>::digits>=64,unsigned long,unsigned long long> {};
+			template<> struct bits<float> : conditional<std::numeric_limits<unsigned long>::digits>=64,unsigned long,unsigned long long> {};
 		#else
 			/// Unsigned integer of (at least) 64 bits width.
-			template<> struct bits<double> { typedef unsigned long type; };
+			template<> struct bits<float> { typedef unsigned long type; };
 		#endif
 	#endif
 
@@ -412,7 +412,7 @@ namespace half_float
 #pragma GCC diagnostic pop
 #endif
 		#elif defined(_MSC_VER)
-			return !::_finite(static_cast<double>(arg)) && !::_isnan(static_cast<double>(arg));
+			return !::_finite(static_cast<float>(arg)) && !::_isnan(static_cast<float>(arg));
 		#else
 			return arg == std::numeric_limits<T>::infinity() || arg == -std::numeric_limits<T>::infinity();
 		#endif
@@ -435,7 +435,7 @@ namespace half_float
 #pragma GCC diagnostic pop
 #endif
 		#elif defined(_MSC_VER)
-			return ::_isnan(static_cast<double>(arg)) != 0;
+			return ::_isnan(static_cast<float>(arg)) != 0;
 		#else
 			return arg != arg;
 		#endif
@@ -587,7 +587,7 @@ namespace half_float
 		template<std::float_round_style R> uint16 float2half_impl(double value, true_type)
 		{
 			typedef bits<float>::type uint32;
-			typedef bits<double>::type uint64;
+			typedef bits<float>::type uint64;
 			uint64 bits;// = *reinterpret_cast<uint64*>(&value);		//violating strict aliasing!
 			std::memcpy(&bits, &value, sizeof(double));
 			uint32 hi = bits >> 32, lo = bits & 0xFFFFFFFF;
@@ -917,7 +917,7 @@ namespace half_float
 		inline double half2float_impl(uint16 value, double, true_type)
 		{
 			typedef bits<float>::type uint32;
-			typedef bits<double>::type uint64;
+			typedef bits<float>::type uint64;
 			uint32 hi = static_cast<uint32>(value&0x8000) << 16;
 			int abs = value & 0x7FFF;
 			if(abs)
@@ -1387,7 +1387,7 @@ namespace half_float
 			#if HALF_ENABLE_CPP11_CMATH
 				return expr(std::expm1(arg));
 			#else
-				return expr(static_cast<float>(std::exp(static_cast<double>(arg))-1.0));
+				return expr(static_cast<float>(std::exp(static_cast<float>(arg))-1.0));
 			#endif
 			}
 
@@ -1433,7 +1433,7 @@ namespace half_float
 			#if HALF_ENABLE_CPP11_CMATH
 				return expr(std::log2(arg));
 			#else
-				return expr(static_cast<float>(std::log(static_cast<double>(arg))*1.4426950408889634073599246810019));
+				return expr(static_cast<float>(std::log(static_cast<float>(arg))*1.4426950408889634073599246810019));
 			#endif
 			}
 
@@ -1452,8 +1452,8 @@ namespace half_float
 			#else
 				if(builtin_isnan(arg) || builtin_isinf(arg))
 					return expr(arg);
-				return expr(builtin_signbit(arg) ? -static_cast<float>(std::pow(-static_cast<double>(arg), 1.0/3.0)) :
-					static_cast<float>(std::pow(static_cast<double>(arg), 1.0/3.0)));
+				return expr(builtin_signbit(arg) ? -static_cast<float>(std::pow(-static_cast<float>(arg), 1.0/3.0)) :
+					static_cast<float>(std::pow(static_cast<float>(arg), 1.0/3.0)));
 			#endif
 			}
 
@@ -1467,7 +1467,7 @@ namespace half_float
 				return expr(std::hypot(x, y));
 			#else
 				return expr((builtin_isinf(x) || builtin_isinf(y)) ? std::numeric_limits<float>::infinity() :
-					static_cast<float>(std::sqrt(static_cast<double>(x)*x+static_cast<double>(y)*y)));
+					static_cast<float>(std::sqrt(static_cast<float>(x)*x+static_cast<float>(y)*y)));
 			#endif
 			}
 
@@ -1572,7 +1572,7 @@ namespace half_float
 			#if HALF_ENABLE_CPP11_CMATH
 				return expr(std::erf(arg));
 			#else
-				return expr(static_cast<float>(erf(static_cast<double>(arg))));
+				return expr(static_cast<float>(erf(static_cast<float>(arg))));
 			#endif
 			}
 
@@ -1584,7 +1584,7 @@ namespace half_float
 			#if HALF_ENABLE_CPP11_CMATH
 				return expr(std::erfc(arg));
 			#else
-				return expr(static_cast<float>(1.0-erf(static_cast<double>(arg))));
+				return expr(static_cast<float>(1.0-erf(static_cast<float>(arg))));
 			#endif
 			}
 
@@ -1606,7 +1606,7 @@ namespace half_float
 					return expr(static_cast<float>(1.1447298858494001741434273513531-
 						std::log(std::abs(std::sin(3.1415926535897932384626433832795*f)))-lgamma(1.0-arg)));
 				}
-				return expr(static_cast<float>(lgamma(static_cast<double>(arg))));
+				return expr(static_cast<float>(lgamma(static_cast<float>(arg))));
 			#endif
 			}
 
@@ -1630,7 +1630,7 @@ namespace half_float
 				}
 				if(builtin_isinf(arg))
 					return expr(arg);
-				return expr(static_cast<float>(std::exp(lgamma(static_cast<double>(arg)))));
+				return expr(static_cast<float>(std::exp(lgamma(static_cast<float>(arg)))));
 			#endif
 			}
 

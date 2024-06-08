@@ -84,9 +84,9 @@ void approx2(Array<Ty> &zo, const Array<Ty> &zi, const Array<Tp> &xo,
         const Tp &yi_step, const af_interp_type method, const float offGrid);
 
 INSTANTIATE(float, float)
-INSTANTIATE(double, double)
+//INSTANTIATE(double, double)
 INSTANTIATE(cfloat, float)
-INSTANTIATE(cdouble, double)
+//INSTANTIATE(cdouble, double)
 
 }  // namespace cpu
 }  // namespace arrayfire

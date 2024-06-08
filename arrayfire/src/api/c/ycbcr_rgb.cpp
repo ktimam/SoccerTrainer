@@ -140,9 +140,9 @@ af_err convert(af_array* out, const af_array& in, const af_ycc_std standard) {
 
         af_array output = 0;
         switch (iType) {
-            case f64:
+            /*case f64:
                 output = convert<double, isYCbCr2RGB>(in, standard);
-                break;
+                break;*/
             case f32: output = convert<float, isYCbCr2RGB>(in, standard); break;
             default: TYPE_ERROR(1, iType); break;
         }

@@ -52,10 +52,10 @@ af_err af_mean_shift(af_array *out, const af_array in,
                 output = mean_shift<float>(in, spatial_sigma, chromatic_sigma,
                                            num_iterations, is_color);
                 break;
-            case f64:
-                output = mean_shift<double>(in, spatial_sigma, chromatic_sigma,
+            /*case f64:
+                output = mean_shift<float>(in, spatial_sigma, chromatic_sigma,
                                             num_iterations, is_color);
-                break;
+                break;*/
             case b8:
                 output = mean_shift<char>(in, spatial_sigma, chromatic_sigma,
                                           num_iterations, is_color);

@@ -72,14 +72,14 @@ af_err af_example_function(af_array* out, const af_array a,
 
         switch (type) {  // Based on the data type, call backend specific
                          // implementation
-            case f64: output = example<double>(a, a, param); break;
+            //case f64: output = example<float>(a, a, param); break;
             case f32: output = example<float>(a, a, param); break;
             case s32: output = example<int>(a, a, param); break;
             case u32: output = example<uint>(a, a, param); break;
             case u8: output = example<uchar>(a, a, param); break;
             case b8: output = example<char>(a, a, param); break;
             case c32: output = example<cfloat>(a, a, param); break;
-            case c64: output = example<cdouble>(a, a, param); break;
+            //case c64: output = example<cdouble>(a, a, param); break;
             default:
                 TYPE_ERROR(1,
                            type);  // Another helpful macro from err_common.hpp

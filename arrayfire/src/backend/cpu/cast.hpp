@@ -82,22 +82,22 @@ struct UnOp<arrayfire::common::half, std::complex<float>, af_cast_t> {
     }
 };
 
-template<>
-struct UnOp<arrayfire::common::half, std::complex<double>, af_cast_t> {
-    typedef arrayfire::common::half To;
-    typedef std::complex<double> Ti;
-
-    void eval(jit::array<To> &out, const jit::array<Ti> &in, int lim) {
-        for (int i = 0; i < lim; i++) {
-            float val = std::abs(in[i]);
-            out[i]    = To(val);
-        }
-    }
-
-    void eval(jit::array<float> &out, const jit::array<Ti> &in, int lim) {
-        for (int i = 0; i < lim; i++) { out[i] = std::abs(in[i]); }
-    }
-};
+//template<>
+//struct UnOp<arrayfire::common::half, std::complex<float>, af_cast_t> {
+//    typedef arrayfire::common::half To;
+//    typedef std::complex<float> Ti;
+//
+//    void eval(jit::array<To> &out, const jit::array<Ti> &in, int lim) {
+//        for (int i = 0; i < lim; i++) {
+//            float val = std::abs(in[i]);
+//            out[i]    = To(val);
+//        }
+//    }
+//
+//    void eval(jit::array<float> &out, const jit::array<Ti> &in, int lim) {
+//        for (int i = 0; i < lim; i++) { out[i] = std::abs(in[i]); }
+//    }
+//};
 
 template<typename To>
 struct UnOp<To, std::complex<float>, af_cast_t> {
@@ -107,13 +107,13 @@ struct UnOp<To, std::complex<float>, af_cast_t> {
     }
 };
 
-template<typename To>
-struct UnOp<To, std::complex<double>, af_cast_t> {
-    typedef std::complex<double> Ti;
-    void eval(jit::array<To> &out, const jit::array<Ti> &in, int lim) {
-        for (int i = 0; i < lim; i++) { out[i] = To(std::abs(in[i])); }
-    }
-};
+//template<typename To>
+//struct UnOp<To, std::complex<float>, af_cast_t> {
+//    typedef std::complex<float> Ti;
+//    void eval(jit::array<To> &out, const jit::array<Ti> &in, int lim) {
+//        for (int i = 0; i < lim; i++) { out[i] = To(std::abs(in[i])); }
+//    }
+//};
 
 // DO NOT REMOVE THE TWO SPECIALIZATIONS BELOW
 // These specializations are required because we partially specialize when
@@ -122,22 +122,22 @@ struct UnOp<To, std::complex<double>, af_cast_t> {
 // incorrect values when To is complex.
 
 template<>
-struct UnOp<std::complex<float>, std::complex<double>, af_cast_t> {
-    typedef std::complex<double> Ti;
+struct UnOp<std::complex<float>, std::complex<float>, af_cast_t> {
+    typedef std::complex<float> Ti;
     typedef std::complex<float> To;
     void eval(jit::array<To> &out, const jit::array<Ti> &in, int lim) {
         for (int i = 0; i < lim; i++) { out[i] = To(in[i]); }
     }
 };
 
-template<>
-struct UnOp<std::complex<double>, std::complex<float>, af_cast_t> {
-    typedef std::complex<float> Ti;
-    typedef std::complex<double> To;
-    void eval(jit::array<To> &out, const jit::array<Ti> &in, int lim) {
-        for (int i = 0; i < lim; i++) { out[i] = To(in[i]); }
-    }
-};
+//template<>
+//struct UnOp<std::complex<float>, std::complex<float>, af_cast_t> {
+//    typedef std::complex<float> Ti;
+//    typedef std::complex<float> To;
+//    void eval(jit::array<To> &out, const jit::array<Ti> &in, int lim) {
+//        for (int i = 0; i < lim; i++) { out[i] = To(in[i]); }
+//    }
+//};
 
 #define CAST_B8(T)                                                           \
     template<>                                                               \
@@ -148,7 +148,7 @@ struct UnOp<std::complex<double>, std::complex<float>, af_cast_t> {
     };
 
 CAST_B8(float)
-CAST_B8(double)
+//CAST_B8(double)
 CAST_B8(int)
 CAST_B8(uchar)
 CAST_B8(char)

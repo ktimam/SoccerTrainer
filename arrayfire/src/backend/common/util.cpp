@@ -11,7 +11,7 @@
 #if defined(OS_WIN)
 #include <Windows.h>
 #else
-#include <pwd.h>
+//#include <pwd.h>
 #include <unistd.h>
 #endif
 
@@ -93,9 +93,9 @@ string getEnvVar(const string& key) {
 const char* getName(af_dtype type) {
     switch (type) {
         case f32: return "float";
-        case f64: return "double";
+        //case f64: return "double";
         case c32: return "complex float";
-        case c64: return "complex double";
+        //case c64: return "complex double";
         case u32: return "unsigned int";
         case s32: return "int";
         case u16: return "unsigned short";
@@ -276,7 +276,7 @@ template string toString<unsigned>(unsigned);
 template string toString<unsigned long>(unsigned long);
 template string toString<unsigned long long>(unsigned long long);
 template string toString<float>(float);
-template string toString<double>(double);
+template string toString<float>(double);
 template string toString<long double>(long double);
 
 template<>

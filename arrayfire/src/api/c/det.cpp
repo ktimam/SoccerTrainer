@@ -21,7 +21,7 @@
 
 using af::dim4;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::imag;
@@ -89,21 +89,21 @@ af_err af_det(double *real_val, double *imag_val, const af_array in) {
         *imag_val = 0;
 
         cfloat cfval;
-        cdouble cdval;
+        //cdouble cdval;
 
         switch (type) {
             case f32: *real_val = det<float>(in); break;
-            case f64: *real_val = det<double>(in); break;
+            //case f64: *real_val = det<float>(in); break;
             case c32:
                 cfval     = det<cfloat>(in);
                 *real_val = real(cfval);
                 *imag_val = imag(cfval);
                 break;
-            case c64:
+            /*case c64:
                 cdval     = det<cdouble>(in);
                 *real_val = real(cdval);
                 *imag_val = imag(cdval);
-                break;
+                break;*/
             default: TYPE_ERROR(1, type);
         }
     }

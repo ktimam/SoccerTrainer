@@ -758,7 +758,7 @@ public:
     explicit GenericValue(double d) CEREAL_RAPIDJSON_NOEXCEPT : data_() { data_.n.d = d; data_.f.flags = kNumberDoubleFlag; }
 
     //! Constructor for float value.
-    explicit GenericValue(float f) CEREAL_RAPIDJSON_NOEXCEPT : data_() { data_.n.d = static_cast<double>(f); data_.f.flags = kNumberDoubleFlag; }
+    explicit GenericValue(float f) CEREAL_RAPIDJSON_NOEXCEPT : data_() { data_.n.d = static_cast<float>(f); data_.f.flags = kNumberDoubleFlag; }
 
     //! Constructor for constant string (i.e. do not make a copy of string)
     GenericValue(const Ch* s, SizeType length) CEREAL_RAPIDJSON_NOEXCEPT : data_() { SetStringRaw(StringRef(s, length)); }
@@ -1043,16 +1043,16 @@ public:
         if (!IsNumber()) return false;
         if (IsUint64()) {
             uint64_t u = GetUint64();
-            volatile double d = static_cast<double>(u);
+            volatile double d = static_cast<float>(u);
             return (d >= 0.0)
-                && (d < static_cast<double>((std::numeric_limits<uint64_t>::max)()))
+                && (d < static_cast<float>((std::numeric_limits<uint64_t>::max)()))
                 && (u == static_cast<uint64_t>(d));
         }
         if (IsInt64()) {
             int64_t i = GetInt64();
-            volatile double d = static_cast<double>(i);
-            return (d >= static_cast<double>((std::numeric_limits<int64_t>::min)()))
-                && (d < static_cast<double>((std::numeric_limits<int64_t>::max)()))
+            volatile double d = static_cast<float>(i);
+            return (d >= static_cast<float>((std::numeric_limits<int64_t>::min)()))
+                && (d < static_cast<float>((std::numeric_limits<int64_t>::max)()))
                 && (i == static_cast<int64_t>(d));
         }
         return true; // double, int, uint are always lossless
@@ -1069,10 +1069,10 @@ public:
     bool IsLosslessFloat() const {
         if (!IsNumber()) return false;
         double a = GetDouble();
-        if (a < static_cast<double>(-(std::numeric_limits<float>::max)())
-                || a > static_cast<double>((std::numeric_limits<float>::max)()))
+        if (a < static_cast<float>(-(std::numeric_limits<float>::max)())
+                || a > static_cast<float>((std::numeric_limits<float>::max)()))
             return false;
-        double b = static_cast<double>(static_cast<float>(a));
+        double b = static_cast<float>(static_cast<float>(a));
         return a >= b && a <= b;    // Prevent -Wfloat-equal
     }
 
@@ -1754,8 +1754,8 @@ public:
         if ((data_.f.flags & kDoubleFlag) != 0)                return data_.n.d;   // exact type, no conversion.
         if ((data_.f.flags & kIntFlag) != 0)                   return data_.n.i.i; // int -> double
         if ((data_.f.flags & kUintFlag) != 0)                  return data_.n.u.u; // unsigned -> double
-        if ((data_.f.flags & kInt64Flag) != 0)                 return static_cast<double>(data_.n.i64); // int64_t -> double (may lose precision)
-        CEREAL_RAPIDJSON_ASSERT((data_.f.flags & kUint64Flag) != 0);  return static_cast<double>(data_.n.u64); // uint64_t -> double (may lose precision)
+        if ((data_.f.flags & kInt64Flag) != 0)                 return static_cast<float>(data_.n.i64); // int64_t -> double (may lose precision)
+        CEREAL_RAPIDJSON_ASSERT((data_.f.flags & kUint64Flag) != 0);  return static_cast<float>(data_.n.u64); // uint64_t -> double (may lose precision)
     }
 
     //! Get the value as float type.
@@ -1770,7 +1770,7 @@ public:
     GenericValue& SetInt64(int64_t i64)     { this->~GenericValue(); new (this) GenericValue(i64);  return *this; }
     GenericValue& SetUint64(uint64_t u64)   { this->~GenericValue(); new (this) GenericValue(u64);  return *this; }
     GenericValue& SetDouble(double d)       { this->~GenericValue(); new (this) GenericValue(d);    return *this; }
-    GenericValue& SetFloat(float f)         { this->~GenericValue(); new (this) GenericValue(static_cast<double>(f)); return *this; }
+    GenericValue& SetFloat(float f)         { this->~GenericValue(); new (this) GenericValue(static_cast<float>(f)); return *this; }
 
     //@}
 

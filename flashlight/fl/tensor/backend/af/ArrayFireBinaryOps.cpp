@@ -80,7 +80,7 @@ Tensor doBinaryOpOrBroadcast(
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const unsigned long&);      \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const long long&);          \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const unsigned long long&); \
-  FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const double&);             \
+  /*FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const double&);  */           \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const float&);              \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const short&);              \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const unsigned short&);

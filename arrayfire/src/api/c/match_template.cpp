@@ -57,10 +57,10 @@ af_err af_match_template(af_array* out, const af_array search_img,
 
         af_array output = 0;
         switch (sType) {
-            case f64:
+            /*case f64:
                 output =
-                    match_template<double>(search_img, template_img, m_type);
-                break;
+                    match_template<float>(search_img, template_img, m_type);
+                break;*/
             case f32:
                 output =
                     match_template<float>(search_img, template_img, m_type);

@@ -23,7 +23,7 @@ using af::dim4;
 using arrayfire::common::half;
 using arrayfire::common::tile;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -51,8 +51,8 @@ af_err af_tile(af_array *out, const af_array in, const af::dim4 &tileDims) {
         switch (type) {
             case f32: output = tile<float>(in, tileDims); break;
             case c32: output = tile<cfloat>(in, tileDims); break;
-            case f64: output = tile<double>(in, tileDims); break;
-            case c64: output = tile<cdouble>(in, tileDims); break;
+            //case f64: output = tile<float>(in, tileDims); break;
+            //case c64: output = tile<cdouble>(in, tileDims); break;
             case b8: output = tile<char>(in, tileDims); break;
             case s32: output = tile<int>(in, tileDims); break;
             case u32: output = tile<uint>(in, tileDims); break;

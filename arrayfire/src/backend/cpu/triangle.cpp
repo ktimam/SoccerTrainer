@@ -50,9 +50,9 @@ Array<T> triangle(const Array<T> &in, const bool is_upper,
     template Array<T> triangle<T>(const Array<T> &, const bool, const bool);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(intl)

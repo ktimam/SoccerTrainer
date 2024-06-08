@@ -42,7 +42,7 @@
 
 // const static FLOAT dm1 = -1.;
 
-int CNAME(BLASLONG m, FLOAT *a, FLOAT *b, BLASLONG incb, void *buffer){
+int CNAME(BLASLONG m, FLOAT *a, FLOAT *b, BLASLONG incb, float *buffer){
 
   BLASLONG i;
 #if (TRANSA == 2) || (TRANSA == 4)

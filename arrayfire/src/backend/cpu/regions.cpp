@@ -37,7 +37,7 @@ Array<T> regions(const Array<char> &in, af_connectivity connectivity) {
                                  af_connectivity connectivity);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(short)

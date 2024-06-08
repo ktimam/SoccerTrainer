@@ -36,7 +36,7 @@ using af::dim4;
 using arrayfire::common::cast;
 using detail::arithOp;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createSubArray;
 using detail::createValueArray;
@@ -156,7 +156,7 @@ af_array iterDeconv(const af_array in, const af_array ker, const uint iters,
                     const float rfactor, const af_iterative_deconv_algo algo) {
     using T    = RealType;
     using CT   = typename std::conditional<std::is_same<T, double>::value,
-                                         cdouble, cfloat>::type;
+                                         std::complex<float>, cfloat>::type;
     auto input = castArray<T>(in);
     auto psf   = castArray<T>(ker);
     const dim4& idims = input.dims();
@@ -179,7 +179,7 @@ af_array iterDeconv(const af_array in, const af_array ker, const uint iters,
     auto Pc = conj(P);
 
     Array<T> currentEstimate = paddedIn;
-    const double normFactor  = 1 / static_cast<double>(nElems);
+    const double normFactor  = 1 / static_cast<float>(nElems);
 
     switch (algo) {
         case AF_ITERATIVE_DECONV_RICHARDSONLUCY:
@@ -265,7 +265,7 @@ af_array invDeconv(const af_array in, const af_array ker, const float gamma,
                    const af_inverse_deconv_algo algo) {
     using T    = RealType;
     using CT   = typename std::conditional<std::is_same<T, double>::value,
-                                         cdouble, cfloat>::type;
+                                         std::complex<float>, cfloat>::type;
     auto input = castArray<T>(in);
     auto psf   = castArray<T>(ker);
     const dim4& idims = input.dims();
@@ -297,7 +297,7 @@ af_array invDeconv(const af_array in, const af_array ker, const float gamma,
     select_scalar<CT, false>(val, cond, val, scalar<CT>(0.0));
 
     auto ival =
-        fft_c2r<CT, T>(val, 1 / static_cast<double>(nElems), odims, BASE_DIM);
+        fft_c2r<CT, T>(val, 1 / static_cast<float>(nElems), odims, BASE_DIM);
 
     return getHandle(createSubArray<T>(ival, index));
 }

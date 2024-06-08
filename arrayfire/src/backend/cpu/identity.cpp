@@ -34,9 +34,9 @@ Array<T> identity(const dim4& dims) {
     template Array<T> identity<T>(const af::dim4& dims);
 
 INSTANTIATE_IDENTITY(float)
-INSTANTIATE_IDENTITY(double)
+//INSTANTIATE_IDENTITY(double)
 INSTANTIATE_IDENTITY(cfloat)
-INSTANTIATE_IDENTITY(cdouble)
+//INSTANTIATE_IDENTITY(cdouble)
 INSTANTIATE_IDENTITY(int)
 INSTANTIATE_IDENTITY(uint)
 INSTANTIATE_IDENTITY(intl)

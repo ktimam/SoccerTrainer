@@ -34,9 +34,9 @@ Array<T> reorder(const Array<T> &in, const af::dim4 &rdims) {
     template Array<T> reorder<T>(const Array<T> &in, const af::dim4 &rdims);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)

@@ -15,7 +15,7 @@
 #include <af/dim4.hpp>
 #include <complex>
 
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -42,9 +42,9 @@ af_err af_where(af_array* idx, const af_array in) {
         af_array res;
         switch (type) {
             case f32: res = where<float>(in); break;
-            case f64: res = where<double>(in); break;
+            //case f64: res = where<float>(in); break;
             case c32: res = where<cfloat>(in); break;
-            case c64: res = where<cdouble>(in); break;
+            //case c64: res = where<cdouble>(in); break;
             case s32: res = where<int>(in); break;
             case u32: res = where<uint>(in); break;
             case s64: res = where<intl>(in); break;

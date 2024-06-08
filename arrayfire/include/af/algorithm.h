@@ -39,7 +39,7 @@ namespace af
 
        \ingroup reduce_func_sum
     */
-    AFAPI array sum(const array &in, const int dim, const double nanval);
+    AFAPI array sum(const array &in, const int dim, const float nanval);
 #endif
 
 #if AF_API_VERSION >= 37
@@ -75,7 +75,7 @@ namespace af
     */
     AFAPI void sumByKey(array &keys_out, array &vals_out,
                         const array &keys, const array &vals,
-                        const int dim, const double nanval);
+                        const int dim, const float nanval);
 #endif
 
     /**
@@ -102,7 +102,7 @@ namespace af
 
        \ingroup reduce_func_product
     */
-    AFAPI array product(const array &in, const int dim, const double nanval);
+    AFAPI array product(const array &in, const int dim, const float nanval);
 #endif
 
 #if AF_API_VERSION >= 37
@@ -140,7 +140,7 @@ namespace af
     */
     AFAPI void productByKey(array &keys_out, array &vals_out,
                             const array &keys, const array &vals,
-                            const int dim, const double nanval);
+                            const int dim, const float nanval);
 #endif
 
     /**
@@ -363,7 +363,7 @@ namespace af
 
        \ingroup reduce_func_sum
     */
-    template<typename T> T sum(const array &in, double nanval);
+    template<typename T> T sum(const array &in, float nanval);
 #endif
 
     /**
@@ -388,7 +388,7 @@ namespace af
 
        \ingroup reduce_func_product
     */
-    template<typename T> T product(const array &in, double nanval);
+    template<typename T> T product(const array &in, float nanval);
 #endif
 
     /**
@@ -738,7 +738,7 @@ extern "C" {
        \ingroup reduce_func_sum
     */
     AFAPI af_err af_sum_nan(af_array *out, const af_array in,
-                            const int dim, const double nanval);
+                            const int dim, const float nanval);
 #endif
 
 #if AF_API_VERSION >= 39
@@ -756,7 +756,7 @@ extern "C" {
 
        \ingroup reduce_func_sum
     */
-    AFAPI af_err af_sum_nan_all_array(af_array *out, const af_array in, const double nanval);
+    AFAPI af_err af_sum_nan_all_array(af_array *out, const af_array in, const float nanval);
 #endif
 
 #if AF_API_VERSION >= 37
@@ -794,7 +794,7 @@ extern "C" {
     */
     AFAPI af_err af_sum_by_key_nan(af_array *keys_out, af_array *vals_out,
                                    const af_array keys, const af_array vals,
-                                   const int dim, const double nanval);
+                                   const int dim, const float nanval);
 #endif
 
     /**
@@ -840,7 +840,7 @@ extern "C" {
 
        \ingroup reduce_func_product
     */
-    AFAPI af_err af_product_nan(af_array *out, const af_array in, const int dim, const double nanval);
+    AFAPI af_err af_product_nan(af_array *out, const af_array in, const int dim, const float nanval);
 #endif
 
 #if AF_API_VERSION >= 39
@@ -856,7 +856,7 @@ extern "C" {
 
        \ingroup reduce_func_product
     */
-    AFAPI af_err af_product_nan_all_array(af_array *out, const af_array in, const double nanval);
+    AFAPI af_err af_product_nan_all_array(af_array *out, const af_array in, const float nanval);
 #endif
 
 #if AF_API_VERSION >= 37
@@ -894,7 +894,7 @@ extern "C" {
     */
     AFAPI af_err af_product_by_key_nan(af_array *keys_out, af_array *vals_out,
                                        const af_array keys, const af_array vals,
-                                       const int dim, const double nanval);
+                                       const int dim, const float nanval);
 #endif
 
     /**
@@ -1108,7 +1108,7 @@ extern "C" {
 
        \ingroup reduce_func_sum
     */
-    AFAPI af_err af_sum_all(double *real, double *imag, const af_array in);
+    AFAPI af_err af_sum_all(float *real, float *imag, const af_array in);
 
 #if AF_API_VERSION >= 31
     /**
@@ -1126,8 +1126,8 @@ extern "C" {
 
        \ingroup reduce_func_sum
     */
-    AFAPI af_err af_sum_nan_all(double *real, double *imag,
-                                const af_array in, const double nanval);
+    AFAPI af_err af_sum_nan_all(float *real, float *imag,
+                                const af_array in, const float nanval);
 #endif
 
     /**
@@ -1143,7 +1143,7 @@ extern "C" {
 
        \ingroup reduce_func_product
     */
-    AFAPI af_err af_product_all(double *real, double *imag, const af_array in);
+    AFAPI af_err af_product_all(float *real, float *imag, const af_array in);
 
 #if AF_API_VERSION >= 31
     /**
@@ -1161,8 +1161,8 @@ extern "C" {
 
        \ingroup reduce_func_product
     */
-    AFAPI af_err af_product_nan_all(double *real, double *imag,
-                                    const af_array in, const double nanval);
+    AFAPI af_err af_product_nan_all(float *real, float *imag,
+                                    const af_array in, const float nanval);
 #endif
 
     /**
@@ -1178,7 +1178,7 @@ extern "C" {
 
        \ingroup reduce_func_min
     */
-    AFAPI af_err af_min_all(double *real, double *imag, const af_array in);
+    AFAPI af_err af_min_all(float *real, float *imag, const af_array in);
 
 #if AF_API_VERSION >= 39
     /**
@@ -1207,7 +1207,7 @@ extern "C" {
 
        \ingroup reduce_func_max
     */
-    AFAPI af_err af_max_all(double *real, double *imag, const af_array in);
+    AFAPI af_err af_max_all(float *real, float *imag, const af_array in);
 
 #if AF_API_VERSION >= 39
     /**
@@ -1234,7 +1234,7 @@ extern "C" {
 
        \ingroup reduce_func_all_true
     */
-    AFAPI af_err af_all_true_all(double *real, double *imag, const af_array in);
+    AFAPI af_err af_all_true_all(float *real, float *imag, const af_array in);
 
 #if AF_API_VERSION >= 39
     /**
@@ -1261,7 +1261,7 @@ extern "C" {
 
        \ingroup reduce_func_any_true
     */
-    AFAPI af_err af_any_true_all(double *real, double *imag, const af_array in);
+    AFAPI af_err af_any_true_all(float *real, float *imag, const af_array in);
 
 #if AF_API_VERSION >= 39
     /**
@@ -1288,7 +1288,7 @@ extern "C" {
 
        \ingroup reduce_func_count
     */
-    AFAPI af_err af_count_all(double *real, double *imag, const af_array in);
+    AFAPI af_err af_count_all(float *real, float *imag, const af_array in);
 
 #if AF_API_VERSION >= 39
     /**
@@ -1350,7 +1350,7 @@ extern "C" {
 
        \ingroup reduce_func_min
     */
-    AFAPI af_err af_imin_all(double *real, double *imag, unsigned *idx,
+    AFAPI af_err af_imin_all(float *real, float *imag, unsigned *idx,
                              const af_array in);
 
     /**
@@ -1367,7 +1367,7 @@ extern "C" {
 
        \ingroup reduce_func_max
     */
-    AFAPI af_err af_imax_all(double *real, double *imag, unsigned *idx, const af_array in);
+    AFAPI af_err af_imax_all(float *real, float *imag, unsigned *idx, const af_array in);
 
     /**
        C Interface to evaluate the cumulative sum (inclusive) along a given

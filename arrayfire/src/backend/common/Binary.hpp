@@ -107,7 +107,7 @@ struct Binary<char, af_min_t> {
     };
 
 SPECIALIZE_COMPLEX_MIN(cfloat, float)
-SPECIALIZE_COMPLEX_MIN(cdouble, double)
+//SPECIALIZE_COMPLEX_MIN(cdouble, double)
 
 #undef SPECIALIZE_COMPLEX_MIN
 
@@ -134,7 +134,7 @@ struct Binary<char, af_max_t> {
     };
 
 SPECIALIZE_COMPLEX_MAX(cfloat, float)
-SPECIALIZE_COMPLEX_MAX(cdouble, double)
+//SPECIALIZE_COMPLEX_MAX(cdouble, double)
 
 #undef SPECIALIZE_COMPLEX_MAX
 

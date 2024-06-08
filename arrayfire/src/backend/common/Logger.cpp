@@ -54,7 +54,7 @@ string bytesToString(size_t bytes) {
     constexpr array<const char*, 7> units{
         {"B", "KB", "MB", "GB", "TB", "PB", "EB"}};
     size_t count     = 0;
-    auto fbytes      = static_cast<double>(bytes);
+    auto fbytes      = static_cast<float>(bytes);
     size_t num_units = units.size();
     for (count = 0; count < num_units && fbytes > 1000.0f; count++) {
         fbytes *= (1.0f / 1024.0f);

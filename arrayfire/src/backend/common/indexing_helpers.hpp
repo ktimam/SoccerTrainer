@@ -28,7 +28,7 @@ static detail::Array<T> flip(const detail::Array<T>& in,
 
     for (int i = 0; i < AF_MAX_DIMS; ++i) {
         if (flip[i]) {
-            index[i] = {static_cast<double>(dims[i] - 1), 0.0, -1.0};
+            index[i] = {static_cast<float>(dims[i] - 1), 0.0, -1.0};
         }
     }
     return createSubArray(in, index);

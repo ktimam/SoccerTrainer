@@ -55,12 +55,12 @@ AFAPI af_cfloat mean(const array& in) {
     return {static_cast<float>(real), static_cast<float>(imag)};
 }
 
-template<>
-AFAPI af_cdouble mean(const array& in) {
-    double real, imag;
-    AF_THROW(af_mean_all(&real, &imag, in.get()));
-    return {real, imag};
-}
+//template<>
+//AFAPI af_cdouble mean(const array& in) {
+//    double real, imag;
+//    AF_THROW(af_mean_all(&real, &imag, in.get()));
+//    return {real, imag};
+//}
 
 template<>
 AFAPI af_cfloat mean(const array& in, const array& weights) {
@@ -69,15 +69,15 @@ AFAPI af_cfloat mean(const array& in, const array& weights) {
     return {static_cast<float>(real), static_cast<float>(imag)};
 }
 
-template<>
-AFAPI af_cdouble mean(const array& in, const array& weights) {
-    double real, imag;
-    AF_THROW(af_mean_all_weighted(&real, &imag, in.get(), weights.get()));
-    return {real, imag};
-}
+//template<>
+//AFAPI af_cdouble mean(const array& in, const array& weights) {
+//    double real, imag;
+//    AF_THROW(af_mean_all_weighted(&real, &imag, in.get(), weights.get()));
+//    return {real, imag};
+//}
 
 INSTANTIATE_MEAN(float);
-INSTANTIATE_MEAN(double);
+//INSTANTIATE_MEAN(double);
 INSTANTIATE_MEAN(int);
 INSTANTIATE_MEAN(unsigned int);
 INSTANTIATE_MEAN(char);

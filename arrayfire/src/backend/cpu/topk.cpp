@@ -124,7 +124,7 @@ void topk(Array<T>& vals, Array<unsigned>& idxs, const Array<T>& in,
                           const int, const int, const af::topkFunction);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(long long)

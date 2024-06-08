@@ -116,7 +116,7 @@ Array<T> setIntersect(const Array<T> &first, const Array<T> &second,
         const Array<T> &first, const Array<T> &second, const bool is_unique);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(char)

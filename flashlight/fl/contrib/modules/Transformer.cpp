@@ -110,9 +110,9 @@ Variable Transformer::mlp(const Variable& input) {
 }
 
 Variable Transformer::getMask(int32_t n, bool cache) {
-  auto mask = fl::tril(fl::full({n, n}, 1.0));
+  auto mask = fl::tril(fl::full({n, n}, 1.0f));
   if (cache) {
-    auto maskCache = fl::triu(fl::full({n, n}, 1.0));
+    auto maskCache = fl::triu(fl::full({n, n}, 1.0f));
     mask = fl::concatenate(1, maskCache, mask);
   }
   return Variable(fl::log(mask), false);

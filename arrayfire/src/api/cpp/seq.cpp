@@ -81,7 +81,7 @@ seq::operator array() const {
 
     array tmp = (m_gfor) ? range(1, 1, 1, len, 3) : range(len);
 
-    array res = s.begin + s.step * tmp;
+    array res = (float)s.begin + (float)s.step * tmp;
     return res;
 }
 }  // namespace af

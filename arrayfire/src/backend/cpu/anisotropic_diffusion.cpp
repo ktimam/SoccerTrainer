@@ -31,7 +31,7 @@ void anisotropicDiffusion(Array<T>& inout, const float dt, const float mct,
         Array<T> & inout, const float dt, const float mct, \
         const af::fluxFunction fftype, const af::diffusionEq eq);
 
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(float)
 }  // namespace cpu
 }  // namespace arrayfire

@@ -17,7 +17,7 @@
 using af::dim4;
 using af::dtype_traits;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::copyArray;
 using detail::createDeviceDataArray;
@@ -262,9 +262,9 @@ SparseArray<T>::SparseArray(const SparseArray<T> &other, bool copy)
 
 // Instantiate only floating types
 INSTANTIATE(float);
-INSTANTIATE(double);
+//INSTANTIATE(double);
 INSTANTIATE(cfloat);
-INSTANTIATE(cdouble);
+//INSTANTIATE(cdouble);
 
 #undef INSTANTIATE
 

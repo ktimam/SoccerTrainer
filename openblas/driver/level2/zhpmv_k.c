@@ -41,7 +41,7 @@
 #include "common.h"
 
 int CNAME(BLASLONG m, FLOAT alpha_r, FLOAT alpha_i,
-	 FLOAT *a, FLOAT *x, BLASLONG incx, FLOAT *y, BLASLONG incy, void *buffer){
+	 FLOAT *a, FLOAT *x, BLASLONG incx, FLOAT *y, BLASLONG incy, float *buffer){
 
   BLASLONG i;
   FLOAT *X = x;

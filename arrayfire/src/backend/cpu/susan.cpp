@@ -69,7 +69,7 @@ unsigned susan(Array<float> &x_out, Array<float> &y_out, Array<float> &resp_out,
         const float geom_thr, const float feature_ratio, const unsigned edge);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(char)
 INSTANTIATE(int)
 INSTANTIATE(uint)

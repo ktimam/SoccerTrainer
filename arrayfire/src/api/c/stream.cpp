@@ -24,7 +24,7 @@ using std::string;
 using std::vector;
 
 using af::dim4;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createHostDataArray;
 using detail::intl;
@@ -136,8 +136,8 @@ af_err af_save_array(int *index, const char *key, const af_array arr,
         switch (type) {
             case f32: id = save<float>(key, arr, filename, append); break;
             case c32: id = save<cfloat>(key, arr, filename, append); break;
-            case f64: id = save<double>(key, arr, filename, append); break;
-            case c64: id = save<cdouble>(key, arr, filename, append); break;
+            //case f64: id = save<float>(key, arr, filename, append); break;
+            //case c64: id = save<cdouble>(key, arr, filename, append); break;
             case b8: id = save<char>(key, arr, filename, append); break;
             case s32: id = save<int>(key, arr, filename, append); break;
             case u32: id = save<unsigned>(key, arr, filename, append); break;
@@ -235,8 +235,8 @@ static af_array readArrayV1(const char *filename, const unsigned index) {
     switch (type) {
         case f32: out = readDataToArray<float>(fs); break;
         case c32: out = readDataToArray<cfloat>(fs); break;
-        case f64: out = readDataToArray<double>(fs); break;
-        case c64: out = readDataToArray<cdouble>(fs); break;
+        //case f64: out = readDataToArray<float>(fs); break;
+        //case c64: out = readDataToArray<cdouble>(fs); break;
         case b8: out = readDataToArray<char>(fs); break;
         case s32: out = readDataToArray<int>(fs); break;
         case u32: out = readDataToArray<uint>(fs); break;

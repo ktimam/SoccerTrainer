@@ -225,10 +225,10 @@ public:
 
     bool Null() { return WriteType(kNullType); }
     bool Bool(bool b) { return WriteType(b ? kTrueType : kFalseType); }
-    bool Int(int i) { Number n; n.u.i = i; n.d = static_cast<double>(i); return WriteNumber(n); }
-    bool Uint(unsigned u) { Number n; n.u.u = u; n.d = static_cast<double>(u); return WriteNumber(n); }
-    bool Int64(int64_t i) { Number n; n.u.i = i; n.d = static_cast<double>(i); return WriteNumber(n); }
-    bool Uint64(uint64_t u) { Number n; n.u.u = u; n.d = static_cast<double>(u); return WriteNumber(n); }
+    bool Int(int i) { Number n; n.u.i = i; n.d = static_cast<float>(i); return WriteNumber(n); }
+    bool Uint(unsigned u) { Number n; n.u.u = u; n.d = static_cast<float>(u); return WriteNumber(n); }
+    bool Int64(int64_t i) { Number n; n.u.i = i; n.d = static_cast<float>(i); return WriteNumber(n); }
+    bool Uint64(uint64_t u) { Number n; n.u.u = u; n.d = static_cast<float>(u); return WriteNumber(n); }
     bool Double(double d) { 
         Number n; 
         if (d < 0) n.u.i = static_cast<int64_t>(d);
@@ -1249,7 +1249,7 @@ private:
                 context.error_handler.BelowMinimum(i, minimum_, exclusiveMinimum_);
                 CEREAL_RAPIDJSON_INVALID_KEYWORD_RETURN(GetMinimumString()); // i <= max(int64_t) < minimum.GetUint64()
             }
-            else if (!CheckDoubleMinimum(context, static_cast<double>(i)))
+            else if (!CheckDoubleMinimum(context, static_cast<float>(i)))
                 return false;
         }
 
@@ -1262,7 +1262,7 @@ private:
             }
             else if (maximum_.IsUint64()) { }
                 /* do nothing */ // i <= max(int64_t) < maximum_.GetUint64()
-            else if (!CheckDoubleMaximum(context, static_cast<double>(i)))
+            else if (!CheckDoubleMaximum(context, static_cast<float>(i)))
                 return false;
         }
 
@@ -1273,7 +1273,7 @@ private:
                     CEREAL_RAPIDJSON_INVALID_KEYWORD_RETURN(GetMultipleOfString());
                 }
             }
-            else if (!CheckDoubleMultipleOf(context, static_cast<double>(i)))
+            else if (!CheckDoubleMultipleOf(context, static_cast<float>(i)))
                 return false;
         }
 
@@ -1295,7 +1295,7 @@ private:
             }
             else if (minimum_.IsInt64())
                 /* do nothing */; // i >= 0 > minimum.Getint64()
-            else if (!CheckDoubleMinimum(context, static_cast<double>(i)))
+            else if (!CheckDoubleMinimum(context, static_cast<float>(i)))
                 return false;
         }
 
@@ -1310,7 +1310,7 @@ private:
                 context.error_handler.AboveMaximum(i, maximum_, exclusiveMaximum_);
                 CEREAL_RAPIDJSON_INVALID_KEYWORD_RETURN(GetMaximumString()); // i >= 0 > maximum_
             }
-            else if (!CheckDoubleMaximum(context, static_cast<double>(i)))
+            else if (!CheckDoubleMaximum(context, static_cast<float>(i)))
                 return false;
         }
 
@@ -1321,7 +1321,7 @@ private:
                     CEREAL_RAPIDJSON_INVALID_KEYWORD_RETURN(GetMultipleOfString());
                 }
             }
-            else if (!CheckDoubleMultipleOf(context, static_cast<double>(i)))
+            else if (!CheckDoubleMultipleOf(context, static_cast<float>(i)))
                 return false;
         }
 

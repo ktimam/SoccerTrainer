@@ -49,7 +49,7 @@ Array<T> range(const dim4& dims, const int seq_dim) {
     template Array<T> range<T>(const af::dim4& dims, const int seq_dims);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(intl)

@@ -25,7 +25,7 @@
 using af::dim4;
 using arrayfire::common::half;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::imag;
 using detail::intl;
@@ -69,18 +69,18 @@ af_err af_mean(af_array *out, const af_array in, const dim_t dim) {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
         switch (type) {
-            case f64: output = mean<double, double>(in, dim); break;
+            //case f64: output = mean<double, double>(in, dim); break;
             case f32: output = mean<float, float>(in, dim); break;
             case s32: output = mean<int, float>(in, dim); break;
             case u32: output = mean<unsigned, float>(in, dim); break;
-            case s64: output = mean<intl, double>(in, dim); break;
-            case u64: output = mean<uintl, double>(in, dim); break;
+            //case s64: output = mean<intl, double>(in, dim); break;
+            //case u64: output = mean<uintl, double>(in, dim); break;
             case s16: output = mean<short, float>(in, dim); break;
             case u16: output = mean<ushort, float>(in, dim); break;
             case u8: output = mean<uchar, float>(in, dim); break;
             case b8: output = mean<char, float>(in, dim); break;
             case c32: output = mean<cfloat, cfloat>(in, dim); break;
-            case c64: output = mean<cdouble, cdouble>(in, dim); break;
+            //case c64: output = mean<cdouble, cdouble>(in, dim); break;
             case f16: output = mean<half, half>(in, dim); break;
             default: TYPE_ERROR(1, type);
         }
@@ -103,9 +103,9 @@ af_err af_mean_weighted(af_array *out, const af_array in,
 
         ARG_ASSERT(
             2,
-            (wType == f32 ||
+            (wType == f32 /*||
              wType ==
-                 f64)); /* verify that weights are non-complex real numbers */
+                 f64*/)); /* verify that weights are non-complex real numbers */
 
         // FIXME: We should avoid additional copies
         af_array w = weights;
@@ -129,11 +129,11 @@ af_err af_mean_weighted(af_array *out, const af_array in,
             case u16:
             case u8:
             case b8: output = mean<float>(in, w, dim); break;
-            case f64:
-            case s64:
-            case u64: output = mean<double>(in, w, dim); break;
+            //case f64:
+            //case s64:
+            //case u64: output = mean<float>(in, w, dim); break;
             case c32: output = mean<cfloat>(in, w, dim); break;
-            case c64: output = mean<cdouble>(in, w, dim); break;
+            //case c64: output = mean<cdouble>(in, w, dim); break;
             case f16: output = mean<half>(in, w, dim); break;
             default: TYPE_ERROR(1, iType);
         }
@@ -150,12 +150,12 @@ af_err af_mean_all(double *realVal, double *imagVal, const af_array in) {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
         switch (type) {
-            case f64: *realVal = mean<double, double>(in); break;
+            //case f64: *realVal = mean<double, double>(in); break;
             case f32: *realVal = mean<float, float>(in); break;
             case s32: *realVal = mean<int, float>(in); break;
             case u32: *realVal = mean<unsigned, float>(in); break;
-            case s64: *realVal = mean<intl, double>(in); break;
-            case u64: *realVal = mean<uintl, double>(in); break;
+            //case s64: *realVal = mean<intl, double>(in); break;
+            //case u64: *realVal = mean<uintl, double>(in); break;
             case s16: *realVal = mean<short, float>(in); break;
             case u16: *realVal = mean<ushort, float>(in); break;
             case u8: *realVal = mean<uchar, float>(in); break;
@@ -168,11 +168,11 @@ af_err af_mean_all(double *realVal, double *imagVal, const af_array in) {
                 *realVal   = real(tmp);
                 *imagVal   = imag(tmp);
             } break;
-            case c64: {
+            /*case c64: {
                 cdouble tmp = mean<cdouble, cdouble>(in);
                 *realVal    = real(tmp);
                 *imagVal    = imag(tmp);
-            } break;
+            } break;*/
             default: TYPE_ERROR(1, type);
         }
     }
@@ -190,9 +190,9 @@ af_err af_mean_all_weighted(double *realVal, double *imagVal, const af_array in,
 
         ARG_ASSERT(
             3,
-            (wType == f32 ||
+            (wType == f32/* ||
              wType ==
-                 f64)); /* verify that weights are non-complex real numbers */
+                 f64*/)); /* verify that weights are non-complex real numbers */
 
         switch (iType) {
             case f32:
@@ -203,19 +203,19 @@ af_err af_mean_all_weighted(double *realVal, double *imagVal, const af_array in,
             case u8:
             case b8:
             case f16: *realVal = mean<float>(in, weights); break;
-            case f64:
-            case s64:
-            case u64: *realVal = mean<double>(in, weights); break;
+            //case f64:
+            //case s64:
+            //case u64: *realVal = mean<float>(in, weights); break;
             case c32: {
                 cfloat tmp = mean<cfloat>(in, weights);
                 *realVal   = real(tmp);
                 *imagVal   = imag(tmp);
             } break;
-            case c64: {
+            /*case c64: {
                 cdouble tmp = mean<cdouble>(in, weights);
                 *realVal    = real(tmp);
                 *imagVal    = imag(tmp);
-            } break;
+            } break;*/
             default: TYPE_ERROR(1, iType);
         }
     }

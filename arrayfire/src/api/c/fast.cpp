@@ -72,10 +72,10 @@ af_err af_fast(af_features *out, const af_array in, const float thr,
                 *out = fast<float>(in, thr, arc_length, non_max, feature_ratio,
                                    edge);
                 break;
-            case f64:
-                *out = fast<double>(in, thr, arc_length, non_max, feature_ratio,
+            /*case f64:
+                *out = fast<float>(in, thr, arc_length, non_max, feature_ratio,
                                     edge);
-                break;
+                break;*/
             case b8:
                 *out = fast<char>(in, thr, arc_length, non_max, feature_ratio,
                                   edge);

@@ -89,10 +89,10 @@ af_err af_homography(af_array* H, int* inliers, const af_array x_src,
                 homography<float>(outH, outInl, x_src, y_src, x_dst, y_dst,
                                   htype, inlier_thr, iterations);
                 break;
-            case f64:
-                homography<double>(outH, outInl, x_src, y_src, x_dst, y_dst,
+            /*case f64:
+                homography<float>(outH, outInl, x_src, y_src, x_dst, y_dst,
                                    htype, inlier_thr, iterations);
-                break;
+                break;*/
             default: TYPE_ERROR(1, otype);
         }
         swap(*H, outH);

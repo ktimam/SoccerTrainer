@@ -24,10 +24,10 @@ template<>
 cfloat conj<cfloat>(cfloat c) {
     return std::conj(c);
 }
-template<>
-cdouble conj<cdouble>(cdouble c) {
-    return std::conj(c);
-}
+//template<>
+//cdouble conj<cdouble>(cdouble c) {
+//    return std::conj(c);
+//}
 
 template<typename T, bool conjugate, bool both_conjugate>
 void dot(Param<T> output, CParam<T> lhs, CParam<T> rhs, af_mat_prop optLhs,

@@ -16,7 +16,7 @@
 #include <cmath>
 
 using af::dim4;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -67,9 +67,9 @@ af_err af_rotate(af_array *out, const af_array in, const float theta,
         af_array output = 0;
         switch (itype) {
             case f32: output = rotate<float>(in, theta, odims, method); break;
-            case f64: output = rotate<double>(in, theta, odims, method); break;
+            //case f64: output = rotate<float>(in, theta, odims, method); break;
             case c32: output = rotate<cfloat>(in, theta, odims, method); break;
-            case c64: output = rotate<cdouble>(in, theta, odims, method); break;
+            //case c64: output = rotate<cdouble>(in, theta, odims, method); break;
             case s32: output = rotate<int>(in, theta, odims, method); break;
             case u32: output = rotate<uint>(in, theta, odims, method); break;
             case s64: output = rotate<intl>(in, theta, odims, method); break;

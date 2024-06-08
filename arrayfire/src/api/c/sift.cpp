@@ -80,11 +80,11 @@ af_err af_sift(af_features* feat, af_array* desc, const af_array in,
                                    edge_thr, init_sigma, double_input,
                                    img_scale, feature_ratio, false);
                 break;
-            case f64:
+            /*case f64:
                 sift<double, double>(
                     *feat, tmp_desc, in, n_layers, contrast_thr, edge_thr,
                     init_sigma, double_input, img_scale, feature_ratio, false);
-                break;
+                break;*/
             default: TYPE_ERROR(1, type);
         }
         std::swap(*desc, tmp_desc);
@@ -123,11 +123,11 @@ af_err af_gloh(af_features* feat, af_array* desc, const af_array in,
                                    edge_thr, init_sigma, double_input,
                                    img_scale, feature_ratio, true);
                 break;
-            case f64:
+            /*case f64:
                 sift<double, double>(
                     *feat, tmp_desc, in, n_layers, contrast_thr, edge_thr,
                     init_sigma, double_input, img_scale, feature_ratio, true);
-                break;
+                break;*/
             default: TYPE_ERROR(1, type);
         }
         std::swap(*desc, tmp_desc);

@@ -26,7 +26,7 @@ using arrayfire::releaseSparseHandle;
 using arrayfire::retainSparseHandle;
 using arrayfire::common::half;
 using arrayfire::common::SparseArrayBase;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createDeviceDataArray;
 using detail::intl;
@@ -42,8 +42,8 @@ af_err af_get_data_ptr(void *data, const af_array arr) {
         switch (type) {
             case f32: copyData(static_cast<float*   >(data), arr); break;
             case c32: copyData(static_cast<cfloat*  >(data), arr); break;
-            case f64: copyData(static_cast<double*  >(data), arr); break;
-            case c64: copyData(static_cast<cdouble* >(data), arr); break;
+            //case f64: copyData(static_cast<double*  >(data), arr); break;
+            //case c64: copyData(static_cast<cdouble* >(data), arr); break;
             case b8:  copyData(static_cast<char*    >(data), arr); break;
             case s32: copyData(static_cast<int*     >(data), arr); break;
             case u32: copyData(static_cast<unsigned*>(data), arr); break;
@@ -79,14 +79,14 @@ af_err af_create_array(af_array *result, const void *const data,
                 out =
                     createHandleFromData(d, static_cast<const cfloat *>(data));
                 break;
-            case f64:
+            /*case f64:
                 out =
                     createHandleFromData(d, static_cast<const double *>(data));
-                break;
-            case c64:
+                break;*/
+            /*case c64:
                 out =
                     createHandleFromData(d, static_cast<const cdouble *>(data));
-                break;
+                break;*/
             case b8:
                 out = createHandleFromData(d, static_cast<const char *>(data));
                 break;
@@ -157,9 +157,9 @@ af_err af_copy_array(af_array *out, const af_array in) {
             }
             switch (type) {
                 case f32: res = copySparseArray<float>(in); break;
-                case f64: res = copySparseArray<double>(in); break;
+                //case f64: res = copySparseArray<float>(in); break;
                 case c32: res = copySparseArray<cfloat>(in); break;
-                case c64: res = copySparseArray<cdouble>(in); break;
+                //case c64: res = copySparseArray<cdouble>(in); break;
                 default: TYPE_ERROR(0, type);
             }
 
@@ -170,8 +170,8 @@ af_err af_copy_array(af_array *out, const af_array in) {
             switch (type) {
                 case f32: res = copyArray<float>(in); break;
                 case c32: res = copyArray<cfloat>(in); break;
-                case f64: res = copyArray<double>(in); break;
-                case c64: res = copyArray<cdouble>(in); break;
+                //case f64: res = copyArray<float>(in); break;
+                //case c64: res = copyArray<cdouble>(in); break;
                 case b8: res = copyArray<char>(in); break;
                 case s32: res = copyArray<int>(in); break;
                 case u32: res = copyArray<uint>(in); break;
@@ -200,8 +200,8 @@ af_err af_get_data_ref_count(int *use_count, const af_array in) {
         switch (type) {
             case f32: res = getUseCount<float>(in); break;
             case c32: res = getUseCount<cfloat>(in); break;
-            case f64: res = getUseCount<double>(in); break;
-            case c64: res = getUseCount<cdouble>(in); break;
+            //case f64: res = getUseCount<float>(in); break;
+            //case c64: res = getUseCount<cdouble>(in); break;
             case b8: res = getUseCount<char>(in); break;
             case s32: res = getUseCount<int>(in); break;
             case u32: res = getUseCount<uint>(in); break;
@@ -228,17 +228,17 @@ af_err af_release_array(af_array arr) {
         if (info.isSparse()) {
             switch (type) {
                 case f32: releaseSparseHandle<float>(arr); break;
-                case f64: releaseSparseHandle<double>(arr); break;
+                //case f64: releaseSparseHandle<float>(arr); break;
                 case c32: releaseSparseHandle<cfloat>(arr); break;
-                case c64: releaseSparseHandle<cdouble>(arr); break;
+                //case c64: releaseSparseHandle<cdouble>(arr); break;
                 default: TYPE_ERROR(0, type);
             }
         } else {
             switch (type) {
                 case f32: releaseHandle<float>(arr); break;
                 case c32: releaseHandle<cfloat>(arr); break;
-                case f64: releaseHandle<double>(arr); break;
-                case c64: releaseHandle<cdouble>(arr); break;
+                //case f64: releaseHandle<float>(arr); break;
+                //case c64: releaseHandle<cdouble>(arr); break;
                 case b8: releaseHandle<char>(arr); break;
                 case s32: releaseHandle<int>(arr); break;
                 case u32: releaseHandle<uint>(arr); break;
@@ -292,13 +292,13 @@ af_err af_write_array(af_array arr, const void *data, const size_t bytes,
             case c32:
                 write_array(arr, static_cast<const cfloat *>(data), bytes, src);
                 break;
-            case f64:
+            /*case f64:
                 write_array(arr, static_cast<const double *>(data), bytes, src);
-                break;
-            case c64:
+                break;*/
+            /*case c64:
                 write_array(arr, static_cast<const cdouble *>(data), bytes,
                             src);
-                break;
+                break;*/
             case b8:
                 write_array(arr, static_cast<const char *>(data), bytes, src);
                 break;
@@ -393,7 +393,7 @@ INSTANTIATE(af_is_column, isColumn)
 INSTANTIATE(af_is_vector, isVector)
 INSTANTIATE(af_is_complex, isComplex)
 INSTANTIATE(af_is_real, isReal)
-INSTANTIATE(af_is_double, isDouble)
+//INSTANTIATE(af_is_double, isDouble)
 INSTANTIATE(af_is_single, isSingle)
 INSTANTIATE(af_is_half, isHalf)
 INSTANTIATE(af_is_realfloating, isRealFloating)
@@ -420,10 +420,10 @@ af_err af_get_scalar(void *output_value, const af_array arr) {
             case f32:
                 getScalar<float>(reinterpret_cast<float *>(output_value), arr);
                 break;
-            case f64:
-                getScalar<double>(reinterpret_cast<double *>(output_value),
+            /*case f64:
+                getScalar<float>(reinterpret_cast<double *>(output_value),
                                   arr);
-                break;
+                break;*/
             case b8:
                 getScalar<char>(reinterpret_cast<char *>(output_value), arr);
                 break;
@@ -453,10 +453,10 @@ af_err af_get_scalar(void *output_value, const af_array arr) {
                 getScalar<cfloat>(reinterpret_cast<cfloat *>(output_value),
                                   arr);
                 break;
-            case c64:
+            /*case c64:
                 getScalar<cdouble>(reinterpret_cast<cdouble *>(output_value),
                                    arr);
-                break;
+                break;*/
             case f16:
                 getScalar<half>(static_cast<half *>(output_value), arr);
                 break;

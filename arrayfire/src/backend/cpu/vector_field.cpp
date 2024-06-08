@@ -55,7 +55,7 @@ void copy_vector_field(const Array<T> &points, const Array<T> &directions,
                                        fg_vector_field);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)

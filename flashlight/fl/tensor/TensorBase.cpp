@@ -203,7 +203,7 @@ FL_CREATE_MEMORY_OPS(long);
 FL_CREATE_MEMORY_OPS(unsigned long);
 FL_CREATE_MEMORY_OPS(long long);
 FL_CREATE_MEMORY_OPS(unsigned long long);
-FL_CREATE_MEMORY_OPS(double);
+//FL_CREATE_MEMORY_OPS(double);
 FL_CREATE_MEMORY_OPS(float);
 FL_CREATE_MEMORY_OPS(short);
 FL_CREATE_MEMORY_OPS(unsigned short);
@@ -286,7 +286,7 @@ std::ostream& Tensor::operator<<(std::ostream& ostr) const {
   }
 #define FL_ASSIGN_TENSOR_OP(OP, FUN) FL_ASSIGN_OP_TYPE(OP, FUN, const Tensor&);
 #define FL_ASSIGN_SCALAR_OP(OP, FUN)                 \
-  FL_ASSIGN_OP_TYPE(OP, FUN, const double&);         \
+  /*FL_ASSIGN_OP_TYPE(OP, FUN, const double&);*/         \
   FL_ASSIGN_OP_TYPE(OP, FUN, const float&);          \
   FL_ASSIGN_OP_TYPE(OP, FUN, const int&);            \
   FL_ASSIGN_OP_TYPE(OP, FUN, const unsigned&);       \
@@ -355,7 +355,7 @@ Tensor& Tensor::operator=(const Tensor& other) && {
   FL_API Tensor full(const Shape& dims, TYPE value, const dtype type) { \
     return defaultTensorBackend().full(dims, value, type);       \
   }
-FL_CREATE_FUN_LITERAL_TYPE(const double&);
+//FL_CREATE_FUN_LITERAL_TYPE(const double&);
 FL_CREATE_FUN_LITERAL_TYPE(const float&);
 FL_CREATE_FUN_LITERAL_TYPE(const int&);
 FL_CREATE_FUN_LITERAL_TYPE(const unsigned&);
@@ -381,7 +381,7 @@ Tensor identity(const Dim dim, const dtype type) {
         step +                                                              \
         start;                                                              \
   }
-FL_ARANGE_FUN_DEF(const double&);
+//FL_ARANGE_FUN_DEF(const double&);
 FL_ARANGE_FUN_DEF(const float&);
 FL_ARANGE_FUN_DEF(const int&);
 FL_ARANGE_FUN_DEF(const unsigned&);
@@ -512,17 +512,17 @@ Tensor clip(const Tensor& tensor, const Tensor& low, const Tensor& high) {
   return tensor.backend().clip(tensor, low, high);
 }
 
-Tensor clip(const Tensor& tensor, const Tensor& low, const double& high) {
+Tensor clip(const Tensor& tensor, const Tensor& low, const float& high) {
   FL_TENSOR_BACKENDS_MATCH_CHECK(tensor, low);
   return tensor.backend().clip(tensor, low, high);
 }
 
-Tensor clip(const Tensor& tensor, const double& low, const Tensor& high) {
+Tensor clip(const Tensor& tensor, const float& low, const Tensor& high) {
   FL_TENSOR_BACKENDS_MATCH_CHECK(tensor, high);
   return tensor.backend().clip(tensor, low, high);
 }
 
-Tensor clip(const Tensor& tensor, const double& low, const double& high) {
+Tensor clip(const Tensor& tensor, const float& low, const float& high) {
   return tensor.backend().clip(tensor, low, high);
 }
 
@@ -555,12 +555,12 @@ Tensor where(const Tensor& condition, const Tensor& x, const Tensor& y) {
   return condition.backend().where(condition, x, y);
 }
 
-Tensor where(const Tensor& condition, const Tensor& x, const double& y) {
+Tensor where(const Tensor& condition, const Tensor& x, const float& y) {
   FL_TENSOR_BACKENDS_MATCH_CHECK(condition, x);
   return condition.backend().where(condition, x, y);
 }
 
-Tensor where(const Tensor& condition, const double& x, const Tensor& y) {
+Tensor where(const Tensor& condition, const float& x, const Tensor& y) {
   FL_TENSOR_BACKENDS_MATCH_CHECK(condition, y);
   return condition.backend().where(condition, x, y);
 }
@@ -618,7 +618,7 @@ Tensor argsort(const Tensor& input, const Dim axis, const SortMode sortMode) {
   FL_BINARY_OP_LITERAL_TYPE_DEF(OP, FUNC, const unsigned long&);      \
   FL_BINARY_OP_LITERAL_TYPE_DEF(OP, FUNC, const long long&);          \
   FL_BINARY_OP_LITERAL_TYPE_DEF(OP, FUNC, const unsigned long long&); \
-  FL_BINARY_OP_LITERAL_TYPE_DEF(OP, FUNC, const double&);             \
+  /*FL_BINARY_OP_LITERAL_TYPE_DEF(OP, FUNC, const double&); */            \
   FL_BINARY_OP_LITERAL_TYPE_DEF(OP, FUNC, const float&);              \
   FL_BINARY_OP_LITERAL_TYPE_DEF(OP, FUNC, const short&);              \
   FL_BINARY_OP_LITERAL_TYPE_DEF(OP, FUNC, const unsigned short&);
@@ -666,19 +666,19 @@ Tensor maximum(const Tensor& lhs, const Tensor& rhs) {
   return lhs.backend().maximum(lhs, rhs);
 }
 
-Tensor minimum(const Tensor& lhs, const double& rhs) {
+Tensor minimum(const Tensor& lhs, const float& rhs) {
   return lhs.backend().minimum(lhs, rhs);
 }
 
-Tensor minimum(const double& lhs, const Tensor& rhs) {
+Tensor minimum(const float& lhs, const Tensor& rhs) {
   return rhs.backend().minimum(lhs, rhs);
 }
 
-Tensor maximum(const Tensor& lhs, const double& rhs) {
+Tensor maximum(const Tensor& lhs, const float& rhs) {
   return lhs.backend().maximum(lhs, rhs);
 }
 
-Tensor maximum(const double& lhs, const Tensor& rhs) {
+Tensor maximum(const float& lhs, const Tensor& rhs) {
   return rhs.backend().maximum(lhs, rhs);
 }
 
@@ -687,11 +687,11 @@ Tensor power(const Tensor& lhs, const Tensor& rhs) {
   return lhs.backend().power(lhs, rhs);
 }
 
-Tensor power(const Tensor& lhs, const double& rhs) {
+Tensor power(const Tensor& lhs, const float& rhs) {
   return lhs.backend().power(lhs, rhs);
 }
 
-Tensor power(const double& lhs, const Tensor& rhs) {
+Tensor power(const float& lhs, const Tensor& rhs) {
   return rhs.backend().power(lhs, rhs);
 }
 
@@ -798,7 +798,7 @@ Tensor std(
 Tensor norm(
     const Tensor& input,
     const std::vector<int>& axes /* = {} */,
-    double p /* = 2 */,
+    float p /* = 2 */,
     const bool keepDims /* = false */) {
   return input.backend().norm(input, axes, p, keepDims);
 }
@@ -838,7 +838,7 @@ void print(const Tensor& tensor) {
 bool allClose(
     const fl::Tensor& a,
     const fl::Tensor& b,
-    const double absTolerance) {
+    const float absTolerance) {
   if (a.type() != b.type()) {
     return false;
   }
@@ -848,7 +848,7 @@ bool allClose(
   if (a.elements() == 0 && b.elements() == 0) {
     return true;
   }
-  return fl::amax(fl::abs(a - b)).astype(dtype::f64).scalar<double>() <
+  return fl::amax(fl::abs(a - b)).astype(dtype::f64).scalar<float>() <
       absTolerance;
 }
 

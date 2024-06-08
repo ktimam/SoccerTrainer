@@ -19,7 +19,7 @@
 
 using af::dim4;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::createValueArray;
@@ -74,10 +74,10 @@ af_err af_susan(af_features* out, const af_array in, const unsigned radius,
                 *out = susan<float>(in, radius, diff_thr, geom_thr,
                                     feature_ratio, edge);
                 break;
-            case f64:
-                *out = susan<double>(in, radius, diff_thr, geom_thr,
+            /*case f64:
+                *out = susan<float>(in, radius, diff_thr, geom_thr,
                                      feature_ratio, edge);
-                break;
+                break;*/
             case b8:
                 *out = susan<char>(in, radius, diff_thr, geom_thr,
                                    feature_ratio, edge);

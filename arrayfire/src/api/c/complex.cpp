@@ -23,7 +23,7 @@
 
 using af::dim4;
 using arrayfire::common::half;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::conj;
 using detail::imag;
@@ -42,11 +42,11 @@ af_err af_cplx2(af_array *out, const af_array lhs, const af_array rhs,
     try {
         af_dtype type = implicit(lhs, rhs);
 
-        if (type == c32 || type == c64) {
+        if (type == c32 /*|| type == c64*/) {
             AF_ERROR("Inputs to cplx2 can not be of complex type", AF_ERR_ARG);
         }
 
-        if (type != f64) { type = f32; }
+        //if (type != f64) { type = f32; }
         dim4 odims =
             getOutDims(getInfo(lhs).dims(), getInfo(rhs).dims(), batchMode);
         if (odims.ndims() == 0) {
@@ -56,7 +56,7 @@ af_err af_cplx2(af_array *out, const af_array lhs, const af_array rhs,
         af_array res;
         switch (type) {
             case f32: res = cplx<cfloat, float>(lhs, rhs, odims); break;
-            case f64: res = cplx<cdouble, double>(lhs, rhs, odims); break;
+            //case f64: res = cplx<cdouble, double>(lhs, rhs, odims); break;
             default: TYPE_ERROR(0, type);
         }
 
@@ -71,7 +71,7 @@ af_err af_cplx(af_array *out, const af_array in) {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
-        if (type == c32 || type == c64) {
+        if (type == c32 /*|| type == c64*/) {
             AF_ERROR("Inputs to cplx2 can not be of complex type", AF_ERR_ARG);
         }
         if (info.ndims() == 0) { return af_retain_array(out, in); }
@@ -82,7 +82,7 @@ af_err af_cplx(af_array *out, const af_array in) {
         af_array res;
         switch (type) {
             case f32: res = cplx<cfloat, float>(in, tmp, info.dims()); break;
-            case f64: res = cplx<cdouble, double>(in, tmp, info.dims()); break;
+            //case f64: res = cplx<cdouble, double>(in, tmp, info.dims()); break;
 
             default: TYPE_ERROR(0, type);
         }
@@ -100,7 +100,7 @@ af_err af_real(af_array *out, const af_array in) {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
-        if (type != c32 && type != c64) { return af_retain_array(out, in); }
+        if (type != c32 /*&& type != c64*/) { return af_retain_array(out, in); }
         if (info.ndims() == 0) { return af_retain_array(out, in); }
 
         af_array res;
@@ -108,9 +108,9 @@ af_err af_real(af_array *out, const af_array in) {
             case c32:
                 res = getHandle(real<float, cfloat>(getArray<cfloat>(in)));
                 break;
-            case c64:
+            /*case c64:
                 res = getHandle(real<double, cdouble>(getArray<cdouble>(in)));
-                break;
+                break;*/
 
             default: TYPE_ERROR(0, type);
         }
@@ -126,7 +126,7 @@ af_err af_imag(af_array *out, const af_array in) {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
-        if (type != c32 && type != c64) {
+        if (type != c32 /*&& type != c64*/) {
             return af_constant(out, 0, info.ndims(), info.dims().get(), type);
         }
         if (info.ndims() == 0) { return af_retain_array(out, in); }
@@ -136,9 +136,9 @@ af_err af_imag(af_array *out, const af_array in) {
             case c32:
                 res = getHandle(imag<float, cfloat>(getArray<cfloat>(in)));
                 break;
-            case c64:
+            /*case c64:
                 res = getHandle(imag<double, cdouble>(getArray<cdouble>(in)));
-                break;
+                break;*/
 
             default: TYPE_ERROR(0, type);
         }
@@ -154,7 +154,7 @@ af_err af_conjg(af_array *out, const af_array in) {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
-        if (type != c32 && type != c64) { return af_retain_array(out, in); }
+        if (type != c32 /*&& type != c64*/) { return af_retain_array(out, in); }
         if (info.ndims() == 0) { return af_retain_array(out, in); }
 
         af_array res;
@@ -162,9 +162,9 @@ af_err af_conjg(af_array *out, const af_array in) {
             case c32:
                 res = getHandle(conj<cfloat>(getArray<cfloat>(in)));
                 break;
-            case c64:
+            /*case c64:
                 res = getHandle(conj<cdouble>(getArray<cdouble>(in)));
-                break;
+                break;*/
 
             default: TYPE_ERROR(0, type);
         }
@@ -189,9 +189,9 @@ af_err af_abs(af_array *out, const af_array in) {
         switch (type) {
             // clang-format off
             case f32: res = getHandle(detail::abs<float, float>(castArray<float>(in))); break;
-            case f64: res = getHandle(detail::abs<double, double>(castArray<double>(in))); break;
+            //case f64: res = getHandle(detail::abs<double, double>(castArray<float>(in))); break;
             case c32: res = getHandle(detail::abs<float, cfloat>(castArray<cfloat>(in))); break;
-            case c64: res = getHandle(detail::abs<double, cdouble>(castArray<cdouble>(in))); break;
+            //case c64: res = getHandle(detail::abs<double, cdouble>(castArray<cdouble>(in))); break;
             case f16: res = getHandle(detail::abs<half, half>(getArray<half>(in))); break;
             // clang-format on
             default: TYPE_ERROR(1, in_type); break;

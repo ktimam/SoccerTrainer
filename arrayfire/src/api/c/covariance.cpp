@@ -89,12 +89,12 @@ af_err af_cov_v2(af_array* out, const af_array X, const af_array Y,
 
         af_array output = 0;
         switch (xType) {
-            case f64: output = cov<double, double>(X, Y, bias); break;
+            //case f64: output = cov<double, double>(X, Y, bias); break;
             case f32: output = cov<float, float>(X, Y, bias); break;
             case s32: output = cov<int, float>(X, Y, bias); break;
             case u32: output = cov<uint, float>(X, Y, bias); break;
-            case s64: output = cov<intl, double>(X, Y, bias); break;
-            case u64: output = cov<uintl, double>(X, Y, bias); break;
+            //case s64: output = cov<intl, double>(X, Y, bias); break;
+            //case u64: output = cov<uintl, double>(X, Y, bias); break;
             case s16: output = cov<short, float>(X, Y, bias); break;
             case u16: output = cov<ushort, float>(X, Y, bias); break;
             case u8: output = cov<uchar, float>(X, Y, bias); break;

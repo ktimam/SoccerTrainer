@@ -231,7 +231,7 @@ Tensor ArrayFireBackend::rand(const Shape& shape, dtype type) {
             value, detail::flToAfDims(shape), detail::flToAfType(type)), \
         shape.ndim());                                                   \
   }
-AF_BACKEND_CREATE_FUN_LITERAL_DEF(const double&);
+//AF_BACKEND_CREATE_FUN_LITERAL_DEF(const double&);
 AF_BACKEND_CREATE_FUN_LITERAL_DEF(const float&);
 AF_BACKEND_CREATE_FUN_LITERAL_DEF(const int&);
 AF_BACKEND_CREATE_FUN_LITERAL_DEF(const unsigned&);

@@ -86,9 +86,9 @@ af_err af_set_axes_limits_compute(const af_window window, const af_array x,
             chart = fgMngr.getChart(window, 0, 0, ctype);
         }
 
-        double xmin = -1., xmax = 1.;
-        double ymin = -1., ymax = 1.;
-        double zmin = -1., zmax = 1.;
+        float xmin = -1., xmax = 1.;
+        float ymin = -1., ymax = 1.;
+        float zmin = -1., zmax = 1.;
         AF_CHECK(af_min_all(&xmin, nullptr, x));
         AF_CHECK(af_max_all(&xmax, nullptr, x));
         AF_CHECK(af_min_all(&ymin, nullptr, y));
@@ -137,10 +137,10 @@ af_err af_set_axes_limits_2d(const af_window window, const float xmin,
             chart = fgMngr.getChart(window, 0, 0, ctype);
         }
 
-        double _xmin = xmin;
-        double _xmax = xmax;
-        double _ymin = ymin;
-        double _ymax = ymax;
+        float _xmin = xmin;
+        float _xmax = xmax;
+        float _ymin = ymin;
+        float _ymax = ymax;
         if (!exact) {
             _xmin = step_round(_xmin, false);
             _xmax = step_round(_xmax, true);
@@ -178,12 +178,12 @@ af_err af_set_axes_limits_3d(const af_window window, const float xmin,
             chart = fgMngr.getChart(window, 0, 0, ctype);
         }
 
-        double _xmin = xmin;
-        double _xmax = xmax;
-        double _ymin = ymin;
-        double _ymax = ymax;
-        double _zmin = zmin;
-        double _zmax = zmax;
+        float _xmin = xmin;
+        float _xmax = xmax;
+        float _ymin = ymin;
+        float _ymax = ymax;
+        float _zmin = zmin;
+        float _zmax = zmax;
         if (!exact) {
             _xmin = step_round(_xmin, false);
             _xmax = step_round(_xmax, true);

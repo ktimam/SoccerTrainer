@@ -44,8 +44,8 @@ namespace detail {
  */
 FL_API Tensor uniform(
     const Shape& shape,
-    double min = 0,
-    double max = 1,
+    float min = 0,
+    float max = 1,
     fl::dtype type = fl::dtype::f32);
 
 /**
@@ -66,8 +66,8 @@ FL_API Tensor uniform(
  */
 FL_API Tensor normal(
     const Shape& shape,
-    double stdv = 1,
-    double mean = 0,
+    float stdv = 1,
+    float mean = 0,
     fl::dtype type = fl::dtype::f32);
 
 /**
@@ -246,7 +246,7 @@ FL_API Variable param(const Tensor& arr);
  * \ingroup nn_init_utils
  */
 FL_API Variable constant(
-    double val,
+    float val,
     int inputSize,
     int outputSize,
     fl::dtype type = fl::dtype::f32,
@@ -267,7 +267,7 @@ FL_API Variable constant(
  * \ingroup nn_init_utils
  */
 FL_API Variable constant(
-    double val,
+    float val,
     const Shape& shape,
     fl::dtype type = fl::dtype::f32,
     bool calcGrad = true);
@@ -350,8 +350,8 @@ FL_API Variable identity(
 FL_API Variable uniform(
     int inputSize,
     int outputSize,
-    double min = 0,
-    double max = 1,
+    float min = 0,
+    float max = 1,
     fl::dtype type = fl::dtype::f32,
     bool calcGrad = true);
 
@@ -375,8 +375,8 @@ FL_API Variable uniform(
  */
 FL_API Variable uniform(
     const Shape& shape,
-    double min = 0,
-    double max = 1,
+    float min = 0,
+    float max = 1,
     fl::dtype type = fl::dtype::f32,
     bool calcGrad = true);
 
@@ -402,8 +402,8 @@ FL_API Variable uniform(
 FL_API Variable normal(
     int inputSize,
     int outputSize,
-    double stdv = 1,
-    double mean = 0,
+    float stdv = 1,
+    float mean = 0,
     fl::dtype type = fl::dtype::f32,
     bool calcGrad = true);
 
@@ -427,8 +427,8 @@ FL_API Variable normal(
  */
 FL_API Variable normal(
     const Shape& shape,
-    double stdv = 1,
-    double mean = 0,
+    float stdv = 1,
+    float mean = 0,
     fl::dtype type = fl::dtype::f32,
     bool calcGrad = true);
 
@@ -552,10 +552,10 @@ FL_API Variable glorotNormal(
  */
 FL_API Variable truncNormal(
     const Shape& shape,
-    double stdv = 1.,
-    double mean = 0.,
-    double minCufOff = -2.,
-    double maxCutOff = 2.,
+    float stdv = 1.,
+    float mean = 0.,
+    float minCufOff = -2.,
+    float maxCutOff = 2.,
     fl::dtype type = fl::dtype::f32,
     bool calcGrad = true);
 

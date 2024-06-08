@@ -362,9 +362,9 @@ void Array<T>::setDataDims(const dim4 &new_dims) {
     template void checkAndMigrate<T>(const Array<T> &arr);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)

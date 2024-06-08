@@ -28,10 +28,10 @@ SinusoidalPositionEmbedding::SinusoidalPositionEmbedding(
   //      https://arxiv.org/pdf/1706.03762.pdf
   // Create an `iota` that looks like `[0,0,1,1,2,2,...]`, use it as the scale.
   scale_ = fl::exp(
-      -2 * fl::floor((fl::iota({layerDim_}) / 2)) * std::log(10000) /
+      -2.f * fl::floor((fl::iota({layerDim_}) / 2.f)) * (float)std::log(10000) /
       layerDim_);
   // Create a Cosine phase shift that acts on indices like `[0,1,0,1,...]`
-  const double sinToCosPhaseShift = M_PI / 2.0;
+  const float sinToCosPhaseShift = M_PI / 2.0f;
   cosShifts_ = sinToCosPhaseShift * fl::iota({layerDim_}) % 2;
   // In the forward pass, the even indices of embedding vectors will have the
   // Sine function applied and the odd indices will have the Cosine function

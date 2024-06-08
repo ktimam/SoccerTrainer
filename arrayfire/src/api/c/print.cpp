@@ -33,7 +33,7 @@
 using arrayfire::getSparseArray;
 using arrayfire::common::half;
 using arrayfire::common::SparseArray;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -148,17 +148,17 @@ af_err af_print_array(af_array arr) {
         if (info.isSparse()) {
             switch (type) {
                 case f32: printSparse<float>(NULL, arr, 4); break;
-                case f64: printSparse<double>(NULL, arr, 4); break;
+                //case f64: printSparse<float>(NULL, arr, 4); break;
                 case c32: printSparse<cfloat>(NULL, arr, 4); break;
-                case c64: printSparse<cdouble>(NULL, arr, 4); break;
+                //case c64: printSparse<cdouble>(NULL, arr, 4); break;
                 default: TYPE_ERROR(0, type);
             }
         } else {
             switch (type) {
                 case f32: print<float>(NULL, arr, 4); break;
                 case c32: print<cfloat>(NULL, arr, 4); break;
-                case f64: print<double>(NULL, arr, 4); break;
-                case c64: print<cdouble>(NULL, arr, 4); break;
+                //case f64: print<float>(NULL, arr, 4); break;
+                //case c64: print<cdouble>(NULL, arr, 4); break;
                 case b8: print<char>(NULL, arr, 4); break;
                 case s32: print<int>(NULL, arr, 4); break;
                 case u32: print<unsigned>(NULL, arr, 4); break;
@@ -187,17 +187,17 @@ af_err af_print_array_gen(const char *exp, const af_array arr,
         if (info.isSparse()) {
             switch (type) {
                 case f32: printSparse<float>(exp, arr, precision); break;
-                case f64: printSparse<double>(exp, arr, precision); break;
+                //case f64: printSparse<float>(exp, arr, precision); break;
                 case c32: printSparse<cfloat>(exp, arr, precision); break;
-                case c64: printSparse<cdouble>(exp, arr, precision); break;
+                //case c64: printSparse<cdouble>(exp, arr, precision); break;
                 default: TYPE_ERROR(0, type);
             }
         } else {
             switch (type) {
                 case f32: print<float>(exp, arr, precision); break;
                 case c32: print<cfloat>(exp, arr, precision); break;
-                case f64: print<double>(exp, arr, precision); break;
-                case c64: print<cdouble>(exp, arr, precision); break;
+                //case f64: print<float>(exp, arr, precision); break;
+                //case c64: print<cdouble>(exp, arr, precision); break;
                 case b8: print<char>(exp, arr, precision); break;
                 case s32: print<int>(exp, arr, precision); break;
                 case u32: print<unsigned>(exp, arr, precision); break;
@@ -229,15 +229,15 @@ af_err af_array_to_string(char **output, const char *exp, const af_array arr,
                 case f32:
                     printSparse<float>(exp, arr, precision, ss, transpose);
                     break;
-                case f64:
-                    printSparse<double>(exp, arr, precision, ss, transpose);
-                    break;
+                /*case f64:
+                    printSparse<float>(exp, arr, precision, ss, transpose);
+                    break;*/
                 case c32:
                     printSparse<cfloat>(exp, arr, precision, ss, transpose);
                     break;
-                case c64:
+                /*case c64:
                     printSparse<cdouble>(exp, arr, precision, ss, transpose);
-                    break;
+                    break;*/
                 default: TYPE_ERROR(0, type);
             }
         } else {
@@ -248,12 +248,12 @@ af_err af_array_to_string(char **output, const char *exp, const af_array arr,
                 case c32:
                     print<cfloat>(exp, arr, precision, ss, transpose);
                     break;
-                case f64:
-                    print<double>(exp, arr, precision, ss, transpose);
-                    break;
-                case c64:
+                /*case f64:
+                    print<float>(exp, arr, precision, ss, transpose);
+                    break;*/
+                /*case c64:
                     print<cdouble>(exp, arr, precision, ss, transpose);
-                    break;
+                    break;*/
                 case b8: print<char>(exp, arr, precision, ss, transpose); break;
                 case s32: print<int>(exp, arr, precision, ss, transpose); break;
                 case u32:

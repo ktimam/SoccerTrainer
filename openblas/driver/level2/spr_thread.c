@@ -186,15 +186,15 @@ int CNAME(BLASLONG m, FLOAT *alpha, FLOAT *x, BLASLONG incx, FLOAT *a, FLOAT *bu
 
   args.m = m;
 
-  args.a = (void *)x;
-  args.b = (void *)a;
+  args.a = (float *)x;
+  args.b = (float *)a;
 
   args.lda = incx;
 
 #if !defined(COMPLEX) || defined(HEMV) || defined(HEMVREV)
-  args.alpha = (void *)&alpha;
+  args.alpha = (float *)&alpha;
 #else
-  args.alpha = (void *)alpha;
+  args.alpha = (float *)alpha;
 #endif
 
   dnum = (double)m * (double)m / (double)nthreads;

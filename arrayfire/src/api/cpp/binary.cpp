@@ -34,14 +34,14 @@ INSTANTIATE(atan2, af_atan2)
 INSTANTIATE(hypot, af_hypot)
 
 #define WRAPPER(func)                                             \
-    array func(const array &lhs, const double rhs) {              \
+    array func(const array &lhs, const float rhs) {              \
         af::dtype ty = lhs.type();                                \
-        if (lhs.iscomplex()) { ty = lhs.issingle() ? f32 : f64; } \
+        if (lhs.iscomplex()) { ty = lhs.issingle() ? f32 : f32/*f64*/; } \
         return func(lhs, constant(rhs, lhs.dims(), ty));          \
     }                                                             \
-    array func(const double lhs, const array &rhs) {              \
+    array func(const float lhs, const array &rhs) {              \
         af::dtype ty = rhs.type();                                \
-        if (rhs.iscomplex()) { ty = rhs.issingle() ? f32 : f64; } \
+        if (rhs.iscomplex()) { ty = rhs.issingle() ? f32 : f32/*f64*/; } \
         return func(constant(lhs, rhs.dims(), ty), rhs);          \
     }
 

@@ -412,7 +412,7 @@ template<> struct tn_holder<float>
     }
 };
 
-template<> struct tn_holder<double>
+template<> struct tn_holder<float>
 {
     static std::string type_name( std::string const& suffix )
     {

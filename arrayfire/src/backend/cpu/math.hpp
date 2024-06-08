@@ -33,14 +33,14 @@ static inline T min(T lhs, T rhs) {
     return std::min(lhs, rhs);
 }
 cfloat min(cfloat lhs, cfloat rhs);
-cdouble min(cdouble lhs, cdouble rhs);
+//cdouble min(cdouble lhs, cdouble rhs);
 
 template<typename T>
 static inline T max(T lhs, T rhs) {
     return std::max(lhs, rhs);
 }
 cfloat max(cfloat lhs, cfloat rhs);
-cdouble max(cdouble lhs, cdouble rhs);
+//cdouble max(cdouble lhs, cdouble rhs);
 
 template<typename T>
 static inline auto is_nan(const T &val) -> bool {
@@ -51,11 +51,11 @@ template<>
 inline auto is_nan<float>(const float &val) -> bool {
     return std::isnan(val);
 }
-
-template<>
-inline auto is_nan<double>(const double &val) -> bool {
-    return std::isnan(val);
-}
+//
+//template<>
+//inline auto is_nan<float>(const double &val) -> bool {
+//    return std::isnan(val);
+//}
 
 template<>
 inline auto is_nan<common::half>(const common::half &val) -> bool {
@@ -67,10 +67,10 @@ inline auto is_nan<cfloat>(const cfloat &in) -> bool {
     return std::isnan(real(in)) || std::isnan(imag(in));
 }
 
-template<>
-inline auto is_nan<cdouble>(const cdouble &in) -> bool {
-    return std::isnan(real(in)) || std::isnan(imag(in));
-}
+//template<>
+//inline auto is_nan<cdouble>(const cdouble &in) -> bool {
+//    return std::isnan(real(in)) || std::isnan(imag(in));
+//}
 
 template<typename T>
 static inline T division(T lhs, double rhs) {
@@ -84,11 +84,11 @@ inline cfloat division<cfloat>(cfloat lhs, double rhs) {
     return retVal;
 }
 
-template<>
-inline cdouble division<cdouble>(cdouble lhs, double rhs) {
-    cdouble retVal(real(lhs) / rhs, imag(lhs) / rhs);
-    return retVal;
-}
+//template<>
+//inline cdouble division<cdouble>(cdouble lhs, double rhs) {
+//    cdouble retVal(real(lhs) / rhs, imag(lhs) / rhs);
+//    return retVal;
+//}
 
 template<typename T>
 inline T maxval() {
@@ -102,10 +102,10 @@ template<>
 inline float maxval() {
     return std::numeric_limits<float>::infinity();
 }
-template<>
-inline double maxval() {
-    return std::numeric_limits<double>::infinity();
-}
+//template<>
+//inline double maxval() {
+//    return std::numeric_limits<float>::infinity();
+//}
 template<>
 inline arrayfire::common::half maxval() {
     return std::numeric_limits<arrayfire::common::half>::infinity();
@@ -114,10 +114,10 @@ template<>
 inline float minval() {
     return -std::numeric_limits<float>::infinity();
 }
-template<>
-inline double minval() {
-    return -std::numeric_limits<double>::infinity();
-}
+//template<>
+//inline double minval() {
+//    return -std::numeric_limits<float>::infinity();
+//}
 template<>
 inline arrayfire::common::half minval() {
     return -std::numeric_limits<arrayfire::common::half>::infinity();
@@ -136,11 +136,11 @@ static To scalar(Ti real, Ti imag) {
 
 cfloat scalar(float val);
 
-cdouble scalar(double val);
+//cdouble scalar(double val);
 
-inline double real(cdouble in) noexcept { return std::real(in); }
+//inline double real(cdouble in) noexcept { return std::real(in); }
 inline float real(cfloat in) noexcept { return std::real(in); }
-inline double imag(cdouble in) noexcept { return std::imag(in); }
+//inline double imag(cdouble in) noexcept { return std::imag(in); }
 inline float imag(cfloat in) noexcept { return std::imag(in); }
 
 }  // namespace cpu

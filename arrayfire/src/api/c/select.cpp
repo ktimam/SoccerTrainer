@@ -22,7 +22,7 @@
 using af::dim4;
 using arrayfire::common::half;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createSelectNode;
 using detail::intl;
@@ -67,9 +67,9 @@ af_err af_select(af_array* out, const af_array cond, const af_array a,
 
         switch (ainfo.getType()) {
             case f32: res = select<float>(cond, a, b, odims); break;
-            case f64: res = select<double>(cond, a, b, odims); break;
+            //case f64: res = select<float>(cond, a, b, odims); break;
             case c32: res = select<cfloat>(cond, a, b, odims); break;
-            case c64: res = select<cdouble>(cond, a, b, odims); break;
+            //case c64: res = select<cdouble>(cond, a, b, odims); break;
             case s32: res = select<int>(cond, a, b, odims); break;
             case u32: res = select<uint>(cond, a, b, odims); break;
             case s64: res = select<intl>(cond, a, b, odims); break;
@@ -127,18 +127,18 @@ af_err selectScalar(af_array* out, const af_array cond, const af_array e,
                 res = select_scalar<float, ScalarType, IsScalarTrueOutput>(
                     cond, e, c, odims);
                 break;
-            case f64:
+            /*case f64:
                 res = select_scalar<double, ScalarType, IsScalarTrueOutput>(
                     cond, e, c, odims);
-                break;
+                break;*/
             case c32:
                 res = select_scalar<cfloat, ScalarType, IsScalarTrueOutput>(
                     cond, e, c, odims);
                 break;
-            case c64:
+            /*case c64:
                 res = select_scalar<cdouble, ScalarType, IsScalarTrueOutput>(
                     cond, e, c, odims);
-                break;
+                break;*/
             case s32:
                 res = select_scalar<int, ScalarType, IsScalarTrueOutput>(
                     cond, e, c, odims);

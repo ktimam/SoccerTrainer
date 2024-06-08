@@ -73,7 +73,7 @@ extern "C" {
 #define OS_WINDOWS
 
 #ifdef DOUBLE
-#define DOUBLE_DEFINED DOUBLE
+//#define DOUBLE_DEFINED DOUBLE
 #undef  DOUBLE
 #endif
 #endif

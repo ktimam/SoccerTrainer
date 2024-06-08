@@ -99,13 +99,13 @@ void RawWavSpecAugment::precomputeFilters() {
       continue;
     }
     Tensor indexArr = fl::iota({2 * width + 1});
-    Tensor blackmanWindow = 0.42 - 0.5 * fl::cos(M_PI * indexArr / width) +
-        0.08 * fl::cos(2 * M_PI * indexArr / width);
+    Tensor blackmanWindow = 0.42f - 0.5f * fl::cos((float)M_PI * indexArr / width) +
+        0.08f * fl::cos(2 * (float)M_PI * indexArr / width);
     Tensor denom = indexArr - width;
     // compute sinc with proper process for index = width
-    Tensor kernel = fl::sin(2 * M_PI * cutoff_[fidx] * (indexArr - width));
+    Tensor kernel = fl::sin(2 * (float)M_PI * cutoff_[fidx] * (indexArr - width));
     kernel(denom != 0) = kernel(denom != 0) / denom(denom != 0);
-    kernel(denom == 0) = 2 * M_PI * cutoff_[fidx];
+    kernel(denom == 0) = 2 * (float)M_PI * cutoff_[fidx];
     kernel = kernel * blackmanWindow;
     // normalize kernel
     kernel = kernel / fl::tile(fl::sum(kernel, {0}), {2 * width + 1});
@@ -162,8 +162,8 @@ Variable RawWavSpecAugment::forward(const Variable& input) {
     }
   }
 
-  double replaceVal = (maskStrategy_ == MaskingStrategy::GLOBAL_MEAN)
-      ? fl::mean(inputCast.tensor()).asScalar<double>()
+  float replaceVal = (maskStrategy_ == MaskingStrategy::GLOBAL_MEAN)
+      ? fl::mean(inputCast.tensor()).asScalar<float>()
       : 0.0;
 
   auto& opArr = output.tensor();

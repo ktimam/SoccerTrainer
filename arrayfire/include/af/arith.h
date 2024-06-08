@@ -31,7 +31,7 @@ namespace af
     /// \return        minimum
     ///
     /// \ingroup arith_func_min
-    AFAPI array min    (const array &lhs, const double rhs);
+    AFAPI array min    (const array &lhs, const float rhs);
 
     /// C++ Interface to find the elementwise minimum between an array and a
     /// scalar value.
@@ -41,7 +41,7 @@ namespace af
     /// \return        minimum
     ///
     /// \ingroup arith_func_min
-    AFAPI array min    (const double lhs, const array &rhs);
+    AFAPI array min    (const float lhs, const array &rhs);
 
     /// C++ Interface to find the elementwise maximum between two arrays.
     ///
@@ -60,7 +60,7 @@ namespace af
     /// \return        maximum
     ///
     /// \ingroup arith_func_max
-    AFAPI array max    (const array &lhs, const double rhs);
+    AFAPI array max    (const array &lhs, const float rhs);
 
     /// C++ Interface to find the elementwise maximum between an array and a
     /// scalar value.
@@ -70,7 +70,7 @@ namespace af
     /// \return        maximum
     ///
     /// \ingroup arith_func_max
-    AFAPI array max    (const double lhs, const array &rhs);
+    AFAPI array max    (const float lhs, const array &rhs);
 
 #if AF_API_VERSION >= 34
     /// @{
@@ -87,17 +87,17 @@ namespace af
 
 #if AF_API_VERSION >= 34
     /// \copydoc clamp(const array&, const array&, const array&)
-    AFAPI array clamp(const array &in, const array &lo, const double hi);
+    AFAPI array clamp(const array &in, const array &lo, const float hi);
 #endif
 
 #if AF_API_VERSION >= 34
     /// \copydoc clamp(const array&, const array&, const array&)
-    AFAPI array clamp(const array &in, const double lo, const array &hi);
+    AFAPI array clamp(const array &in, const float lo, const array &hi);
 #endif
 
 #if AF_API_VERSION >= 34
     /// \copydoc clamp(const array&, const array&, const array&)
-    AFAPI array clamp(const array &in, const double lo, const double hi);
+    AFAPI array clamp(const array &in, const float lo, const float hi);
 #endif
     /// @}
 
@@ -112,10 +112,10 @@ namespace af
     AFAPI array rem    (const array &lhs, const array &rhs);
 
     /// \copydoc rem(const array&, const array&)
-    AFAPI array rem    (const array &lhs, const double rhs);
+    AFAPI array rem    (const array &lhs, const float rhs);
 
     /// \copydoc rem(const array&, const array&)
-    AFAPI array rem    (const double lhs, const array &rhs);
+    AFAPI array rem    (const float lhs, const array &rhs);
     /// @}
 
     /// @{
@@ -129,10 +129,10 @@ namespace af
     AFAPI array mod    (const array &lhs, const array &rhs);
 
     /// \copydoc mod(const array&, const array&)
-    AFAPI array mod    (const array &lhs, const double rhs);
+    AFAPI array mod    (const array &lhs, const float rhs);
 
     /// \copydoc mod(const array&, const array&)
-    AFAPI array mod    (const double lhs, const array &rhs);
+    AFAPI array mod    (const float lhs, const array &rhs);
     /// @}
 
     /// C++ Interface to calculate the absolute value.
@@ -205,10 +205,10 @@ namespace af
     AFAPI array hypot  (const array &lhs, const array &rhs);
 
     /// \copydoc hypot(const array&, const array&)
-    AFAPI array hypot  (const array &lhs, const double rhs);
+    AFAPI array hypot  (const array &lhs, const float rhs);
 
     /// \copydoc hypot(const array&, const array&)
-    AFAPI array hypot  (const double lhs, const array &rhs);
+    AFAPI array hypot  (const float lhs, const array &rhs);
     /// @}
 
     /// C++ Interface to evaluate the sine function.
@@ -269,10 +269,10 @@ namespace af
     AFAPI array atan2  (const array &lhs, const array &rhs);
 
     /// \copydoc atan2(const array&, const array&)
-    AFAPI array atan2  (const array &lhs, const double rhs);
+    AFAPI array atan2  (const array &lhs, const float rhs);
 
     /// \copydoc atan2(const array&, const array&)
-    AFAPI array atan2  (const double lhs, const array &rhs);
+    AFAPI array atan2  (const float lhs, const array &rhs);
     /// @}
 
     /// C++ Interface to evaluate the hyperbolic sine function.
@@ -348,7 +348,7 @@ namespace af
     /// \param[in] imag_ single scalar to be assigned as the imaginary
     ///                  component of each value of the returned complex array
     /// \return          complex array
-    AFAPI array complex(const array &real_, const double imag_);
+    AFAPI array complex(const array &real_, const float imag_);
 
     /// C++ Interface to create a complex array from a single scalar for each
     /// real component and a single real array for the imaginary component.
@@ -358,7 +358,7 @@ namespace af
     /// \param[in] imag_ input array to be assigned as the imaginary component
     ///                  of the returned complex array
     /// \return          complex array
-    AFAPI array complex(const double real_, const array &imag_);
+    AFAPI array complex(const float real_, const array &imag_);
     /// @}
 
     /// C++ Interface to return the real part of a complex array.
@@ -401,7 +401,7 @@ namespace af
     /// \return             `nth_root` th root of `value`
     ///
     /// \ingroup arith_func_root
-    AFAPI array root    (const array &nth_root, const double value);
+    AFAPI array root    (const array &nth_root, const float value);
 
     /// C++ Interface to evaluate the nth root.
     ///
@@ -410,7 +410,7 @@ namespace af
     /// \return             `nth_root` th root of `value`
     ///
     /// \ingroup arith_func_root
-    AFAPI array root    (const double nth_root, const array &value);
+    AFAPI array root    (const float nth_root, const array &value);
 
 
     /// \ingroup arith_func_pow
@@ -426,10 +426,10 @@ namespace af
     AFAPI array pow    (const array &base, const array &exponent);
 
     /// \copydoc pow(const array&, const array&)
-    AFAPI array pow    (const array &base, const double exponent);
+    AFAPI array pow    (const array &base, const float exponent);
 
     /// \copydoc pow(const array&, const array&)
-    AFAPI array pow    (const double base, const array &exponent);
+    AFAPI array pow    (const float base, const array &exponent);
 
     /// C++ Interface to raise 2 to a power (or exponent).
     ///

@@ -122,13 +122,13 @@ FL_API Variable operator+(const Variable& lhs, const Variable& rhs);
  * Adds a scalar to each element in the Variable.
  * \f[ out_i = value + var_i \f]
  */
-FL_API Variable operator+(const double& lhs, const Variable& rhs);
+FL_API Variable operator+(const float& lhs, const Variable& rhs);
 
 /**
  * Adds a scalar to each element in the Variable.
  * \f[ out_i = var_i + value \f]
  */
-FL_API Variable operator+(const Variable& lhs, const double& rhs);
+FL_API Variable operator+(const Variable& lhs, const float& rhs);
 
 /**
  * Element-wise multiplication of two Variables.
@@ -140,13 +140,13 @@ FL_API Variable operator*(const Variable& lhs, const Variable& rhs);
  * Multiplies each element in the Variable by a scalar.
  * \f[ out_i = value \times var_i \f]
  */
-FL_API Variable operator*(const double& lhs, const Variable& rhs);
+FL_API Variable operator*(const float& lhs, const Variable& rhs);
 
 /**
  * Multiplies each element in the Variable by a scalar.
  * \f[ out_i = var_i \times value \f]
  */
-FL_API Variable operator*(const Variable& lhs, const double& rhs);
+FL_API Variable operator*(const Variable& lhs, const float& rhs);
 
 /**
  * Element-wise subtraction of two Variables.
@@ -158,13 +158,13 @@ FL_API Variable operator-(const Variable& lhs, const Variable& rhs);
  * Subtracts a scalar from each element in the Variable.
  * \f[ out_i = var_i - value \f]
  */
-FL_API Variable operator-(const double& lhs, const Variable& rhs);
+FL_API Variable operator-(const float& lhs, const Variable& rhs);
 
 /**
  * Subtracts each element in the Variable from a scalar.
  * \f[ out_i = value - var_i \f]
  */
-FL_API Variable operator-(const Variable& lhs, const double& rhs);
+FL_API Variable operator-(const Variable& lhs, const float& rhs);
 
 /**
  * Element-wise division of two Variables.
@@ -176,13 +176,13 @@ FL_API Variable operator/(const Variable& lhs, const Variable& rhs);
  * Divides each element in the Variable by a scalar.
  * \f[ out_i = \frac{var_i}{value} \f]
  */
-FL_API Variable operator/(const double& lhs, const Variable& rhs);
+FL_API Variable operator/(const float& lhs, const Variable& rhs);
 
 /**
  * Divides a scalar by each element in the Variable.
  * \f[ out_i = \frac{value}{var_i} \f]
  */
-FL_API Variable operator/(const Variable& lhs, const double& rhs);
+FL_API Variable operator/(const Variable& lhs, const float& rhs);
 
 /**
  * [Non-differentiable] Element-wise comparison of two Variables.
@@ -194,13 +194,13 @@ FL_API Variable operator>(const Variable& lhs, const Variable& rhs);
  * [Non-differentiable] Element-wise comparison of a Variable and a scalar.
  * \f[ out_i = value > var_i \f]
  */
-FL_API Variable operator>(const double& lhs, const Variable& rhs);
+FL_API Variable operator>(const float& lhs, const Variable& rhs);
 
 /**
  * [Non-differentiable] Element-wise comparison of a Variable and a scalar.
  * \f[ out_i = var_i > value \f]
  */
-FL_API Variable operator>(const Variable& lhs, const double& rhs);
+FL_API Variable operator>(const Variable& lhs, const float& rhs);
 
 /**
  * [Non-differentiable] Element-wise comparison of two Variables.
@@ -212,13 +212,13 @@ FL_API Variable operator<(const Variable& lhs, const Variable& rhs);
  * [Non-differentiable] Element-wise comparison of a Variable and a scalar.
  * \f[ out_i = value < var_i \f]
  */
-FL_API Variable operator<(const double& lhs, const Variable& rhs);
+FL_API Variable operator<(const float& lhs, const Variable& rhs);
 
 /**
  * [Non-differentiable] Element-wise comparison of a Variable and a scalar.
  * \f[ out_i = var_i < value \f]
  */
-FL_API Variable operator<(const Variable& lhs, const double& rhs);
+FL_API Variable operator<(const Variable& lhs, const float& rhs);
 
 /**
  * [Non-differentiable] Element-wise comparison of two Variables.
@@ -230,13 +230,13 @@ FL_API Variable operator>=(const Variable& lhs, const Variable& rhs);
  * [Non-differentiable] Element-wise comparison of a Variable and a scalar.
  * \f[ out_i = value >= var_i \f]
  */
-FL_API Variable operator>=(const double& lhs, const Variable& rhs);
+FL_API Variable operator>=(const float& lhs, const Variable& rhs);
 
 /**
  * [Non-differentiable] Element-wise comparison of a Variable and a scalar.
  * \f[ out_i = var_i >= value \f]
  */
-FL_API Variable operator>=(const Variable& lhs, const double& rhs);
+FL_API Variable operator>=(const Variable& lhs, const float& rhs);
 
 /**
  * [Non-differentiable] Element-wise comparison of two Variables.
@@ -248,13 +248,13 @@ FL_API Variable operator<=(const Variable& lhs, const Variable& rhs);
  * [Non-differentiable] Element-wise comparison of a Variable and a scalar.
  * \f[ out_i = value <= var_i \f]
  */
-FL_API Variable operator<=(const double& lhs, const Variable& rhs);
+FL_API Variable operator<=(const float& lhs, const Variable& rhs);
 
 /**
  * [Non-differentiable] Element-wise comparison of a Variable and a scalar.
  * \f[ out_i = value <= var_i \f]
  */
-FL_API Variable operator<=(const Variable& lhs, const double& rhs);
+FL_API Variable operator<=(const Variable& lhs, const float& rhs);
 
 /**
  * [Non-differentiable] Element-wise logical and of two Variables.
@@ -296,7 +296,7 @@ FL_API Variable log(const Variable& input);
  * Computes power of each element in a Variable.
  * \f[ out_i = var_i^p \f]
  */
-FL_API Variable pow(const Variable& input, double p);
+FL_API Variable pow(const Variable& input, float p);
 
 /**
  * Computes natural logarithm of (1 + element) for each element in a Variable.
@@ -338,7 +338,7 @@ FL_API Variable tanh(const Variable& input);
  *     \end{cases}\end{split} \f]
  */
 FL_API Variable
-clamp(const Variable& input, const double min, const double max);
+clamp(const Variable& input, const float min, const float max);
 
 /**
  * Computes sigmoid of each element in a Variable.
@@ -353,7 +353,7 @@ FL_API Variable sigmoid(const Variable& input);
  * \f[ Swish(x) = x \cdot sigmoid(\beta x) \f]
  * where \f$\beta\f$ is a constant, often is 1.
  */
-FL_API Variable swish(const Variable& input, double beta);
+FL_API Variable swish(const Variable& input, float beta);
 
 /**
  * Computes the error function of each element in a Variable
@@ -371,13 +371,13 @@ FL_API Variable max(const Variable& lhs, const Variable& rhs);
  * Returns maximum value of a scalar and each element in a Variable.
  * \f[ out_i = max(var_i, value) \f]
  */
-FL_API Variable max(const Variable& lhs, const double& rhs);
+FL_API Variable max(const Variable& lhs, const float& rhs);
 
 /**
  * Returns maximum value of a scalar and each element in a Variable.
  * \f[ out_i = max(value, var_i) \f]
  */
-FL_API Variable max(const double& lhs, const Variable& rhs);
+FL_API Variable max(const float& lhs, const Variable& rhs);
 
 /**
  * Returns element-wise minimum value of two Variables.
@@ -389,13 +389,13 @@ FL_API Variable min(const Variable& lhs, const Variable& rhs);
  * Returns minimum value of a scalar and each element in a Variable.
  * \f[ out_i = min(var_i, value) \f]
  */
-FL_API Variable min(const Variable& lhs, const double& rhs);
+FL_API Variable min(const Variable& lhs, const float& rhs);
 
 /**
  * Returns minimum value of a scalar and each element in a Variable.
  * \f[ out_i = min(value, var_i) \f]
  */
-FL_API Variable min(const double& lhs, const Variable& rhs);
+FL_API Variable min(const float& lhs, const Variable& rhs);
 
 /**
  * Returns a tensor that is a transposed version of a Variable. Reorders the
@@ -505,7 +505,7 @@ FL_API Variable mean(
 FL_API Variable norm(
     const Variable& input,
     const std::vector<int>& axes,
-    double p = 2,
+    float p = 2,
     bool keepDims = false);
 
 /**
@@ -519,8 +519,8 @@ FL_API Variable norm(
 FL_API Variable normalize(
     const Variable& input,
     const std::vector<int>& axes,
-    double p = 2,
-    double eps = 1e-12);
+    float p = 2,
+    float eps = 1e-12);
 
 /**
  * Computes variance of the tensor `input` along dimensions specified in
@@ -940,8 +940,8 @@ FL_API Variable batchnorm(
     Variable& runningVar,
     const std::vector<int>& axes,
     bool train,
-    double momentum,
-    double epsilon);
+    float momentum,
+    float epsilon);
 
 /**
  * Applies asymmetric padding on a Variable `input`.
@@ -954,7 +954,7 @@ FL_API Variable batchnorm(
 FL_API Variable padding(
     const Variable& input,
     std::vector<std::pair<int, int>> pad,
-    double val);
+    float val);
 
 /**
  * Applies dropout on a Variable `input`.
@@ -962,7 +962,7 @@ FL_API Variable padding(
  * @param p the probability of dropout
  * @return a droped out Variable
  */
-FL_API Variable dropout(const Variable& input, double p);
+FL_API Variable dropout(const Variable& input, float p);
 
 /**
  * Applies the [rectified linear
@@ -1010,7 +1010,7 @@ FL_API Variable multiheadAttention(
     const Variable& mask,
     const Variable& padMask,
     const int32_t nHeads,
-    const double pDropout,
+    const float pDropout,
     const int32_t offset = 0);
 
 /** @} */

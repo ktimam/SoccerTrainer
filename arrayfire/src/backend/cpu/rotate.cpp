@@ -46,9 +46,9 @@ Array<T> rotate(const Array<T> &in, const float theta, const af::dim4 &odims,
                              const af_interp_type method);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(intl)

@@ -101,7 +101,7 @@ struct mkl_type<std::complex<float>> {
     using type = MKL_Complex8;
 };
 template<>
-struct mkl_type<std::complex<double>> {
+struct mkl_type<std::complex<float>> {
     using type = MKL_Complex16;
 };
 
@@ -115,7 +115,7 @@ getrf_batch_strided_func_def<float> getrf_batch_strided_func<float>() {
     return &sgetrf_batch_strided;
 }
 template<>
-getrf_batch_strided_func_def<double> getrf_batch_strided_func<double>() {
+getrf_batch_strided_func_def<float> getrf_batch_strided_func<float>() {
     return &dgetrf_batch_strided;
 }
 template<>
@@ -137,7 +137,7 @@ getrs_batch_strided_func_def<float> getrs_batch_strided_func<float>() {
     return &sgetrs_batch_strided;
 }
 template<>
-getrs_batch_strided_func_def<double> getrs_batch_strided_func<double>() {
+getrs_batch_strided_func_def<float> getrs_batch_strided_func<float>() {
     return &dgetrs_batch_strided;
 }
 template<>
@@ -363,8 +363,8 @@ namespace cpu {
 
 INSTANTIATE_SOLVE(float)
 INSTANTIATE_SOLVE(cfloat)
-INSTANTIATE_SOLVE(double)
-INSTANTIATE_SOLVE(cdouble)
+//INSTANTIATE_SOLVE(double)
+//INSTANTIATE_SOLVE(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

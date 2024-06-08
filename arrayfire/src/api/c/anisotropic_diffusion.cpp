@@ -82,9 +82,9 @@ af_err af_anisotropic_diffusion(af_array* out, const af_array in,
 
         af_array output = nullptr;
         switch (inputType) {
-            case f64:
-                output = diffusion<double>(input, dt, K, iterations, F, eq);
-                break;
+            /*case f64:
+                output = diffusion<float>(input, dt, K, iterations, F, eq);
+                break;*/
             case f32:
             case s32:
             case u32:

@@ -377,7 +377,7 @@ std::ostream& ArrayFireTensor::operator<<(std::ostream& ostr) {
   }
 
 #define ASSIGN_OP_LITERALS(FUN, AF_OP)        \
-  ASSIGN_OP_TYPE(FUN, AF_OP, double);         \
+  /*ASSIGN_OP_TYPE(FUN, AF_OP, double);*/         \
   ASSIGN_OP_TYPE(FUN, AF_OP, float);          \
   ASSIGN_OP_TYPE(FUN, AF_OP, int);            \
   ASSIGN_OP_TYPE(FUN, AF_OP, unsigned);       \

@@ -65,9 +65,7 @@ void sort_by_key(Array<Tk> &okey, Array<Tv> &oval, const Array<Tk> &ikey,
 
 #define INSTANTIATE1(Tk)     \
     INSTANTIATE(Tk, float)   \
-    INSTANTIATE(Tk, double)  \
     INSTANTIATE(Tk, cfloat)  \
-    INSTANTIATE(Tk, cdouble) \
     INSTANTIATE(Tk, int)     \
     INSTANTIATE(Tk, uint)    \
     INSTANTIATE(Tk, char)    \
@@ -78,7 +76,7 @@ void sort_by_key(Array<Tk> &okey, Array<Tv> &oval, const Array<Tk> &ikey,
     INSTANTIATE(Tk, uintl)
 
 INSTANTIATE1(float)
-INSTANTIATE1(double)
+//INSTANTIATE1(double)
 INSTANTIATE1(int)
 INSTANTIATE1(uint)
 INSTANTIATE1(char)

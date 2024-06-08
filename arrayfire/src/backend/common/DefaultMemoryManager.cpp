@@ -46,7 +46,9 @@ void DefaultMemoryManager::cleanDeviceMemoryManager(int device) {
     size_t bytes_freed                         = 0;
     DefaultMemoryManager::memory_info &current = memory[device];
     {
+#ifndef MULTITHREADING_DISABLED
         lock_guard_t lock(this->memory_mutex);
+#endif
         // Return if all buffers are locked
         if (current.total_buffers == current.lock_buffers) { return; }
         free_ptrs.reserve(current.free_map.size());
@@ -130,7 +132,9 @@ void DefaultMemoryManager::setMaxMemorySize() {
 }
 
 float DefaultMemoryManager::getMemoryPressure() {
+#ifndef MULTITHREADING_DISABLED
     lock_guard_t lock(this->memory_mutex);
+#endif
     memory_info &current = this->getCurrentMemoryInfo();
     if (current.lock_bytes > current.max_bytes ||
         current.lock_buffers > max_buffers) {
@@ -142,7 +146,9 @@ float DefaultMemoryManager::getMemoryPressure() {
 
 bool DefaultMemoryManager::jitTreeExceedsMemoryPressure(
     size_t jit_tree_buffer_bytes) {
+#ifndef MULTITHREADING_DISABLED
     lock_guard_t lock(this->memory_mutex);
+#endif
     memory_info &current = this->getCurrentMemoryInfo();
     if (current.lock_bytes > 0.25f * current.max_bytes) {
         /// Evaluate JIT if half of all locked buffers are locked by this JIT
@@ -185,7 +191,9 @@ void *DefaultMemoryManager::alloc(bool user_lock, const unsigned ndims,
                 this->signalMemoryCleanup();
             }
 
+#ifndef MULTITHREADING_DISABLED
             lock_guard_t lock(this->memory_mutex);
+#endif
             auto free_buffer_iter = current.free_map.find(alloc_bytes);
             if (free_buffer_iter != current.free_map.end() &&
                 !free_buffer_iter->second.empty()) {
@@ -211,7 +219,9 @@ void *DefaultMemoryManager::alloc(bool user_lock, const unsigned ndims,
                 this->signalMemoryCleanup();
                 ptr = this->nativeAlloc(alloc_bytes);
             }
+#ifndef MULTITHREADING_DISABLED
             lock_guard_t lock(this->memory_mutex);
+#endif
             // Increment these two only when it succeeds to come here.
             current.total_bytes += alloc_bytes;
             current.total_buffers += 1;
@@ -239,7 +249,9 @@ void DefaultMemoryManager::unlock(void *ptr, bool user_unlock) {
     // Frees the pointer outside the lock.
     uptr_t freed_ptr(nullptr, [this](void *p) { this->nativeFree(p); });
     {
+#ifndef MULTITHREADING_DISABLED
         lock_guard_t lock(this->memory_mutex);
+#endif
         memory_info &current = this->getCurrentMemoryInfo();
 
         auto locked_buffer_iter = current.locked_map.find(ptr);
@@ -295,7 +307,9 @@ void DefaultMemoryManager::printInfo(const char *msg, const int device) {
         "|     POINTER      |    SIZE    |  AF LOCK  | USER LOCK |\n"
         "---------------------------------------------------------\n");
 
+#ifndef MULTITHREADING_DISABLED
     lock_guard_t lock(this->memory_mutex);
+#endif
     for (const auto &kv : current.locked_map) {
         const char *status_mngr = "Yes";
         const char *status_user = "Unknown";
@@ -306,7 +320,7 @@ void DefaultMemoryManager::printInfo(const char *msg, const int device) {
         }
 
         const char *unit = "KB";
-        double size      = static_cast<double>(kv.second.bytes) / 1024;
+        double size      = static_cast<float>(kv.second.bytes) / 1024;
         if (size >= 1024) {
             size = size / 1024;
             unit = "MB";
@@ -321,7 +335,7 @@ void DefaultMemoryManager::printInfo(const char *msg, const int device) {
         const char *status_user = "No";
 
         const char *unit = "KB";
-        double size      = static_cast<double>(kv.first) / 1024;
+        double size      = static_cast<float>(kv.first) / 1024;
         if (size >= 1024) {
             size = size / 1024;
             unit = "MB";
@@ -339,7 +353,9 @@ void DefaultMemoryManager::printInfo(const char *msg, const int device) {
 void DefaultMemoryManager::usageInfo(size_t *alloc_bytes, size_t *alloc_buffers,
                                      size_t *lock_bytes, size_t *lock_buffers) {
     const memory_info &current = this->getCurrentMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
     lock_guard_t lock(this->memory_mutex);
+#endif
     if (alloc_bytes) { *alloc_bytes = current.total_bytes; }
     if (alloc_buffers) { *alloc_buffers = current.total_buffers; }
     if (lock_bytes) { *lock_bytes = current.lock_bytes; }
@@ -349,7 +365,9 @@ void DefaultMemoryManager::usageInfo(size_t *alloc_bytes, size_t *alloc_buffers,
 void DefaultMemoryManager::userLock(const void *ptr) {
     memory_info &current = this->getCurrentMemoryInfo();
 
+#ifndef MULTITHREADING_DISABLED
     lock_guard_t lock(this->memory_mutex);
+#endif
 
     auto locked_iter = current.locked_map.find(const_cast<void *>(ptr));
     if (locked_iter != current.locked_map.end()) {
@@ -367,19 +385,25 @@ void DefaultMemoryManager::userUnlock(const void *ptr) {
 
 bool DefaultMemoryManager::isUserLocked(const void *ptr) {
     memory_info &current = this->getCurrentMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
     lock_guard_t lock(this->memory_mutex);
+#endif
     auto locked_iter = current.locked_map.find(const_cast<void *>(ptr));
     if (locked_iter == current.locked_map.end()) { return false; }
     return locked_iter->second.user_lock;
 }
 
 size_t DefaultMemoryManager::getMemStepSize() {
+#ifndef MULTITHREADING_DISABLED
     lock_guard_t lock(this->memory_mutex);
+#endif
     return this->mem_step_size;
 }
 
 void DefaultMemoryManager::setMemStepSize(size_t new_step_size) {
+#ifndef MULTITHREADING_DISABLED
     lock_guard_t lock(this->memory_mutex);
+#endif
     this->mem_step_size = new_step_size;
 }
 

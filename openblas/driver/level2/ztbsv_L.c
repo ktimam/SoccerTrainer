@@ -42,7 +42,7 @@
 
 // const static FLOAT dp1 = 1.;
 
-int CNAME(BLASLONG n, BLASLONG k, FLOAT *a, BLASLONG lda, FLOAT *b, BLASLONG incb, void *buffer){
+int CNAME(BLASLONG n, BLASLONG k, FLOAT *a, BLASLONG lda, FLOAT *b, BLASLONG incb, float *buffer){
 
   BLASLONG i;
   FLOAT *B = b;

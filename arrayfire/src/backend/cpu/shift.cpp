@@ -30,9 +30,9 @@ Array<T> shift(const Array<T> &in, const int sdims[4]) {
     template Array<T> shift<T>(const Array<T> &in, const int sdims[4]);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(intl)

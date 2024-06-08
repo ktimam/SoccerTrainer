@@ -59,7 +59,7 @@ Array<T> medfilt2(const Array<T> &in, const int w_len, const int w_wid,
                                   const int w_wid, const af::borderType);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(char)
 INSTANTIATE(int)
 INSTANTIATE(uint)

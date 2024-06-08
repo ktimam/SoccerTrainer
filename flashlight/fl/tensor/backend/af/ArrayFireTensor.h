@@ -223,7 +223,7 @@ class ArrayFireTensor : public TensorAdapterBase {
 
 #define ASSIGN_OP(OP)                 \
   ASSIGN_OP_TYPE(OP, Tensor);         \
-  ASSIGN_OP_TYPE(OP, double);         \
+  /*ASSIGN_OP_TYPE(OP, double); */        \
   ASSIGN_OP_TYPE(OP, float);          \
   ASSIGN_OP_TYPE(OP, int);            \
   ASSIGN_OP_TYPE(OP, unsigned);       \

@@ -188,7 +188,7 @@ void CNAME( enum CBLAS_ORDER CORDER, enum CBLAS_TRANSPOSE CTRANS, blasint crows,
         else
                 msize = (size_t)(*cols) * (*ldb)  * sizeof(FLOAT) * 2;
 
-	b = malloc(msize);
+	b = (float*)malloc(msize);
 	if ( b == NULL )
 	{
 		printf("Memory alloc failed in zimatcopy\n");

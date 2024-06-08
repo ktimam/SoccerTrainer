@@ -269,8 +269,8 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_UPLO Uplo,
 			transb = 3;
 #endif
 
-		a = (void *)A;
-		b = (void *)B;
+		a = (float *)A;
+		b = (float *)B;
 		lda = LDA;
 		ldb = LDB;
 
@@ -313,8 +313,8 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_UPLO Uplo,
 
 	if (order == CblasRowMajor) {
 
-		a = (void *)B;
-		b = (void *)A;
+		a = (float *)B;
+		b = (float *)A;
 
 		lda = LDB;
 		ldb = LDA;

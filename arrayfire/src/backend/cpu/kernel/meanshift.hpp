@@ -19,7 +19,7 @@ namespace kernel {
 template<typename T, bool IsColor>
 void meanShift(Param<T> out, CParam<T> in, const float spatialSigma,
                const float chromaticSigma, const unsigned numIterations) {
-    typedef typename std::conditional<std::is_same<T, double>::value, double,
+    typedef typename std::conditional<std::is_same<T, double>::value, float,
                                       float>::type AccType;
 
     const af::dim4 dims     = in.dims();

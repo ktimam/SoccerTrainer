@@ -18,7 +18,7 @@
 
 using af::dim4;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -52,9 +52,9 @@ af_err af_sobel_operator(af_array *dx, af_array *dy, const af_array img,
             case f32:
                 output = sobelDerivatives<float, float>(img, ker_size);
                 break;
-            case f64:
+            /*case f64:
                 output = sobelDerivatives<double, double>(img, ker_size);
-                break;
+                break;*/
             case s32: output = sobelDerivatives<int, int>(img, ker_size); break;
             case u32:
                 output = sobelDerivatives<uint, int>(img, ker_size);

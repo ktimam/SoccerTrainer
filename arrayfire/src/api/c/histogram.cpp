@@ -42,10 +42,10 @@ af_err af_histogram(af_array *out, const af_array in, const unsigned nbins,
                 output = histogram<float>(in, nbins, minval, maxval,
                                           info.isLinear());
                 break;
-            case f64:
-                output = histogram<double>(in, nbins, minval, maxval,
+            /*case f64:
+                output = histogram<float>(in, nbins, minval, maxval,
                                            info.isLinear());
-                break;
+                break;*/
             case b8:
                 output =
                     histogram<char>(in, nbins, minval, maxval, info.isLinear());

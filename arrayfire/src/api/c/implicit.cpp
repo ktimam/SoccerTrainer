@@ -20,14 +20,14 @@ Order of precedence:
 af_dtype implicit(const af_dtype lty, const af_dtype rty) {
     if (lty == rty) { return lty; }
 
-    if (lty == c64 || rty == c64) { return c64; }
+    //if (lty == c64 || rty == c64) { return c64; }
 
     if (lty == c32 || rty == c32) {
-        if (lty == f64 || rty == f64) { return c64; }
+        //if (lty == f64 || rty == f64) { return c64; }
         return c32;
     }
 
-    if (lty == f64 || rty == f64) { return f64; }
+    //if (lty == f64 || rty == f64) { return f64; }
     if (lty == f32 || rty == f32) { return f32; }
     if ((lty == f16) || (rty == f16)) { return f16; }
 

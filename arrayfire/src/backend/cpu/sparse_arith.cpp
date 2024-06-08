@@ -45,12 +45,12 @@ cfloat getInf() {
     return scalar<cfloat, float>(numeric_limits<float>::infinity(),
                                  numeric_limits<float>::infinity());
 }
-
-template<>
-cdouble getInf() {
-    return scalar<cdouble, double>(numeric_limits<double>::infinity(),
-                                   numeric_limits<double>::infinity());
-}
+//
+//template<>
+//cdouble getInf() {
+//    return scalar<cdouble, double>(numeric_limits<float>::infinity(),
+//                                   numeric_limits<float>::infinity());
+//}
 
 template<typename T, af_op_t op>
 Array<T> arithOpD(const SparseArray<T> &lhs, const Array<T> &rhs,
@@ -162,9 +162,9 @@ SparseArray<T> arithOp(const SparseArray<T> &lhs, const SparseArray<T> &rhs) {
         const common::SparseArray<T> &lhs, const common::SparseArray<T> &rhs);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

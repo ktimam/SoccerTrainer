@@ -39,7 +39,7 @@ Array<T> rgb2hsv(const Array<T>& in) {
     template Array<T> hsv2rgb<T>(const Array<T>& in); \
     template Array<T> rgb2hsv<T>(const Array<T>& in);
 
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(float)
 
 }  // namespace cpu

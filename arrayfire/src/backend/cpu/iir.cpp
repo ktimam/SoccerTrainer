@@ -45,9 +45,9 @@ Array<T> iir(const Array<T> &b, const Array<T> &a, const Array<T> &x) {
                           const Array<T> &x);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

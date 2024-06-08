@@ -40,7 +40,7 @@ std::pair<Array<To>, Array<To>> sobelDerivatives(const Array<Ti> &img,
         const Array<Ti> &img, const unsigned &ker_size);
 
 INSTANTIATE(float, float)
-INSTANTIATE(double, double)
+//INSTANTIATE(double, double)
 INSTANTIATE(int, int)
 INSTANTIATE(uint, int)
 INSTANTIATE(char, int)

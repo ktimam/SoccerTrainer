@@ -36,7 +36,7 @@ using arrayfire::common::sh2;
 using arrayfire::common::TableLength;
 using arrayfire::common::temper_tbl;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::createHostDataArray;
@@ -288,8 +288,8 @@ af_err af_random_uniform(af_array *out, const unsigned ndims,
         switch (type) {
             case f32: result = uniformDistribution_<float>(d, e); break;
             case c32: result = uniformDistribution_<cfloat>(d, e); break;
-            case f64: result = uniformDistribution_<double>(d, e); break;
-            case c64: result = uniformDistribution_<cdouble>(d, e); break;
+            //case f64: result = uniformDistribution_<float>(d, e); break;
+            //case c64: result = uniformDistribution_<cdouble>(d, e); break;
             case s32: result = uniformDistribution_<int>(d, e); break;
             case u32: result = uniformDistribution_<uint>(d, e); break;
             case s64: result = uniformDistribution_<intl>(d, e); break;
@@ -320,8 +320,8 @@ af_err af_random_normal(af_array *out, const unsigned ndims,
         switch (type) {
             case f32: result = normalDistribution_<float>(d, e); break;
             case c32: result = normalDistribution_<cfloat>(d, e); break;
-            case f64: result = normalDistribution_<double>(d, e); break;
-            case c64: result = normalDistribution_<cdouble>(d, e); break;
+            //case f64: result = normalDistribution_<float>(d, e); break;
+            //case c64: result = normalDistribution_<cdouble>(d, e); break;
             case f16: result = normalDistribution_<half>(d, e); break;
             default: TYPE_ERROR(4, type);
         }
@@ -354,8 +354,8 @@ af_err af_randu(af_array *out, const unsigned ndims, const dim_t *const dims,
         switch (type) {
             case f32: result = uniformDistribution_<float>(d, e); break;
             case c32: result = uniformDistribution_<cfloat>(d, e); break;
-            case f64: result = uniformDistribution_<double>(d, e); break;
-            case c64: result = uniformDistribution_<cdouble>(d, e); break;
+            //case f64: result = uniformDistribution_<float>(d, e); break;
+            //case c64: result = uniformDistribution_<cdouble>(d, e); break;
             case s32: result = uniformDistribution_<int>(d, e); break;
             case u32: result = uniformDistribution_<uint>(d, e); break;
             case s64: result = uniformDistribution_<intl>(d, e); break;
@@ -387,8 +387,8 @@ af_err af_randn(af_array *out, const unsigned ndims, const dim_t *const dims,
         switch (type) {
             case f32: result = normalDistribution_<float>(d, e); break;
             case c32: result = normalDistribution_<cfloat>(d, e); break;
-            case f64: result = normalDistribution_<double>(d, e); break;
-            case c64: result = normalDistribution_<cdouble>(d, e); break;
+            //case f64: result = normalDistribution_<float>(d, e); break;
+            //case c64: result = normalDistribution_<cdouble>(d, e); break;
             case f16: result = normalDistribution_<half>(d, e); break;
             default: TYPE_ERROR(3, type);
         }

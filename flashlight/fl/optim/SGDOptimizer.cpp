@@ -65,7 +65,7 @@ void SGDOptimizer::step() {
         grad = velocity;
       }
     }
-    data = data - lr_ * grad;
+    data = data - (float)lr_ * grad;
     //fl::eval(data);
     data.backend().eval(data);
   }

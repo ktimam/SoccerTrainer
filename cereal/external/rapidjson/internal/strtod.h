@@ -275,7 +275,7 @@ inline double StrtodFullPrecision(double d, int p, const char* decimals, size_t 
     // If too large, overflow to infinity.
     // Any x >= 10^309 is interpreted as +infinity.
     if (dLen + dExp > 309)
-        return std::numeric_limits<double>::infinity();
+        return std::numeric_limits<float>::infinity();
 
     if (StrtodDiyFp(decimals, dLen, dExp, &result))
         return result;

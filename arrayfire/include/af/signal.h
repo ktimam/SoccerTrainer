@@ -89,7 +89,7 @@ AFAPI array approx2(const array &in, const array &pos0, const array &pos1,
  */
 AFAPI array approx1(const array &in,
                     const array &pos, const int interp_dim,
-                    const double idx_start, const double idx_step,
+                    const float idx_start, const float idx_step,
                     const interpType method = AF_INTERP_LINEAR, const float off_grid = 0.0f);
 
 /**
@@ -120,8 +120,8 @@ AFAPI array approx1(const array &in,
    \ingroup signal_func_approx2
  */
 AFAPI array approx2(const array &in,
-                    const array &pos0, const int interp_dim0, const double idx_start_dim0, const double idx_step_dim0,
-                    const array &pos1, const int interp_dim1, const double idx_start_dim1, const double idx_step_dim1,
+                    const array &pos0, const int interp_dim0, const float idx_start_dim0, const float idx_step_dim0,
+                    const array &pos1, const int interp_dim1, const float idx_start_dim1, const float idx_step_dim1,
                     const interpType method = AF_INTERP_LINEAR, const float off_grid = 0.0f);
 #endif
 
@@ -135,7 +135,7 @@ AFAPI array approx2(const array &in,
 
    \ingroup signal_func_fft
  */
-AFAPI array fftNorm(const array& in, const double norm_factor, const dim_t odim0=0);
+AFAPI array fftNorm(const array& in, const float norm_factor, const dim_t odim0=0);
 
 /**
    C++ Interface for fast fourier transform on two dimensional signals
@@ -148,7 +148,7 @@ AFAPI array fftNorm(const array& in, const double norm_factor, const dim_t odim0
 
    \ingroup signal_func_fft2
  */
-AFAPI array fft2Norm(const array& in, const double norm_factor, const dim_t odim0=0, const dim_t odim1=0);
+AFAPI array fft2Norm(const array& in, const float norm_factor, const dim_t odim0=0, const dim_t odim1=0);
 
 /**
    C++ Interface for fast fourier transform on three dimensional signals
@@ -162,7 +162,7 @@ AFAPI array fft2Norm(const array& in, const double norm_factor, const dim_t odim
 
    \ingroup signal_func_fft3
  */
-AFAPI array fft3Norm(const array& in, const double norm_factor, const dim_t odim0=0, const dim_t odim1=0, const dim_t odim2=0);
+AFAPI array fft3Norm(const array& in, const float norm_factor, const dim_t odim0=0, const dim_t odim1=0, const dim_t odim2=0);
 
 #if AF_API_VERSION >= 31
 /**
@@ -175,7 +175,7 @@ AFAPI array fft3Norm(const array& in, const double norm_factor, const dim_t odim
 
    \ingroup signal_func_fft
  */
-AFAPI void fftInPlace(array& in, const double norm_factor = 1.0);
+AFAPI void fftInPlace(array& in, const float norm_factor = 1.0);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -189,7 +189,7 @@ AFAPI void fftInPlace(array& in, const double norm_factor = 1.0);
 
    \ingroup signal_func_fft2
  */
-AFAPI void fft2InPlace(array& in, const double norm_factor = 1.0);
+AFAPI void fft2InPlace(array& in, const float norm_factor = 1.0);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -203,7 +203,7 @@ AFAPI void fft2InPlace(array& in, const double norm_factor = 1.0);
 
    \ingroup signal_func_fft3
  */
-AFAPI void fft3InPlace(array& in, const double norm_factor = 1.0);
+AFAPI void fft3InPlace(array& in, const float norm_factor = 1.0);
 #endif
 
 /**
@@ -261,7 +261,7 @@ AFAPI array fft3(const array& in, const dim_t odim0=0, const dim_t odim1=0, cons
 
    \ingroup signal_func_fft
  */
-AFAPI array dft(const array& in, const double norm_factor, const dim4 outDims);
+AFAPI array dft(const array& in, const float norm_factor, const dim4 outDims);
 
 /**
    C++ Interface for fast fourier transform on any(1d, 2d, 3d) dimensional signals
@@ -300,7 +300,7 @@ AFAPI array dft(const array& in);
 
    \ingroup signal_func_ifft
  */
-AFAPI array ifftNorm(const array& in, const double norm_factor, const dim_t odim0=0);
+AFAPI array ifftNorm(const array& in, const float norm_factor, const dim_t odim0=0);
 
 /**
    C++ Interface for inverse fast fourier transform on two dimensional signals
@@ -313,7 +313,7 @@ AFAPI array ifftNorm(const array& in, const double norm_factor, const dim_t odim
 
    \ingroup signal_func_ifft2
  */
-AFAPI array ifft2Norm(const array& in, const double norm_factor, const dim_t odim0=0, const dim_t odim1=0);
+AFAPI array ifft2Norm(const array& in, const float norm_factor, const dim_t odim0=0, const dim_t odim1=0);
 
 /**
    C++ Interface for inverse fast fourier transform on three dimensional signals
@@ -327,7 +327,7 @@ AFAPI array ifft2Norm(const array& in, const double norm_factor, const dim_t odi
 
    \ingroup signal_func_ifft3
  */
-AFAPI array ifft3Norm(const array& in, const double norm_factor, const dim_t odim0=0, const dim_t odim1=0, const dim_t odim2=0);
+AFAPI array ifft3Norm(const array& in, const float norm_factor, const dim_t odim0=0, const dim_t odim1=0, const dim_t odim2=0);
 
 #if AF_API_VERSION >= 31
 /**
@@ -340,7 +340,7 @@ AFAPI array ifft3Norm(const array& in, const double norm_factor, const dim_t odi
 
    \ingroup signal_func_ifft
  */
-AFAPI void ifftInPlace(array& in, const double norm_factor = 1.0);
+AFAPI void ifftInPlace(array& in, const float norm_factor = 1.0);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -354,7 +354,7 @@ AFAPI void ifftInPlace(array& in, const double norm_factor = 1.0);
 
    \ingroup signal_func_ifft2
  */
-AFAPI void ifft2InPlace(array& in, const double norm_factor = 1.0);
+AFAPI void ifft2InPlace(array& in, const float norm_factor = 1.0);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -368,7 +368,7 @@ AFAPI void ifft2InPlace(array& in, const double norm_factor = 1.0);
 
    \ingroup signal_func_ifft3
  */
-AFAPI void ifft3InPlace(array& in, const double norm_factor = 1.0);
+AFAPI void ifft3InPlace(array& in, const float norm_factor = 1.0);
 #endif
 
 /**
@@ -426,7 +426,7 @@ AFAPI array ifft3(const array& in, const dim_t odim0=0, const dim_t odim1=0, con
 
    \ingroup signal_func_fft
  */
-AFAPI array idft(const array& in, const double norm_factor, const dim4 outDims);
+AFAPI array idft(const array& in, const float norm_factor, const dim4 outDims);
 
 /**
    C++ Interface for inverse fast fourier transform on any(1d, 2d, 3d) dimensional signals
@@ -471,7 +471,7 @@ AFAPI array idft(const array& in);
 template<int rank>
 array fftR2C(const array &in,
              const dim4& dims,
-             const double norm_factor = 1.0);
+             const float norm_factor = 1.0);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -488,7 +488,7 @@ array fftR2C(const array &in,
 */
 template<int rank>
 array fftR2C(const array &in,
-             const double norm_factor = 1.0);
+             const float norm_factor = 1.0);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -506,7 +506,7 @@ array fftR2C(const array &in,
 
 template<int rank>
 array fftC2R(const array &in, bool is_odd = false,
-                 const double norm_factor = 1.0);
+                 const float norm_factor = 1.0);
 #endif
 
 /**
@@ -939,7 +939,7 @@ AFAPI af_err af_approx2_v2(af_array *out, const af_array in,
  */
 AFAPI af_err af_approx1_uniform(af_array *out, const af_array in,
                                 const af_array pos, const int interp_dim,
-                                const double idx_start, const double idx_step,
+                                const float idx_start, const float idx_step,
                                 const af_interp_type method,
                                 const float off_grid);
 
@@ -977,8 +977,8 @@ AFAPI af_err af_approx1_uniform(af_array *out, const af_array in,
  */
 AFAPI af_err af_approx1_uniform_v2(af_array *out, const af_array in,
                                    const af_array pos, const int interp_dim,
-                                   const double idx_start,
-                                   const double idx_step,
+                                   const float idx_start,
+                                   const float idx_step,
                                    const af_interp_type method,
                                    const float off_grid);
 
@@ -1019,11 +1019,11 @@ AFAPI af_err af_approx1_uniform_v2(af_array *out, const af_array in,
  */
 AFAPI af_err af_approx2_uniform(af_array *out, const af_array in,
                                 const af_array pos0, const int interp_dim0,
-                                const double idx_start_dim0,
-                                const double idx_step_dim0,
+                                const float idx_start_dim0,
+                                const float idx_step_dim0,
                                 const af_array pos1, const int interp_dim1,
-                                const double idx_start_dim1,
-                                const double idx_step_dim1,
+                                const float idx_start_dim1,
+                                const float idx_step_dim1,
                                 const af_interp_type method,
                                 const float off_grid);
 
@@ -1066,11 +1066,11 @@ AFAPI af_err af_approx2_uniform(af_array *out, const af_array in,
  */
 AFAPI af_err af_approx2_uniform_v2(af_array *out, const af_array in,
                                    const af_array pos0, const int interp_dim0,
-                                   const double idx_start_dim0,
-                                   const double idx_step_dim0,
+                                   const float idx_start_dim0,
+                                   const float idx_step_dim0,
                                    const af_array pos1, const int interp_dim1,
-                                   const double idx_start_dim1,
-                                   const double idx_step_dim1,
+                                   const float idx_start_dim1,
+                                   const float idx_step_dim1,
                                    const af_interp_type method,
                                    const float off_grid);
 #endif
@@ -1087,7 +1087,7 @@ AFAPI af_err af_approx2_uniform_v2(af_array *out, const af_array in,
 
    \ingroup signal_func_fft
  */
-AFAPI af_err af_fft(af_array *out, const af_array in, const double norm_factor, const dim_t odim0);
+AFAPI af_err af_fft(af_array *out, const af_array in, const float norm_factor, const dim_t odim0);
 
 #if AF_API_VERSION >= 31
 /**
@@ -1102,7 +1102,7 @@ AFAPI af_err af_fft(af_array *out, const af_array in, const double norm_factor, 
 
    \ingroup signal_func_fft
 */
-AFAPI af_err af_fft_inplace(af_array in, const double norm_factor);
+AFAPI af_err af_fft_inplace(af_array in, const float norm_factor);
 #endif
 
 /**
@@ -1118,7 +1118,7 @@ AFAPI af_err af_fft_inplace(af_array in, const double norm_factor);
 
    \ingroup signal_func_fft2
  */
-AFAPI af_err af_fft2(af_array *out, const af_array in, const double norm_factor, const dim_t odim0, const dim_t odim1);
+AFAPI af_err af_fft2(af_array *out, const af_array in, const float norm_factor, const dim_t odim0, const dim_t odim1);
 
 #if AF_API_VERSION >= 31
 /**
@@ -1133,7 +1133,7 @@ AFAPI af_err af_fft2(af_array *out, const af_array in, const double norm_factor,
 
    \ingroup signal_func_fft2
  */
-AFAPI af_err af_fft2_inplace(af_array in, const double norm_factor);
+AFAPI af_err af_fft2_inplace(af_array in, const float norm_factor);
 #endif
 
 /**
@@ -1150,7 +1150,7 @@ AFAPI af_err af_fft2_inplace(af_array in, const double norm_factor);
 
    \ingroup signal_func_fft3
  */
-AFAPI af_err af_fft3(af_array *out, const af_array in, const double norm_factor, const dim_t odim0, const dim_t odim1, const dim_t odim2);
+AFAPI af_err af_fft3(af_array *out, const af_array in, const float norm_factor, const dim_t odim0, const dim_t odim1, const dim_t odim2);
 
 #if AF_API_VERSION >= 31
 /**
@@ -1165,7 +1165,7 @@ AFAPI af_err af_fft3(af_array *out, const af_array in, const double norm_factor,
 
    \ingroup signal_func_fft3
  */
-AFAPI af_err af_fft3_inplace(af_array in, const double norm_factor);
+AFAPI af_err af_fft3_inplace(af_array in, const float norm_factor);
 #endif
 
 /**
@@ -1180,7 +1180,7 @@ AFAPI af_err af_fft3_inplace(af_array in, const double norm_factor);
 
    \ingroup signal_func_ifft
  */
-AFAPI af_err af_ifft(af_array *out, const af_array in, const double norm_factor, const dim_t odim0);
+AFAPI af_err af_ifft(af_array *out, const af_array in, const float norm_factor, const dim_t odim0);
 
 #if AF_API_VERSION >= 31
 /**
@@ -1195,7 +1195,7 @@ AFAPI af_err af_ifft(af_array *out, const af_array in, const double norm_factor,
 
    \ingroup signal_func_ifft
 */
-AFAPI af_err af_ifft_inplace(af_array in, const double norm_factor);
+AFAPI af_err af_ifft_inplace(af_array in, const float norm_factor);
 #endif
 
 /**
@@ -1211,7 +1211,7 @@ AFAPI af_err af_ifft_inplace(af_array in, const double norm_factor);
 
    \ingroup signal_func_ifft2
  */
-AFAPI af_err af_ifft2(af_array *out, const af_array in, const double norm_factor, const dim_t odim0, const dim_t odim1);
+AFAPI af_err af_ifft2(af_array *out, const af_array in, const float norm_factor, const dim_t odim0, const dim_t odim1);
 
 #if AF_API_VERSION >= 31
 /**
@@ -1226,7 +1226,7 @@ AFAPI af_err af_ifft2(af_array *out, const af_array in, const double norm_factor
 
    \ingroup signal_func_ifft2
 */
-AFAPI af_err af_ifft2_inplace(af_array in, const double norm_factor);
+AFAPI af_err af_ifft2_inplace(af_array in, const float norm_factor);
 #endif
 
 /**
@@ -1243,7 +1243,7 @@ AFAPI af_err af_ifft2_inplace(af_array in, const double norm_factor);
 
    \ingroup signal_func_ifft3
  */
-AFAPI af_err af_ifft3(af_array *out, const af_array in, const double norm_factor, const dim_t odim0, const dim_t odim1, const dim_t odim2);
+AFAPI af_err af_ifft3(af_array *out, const af_array in, const float norm_factor, const dim_t odim0, const dim_t odim1, const dim_t odim2);
 
 #if AF_API_VERSION >= 31
 /**
@@ -1258,7 +1258,7 @@ AFAPI af_err af_ifft3(af_array *out, const af_array in, const double norm_factor
 
    \ingroup signal_func_ifft3
 */
-AFAPI af_err af_ifft3_inplace(af_array in, const double norm_factor);
+AFAPI af_err af_ifft3_inplace(af_array in, const float norm_factor);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -1276,7 +1276,7 @@ AFAPI af_err af_ifft3_inplace(af_array in, const double norm_factor);
 
    \ingroup signal_func_fft_r2c
 */
-AFAPI af_err af_fft_r2c (af_array *out, const af_array in, const double norm_factor, const dim_t pad0);
+AFAPI af_err af_fft_r2c (af_array *out, const af_array in, const float norm_factor, const dim_t pad0);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -1295,7 +1295,7 @@ AFAPI af_err af_fft_r2c (af_array *out, const af_array in, const double norm_fac
 
    \ingroup signal_func_fft_r2c
 */
-AFAPI af_err af_fft2_r2c(af_array *out, const af_array in, const double norm_factor, const dim_t pad0, const dim_t pad1);
+AFAPI af_err af_fft2_r2c(af_array *out, const af_array in, const float norm_factor, const dim_t pad0, const dim_t pad1);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -1315,7 +1315,7 @@ AFAPI af_err af_fft2_r2c(af_array *out, const af_array in, const double norm_fac
 
    \ingroup signal_func_fft_r2c
 */
-AFAPI af_err af_fft3_r2c(af_array *out, const af_array in, const double norm_factor, const dim_t pad0, const dim_t pad1, const dim_t pad2);
+AFAPI af_err af_fft3_r2c(af_array *out, const af_array in, const float norm_factor, const dim_t pad0, const dim_t pad1, const dim_t pad2);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -1334,7 +1334,7 @@ AFAPI af_err af_fft3_r2c(af_array *out, const af_array in, const double norm_fac
    \ingroup signal_func_fft_c2r
 */
 
-AFAPI af_err af_fft_c2r (af_array *out, const af_array in, const double norm_factor, const bool is_odd);
+AFAPI af_err af_fft_c2r (af_array *out, const af_array in, const float norm_factor, const bool is_odd);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -1352,7 +1352,7 @@ AFAPI af_err af_fft_c2r (af_array *out, const af_array in, const double norm_fac
 
    \ingroup signal_func_fft_c2r
 */
-AFAPI af_err af_fft2_c2r(af_array *out, const af_array in, const double norm_factor, const bool is_odd);
+AFAPI af_err af_fft2_c2r(af_array *out, const af_array in, const float norm_factor, const bool is_odd);
 #endif
 
 #if AF_API_VERSION >= 31
@@ -1370,7 +1370,7 @@ AFAPI af_err af_fft2_c2r(af_array *out, const af_array in, const double norm_fac
 
    \ingroup signal_func_fft_c2r
 */
-AFAPI af_err af_fft3_c2r(af_array *out, const af_array in, const double norm_factor, const bool is_odd);
+AFAPI af_err af_fft3_c2r(af_array *out, const af_array in, const float norm_factor, const bool is_odd);
 #endif
 
 /**

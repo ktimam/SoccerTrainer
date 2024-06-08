@@ -54,9 +54,9 @@ Array<T> diagExtract(const Array<T> &in, const int num) {
     template Array<T> diagCreate<T>(const Array<T> &in, const int num);
 
 INSTANTIATE_DIAGONAL(float)
-INSTANTIATE_DIAGONAL(double)
+//INSTANTIATE_DIAGONAL(double)
 INSTANTIATE_DIAGONAL(cfloat)
-INSTANTIATE_DIAGONAL(cdouble)
+//INSTANTIATE_DIAGONAL(cdouble)
 INSTANTIATE_DIAGONAL(int)
 INSTANTIATE_DIAGONAL(uint)
 INSTANTIATE_DIAGONAL(intl)

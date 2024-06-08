@@ -90,9 +90,9 @@ detail::Array<T> flat(const detail::Array<T> &in) {
         const detail::Array<TYPE> &in)
 
 INSTANTIATE(float);
-INSTANTIATE(double);
+//INSTANTIATE(double);
 INSTANTIATE(detail::cfloat);
-INSTANTIATE(detail::cdouble);
+//INSTANTIATE(detail::cdouble);
 INSTANTIATE(arrayfire::common::half);
 INSTANTIATE(unsigned char);
 INSTANTIATE(char);

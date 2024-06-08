@@ -178,15 +178,15 @@ int CNAME(BLASLONG m, FLOAT *alpha, FLOAT *x, BLASLONG incx, FLOAT *a, BLASLONG 
 
   args.m = m;
 
-  args.a = (void *)x;
-  args.b = (void *)a;
+  args.a = (float *)x;
+  args.b = (float *)a;
 
   args.lda = incx;
   args.ldb = lda;
 #if !defined(COMPLEX) || defined(HER) || defined(HERREV)
-  args.alpha = (void *)&alpha;
+  args.alpha = (float *)&alpha;
 #else
-  args.alpha = (void *)alpha;
+  args.alpha = (float *)alpha;
 #endif
 
   dnum = (double)m * (double)m / (double)nthreads;

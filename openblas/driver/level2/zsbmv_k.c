@@ -42,7 +42,7 @@
 
 int CNAME(BLASLONG n, BLASLONG k, FLOAT alpha_r, FLOAT alpha_i,
 	  FLOAT *a, BLASLONG lda,
-	  FLOAT *x, BLASLONG incx, FLOAT *y, BLASLONG incy, void *buffer){
+	  FLOAT *x, BLASLONG incx, FLOAT *y, BLASLONG incy, float *buffer){
 
   BLASLONG i, length;
 #ifndef LOWER

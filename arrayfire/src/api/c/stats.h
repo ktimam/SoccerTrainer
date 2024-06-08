@@ -14,7 +14,7 @@
 
 template<typename T>
 struct baseOutType {
-    typedef typename std::conditional<std::is_same<T, detail::cdouble>::value ||
+    typedef typename std::conditional<std::is_same<T, std::complex<float>>::value ||
                                           std::is_same<T, double>::value,
-                                      double, float>::type type;
+                                      float, float>::type type;
 };

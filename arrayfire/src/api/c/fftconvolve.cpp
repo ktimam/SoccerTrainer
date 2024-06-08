@@ -29,7 +29,7 @@ using af::dim4;
 using arrayfire::common::cast;
 using detail::arithOp;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createSubArray;
 using detail::fftconvolve;
@@ -54,7 +54,7 @@ af_array fftconvolve_fallback(const af_array signal, const af_array filter,
                                            is_same<T, cfloat>::value,
                                        float, double>::type;
     using cT    = typename conditional<is_same<convT, float>::value, cfloat,
-                                    cdouble>::type;
+                                    std::complex<float>>::type;
 
     const Array<cT> S = castArray<cT>(signal);
     const Array<cT> F = castArray<cT>(filter);
@@ -81,10 +81,10 @@ af_array fftconvolve_fallback(const af_array signal, const af_array filter,
         // Get the indexing params for output
         if (expand) {
             index[i].begin = 0.;
-            index[i].end   = static_cast<double>(tdim_i) - 1.;
+            index[i].end   = static_cast<float>(tdim_i) - 1.;
         } else {
-            index[i].begin = static_cast<double>(fdims[i]) / 2.0;
-            index[i].end = static_cast<double>(index[i].begin + sdims[i]) - 1.;
+            index[i].begin = static_cast<float>(fdims[i]) / 2.0;
+            index[i].end = static_cast<float>(index[i].begin + sdims[i]) - 1.;
         }
         index[i].step = 1.;
     }
@@ -106,7 +106,7 @@ af_array fftconvolve_fallback(const af_array signal, const af_array filter,
     T1 = arithOp<cT, af_mul_t>(T1, T2, odims);
 
     // ifft(ffit(signal) * fft(filter))
-    T1 = fft<cT, cT>(T1, 1.0 / static_cast<double>(count), baseDim, odims.get(),
+    T1 = fft<cT, cT>(T1, 1.0 / static_cast<float>(count), baseDim, odims.get(),
                      baseDim, false);
 
     // Index to proper offsets
@@ -176,7 +176,7 @@ af_err fft_convolve(af_array *out, const af_array signal, const af_array filter,
         af_array output;
         switch (signalType) {
             /*case f64:
-                output = fftconvolve<double>(signal, filter, expand, convBT,
+                output = fftconvolve<float>(signal, filter, expand, convBT,
                                              baseDim);
                 break;*/
             case f32:

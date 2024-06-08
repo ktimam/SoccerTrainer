@@ -26,7 +26,7 @@
 using af::dim4;
 using detail::arithOp;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::createValueArray;
@@ -138,9 +138,9 @@ af_err af_norm(double *out, const af_array in, const af_norm_type type,
 
         switch (i_type) {
             case f32: *out = norm<float>(in, type, p, q); break;
-            case f64: *out = norm<double>(in, type, p, q); break;
+            //case f64: *out = norm<float>(in, type, p, q); break;
             case c32: *out = norm<cfloat>(in, type, p, q); break;
-            case c64: *out = norm<cdouble>(in, type, p, q); break;
+            //case c64: *out = norm<cdouble>(in, type, p, q); break;
             default: TYPE_ERROR(1, i_type);
         }
     }

@@ -20,15 +20,15 @@ array clamp(const array &in, const array &lo, const array &hi) {
     return array(out);
 }
 
-array clamp(const array &in, const array &lo, const double hi) {
+array clamp(const array &in, const array &lo, const float hi) {
     return clamp(in, lo, constant(hi, lo.dims(), lo.type()));
 }
 
-array clamp(const array &in, const double lo, const array &hi) {
+array clamp(const array &in, const float lo, const array &hi) {
     return clamp(in, constant(lo, hi.dims(), hi.type()), hi);
 }
 
-array clamp(const array &in, const double lo, const double hi) {
+array clamp(const array &in, const float lo, const float hi) {
     return clamp(in, constant(lo, in.dims(), in.type()),
                  constant(hi, in.dims(), in.type()));
 }

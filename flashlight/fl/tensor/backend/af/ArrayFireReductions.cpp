@@ -207,7 +207,7 @@ Tensor ArrayFireBackend::median(
     // Reduce along all axes returning a singleton tensor
     // TODO: modify this to af::median<af::array> to take advantage of the
     // ArrayFire reduce_all kernels once available
-    double median = af::median<double>(toArray(input));
+    float median = af::median<float>(toArray(input));
     return toTensor<ArrayFireTensor>(
         af::constant(median, 1),
         /* numDims = */ 0);
@@ -231,7 +231,7 @@ Tensor ArrayFireBackend::var(
   // TODO: modify this to af::var<af::array> to take advantage of the
   // ArrayFire reduce_all kernels once available
   if (isAllAxisReduction(input, axes)) {
-    double out = af::var<double>(toArray(input), biasMode);
+    float out = af::var<float>(toArray(input), biasMode);
     return toTensor<ArrayFireTensor>(af::constant(out, 1), /* numDims = */ 0);
   } else if (axes.size() == 1) {
     return toTensor<ArrayFireTensor>(
@@ -268,7 +268,7 @@ Tensor ArrayFireBackend::std(
   af_var_bias biasMode = bias ? AF_VARIANCE_SAMPLE : AF_VARIANCE_POPULATION;
   if (isAllAxisReduction(input, axes)) {
     // TODO: update to af::stdev<af::array> once specialization is available
-    double out = af::stdev<double>(toArray(input), biasMode);
+    float out = af::stdev<float>(toArray(input), biasMode);
     return toTensor<ArrayFireTensor>(af::constant(out, 1), /* numDims = */ 0);
   } else if (axes.size() == 1) {
     // Use arrayfire default for one dimension which may be optimized
@@ -284,7 +284,7 @@ Tensor ArrayFireBackend::std(
 Tensor ArrayFireBackend::norm(
     const Tensor& input,
     const std::vector<int>& axes,
-    double p /* = 2 */,
+    float p /* = 2 */,
     const bool keepDims) {
   if (isAllAxisReduction(input, axes)) {
     // TODO: update to af::norm<af::array> if device-side specialization is

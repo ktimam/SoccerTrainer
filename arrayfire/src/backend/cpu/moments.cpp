@@ -46,7 +46,7 @@ Array<float> moments(const Array<T> &in, const af_moment_type moment) {
                                      const af_moment_type moment);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)

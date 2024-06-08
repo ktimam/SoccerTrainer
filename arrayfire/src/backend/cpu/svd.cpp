@@ -118,9 +118,9 @@ namespace cpu {
                                     Array<T> & vt, Array<T> & in);
 
 INSTANTIATE_SVD(float, float)
-INSTANTIATE_SVD(double, double)
+//INSTANTIATE_SVD(double, double)
 INSTANTIATE_SVD(cfloat, float)
-INSTANTIATE_SVD(cdouble, double)
+//INSTANTIATE_SVD(cdouble, double)
 
 }  // namespace cpu
 }  // namespace arrayfire

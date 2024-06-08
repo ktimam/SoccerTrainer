@@ -17,7 +17,7 @@
 
 using af::dim4;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::intl;
@@ -97,11 +97,11 @@ af_err af_nearest_neighbour(af_array* idx, af_array* dist, const af_array query,
                                                     dist_dim, n_dist,
                                                     dist_type);
                     break;
-                case f64:
+                /*case f64:
                     nearest_neighbour<double, double>(&oIdx, &oDist, query,
                                                       train, dist_dim, n_dist,
                                                       dist_type);
-                    break;
+                    break;*/
                 case s32:
                     nearest_neighbour<int, int>(&oIdx, &oDist, query, train,
                                                 dist_dim, n_dist, dist_type);

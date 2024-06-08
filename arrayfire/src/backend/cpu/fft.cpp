@@ -219,7 +219,7 @@ Array<Tr> fft_c2r(const Array<Tc> &in, const dim4 &odims, const int rank) {
     template void fft_inplace<T>(Array<T> &, const int, const bool);
 
 INSTANTIATE(cfloat)
-//INSTANTIATE(cdouble)
+////INSTANTIATE(cdouble)
 
 #define INSTANTIATE_REAL(Tr, Tc)                                             \
     template Array<Tc> fft_r2c<Tc, Tr>(const Array<Tr> &, const int);        \

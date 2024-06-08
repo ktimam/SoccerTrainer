@@ -56,11 +56,11 @@ template<>
 struct EPS<float> {
     static float eps() { return numeric_limits<float>::epsilon(); }
 };
-
-template<>
-struct EPS<double> {
-    static double eps() { return numeric_limits<double>::epsilon(); }
-};
+//
+//template<>
+//struct EPS<float> {
+//    static double eps() { return numeric_limits<float>::epsilon(); }
+//};
 
 template<typename T, int M, int N>
 void JacobiSVD(T* S, T* V) {
@@ -418,7 +418,7 @@ int homography(Array<T>& bestH, const Array<float>& x_src,
         const unsigned iterations);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 
 }  // namespace cpu
 }  // namespace arrayfire

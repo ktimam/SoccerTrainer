@@ -34,7 +34,7 @@ using arrayfire::common::getEnvVar;
 using arrayfire::common::half;
 using arrayfire::common::JIT_KERNEL_CACHE_DIRECTORY_ENV_NAME;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::devprop;
@@ -277,17 +277,17 @@ af_err af_eval(af_array arr) {
         if (info.isSparse()) {
             switch (type) {
                 case f32: sparseEval<float>(arr); break;
-                case f64: sparseEval<double>(arr); break;
+                //case f64: sparseEval<float>(arr); break;
                 case c32: sparseEval<cfloat>(arr); break;
-                case c64: sparseEval<cdouble>(arr); break;
+                //case c64: sparseEval<cdouble>(arr); break;
                 default: TYPE_ERROR(0, type);
             }
         } else {
             switch (type) {
                 case f32: eval<float>(arr); break;
-                case f64: eval<double>(arr); break;
+                //case f64: eval<float>(arr); break;
                 case c32: eval<cfloat>(arr); break;
-                case c64: eval<cdouble>(arr); break;
+                //case c64: eval<cdouble>(arr); break;
                 case s32: eval<int>(arr); break;
                 case u32: eval<uint>(arr); break;
                 case u8: eval<uchar>(arr); break;
@@ -339,9 +339,9 @@ af_err af_eval_multiple(int num, af_array* arrays) {
 
         switch (type) {
             case f32: evalMultiple<float>(num, arrays); break;
-            case f64: evalMultiple<double>(num, arrays); break;
+            //case f64: evalMultiple<float>(num, arrays); break;
             case c32: evalMultiple<cfloat>(num, arrays); break;
-            case c64: evalMultiple<cdouble>(num, arrays); break;
+            //case c64: evalMultiple<cdouble>(num, arrays); break;
             case s32: evalMultiple<int>(num, arrays); break;
             case u32: evalMultiple<uint>(num, arrays); break;
             case u8: evalMultiple<uchar>(num, arrays); break;

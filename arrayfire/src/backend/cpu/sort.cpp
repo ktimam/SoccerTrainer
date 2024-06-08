@@ -92,9 +92,9 @@ Array<T> sort(const Array<T>& in, const unsigned dim, bool isAscending) {
                               bool isAscending);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 // INSTANTIATE(cfloat)
-// INSTANTIATE(cdouble)
+// //INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(char)

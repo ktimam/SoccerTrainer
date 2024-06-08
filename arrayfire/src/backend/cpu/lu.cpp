@@ -125,8 +125,8 @@ namespace cpu {
 
 INSTANTIATE_LU(float)
 INSTANTIATE_LU(cfloat)
-INSTANTIATE_LU(double)
-INSTANTIATE_LU(cdouble)
+//INSTANTIATE_LU(double)
+//INSTANTIATE_LU(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

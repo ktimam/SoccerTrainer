@@ -97,9 +97,9 @@ T ireduce_all(unsigned *loc, const Array<T> &in) {
 
 // min
 INSTANTIATE(af_min_t, float)
-INSTANTIATE(af_min_t, double)
+//INSTANTIATE(af_min_t, double)
 INSTANTIATE(af_min_t, cfloat)
-INSTANTIATE(af_min_t, cdouble)
+//INSTANTIATE(af_min_t, cdouble)
 INSTANTIATE(af_min_t, int)
 INSTANTIATE(af_min_t, uint)
 INSTANTIATE(af_min_t, intl)
@@ -112,9 +112,9 @@ INSTANTIATE(af_min_t, half)
 
 // max
 INSTANTIATE(af_max_t, float)
-INSTANTIATE(af_max_t, double)
+//INSTANTIATE(af_max_t, double)
 INSTANTIATE(af_max_t, cfloat)
-INSTANTIATE(af_max_t, cdouble)
+//INSTANTIATE(af_max_t, cdouble)
 INSTANTIATE(af_max_t, int)
 INSTANTIATE(af_max_t, uint)
 INSTANTIATE(af_max_t, intl)

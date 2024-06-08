@@ -141,8 +141,8 @@ namespace cpu {
 
 INSTANTIATE_QR(float)
 INSTANTIATE_QR(cfloat)
-INSTANTIATE_QR(double)
-INSTANTIATE_QR(cdouble)
+//INSTANTIATE_QR(double)
+//INSTANTIATE_QR(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

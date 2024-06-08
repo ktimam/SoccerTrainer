@@ -300,8 +300,8 @@ struct tms{
  inline clock_t times(struct tms *t){
   struct timespec ts;
   clock_gettime(CLOCK_THREAD_CPUTIME_ID, &ts);
-  clock_t ticks(static_cast<clock_t>(static_cast<double>(ts.tv_sec)  * CLOCKS_PER_SEC +
-                                     static_cast<double>(ts.tv_nsec) * CLOCKS_PER_SEC / 1000000.0));
+  clock_t ticks(static_cast<clock_t>(static_cast<float>(ts.tv_sec)  * CLOCKS_PER_SEC +
+                                     static_cast<float>(ts.tv_nsec) * CLOCKS_PER_SEC / 1000000.0));
   t->tms_utime  = ticks/2U;
   t->tms_stime  = ticks/2U;
   t->tms_cutime = 0; // vxWorks is lacking the concept of a child process!

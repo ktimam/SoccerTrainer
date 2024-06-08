@@ -145,7 +145,7 @@ std::ostream& StubTensor::operator<<(std::ostream& /* ostr */) {
 
 #define FL_STUB_TENSOR_ASSIGN_OP(OP)                 \
   FL_STUB_TENSOR_ASSIGN_OP_TYPE(OP, Tensor);         \
-  FL_STUB_TENSOR_ASSIGN_OP_TYPE(OP, double);         \
+  /*FL_STUB_TENSOR_ASSIGN_OP_TYPE(OP, double);*/         \
   FL_STUB_TENSOR_ASSIGN_OP_TYPE(OP, float);          \
   FL_STUB_TENSOR_ASSIGN_OP_TYPE(OP, int);            \
   FL_STUB_TENSOR_ASSIGN_OP_TYPE(OP, unsigned);       \

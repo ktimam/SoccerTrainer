@@ -31,17 +31,17 @@ BatchDataset::BatchDataset(
   preBatchSize_ = dataset_->size();
   switch (batchPolicy_) {
     case BatchDatasetPolicy::INCLUDE_LAST:
-      size_ = std::ceil(static_cast<double>(preBatchSize_) / batchSize_);
+      size_ = std::ceil(static_cast<float>(preBatchSize_) / batchSize_);
       break;
     case BatchDatasetPolicy::SKIP_LAST:
-      size_ = std::floor(static_cast<double>(preBatchSize_) / batchSize_);
+      size_ = std::floor(static_cast<float>(preBatchSize_) / batchSize_);
       break;
     case BatchDatasetPolicy::DIVISIBLE_ONLY:
       if (size_ % batchSize_ != 0) {
         throw std::invalid_argument(
             "dataset is not evenly divisible into batches");
       }
-      size_ = std::ceil(static_cast<double>(preBatchSize_) / batchSize_);
+      size_ = std::ceil(static_cast<float>(preBatchSize_) / batchSize_);
       break;
     default:
       throw std::invalid_argument("unknown BatchDatasetPolicy");

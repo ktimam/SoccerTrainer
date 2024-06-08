@@ -33,8 +33,8 @@ class FL_API SGDOptimizer : public FirstOrderOptimizer {
   FL_SAVE_LOAD_WITH_BASE(
       FirstOrderOptimizer,
       useNesterov_,
-      fl::serializeAs<double>(mu_),
-      fl::serializeAs<double>(wd_),
+      fl::serializeAs<float>(mu_),
+      fl::serializeAs<float>(wd_),
       velocities_)
 
   SGDOptimizer() = default; // Intentionally private

@@ -43,6 +43,13 @@
 
 #ifdef C_MSVC
 #include <intrin.h>
+#else
+#include <chrono>
+
+inline uint64_t rdtsc() {
+	return std::chrono::high_resolution_clock::now().time_since_epoch().count();
+}
+}
 #endif
 
 #ifdef C_SUN
@@ -97,7 +104,7 @@ static __inline void blas_lock(volatile BLASULONG *address){
 #define BLAS_LOCK_DEFINED
 
 static __inline BLASULONG rpcc(void){
-#ifdef C_MSVC
+#if defined(C_MSVC) || defined(OPENBLAS_OS_LINUX)
   return __rdtsc();
 #else
   BLASULONG a, d;

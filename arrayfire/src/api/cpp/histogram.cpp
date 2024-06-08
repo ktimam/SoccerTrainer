@@ -26,7 +26,7 @@ array histogram(const array& in, const unsigned nbins) {
     af_array out = 0;
     if (in.numdims() == 0) { return in; }
     AF_THROW(
-        af_histogram(&out, in.get(), nbins, min<double>(in), max<double>(in)));
+        af_histogram(&out, in.get(), nbins, min<float>(in), max<float>(in)));
     return array(out);
 }
 

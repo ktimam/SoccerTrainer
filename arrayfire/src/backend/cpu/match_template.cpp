@@ -46,7 +46,7 @@ Array<outType> match_template(const Array<inType> &sImg,
     template Array<out_t> match_template<in_t, out_t>( \
         const Array<in_t> &, const Array<in_t> &, const af::matchType);
 
-INSTANTIATE(double, double)
+//INSTANTIATE(double, double)
 INSTANTIATE(float, float)
 INSTANTIATE(char, float)
 INSTANTIATE(int, float)

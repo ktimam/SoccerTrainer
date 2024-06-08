@@ -58,8 +58,8 @@ void assign(Array<T>& out, const af_index_t idxrs[], const Array<T>& rhs) {
     template void assign<T>(Array<T> & out, const af_index_t idxrs[], \
                             const Array<T>& rhs);
 
-INSTANTIATE(cdouble)
-INSTANTIATE(double)
+//INSTANTIATE(cdouble)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
 INSTANTIATE(float)
 INSTANTIATE(uintl)

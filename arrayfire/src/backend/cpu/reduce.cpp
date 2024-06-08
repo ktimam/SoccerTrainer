@@ -24,19 +24,19 @@ using af::dim4;
 using arrayfire::common::Binary;
 using arrayfire::common::half;
 using arrayfire::common::Transform;
-using arrayfire::cpu::cdouble;
+//using arrayfire::cpu::cdouble;
 
 namespace arrayfire {
 namespace common {
-
-template<>
-struct Binary<cdouble, af_add_t> {
-    static cdouble init() { return cdouble(0, 0); }
-
-    cdouble operator()(cdouble lhs, cdouble rhs) {
-        return cdouble(real(lhs) + real(rhs), imag(lhs) + imag(rhs));
-    }
-};
+//
+//template<>
+//struct Binary<cdouble, af_add_t> {
+//    static cdouble init() { return cdouble(0, 0); }
+//
+//    cdouble operator()(cdouble lhs, cdouble rhs) {
+//        return cdouble(real(lhs) + real(rhs), imag(lhs) + imag(rhs));
+//    }
+//};
 
 }  // namespace common
 namespace cpu {
@@ -88,7 +88,7 @@ void reduce_by_key(Array<Tk> &keys_out, Array<To> &vals_out,
 
     std::vector<af_seq> index;
     for (int i = 0; i < keys.ndims(); ++i) {
-        af_seq s = {0.0, static_cast<double>(okdims[i]) - 1, 1.0};
+        af_seq s = {0.0, static_cast<float>(okdims[i]) - 1, 1.0};
         index.push_back(s);
     }
     Array<Tk> okeys = createSubArray<Tk>(fullsz_okeys, index, true);
@@ -137,9 +137,9 @@ Array<To> reduce_all(const Array<Ti> &in, bool change_nan, double nanval) {
 
 // min
 INSTANTIATE(af_min_t, float, float)
-INSTANTIATE(af_min_t, double, double)
+//INSTANTIATE(af_min_t, double, double)
 INSTANTIATE(af_min_t, cfloat, cfloat)
-INSTANTIATE(af_min_t, cdouble, cdouble)
+//INSTANTIATE(af_min_t, cdouble, cdouble)
 INSTANTIATE(af_min_t, int, int)
 INSTANTIATE(af_min_t, uint, uint)
 INSTANTIATE(af_min_t, intl, intl)
@@ -152,9 +152,9 @@ INSTANTIATE(af_min_t, half, half)
 
 // max
 INSTANTIATE(af_max_t, float, float)
-INSTANTIATE(af_max_t, double, double)
+//INSTANTIATE(af_max_t, double, double)
 INSTANTIATE(af_max_t, cfloat, cfloat)
-INSTANTIATE(af_max_t, cdouble, cdouble)
+//INSTANTIATE(af_max_t, cdouble, cdouble)
 INSTANTIATE(af_max_t, int, int)
 INSTANTIATE(af_max_t, uint, uint)
 INSTANTIATE(af_max_t, intl, intl)
@@ -167,17 +167,17 @@ INSTANTIATE(af_max_t, half, half)
 
 // sum
 INSTANTIATE(af_add_t, float, float)
-INSTANTIATE(af_add_t, double, double)
+//INSTANTIATE(af_add_t, double, double)
 INSTANTIATE(af_add_t, cfloat, cfloat)
-INSTANTIATE(af_add_t, cdouble, cdouble)
+//INSTANTIATE(af_add_t, cdouble, cdouble)
 INSTANTIATE(af_add_t, int, int)
 INSTANTIATE(af_add_t, int, float)
 INSTANTIATE(af_add_t, uint, uint)
 INSTANTIATE(af_add_t, uint, float)
 INSTANTIATE(af_add_t, intl, intl)
-INSTANTIATE(af_add_t, intl, double)
+//INSTANTIATE(af_add_t, intl, double)
 INSTANTIATE(af_add_t, uintl, uintl)
-INSTANTIATE(af_add_t, uintl, double)
+//INSTANTIATE(af_add_t, uintl, double)
 INSTANTIATE(af_add_t, char, int)
 INSTANTIATE(af_add_t, char, float)
 INSTANTIATE(af_add_t, uchar, uint)
@@ -191,9 +191,9 @@ INSTANTIATE(af_add_t, half, half)
 
 // mul
 INSTANTIATE(af_mul_t, float, float)
-INSTANTIATE(af_mul_t, double, double)
+//INSTANTIATE(af_mul_t, double, double)
 INSTANTIATE(af_mul_t, cfloat, cfloat)
-INSTANTIATE(af_mul_t, cdouble, cdouble)
+//INSTANTIATE(af_mul_t, cdouble, cdouble)
 INSTANTIATE(af_mul_t, int, int)
 INSTANTIATE(af_mul_t, uint, uint)
 INSTANTIATE(af_mul_t, intl, intl)
@@ -206,9 +206,9 @@ INSTANTIATE(af_mul_t, half, float)
 
 // count
 INSTANTIATE(af_notzero_t, float, uint)
-INSTANTIATE(af_notzero_t, double, uint)
+//INSTANTIATE(af_notzero_t, double, uint)
 INSTANTIATE(af_notzero_t, cfloat, uint)
-INSTANTIATE(af_notzero_t, cdouble, uint)
+//INSTANTIATE(af_notzero_t, cdouble, uint)
 INSTANTIATE(af_notzero_t, int, uint)
 INSTANTIATE(af_notzero_t, uint, uint)
 INSTANTIATE(af_notzero_t, intl, uint)
@@ -221,9 +221,9 @@ INSTANTIATE(af_notzero_t, half, uint)
 
 // anytrue
 INSTANTIATE(af_or_t, float, char)
-INSTANTIATE(af_or_t, double, char)
+//INSTANTIATE(af_or_t, double, char)
 INSTANTIATE(af_or_t, cfloat, char)
-INSTANTIATE(af_or_t, cdouble, char)
+//INSTANTIATE(af_or_t, cdouble, char)
 INSTANTIATE(af_or_t, int, char)
 INSTANTIATE(af_or_t, uint, char)
 INSTANTIATE(af_or_t, intl, char)
@@ -236,9 +236,9 @@ INSTANTIATE(af_or_t, half, char)
 
 // alltrue
 INSTANTIATE(af_and_t, float, char)
-INSTANTIATE(af_and_t, double, char)
+//INSTANTIATE(af_and_t, double, char)
 INSTANTIATE(af_and_t, cfloat, char)
-INSTANTIATE(af_and_t, cdouble, char)
+//INSTANTIATE(af_and_t, cdouble, char)
 INSTANTIATE(af_and_t, int, char)
 INSTANTIATE(af_and_t, uint, char)
 INSTANTIATE(af_and_t, intl, char)

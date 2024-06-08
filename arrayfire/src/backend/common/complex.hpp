@@ -25,10 +25,10 @@ template<>
 struct is_complex<detail::cfloat> {
     static const bool value = true;
 };
-template<>
-struct is_complex<detail::cdouble> {
-    static const bool value = true;
-};
+//template<>
+//struct is_complex<detail::cdouble> {
+//    static const bool value = true;
+//};
 
 /// This is an enable_if for complex types.
 template<typename T, typename TYPE = void>

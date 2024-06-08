@@ -20,7 +20,7 @@ array sum(const array &in, const int dim) {
     return array(out);
 }
 
-array sum(const array &in, const int dim, const double nanval) {
+array sum(const array &in, const int dim, const float nanval) {
     af_array out = 0;
     AF_THROW(af_sum_nan(&out, in.get(), dim, nanval));
     return array(out);
@@ -36,7 +36,7 @@ void sumByKey(array &keys_out, array &vals_out, const array &keys,
 }
 
 void sumByKey(array &keys_out, array &vals_out, const array &keys,
-              const array &vals, const int dim, const double nanval) {
+              const array &vals, const int dim, const float nanval) {
     af_array okeys, ovals;
     AF_THROW(
         af_sum_by_key_nan(&okeys, &ovals, keys.get(), vals.get(), dim, nanval));
@@ -50,7 +50,7 @@ array product(const array &in, const int dim) {
     return array(out);
 }
 
-array product(const array &in, const int dim, const double nanval) {
+array product(const array &in, const int dim, const float nanval) {
     af_array out = 0;
     AF_THROW(af_product_nan(&out, in.get(), dim, nanval));
     return array(out);
@@ -66,7 +66,7 @@ void productByKey(array &keys_out, array &vals_out, const array &keys,
 }
 
 void productByKey(array &keys_out, array &vals_out, const array &keys,
-                  const array &vals, const int dim, const double nanval) {
+                  const array &vals, const int dim, const float nanval) {
     af_array okeys, ovals;
     AF_THROW(af_product_by_key_nan(&okeys, &ovals, keys.get(), vals.get(), dim,
                                    nanval));
@@ -181,7 +181,7 @@ void max(array &val, array &idx, const array &in, const int dim) {
 
 #define INSTANTIATE(fnC, fnCPP)                      \
     INSTANTIATE_REAL(fnC, fnCPP, float)              \
-    INSTANTIATE_REAL(fnC, fnCPP, double)             \
+    /*INSTANTIATE_REAL(fnC, fnCPP, double)*/             \
     INSTANTIATE_REAL(fnC, fnCPP, int)                \
     INSTANTIATE_REAL(fnC, fnCPP, unsigned)           \
     INSTANTIATE_REAL(fnC, fnCPP, long)               \
@@ -193,12 +193,12 @@ void max(array &val, array &idx, const array &in, const int dim) {
     INSTANTIATE_REAL(fnC, fnCPP, char)               \
     INSTANTIATE_REAL(fnC, fnCPP, unsigned char)      \
     INSTANTIATE_CPLX(fnC, fnCPP, af_cfloat, float)   \
-    INSTANTIATE_CPLX(fnC, fnCPP, af_cdouble, double)
+    /*INSTANTIATE_CPLX(fnC, fnCPP, af_cdouble, double)*/
 
 #define INSTANTIATE_REAL(fnC, fnCPP, T)                   \
     template<>                                            \
     AFAPI T fnCPP(const array &in) {                      \
-        double rval, ival;                                \
+        float rval, ival;                                \
         AF_THROW(af_##fnC##_all(&rval, &ival, in.get())); \
         return (T)(rval);                                 \
     }
@@ -206,7 +206,7 @@ void max(array &val, array &idx, const array &in, const int dim) {
 #define INSTANTIATE_CPLX(fnC, fnCPP, T, Tr)               \
     template<>                                            \
     AFAPI T fnCPP(const array &in) {                      \
-        double rval, ival;                                \
+        float rval, ival;                                \
         AF_THROW(af_##fnC##_all(&rval, &ival, in.get())); \
         T out((Tr)rval, (Tr)ival);                        \
         return out;                                       \
@@ -245,16 +245,16 @@ INSTANTIATE_ARRAY(count, count)
 
 #define INSTANTIATE_REAL(fnC, fnCPP, T)                           \
     template<>                                                    \
-    AFAPI T fnCPP(const array &in, const double nanval) {         \
-        double rval, ival;                                        \
+    AFAPI T fnCPP(const array &in, const float nanval) {         \
+        float rval, ival;                                        \
         AF_THROW(af_##fnC##_all(&rval, &ival, in.get(), nanval)); \
         return (T)(rval);                                         \
     }
 
 #define INSTANTIATE_CPLX(fnC, fnCPP, T, Tr)                       \
     template<>                                                    \
-    AFAPI T fnCPP(const array &in, const double nanval) {         \
-        double rval, ival;                                        \
+    AFAPI T fnCPP(const array &in, const float nanval) {         \
+        float rval, ival;                                        \
         AF_THROW(af_##fnC##_all(&rval, &ival, in.get(), nanval)); \
         T out((Tr)rval, (Tr)ival);                                \
         return out;                                               \
@@ -262,7 +262,7 @@ INSTANTIATE_ARRAY(count, count)
 
 #define INSTANTIATE_ARRAY(fnC, fnCPP)                             \
     template<>                                                    \
-    AFAPI af::array fnCPP(const array &in, const double nanval) { \
+    AFAPI af::array fnCPP(const array &in, const float nanval) { \
         af_array out = 0;                                         \
         AF_THROW(af_##fnC##_all_array(&out, in.get(), nanval));   \
         return array(out);                                        \
@@ -286,7 +286,7 @@ INSTANTIATE(product_nan, product)
 
 #define INSTANTIATE(fnCPP, fnCompat)                        \
     INSTANTIATE_COMPAT(fnCPP, fnCompat, float)              \
-    INSTANTIATE_COMPAT(fnCPP, fnCompat, double)             \
+    /*INSTANTIATE_COMPAT(fnCPP, fnCompat, double)  */           \
     INSTANTIATE_COMPAT(fnCPP, fnCompat, int)                \
     INSTANTIATE_COMPAT(fnCPP, fnCompat, unsigned)           \
     INSTANTIATE_COMPAT(fnCPP, fnCompat, long)               \
@@ -296,7 +296,7 @@ INSTANTIATE(product_nan, product)
     INSTANTIATE_COMPAT(fnCPP, fnCompat, char)               \
     INSTANTIATE_COMPAT(fnCPP, fnCompat, unsigned char)      \
     INSTANTIATE_COMPAT(fnCPP, fnCompat, af_cfloat)          \
-    INSTANTIATE_COMPAT(fnCPP, fnCompat, af_cdouble)         \
+    /*INSTANTIATE_COMPAT(fnCPP, fnCompat, af_cdouble) */        \
     INSTANTIATE_COMPAT(fnCPP, fnCompat, short)              \
     INSTANTIATE_COMPAT(fnCPP, fnCompat, unsigned short)
 
@@ -313,7 +313,7 @@ INSTANTIATE_COMPAT(anyTrue, anytrue, bool)
 #define INSTANTIATE_REAL(fn, T)                                \
     template<>                                                 \
     AFAPI void fn(T *val, unsigned *idx, const array &in) {    \
-        double rval, ival;                                     \
+        float rval, ival;                                     \
         AF_THROW(af_i##fn##_all(&rval, &ival, idx, in.get())); \
         *val = (T)(rval);                                      \
     }
@@ -321,14 +321,14 @@ INSTANTIATE_COMPAT(anyTrue, anytrue, bool)
 #define INSTANTIATE_CPLX(fn, T, Tr)                            \
     template<>                                                 \
     AFAPI void fn(T *val, unsigned *idx, const array &in) {    \
-        double rval, ival;                                     \
+        float rval, ival;                                     \
         AF_THROW(af_i##fn##_all(&rval, &ival, idx, in.get())); \
         *val = T((Tr)rval, (Tr)ival);                          \
     }
 
 #define INSTANTIATE(fn)                    \
     INSTANTIATE_REAL(fn, float)            \
-    INSTANTIATE_REAL(fn, double)           \
+    /*INSTANTIATE_REAL(fn, double)*/           \
     INSTANTIATE_REAL(fn, int)              \
     INSTANTIATE_REAL(fn, unsigned)         \
     INSTANTIATE_REAL(fn, char)             \
@@ -336,7 +336,7 @@ INSTANTIATE_COMPAT(anyTrue, anytrue, bool)
     INSTANTIATE_REAL(fn, short)            \
     INSTANTIATE_REAL(fn, unsigned short)   \
     INSTANTIATE_CPLX(fn, af_cfloat, float) \
-    INSTANTIATE_CPLX(fn, af_cdouble, double)
+    /*INSTANTIATE_CPLX(fn, af_cdouble, double)*/
 
 INSTANTIATE(min)
 INSTANTIATE(max)

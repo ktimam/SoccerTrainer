@@ -102,18 +102,18 @@ template<>
 inline float __mod<float>(float lhs, float rhs) {
     return fmod(lhs, rhs);
 }
-template<>
-inline double __mod<double>(double lhs, double rhs) {
-    return fmod(lhs, rhs);
-}
+//template<>
+//inline double __mod<float>(double lhs, double rhs) {
+//    return fmod(lhs, rhs);
+//}
 template<>
 inline float __rem<float>(float lhs, float rhs) {
     return remainder(lhs, rhs);
 }
-template<>
-inline double __rem<double>(double lhs, double rhs) {
-    return remainder(lhs, rhs);
-}
+//template<>
+//inline double __rem<float>(double lhs, double rhs) {
+//    return remainder(lhs, rhs);
+//}
 
 #define BITWISE_FN(OP, op)                                               \
     template<typename T>                                                 \

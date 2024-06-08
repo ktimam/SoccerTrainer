@@ -15,7 +15,7 @@ namespace arrayfire {
 namespace cpu {
 namespace kernel {
 INSTANTIATE1(float)
-INSTANTIATE1(double)
+//INSTANTIATE1(double)
 INSTANTIATE1(int)
 INSTANTIATE1(uint)
 INSTANTIATE1(intl)

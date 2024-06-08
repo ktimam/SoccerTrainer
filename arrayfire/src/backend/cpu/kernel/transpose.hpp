@@ -27,10 +27,10 @@ cfloat getConjugate(const cfloat &in) {
     return std::conj(in);
 }
 
-template<>
-cdouble getConjugate(const cdouble &in) {
-    return std::conj(in);
-}
+//template<>
+//cdouble getConjugate(const cdouble &in) {
+//    return std::conj(in);
+//}
 
 template<typename T, int M, int N>
 void transpose_kernel(T *output, const T *input, int ostride, int istride) {

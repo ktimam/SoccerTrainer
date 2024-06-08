@@ -112,8 +112,8 @@ int cholesky_inplace(Array<T> &in, const bool is_upper) {
 
 INSTANTIATE_CH(float)
 INSTANTIATE_CH(cfloat)
-INSTANTIATE_CH(double)
-INSTANTIATE_CH(cdouble)
+//INSTANTIATE_CH(double)
+//INSTANTIATE_CH(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

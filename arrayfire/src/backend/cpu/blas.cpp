@@ -134,7 +134,7 @@ class scale_type {
     }
 
 INSTANTIATE_BATCHED(float);   // NOLINT(readability-const-return-type)
-INSTANTIATE_BATCHED(double);  // NOLINT(readability-const-return-type)
+//INSTANTIATE_BATCHED(double);  // NOLINT(readability-const-return-type)
 #undef INSTANTIATE_BATCHED
 
 #define INSTANTIATE_COMPLEX(TYPE, BATCHED)                                    \
@@ -146,8 +146,8 @@ INSTANTIATE_BATCHED(double);  // NOLINT(readability-const-return-type)
 
 INSTANTIATE_COMPLEX(cfloat, true);    // NOLINT(readability-const-return-type)
 INSTANTIATE_COMPLEX(cfloat, false);   // NOLINT(readability-const-return-type)
-INSTANTIATE_COMPLEX(cdouble, true);   // NOLINT(readability-const-return-type)
-INSTANTIATE_COMPLEX(cdouble, false);  // NOLINT(readability-const-return-type)
+//INSTANTIATE_COMPLEX(cdouble, true);   // NOLINT(readability-const-return-type)
+//INSTANTIATE_COMPLEX(cdouble, false);  // NOLINT(readability-const-return-type)
 #undef INSTANTIATE_COMPLEX
 
 template<typename T>
@@ -189,15 +189,15 @@ using gemm_batch_func_def = void (*)(
 
 BLAS_FUNC_DEF(gemm)
 BLAS_FUNC(gemm, float, s)
-BLAS_FUNC(gemm, double, d)
+//BLAS_FUNC(gemm, double, d)
 BLAS_FUNC(gemm, cfloat, c)
-BLAS_FUNC(gemm, cdouble, z)
+//BLAS_FUNC(gemm, cdouble, z)
 
 BLAS_FUNC_DEF(gemv)
 BLAS_FUNC(gemv, float, s)
-BLAS_FUNC(gemv, double, d)
+//BLAS_FUNC(gemv, double, d)
 BLAS_FUNC(gemv, cfloat, c)
-BLAS_FUNC(gemv, cdouble, z)
+//BLAS_FUNC(gemv, cdouble, z)
 
 #ifdef USE_MKL
 BLAS_FUNC_DEF(gemm_batch)
@@ -379,8 +379,8 @@ Array<half> dot<half>(const Array<half> &lhs, const Array<half> &rhs,
 
 INSTANTIATE_GEMM(float);
 INSTANTIATE_GEMM(cfloat);
-INSTANTIATE_GEMM(double);
-INSTANTIATE_GEMM(cdouble);
+//INSTANTIATE_GEMM(double);
+//INSTANTIATE_GEMM(cdouble);
 
 #define INSTANTIATE_DOT(TYPE)                                                  \
     template Array<TYPE> dot<TYPE>(const Array<TYPE> &lhs,                     \
@@ -388,9 +388,9 @@ INSTANTIATE_GEMM(cdouble);
                                    af_mat_prop optRhs)
 
 INSTANTIATE_DOT(float);
-INSTANTIATE_DOT(double);
+//INSTANTIATE_DOT(double);
 INSTANTIATE_DOT(cfloat);
-INSTANTIATE_DOT(cdouble);
+//INSTANTIATE_DOT(cdouble);
 
 }  // namespace cpu
 }  // namespace arrayfire

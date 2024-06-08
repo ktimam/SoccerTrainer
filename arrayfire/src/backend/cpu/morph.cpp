@@ -63,7 +63,7 @@ Array<T> morph3d(const Array<T> &in, const Array<T> &mask, bool isDilation) {
     template Array<T> morph3d<T>(const Array<T> &, const Array<T> &, bool);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(char)
 INSTANTIATE(int)
 INSTANTIATE(uint)

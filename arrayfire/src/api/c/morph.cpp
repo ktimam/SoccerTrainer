@@ -28,7 +28,7 @@ using arrayfire::common::cast;
 using arrayfire::common::flip;
 using detail::arithOp;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::createValueArray;
@@ -131,7 +131,7 @@ af_err morph(af_array *out, const af_array &in, const af_array &mask,
         af_dtype type = info.getType();
         switch (type) {
             case f32: output = morph<float>(in, mask, isDilation); break;
-            case f64: output = morph<double>(in, mask, isDilation); break;
+            //case f64: output = morph<float>(in, mask, isDilation); break;
             case b8: output = morph<char>(in, mask, isDilation); break;
             case s32: output = morph<int>(in, mask, isDilation); break;
             case u32: output = morph<uint>(in, mask, isDilation); break;
@@ -164,7 +164,7 @@ af_err morph3d(af_array *out, const af_array &in, const af_array &mask,
         af_dtype type = info.getType();
         switch (type) {
             case f32: output = morph3d<float>(in, mask, isDilation); break;
-            case f64: output = morph3d<double>(in, mask, isDilation); break;
+            //case f64: output = morph3d<float>(in, mask, isDilation); break;
             case b8: output = morph3d<char>(in, mask, isDilation); break;
             case s32: output = morph3d<int>(in, mask, isDilation); break;
             case u32: output = morph3d<uint>(in, mask, isDilation); break;

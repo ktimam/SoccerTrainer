@@ -88,8 +88,8 @@ array dot(const array &lhs, const array &rhs, const matProp optLhs,
     }
 
 INSTANTIATE_REAL(float)
-INSTANTIATE_REAL(double)
+//INSTANTIATE_REAL(double)
 INSTANTIATE_CPLX(cfloat, float)
-INSTANTIATE_CPLX(cdouble, double)
+//INSTANTIATE_CPLX(cdouble, double)
 
 }  // namespace af

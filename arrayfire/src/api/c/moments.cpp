@@ -46,7 +46,7 @@ af_err af_moments(af_array* out, const af_array in,
 
         switch (type) {
             case f32: moments<float>(out, in, moment); break;
-            case f64: moments<double>(out, in, moment); break;
+            //case f64: moments<float>(out, in, moment); break;
             case u32: moments<unsigned>(out, in, moment); break;
             case s32: moments<int>(out, in, moment); break;
             case u16: moments<unsigned short>(out, in, moment); break;

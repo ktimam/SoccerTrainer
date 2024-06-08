@@ -38,7 +38,7 @@ using arrayfire::common::if_real;
 using arrayfire::common::modDims;
 using arrayfire::common::tile;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createSubArray;
 using detail::intl;
@@ -101,7 +101,7 @@ static if_complex<T> assign(Array<T>& out, const vector<af_seq> iv,
     const ArrayInfo& iInfo = getInfo(in);
     af_dtype iType         = iInfo.getType();
     switch (iType) {
-        case c64: assign<T, cdouble>(out, iv, getArray<cdouble>(in)); break;
+        //case c64: assign<T, cdouble>(out, iv, getArray<cdouble>(in)); break;
         case c32: assign<T, cfloat>(out, iv, getArray<cfloat>(in)); break;
         default: TYPE_ERROR(1, iType); break;
     }
@@ -114,7 +114,7 @@ static if_real<T> assign(Array<T>& out, const vector<af_seq> iv,
     af_dtype iType         = iInfo.getType();
 
     switch (iType) {
-        case f64: assign<T, double>(out, iv, getArray<double>(in)); break;
+        //case f64: assign<T, double>(out, iv, getArray<float>(in)); break;
         case f32: assign<T, float>(out, iv, getArray<float>(in)); break;
         case s32: assign<T, int>(out, iv, getArray<int>(in)); break;
         case u32: assign<T, uint>(out, iv, getArray<uint>(in)); break;
@@ -189,11 +189,11 @@ af_err af_assign_seq(af_array* out, const af_array lhs, const unsigned ndims,
                 const ArrayInfo& oInfo = getInfo(res);
                 af_dtype oType         = oInfo.getType();
                 switch (oType) {
-                    case c64:
+                    /*case c64:
                         assign(getArray<cdouble>(res), inSeqs, rhs);
-                        break;
+                        break;*/
                     case c32: assign(getArray<cfloat>(res), inSeqs, rhs); break;
-                    case f64: assign(getArray<double>(res), inSeqs, rhs); break;
+                    //case f64: assign(getArray<float>(res), inSeqs, rhs); break;
                     case f32: assign(getArray<float>(res), inSeqs, rhs); break;
                     case s32: assign(getArray<int>(res), inSeqs, rhs); break;
                     case u32: assign(getArray<uint>(res), inSeqs, rhs); break;
@@ -348,7 +348,7 @@ af_err af_assign_gen(af_array* out, const af_array lhs, const dim_t ndims,
                     af_dtype idxType         = idxInfo.getType();
 
                     ARG_ASSERT(3, (idxType != c32));
-                    ARG_ASSERT(3, (idxType != c64));
+                    //ARG_ASSERT(3, (idxType != c64));
                     ARG_ASSERT(3, (idxType != b8));
 
                     idxrs[i] = {{indexs[i].idx.arr}, isSeq, indexs[i].isBatch};
@@ -375,8 +375,8 @@ af_err af_assign_gen(af_array* out, const af_array lhs, const dim_t ndims,
 
         try {
             switch (rhsType) {
-                case c64: genAssign<cdouble>(output, ptr, rhs); break;
-                case f64: genAssign<double>(output, ptr, rhs); break;
+                //case c64: genAssign<cdouble>(output, ptr, rhs); break;
+                //case f64: genAssign<float>(output, ptr, rhs); break;
                 case c32: genAssign<cfloat>(output, ptr, rhs); break;
                 case f32: genAssign<float>(output, ptr, rhs); break;
                 case u64: genAssign<uintl>(output, ptr, rhs); break;

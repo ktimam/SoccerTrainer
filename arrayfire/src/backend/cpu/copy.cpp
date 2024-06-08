@@ -67,9 +67,9 @@ void copyArray(Array<outType> &out, Array<inType> const &in) {
     template Array<T> copyArray<T>(const Array<T> &A);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)
@@ -83,12 +83,8 @@ INSTANTIATE(half)
 #define INSTANTIATE_COPY_ARRAY(SRC_T)                                 \
     template void copyArray<SRC_T, float>(Array<float> & dst,         \
                                           Array<SRC_T> const &src);   \
-    template void copyArray<SRC_T, double>(Array<double> & dst,       \
-                                           Array<SRC_T> const &src);  \
     template void copyArray<SRC_T, cfloat>(Array<cfloat> & dst,       \
                                            Array<SRC_T> const &src);  \
-    template void copyArray<SRC_T, cdouble>(Array<cdouble> & dst,     \
-                                            Array<SRC_T> const &src); \
     template void copyArray<SRC_T, int>(Array<int> & dst,             \
                                         Array<SRC_T> const &src);     \
     template void copyArray<SRC_T, uint>(Array<uint> & dst,           \
@@ -109,7 +105,7 @@ INSTANTIATE(half)
                                          Array<SRC_T> const &src);
 
 INSTANTIATE_COPY_ARRAY(float)
-INSTANTIATE_COPY_ARRAY(double)
+//INSTANTIATE_COPY_ARRAY(double)
 INSTANTIATE_COPY_ARRAY(int)
 INSTANTIATE_COPY_ARRAY(uint)
 INSTANTIATE_COPY_ARRAY(intl)
@@ -122,12 +118,10 @@ INSTANTIATE_COPY_ARRAY(half)
 
 #define INSTANTIATE_COPY_ARRAY_COMPLEX(SRC_T)                        \
     template void copyArray<SRC_T, cfloat>(Array<cfloat> & dst,      \
-                                           Array<SRC_T> const &src); \
-    template void copyArray<SRC_T, cdouble>(Array<cdouble> & dst,    \
-                                            Array<SRC_T> const &src);
+                                           Array<SRC_T> const &src); 
 
 INSTANTIATE_COPY_ARRAY_COMPLEX(cfloat)
-INSTANTIATE_COPY_ARRAY_COMPLEX(cdouble)
+//INSTANTIATE_COPY_ARRAY_COMPLEX(cdouble)
 
 template<typename T>
 T getScalar(const Array<T> &in) {
@@ -139,9 +133,9 @@ T getScalar(const Array<T> &in) {
 #define INSTANTIATE_GETSCALAR(T) template T getScalar(const Array<T> &in);
 
 INSTANTIATE_GETSCALAR(float)
-INSTANTIATE_GETSCALAR(double)
+//INSTANTIATE_GETSCALAR(double)
 INSTANTIATE_GETSCALAR(cfloat)
-INSTANTIATE_GETSCALAR(cdouble)
+//INSTANTIATE_GETSCALAR(cdouble)
 INSTANTIATE_GETSCALAR(int)
 INSTANTIATE_GETSCALAR(uint)
 INSTANTIATE_GETSCALAR(uchar)

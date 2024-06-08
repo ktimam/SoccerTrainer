@@ -68,8 +68,8 @@ extern "C" {
 
     openblas_complex_float  cblas_cdotu(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx, OPENBLAS_CONST void* y, OPENBLAS_CONST blasint incy);
     openblas_complex_float  cblas_cdotc(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx, OPENBLAS_CONST void* y, OPENBLAS_CONST blasint incy);
-    openblas_complex_double cblas_zdotu(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx, OPENBLAS_CONST void* y, OPENBLAS_CONST blasint incy);
-    openblas_complex_double cblas_zdotc(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx, OPENBLAS_CONST void* y, OPENBLAS_CONST blasint incy);
+//    openblas_complex_double cblas_zdotu(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx, OPENBLAS_CONST void* y, OPENBLAS_CONST blasint incy);
+//    openblas_complex_double cblas_zdotc(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx, OPENBLAS_CONST void* y, OPENBLAS_CONST blasint incy);
 
     void  cblas_cdotu_sub(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx, OPENBLAS_CONST void* y, OPENBLAS_CONST blasint incy, void* ret);
     void  cblas_cdotc_sub(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx, OPENBLAS_CONST void* y, OPENBLAS_CONST blasint incy, void* ret);
@@ -84,7 +84,7 @@ extern "C" {
     float  cblas_ssum(OPENBLAS_CONST blasint n, OPENBLAS_CONST float* x, OPENBLAS_CONST blasint incx);
     double cblas_dsum(OPENBLAS_CONST blasint n, OPENBLAS_CONST double* x, OPENBLAS_CONST blasint incx);
     float  cblas_scsum(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx);
-    double cblas_dzsum(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx);
+//    double cblas_dzsum(OPENBLAS_CONST blasint n, OPENBLAS_CONST void* x, OPENBLAS_CONST blasint incx);
 
     float  cblas_snrm2(OPENBLAS_CONST blasint N, OPENBLAS_CONST float* X, OPENBLAS_CONST blasint incX);
     double cblas_dnrm2(OPENBLAS_CONST blasint N, OPENBLAS_CONST double* X, OPENBLAS_CONST blasint incX);

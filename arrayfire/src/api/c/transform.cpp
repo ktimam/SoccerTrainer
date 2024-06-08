@@ -16,7 +16,7 @@
 #include <af/image.h>
 
 using af::dim4;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -149,9 +149,9 @@ void af_transform_common(af_array *out, const af_array in, const af_array tf,
     // clang-format off
     switch(itype) {
     case f32: transform<float  >(out, in, tf, method, inverse, perspective);  break;
-    case f64: transform<double >(out, in, tf, method, inverse, perspective);  break;
+    //case f64: transform<double >(out, in, tf, method, inverse, perspective);  break;
     case c32: transform<cfloat >(out, in, tf, method, inverse, perspective);  break;
-    case c64: transform<cdouble>(out, in, tf, method, inverse, perspective);  break;
+    //case c64: transform<cdouble>(out, in, tf, method, inverse, perspective);  break;
     case s32: transform<int    >(out, in, tf, method, inverse, perspective);  break;
     case u32: transform<uint   >(out, in, tf, method, inverse, perspective);  break;
     case s64: transform<intl   >(out, in, tf, method, inverse, perspective);  break;

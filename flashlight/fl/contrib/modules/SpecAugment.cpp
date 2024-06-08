@@ -53,8 +53,8 @@ Variable SpecAugment::forward(const Variable& input) {
 
   auto& opArr = output.tensor();
 
-  double replaceVal = (maskStrategy_ == MaskingStrategy::GLOBAL_MEAN)
-      ? fl::mean(input.tensor()).asScalar<double>()
+  float replaceVal = (maskStrategy_ == MaskingStrategy::GLOBAL_MEAN)
+      ? fl::mean(input.tensor()).asScalar<float>()
       : 0.0;
 
   auto numFreqChans = input.dim(1); // number of frequency channels

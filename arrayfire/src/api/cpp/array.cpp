@@ -230,9 +230,9 @@ struct dtype_traits<half_float::half> {
         : arr(initDataArray(ptr, dtype_traits<T>::af_type, src, dim0, dim1,    \
                             dim2, dim3)) {}
 
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(cfloat)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(float)
 INSTANTIATE(unsigned)
 INSTANTIATE(int)
@@ -369,7 +369,7 @@ INSTANTIATE(vector)
 INSTANTIATE(row)
 INSTANTIATE(column)
 INSTANTIATE(complex)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(single)
 INSTANTIATE(half)
 INSTANTIATE(realfloating)
@@ -665,7 +665,7 @@ MEM_FUNC(bool, isvector)
 MEM_FUNC(bool, isrow)
 MEM_FUNC(bool, iscolumn)
 MEM_FUNC(bool, iscomplex)
-MEM_FUNC(bool, isdouble)
+//MEM_FUNC(bool, isdouble)
 MEM_FUNC(bool, issingle)
 MEM_FUNC(bool, ishalf)
 MEM_FUNC(bool, isrealfloating)
@@ -690,9 +690,7 @@ MEM_FUNC(af_array, get)
     }
 
 #define ASSIGN_OP(OP, op1)              \
-    ASSIGN_TYPE(double, OP)             \
     ASSIGN_TYPE(float, OP)              \
-    ASSIGN_TYPE(cdouble, OP)            \
     ASSIGN_TYPE(cfloat, OP)             \
     ASSIGN_TYPE(int, OP)                \
     ASSIGN_TYPE(unsigned, OP)           \
@@ -817,9 +815,7 @@ array &array::operator=(const array &other) {
         this->set(out);                                           \
         return *this;                                             \
     }                                                             \
-    ASSIGN_TYPE(double, OP)                                       \
     ASSIGN_TYPE(float, OP)                                        \
-    ASSIGN_TYPE(cdouble, OP)                                      \
     ASSIGN_TYPE(cfloat, OP)                                       \
     ASSIGN_TYPE(int, OP)                                          \
     ASSIGN_TYPE(unsigned, OP)                                     \
@@ -852,9 +848,7 @@ ASSIGN_OP(/=, af_div)
     }
 
 #define ASSIGN_OP(OP)                   \
-    ASSIGN_TYPE(double, OP)             \
     ASSIGN_TYPE(float, OP)              \
-    ASSIGN_TYPE(cdouble, OP)            \
     ASSIGN_TYPE(cfloat, OP)             \
     ASSIGN_TYPE(int, OP)                \
     ASSIGN_TYPE(unsigned, OP)           \
@@ -879,27 +873,27 @@ af::dtype implicit_dtype(af::dtype scalar_type, af::dtype array_type) {
     if (scalar_type == array_type) { return scalar_type; }
 
     // If complex, return appropriate complex type
-    if (scalar_type == c32 || scalar_type == c64) {
-        if (array_type == f64 || array_type == c64) { return c64; }
+    if (scalar_type == c32 /*|| scalar_type == c64*/) {
+        //if (array_type == f64 || array_type == c64) { return c64; }
         return c32;
     }
 
     // If 64 bit precision, do not lose precision
-    if (array_type == f64 || array_type == c64 || array_type == f32 ||
+    if (/*array_type == f64 || array_type == c64 ||*/ array_type == f32 ||
         array_type == c32) {
         return array_type;
     }
 
     // If the array is f16 then avoid upcasting to float or double
-    if ((scalar_type == f64 || scalar_type == f32) && (array_type == f16)) {
+    if ((/*scalar_type == f64 ||*/ scalar_type == f32) && (array_type == f16)) {
         return f16;
     }
 
     // Default to single precision by default when multiplying with scalar
-    if ((scalar_type == f64 || scalar_type == c64) &&
+   /* if ((scalar_type == f64 || scalar_type == c64) &&
         (array_type != f64 && array_type != c64)) {
         return f32;
-    }
+    }*/
 
     // Punt to C api for everything else
     return scalar_type;
@@ -928,9 +922,7 @@ af::dtype implicit_dtype(af::dtype scalar_type, af::dtype array_type) {
         AF_THROW(release_func(&out, lhs.get(), rhs.get(), gforGet())); \
         return array(out);                                             \
     }                                                                  \
-    BINARY_TYPE(double, OP, release_func, f64)                         \
     BINARY_TYPE(float, OP, release_func, f32)                          \
-    BINARY_TYPE(cdouble, OP, release_func, c64)                        \
     BINARY_TYPE(cfloat, OP, release_func, c32)                         \
     BINARY_TYPE(int, OP, release_func, s32)                            \
     BINARY_TYPE(unsigned, OP, release_func, u32)                       \
@@ -1032,9 +1024,9 @@ void array::eval() const { AF_THROW(af_eval(get())); }
         }                                                                      \
     }
 
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(cfloat)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(float)
 INSTANTIATE(unsigned)
 INSTANTIATE(int)
@@ -1074,9 +1066,9 @@ AFAPI void *array::device() const {
     TEMPLATE_MEM_FUNC(T, T, scalar) \
     TEMPLATE_MEM_FUNC(T, T *, device)
 
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(cfloat)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(float)
 INSTANTIATE(unsigned)
 INSTANTIATE(int)

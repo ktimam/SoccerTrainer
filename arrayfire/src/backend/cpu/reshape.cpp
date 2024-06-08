@@ -35,9 +35,9 @@ Array<outType> reshape(const Array<inType> &in, const dim4 &outDims,
     template void multiply_inplace<T>(Array<T> & in, double norm);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)
@@ -50,12 +50,8 @@ INSTANTIATE(ushort)
 #define INSTANTIATE_PAD_ARRAY(SRC_T)                                          \
     template Array<float> reshape<SRC_T, float>(const Array<SRC_T> &,         \
                                                 const dim4 &, float, double); \
-    template Array<double> reshape<SRC_T, double>(                            \
-        const Array<SRC_T> &, const dim4 &, double, double);                  \
     template Array<cfloat> reshape<SRC_T, cfloat>(                            \
         const Array<SRC_T> &, const dim4 &, cfloat, double);                  \
-    template Array<cdouble> reshape<SRC_T, cdouble>(                          \
-        const Array<SRC_T> &, const dim4 &, cdouble, double);                 \
     template Array<int> reshape<SRC_T, int>(const Array<SRC_T> &,             \
                                             const dim4 &, int, double);       \
     template Array<uint> reshape<SRC_T, uint>(const Array<SRC_T> &,           \
@@ -74,7 +70,7 @@ INSTANTIATE(ushort)
                                               const dim4 &, char, double);
 
 INSTANTIATE_PAD_ARRAY(float)
-INSTANTIATE_PAD_ARRAY(double)
+//INSTANTIATE_PAD_ARRAY(double)
 INSTANTIATE_PAD_ARRAY(int)
 INSTANTIATE_PAD_ARRAY(uint)
 INSTANTIATE_PAD_ARRAY(intl)
@@ -87,11 +83,9 @@ INSTANTIATE_PAD_ARRAY(arrayfire::common::half)
 
 #define INSTANTIATE_PAD_ARRAY_COMPLEX(SRC_T)                 \
     template Array<cfloat> reshape<SRC_T, cfloat>(           \
-        const Array<SRC_T> &, const dim4 &, cfloat, double); \
-    template Array<cdouble> reshape<SRC_T, cdouble>(         \
-        const Array<SRC_T> &, const dim4 &, cdouble, double);
+        const Array<SRC_T> &, const dim4 &, cfloat, double); 
 
 INSTANTIATE_PAD_ARRAY_COMPLEX(cfloat)
-INSTANTIATE_PAD_ARRAY_COMPLEX(cdouble)
+//INSTANTIATE_PAD_ARRAY_COMPLEX(cdouble)
 }  // namespace cpu
 }  // namespace arrayfire

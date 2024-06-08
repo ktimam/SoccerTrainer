@@ -461,7 +461,7 @@ class FL_API Tensor {
       case dtype::f32:
         return scalar<float>();
       case dtype::f64:
-        return scalar<double>();
+        return scalar<float>();
       case dtype::s32:
         return scalar<int>();
       case dtype::u32:
@@ -604,7 +604,7 @@ class FL_API Tensor {
   /******************** Assignment Operators ********************/
 #define ASSIGN_TENSOR_OP(OP) Tensor& OP(const Tensor& val);
 #define ASSIGN_SCALAR_OP(OP)             \
-  Tensor& OP(const double& val);         \
+  /*Tensor& OP(const double& val);*/         \
   Tensor& OP(const float& val);          \
   Tensor& OP(const int& val);            \
   Tensor& OP(const unsigned& val);       \
@@ -1003,7 +1003,7 @@ FL_API Tensor clip(const Tensor& tensor, const Tensor& low, const Tensor& high);
  * @param[in] high a scalar to use as the maximum value in clipping
  * @return a tensor with all values clipped between high and low
  */
-FL_API Tensor clip(const Tensor& tensor, const Tensor& low, const double& high);
+FL_API Tensor clip(const Tensor& tensor, const Tensor& low, const float& high);
 
 /**
  * Clip (limit) the values of a tensor. Given some interval of values, set
@@ -1018,7 +1018,7 @@ FL_API Tensor clip(const Tensor& tensor, const Tensor& low, const double& high);
  * clipping
  * @return a tensor with all values clipped between high and low
  */
-FL_API Tensor clip(const Tensor& tensor, const double& low, const Tensor& high);
+FL_API Tensor clip(const Tensor& tensor, const float& low, const Tensor& high);
 
 /**
  * Clip (limit) the values of a tensor. Given some interval of values, set
@@ -1031,7 +1031,7 @@ FL_API Tensor clip(const Tensor& tensor, const double& low, const Tensor& high);
  * @param[in] high a scalar to use as the maximum value in clipping
  * @return a tensor with all values clipped between high and low
  */
-FL_API Tensor clip(const Tensor& tensor, const double& low, const double& high);
+FL_API Tensor clip(const Tensor& tensor, const float& low, const float& high);
 
 /**
  * Rolls (or shifts) a tensor by a certain amount along a given axis, moving
@@ -1132,7 +1132,7 @@ FL_API Tensor where(const Tensor& condition, const Tensor& x, const Tensor& y);
  * @return the resulting tensor that contains elements of x where condition is
  * true and the scalar value y where the condition is false.
  */
-FL_API Tensor where(const Tensor& condition, const Tensor& x, const double& y);
+FL_API Tensor where(const Tensor& condition, const Tensor& x, const float& y);
 
 /**
  * Conditionally return elements from a scalar or passed tensor based on a
@@ -1148,7 +1148,7 @@ FL_API Tensor where(const Tensor& condition, const Tensor& x, const double& y);
  * @return the resulting tensor that contains elements of x where condition is
  * true and the scalar value y where the condition is false.
  */
-FL_API Tensor where(const Tensor& condition, const double& x, const Tensor& y);
+FL_API Tensor where(const Tensor& condition, const float& x, const Tensor& y);
 
 /*!
  * Sorting mode for sorting-related functions.
@@ -1233,7 +1233,7 @@ FL_API Tensor argsort(
   FL_BINARY_OP_LITERAL_TYPE_DECL(OP, FUNC, const unsigned long&);      \
   FL_BINARY_OP_LITERAL_TYPE_DECL(OP, FUNC, const long long&);          \
   FL_BINARY_OP_LITERAL_TYPE_DECL(OP, FUNC, const unsigned long long&); \
-  FL_BINARY_OP_LITERAL_TYPE_DECL(OP, FUNC, const double&);             \
+ /* FL_BINARY_OP_LITERAL_TYPE_DECL(OP, FUNC, const double&); */            \
   FL_BINARY_OP_LITERAL_TYPE_DECL(OP, FUNC, const float&);              \
   FL_BINARY_OP_LITERAL_TYPE_DECL(OP, FUNC, const short&);              \
   FL_BINARY_OP_LITERAL_TYPE_DECL(OP, FUNC, const unsigned short&);
@@ -1286,7 +1286,7 @@ FL_API Tensor minimum(const Tensor& lhs, const Tensor& rhs);
  * @return a tensor containing the minimum values element-wise with the tensor
  * and a scalar.
  */
-FL_API Tensor minimum(const Tensor& lhs, const double& rhs);
+FL_API Tensor minimum(const Tensor& lhs, const float& rhs);
 
 /**
  * Returns the element-wise minimum of tensor elements with some scalar.
@@ -1296,7 +1296,7 @@ FL_API Tensor minimum(const Tensor& lhs, const double& rhs);
  * @return a tensor containing the minimum values element-wise with the tensor
  * and a scalar.
  */
-FL_API Tensor minimum(const double& lhs, const Tensor& rhs);
+FL_API Tensor minimum(const float& lhs, const Tensor& rhs);
 
 /**
  * Returns the element-wise maximum of tensor elements.
@@ -1317,7 +1317,7 @@ FL_API Tensor maximum(const Tensor& lhs, const Tensor& rhs);
  * @return a tensor containing the maximum values element-wise with the tensor
  * and a scalar.
  */
-FL_API Tensor maximum(const Tensor& lhs, const double& rhs);
+FL_API Tensor maximum(const Tensor& lhs, const float& rhs);
 
 /**
  * Returns the element-wise maximum of tensor elements with some scalar.
@@ -1327,7 +1327,7 @@ FL_API Tensor maximum(const Tensor& lhs, const double& rhs);
  * @return a tensor containing the maximum values element-wise with the tensor
  * and a scalar.
  */
-FL_API Tensor maximum(const double& lhs, const Tensor& rhs);
+FL_API Tensor maximum(const float& lhs, const Tensor& rhs);
 
 /**
  * Returns the element-wise exponentiation of tensors; the left hand tensor is
@@ -1347,7 +1347,7 @@ FL_API Tensor power(const Tensor& lhs, const Tensor& rhs);
  * @param[in] rhs a scalar exponent
  * @return a tensor containing the exponentiated values
  */
-FL_API Tensor power(const Tensor& lhs, const double& rhs);
+FL_API Tensor power(const Tensor& lhs, const float& rhs);
 
 /**
  * Returns the element-wise exponentiation of a scalar raised element-wise to
@@ -1357,7 +1357,7 @@ FL_API Tensor power(const Tensor& lhs, const double& rhs);
  * @param[in] rhs the tensor containing exponent values
  * @return a tensor containing the exponentiated values
  */
-FL_API Tensor power(const double& lhs, const Tensor& rhs);
+FL_API Tensor power(const float& lhs, const Tensor& rhs);
 
 /******************************* BLAS ********************************/
 
@@ -1589,7 +1589,7 @@ std(const Tensor& input,
 FL_API Tensor norm(
     const Tensor& input,
     const std::vector<int>& axes = {},
-    double p = 2,
+    float p = 2,
     const bool keepDims = false);
 
 /**
@@ -1677,7 +1677,7 @@ FL_API void print(const Tensor& tensor);
 FL_API bool allClose(
     const fl::Tensor& a,
     const fl::Tensor& b,
-    const double absTolerance = 1e-5);
+    const float absTolerance = 1e-5);
 
 /**
  * @return if a Tensor contains any NaN or Inf values.

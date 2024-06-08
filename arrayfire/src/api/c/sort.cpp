@@ -23,7 +23,7 @@
 
 using af::dim4;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::intl;
@@ -52,7 +52,7 @@ af_err af_sort(af_array *out, const af_array in, const unsigned dim,
 
         switch (type) {
             case f32: val = sort<float>(in, dim, isAscending); break;
-            case f64: val = sort<double>(in, dim, isAscending); break;
+            //case f64: val = sort<float>(in, dim, isAscending); break;
             case s32: val = sort<int>(in, dim, isAscending); break;
             case u32: val = sort<uint>(in, dim, isAscending); break;
             case s16: val = sort<short>(in, dim, isAscending); break;
@@ -103,9 +103,9 @@ af_err af_sort_index(af_array *out, af_array *indices, const af_array in,
             case f32:
                 sort_index<float>(&val, &idx, in, dim, isAscending);
                 break;
-            case f64:
-                sort_index<double>(&val, &idx, in, dim, isAscending);
-                break;
+            /*case f64:
+                sort_index<float>(&val, &idx, in, dim, isAscending);
+                break;*/
             case s32: sort_index<int>(&val, &idx, in, dim, isAscending); break;
             case u32: sort_index<uint>(&val, &idx, in, dim, isAscending); break;
             case s16:
@@ -158,15 +158,15 @@ void sort_by_key_tmplt(af_array *okey, af_array *oval, const af_array ikey,
         case f32:
             sort_by_key<Tk, float>(okey, oval, ikey, ival, dim, isAscending);
             break;
-        case f64:
+        /*case f64:
             sort_by_key<Tk, double>(okey, oval, ikey, ival, dim, isAscending);
-            break;
+            break;*/
         case c32:
             sort_by_key<Tk, cfloat>(okey, oval, ikey, ival, dim, isAscending);
             break;
-        case c64:
+        /*case c64:
             sort_by_key<Tk, cdouble>(okey, oval, ikey, ival, dim, isAscending);
-            break;
+            break;*/
         case s32:
             sort_by_key<Tk, int>(okey, oval, ikey, ival, dim, isAscending);
             break;
@@ -221,10 +221,10 @@ af_err af_sort_by_key(af_array *out_keys, af_array *out_values,
                 sort_by_key_tmplt<float>(&oKey, &oVal, keys, values, dim,
                                          isAscending);
                 break;
-            case f64:
-                sort_by_key_tmplt<double>(&oKey, &oVal, keys, values, dim,
+           /* case f64:
+                sort_by_key_tmplt<float>(&oKey, &oVal, keys, values, dim,
                                           isAscending);
-                break;
+                break;*/
             case s32:
                 sort_by_key_tmplt<int>(&oKey, &oVal, keys, values, dim,
                                        isAscending);

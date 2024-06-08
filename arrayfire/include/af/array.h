@@ -74,8 +74,6 @@ namespace af
 #define ASSIGN(OP)                                                  \
             array_proxy& operator OP(const array_proxy &a);         \
             array_proxy& operator OP(const array &a);               \
-            array_proxy& operator OP(const double &a);              \
-            array_proxy& operator OP(const cdouble &a);             \
             array_proxy& operator OP(const cfloat &a);              \
             array_proxy& operator OP(const float &a);               \
             array_proxy& operator OP(const int &a);                 \
@@ -128,7 +126,7 @@ namespace af
             bool iscolumn() const;
             bool iscomplex() const;
             inline bool isreal() const { return !iscomplex(); }
-            bool isdouble() const;
+            //bool isdouble() const;
             bool issingle() const;
 #if AF_API_VERSION >= 37
             bool ishalf() const;
@@ -735,7 +733,7 @@ namespace af
         /**
            \brief Returns true if the array type is \ref f64 or \ref c64
         */
-        bool isdouble() const;
+        //bool isdouble() const;
 
         /**
            \brief Returns true if the array type is either \ref f32 nor \ref c32
@@ -989,8 +987,8 @@ namespace af
 
 #define ASSIGN_(OP2)                                                                      \
         array& OP2(const array &val);                                                     \
-        array& OP2(const double &val);              /**< \copydoc OP2##(const array &) */ \
-        array& OP2(const cdouble &val);             /**< \copydoc OP2##(const array &) */ \
+        /*array& OP2(const double &val);*/              /**< \copydoc OP2##(const array &) */ \
+        /*array& OP2(const cdouble &val); */            /**< \copydoc OP2##(const array &) */ \
         array& OP2(const cfloat &val);              /**< \copydoc OP2##(const array &) */ \
         array& OP2(const float &val);               /**< \copydoc OP2##(const array &) */ \
         array& OP2(const int &val);                 /**< \copydoc OP2##(const array &) */ \
@@ -1148,10 +1146,10 @@ namespace af
     AFAPI array OP (const unsigned long& lhs, const array& rhs);      /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const long long& lhs, const array& rhs);          /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const unsigned long long& lhs, const array& rhs); /**< \copydoc OP##(const array&, const array&) */ \
-    AFAPI array OP (const double& lhs, const array& rhs);             /**< \copydoc OP##(const array&, const array&) */ \
+    /*AFAPI array OP (const double& lhs, const array& rhs); */            /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const float& lhs, const array& rhs);              /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const cfloat& lhs, const array& rhs);             /**< \copydoc OP##(const array&, const array&) */ \
-    AFAPI array OP (const cdouble& lhs, const array& rhs);            /**< \copydoc OP##(const array&, const array&) */ \
+   /* AFAPI array OP (const cdouble& lhs, const array& rhs);   */         /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const array& lhs, const bool& rhs);               /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const array& lhs, const int& rhs);                /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const array& lhs, const unsigned& rhs);           /**< \copydoc OP##(const array&, const array&) */ \
@@ -1161,10 +1159,10 @@ namespace af
     AFAPI array OP (const array& lhs, const unsigned long& rhs);      /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const array& lhs, const long long& rhs);          /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const array& lhs, const unsigned long long& rhs); /**< \copydoc OP##(const array&, const array&) */ \
-    AFAPI array OP (const array& lhs, const double& rhs);             /**< \copydoc OP##(const array&, const array&) */ \
+    /*AFAPI array OP (const array& lhs, const double& rhs);*/             /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const array& lhs, const float& rhs);              /**< \copydoc OP##(const array&, const array&) */ \
     AFAPI array OP (const array& lhs, const cfloat& rhs);             /**< \copydoc OP##(const array&, const array&) */ \
-    AFAPI array OP (const array& lhs, const cdouble& rhs);
+    /*AFAPI array OP (const array& lhs, const cdouble& rhs);*/
 
 #if AF_API_VERSION >= 32
 #define BIN_OP(OP)                                                                                                        \
@@ -1384,10 +1382,10 @@ namespace af
     ///             element of \p lhs and \p rhs
     AFAPI array operator&(const array& lhs, const array& rhs);
     AFAPI array operator&(const array& lhs, const bool& rhs);
-    AFAPI array operator&(const array& lhs, const cdouble& rhs);
+    //AFAPI array operator&(const array& lhs, const cdouble& rhs);
     AFAPI array operator&(const array& lhs, const cfloat& rhs);
     AFAPI array operator&(const array& lhs, const char& rhs);
-    AFAPI array operator&(const array& lhs, const double& rhs);
+    //AFAPI array operator&(const array& lhs, const double& rhs);
     AFAPI array operator&(const array& lhs, const float& rhs);
     AFAPI array operator&(const array& lhs, const int& rhs);
     AFAPI array operator&(const array& lhs, const long long& rhs);
@@ -1399,10 +1397,10 @@ namespace af
     AFAPI array operator&(const array& lhs, const unsigned short& rhs);
     AFAPI array operator&(const array& lhs, const unsigned& rhs);
     AFAPI array operator&(const bool& lhs, const array& rhs);
-    AFAPI array operator&(const cdouble& lhs, const array& rhs);
+    //AFAPI array operator&(const cdouble& lhs, const array& rhs);
     AFAPI array operator&(const cfloat& lhs, const array& rhs);
     AFAPI array operator&(const char& lhs, const array& rhs);
-    AFAPI array operator&(const double& lhs, const array& rhs);
+    //AFAPI array operator&(const double& lhs, const array& rhs);
     AFAPI array operator&(const float& lhs, const array& rhs);
     AFAPI array operator&(const int& lhs, const array& rhs);
     AFAPI array operator&(const long long& lhs, const array& rhs);
@@ -1427,10 +1425,10 @@ namespace af
     ///             element of \p lhs and \p rhs
     AFAPI array operator&&(const array& lhs, const array& rhs);
     AFAPI array operator&&(const array& lhs, const bool& rhs);
-    AFAPI array operator&&(const array& lhs, const cdouble& rhs);
+    //AFAPI array operator&&(const array& lhs, const cdouble& rhs);
     AFAPI array operator&&(const array& lhs, const cfloat& rhs);
     AFAPI array operator&&(const array& lhs, const char& rhs);
-    AFAPI array operator&&(const array& lhs, const double& rhs);
+    //AFAPI array operator&&(const array& lhs, const double& rhs);
     AFAPI array operator&&(const array& lhs, const float& rhs);
     AFAPI array operator&&(const array& lhs, const int& rhs);
     AFAPI array operator&&(const array& lhs, const long long& rhs);
@@ -1442,10 +1440,10 @@ namespace af
     AFAPI array operator&&(const array& lhs, const unsigned short& rhs);
     AFAPI array operator&&(const array& lhs, const unsigned& rhs);
     AFAPI array operator&&(const bool& lhs, const array& rhs);
-    AFAPI array operator&&(const cdouble& lhs, const array& rhs);
+    //AFAPI array operator&&(const cdouble& lhs, const array& rhs);
     AFAPI array operator&&(const cfloat& lhs, const array& rhs);
     AFAPI array operator&&(const char& lhs, const array& rhs);
-    AFAPI array operator&&(const double& lhs, const array& rhs);
+    //AFAPI array operator&&(const double& lhs, const array& rhs);
     AFAPI array operator&&(const float& lhs, const array& rhs);
     AFAPI array operator&&(const int& lhs, const array& rhs);
     AFAPI array operator&&(const long long& lhs, const array& rhs);
@@ -1819,7 +1817,7 @@ extern "C" {
 
         \returns error codes
     */
-    AFAPI af_err af_is_double       (bool *result, const af_array arr);
+    //AFAPI af_err af_is_double       (bool *result, const af_array arr);
 
     /**
         \brief Check if an array is single precision type

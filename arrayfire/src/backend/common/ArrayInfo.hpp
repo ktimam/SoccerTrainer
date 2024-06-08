@@ -118,7 +118,7 @@ class ArrayInfo {
 
     bool isReal() const;
 
-    bool isDouble() const;
+    //bool isDouble() const;
 
     bool isSingle() const;
 

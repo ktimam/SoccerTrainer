@@ -28,7 +28,7 @@ void MSEMeter::add(const Tensor& output, const Tensor& target) {
   ++curN_;
   curValue_ =
       (curValue_ * (curN_ - 1) +
-       fl::sum((output - target) * (output - target)).asScalar<double>()) /
+       fl::sum((output - target) * (output - target)).asScalar<float>()) /
       curN_;
 }
 

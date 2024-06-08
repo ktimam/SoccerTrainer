@@ -22,7 +22,7 @@
 using af::dim4;
 using arrayfire::common::half;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::intl;
@@ -89,8 +89,8 @@ af_err af_join(af_array *out, const int dim, const af_array first,
         switch (finfo.getType()) {
             case f32: output = join<float>(dim, first, second); break;
             case c32: output = join<cfloat>(dim, first, second); break;
-            case f64: output = join<double>(dim, first, second); break;
-            case c64: output = join<cdouble>(dim, first, second); break;
+            //case f64: output = join<float>(dim, first, second); break;
+            //case c64: output = join<cdouble>(dim, first, second); break;
             case b8: output = join<char>(dim, first, second); break;
             case s32: output = join<int>(dim, first, second); break;
             case u32: output = join<uint>(dim, first, second); break;
@@ -160,8 +160,8 @@ af_err af_join_many(af_array *out, const int dim, const unsigned n_arrays,
         switch (assertType) {
             case f32: output = join_many<float>(dim, n_arrays, inputs); break;
             case c32: output = join_many<cfloat>(dim, n_arrays, inputs); break;
-            case f64: output = join_many<double>(dim, n_arrays, inputs); break;
-            case c64: output = join_many<cdouble>(dim, n_arrays, inputs); break;
+            //case f64: output = join_many<float>(dim, n_arrays, inputs); break;
+            //case c64: output = join_many<cdouble>(dim, n_arrays, inputs); break;
             case b8: output = join_many<char>(dim, n_arrays, inputs); break;
             case s32: output = join_many<int>(dim, n_arrays, inputs); break;
             case u32: output = join_many<uint>(dim, n_arrays, inputs); break;

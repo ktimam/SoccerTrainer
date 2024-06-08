@@ -46,7 +46,7 @@ FL_API std::string prettyStringCount(size_t count);
  */
 template <class Fn, class... Args>
 typename std::invoke_result<Fn, Args...>::type retryWithBackoff(
-    std::chrono::duration<double> initial,
+    std::chrono::duration<float> initial,
     double factor,
     int64_t maxIters,
     Fn&& f,
@@ -70,7 +70,7 @@ typename std::invoke_result<Fn, Args...>::type retryWithBackoff(
     if (sleepSecs > 0.0) {
       /* sleep override */
       std::this_thread::sleep_for(
-          std::chrono::duration<double>(std::min(1e7, sleepSecs)));
+          std::chrono::duration<float>(std::min(1e7, sleepSecs)));
     }
     sleepSecs *= factor;
   }

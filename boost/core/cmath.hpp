@@ -101,7 +101,7 @@ inline bool signbit( double x )
 
 inline bool signbit( long double x )
 {
-    return signbit( static_cast<double>( x ) );
+    return signbit( static_cast<float>( x ) );
 }
 
 template<class T> T copysign( T x, T y )
@@ -126,22 +126,22 @@ namespace core
 
 template<class T> T copysign( T x, T y )
 {
-    return static_cast<T>( _copysign( static_cast<double>( x ), static_cast<double>( y ) ) );
+    return static_cast<T>( _copysign( static_cast<float>( x ), static_cast<float>( y ) ) );
 }
 
 template<class T> bool isnan( T x )
 {
-    return _isnan( static_cast<double>( x ) ) != 0;
+    return _isnan( static_cast<float>( x ) ) != 0;
 }
 
 template<class T> bool isfinite( T x )
 {
-    return _finite( static_cast<double>( x ) ) != 0;
+    return _finite( static_cast<float>( x ) ) != 0;
 }
 
 template<class T> bool isinf( T x )
 {
-    return ( _fpclass( static_cast<double>( x ) ) & ( _FPCLASS_PINF | _FPCLASS_NINF ) ) != 0;
+    return ( _fpclass( static_cast<float>( x ) ) & ( _FPCLASS_PINF | _FPCLASS_NINF ) ) != 0;
 }
 
 inline bool isnormal( float x )
@@ -159,12 +159,12 @@ inline bool isnormal( double x )
 
 inline bool isnormal( long double x )
 {
-    return boost::core::isnormal( static_cast<double>( x ) );
+    return boost::core::isnormal( static_cast<float>( x ) );
 }
 
 template<class T> bool signbit( T x )
 {
-    return _copysign( 1.0, static_cast<double>( x ) ) < 0.0;
+    return _copysign( 1.0, static_cast<float>( x ) ) < 0.0;
 }
 
 int const fp_zero = 0;
@@ -230,7 +230,7 @@ inline int fpclassify( double x )
 
 inline int fpclassify( long double x )
 {
-    return boost::core::fpclassify( static_cast<double>( x ) );
+    return boost::core::fpclassify( static_cast<float>( x ) );
 }
 
 #else

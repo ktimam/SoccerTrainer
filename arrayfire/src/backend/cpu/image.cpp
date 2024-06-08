@@ -46,7 +46,7 @@ void copy_image(const Array<T> &in, fg_image image) {
 #define INSTANTIATE(T) template void copy_image<T>(const Array<T> &, fg_image);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)

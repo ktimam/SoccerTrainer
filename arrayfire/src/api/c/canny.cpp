@@ -90,8 +90,8 @@ Array<float> otsuThreshold(const Array<float>& in, const unsigned NUM_BINS,
     vector<af_seq> seqRest(4, af_span);
     vector<af_seq> sliceIndex(4, af_span);
 
-    seqBegin[0] = af_make_seq(0, static_cast<double>(hDims[0] - 1), 1);
-    seqRest[0]  = af_make_seq(0, static_cast<double>(hDims[0] - 1), 1);
+    seqBegin[0] = af_make_seq(0, static_cast<float>(hDims[0] - 1), 1);
+    seqRest[0]  = af_make_seq(0, static_cast<float>(hDims[0] - 1), 1);
 
     Array<float> UnitP  = createValueArray<float>(oDims, 1.0f);
     Array<float> histf  = cast<float, uint>(hist);
@@ -115,8 +115,8 @@ Array<float> otsuThreshold(const Array<float>& in, const unsigned NUM_BINS,
         const dim4 eDims(NUM_BINS - 1 - b, hDims[1], hDims[2], hDims[3]);
 
         sliceIndex[0]    = {double(b), double(b), 1};
-        seqBegin[0].end  = static_cast<double>(b);
-        seqRest[0].begin = static_cast<double>(b + 1);
+        seqBegin[0].end  = static_cast<float>(b);
+        seqRest[0].begin = static_cast<float>(b + 1);
 
         auto qL    = createSubArray(cumFreqs, sliceIndex, false);
         auto qH    = arithOp<float, af_sub_t>(UnitP, qL, oDims);
@@ -245,10 +245,10 @@ af_err af_canny(af_array* out, const af_array in, const af_canny_threshold ct,
                 output = cannyHelper<float>(getArray<float>(in), t1, ct, t2, sw,
                                             isf);
                 break;
-            case f64:
-                output = cannyHelper<double>(getArray<double>(in), t1, ct, t2,
+            /*case f64:
+                output = cannyHelper<float>(getArray<float>(in), t1, ct, t2,
                                              sw, isf);
-                break;
+                break;*/
             case s32:
                 output =
                     cannyHelper<int>(getArray<int>(in), t1, ct, t2, sw, isf);

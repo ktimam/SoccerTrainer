@@ -145,7 +145,7 @@ unsigned harris(Array<float> &x_out, Array<float> &y_out,
         const float min_response, const float sigma,                          \
         const unsigned block_size, const float k_thr);
 
-INSTANTIATE(double, double)
+//INSTANTIATE(double, double)
 INSTANTIATE(float, float)
 
 }  // namespace cpu

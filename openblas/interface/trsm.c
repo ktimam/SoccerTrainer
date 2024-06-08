@@ -157,13 +157,13 @@ void NAME(char *SIDE, char *UPLO, char *TRANS, char *DIAG,
   args.m = *M;
   args.n = *N;
 
-  args.a = (void *)a;
-  args.b = (void *)b;
+  args.a = (float *)a;
+  args.b = (float *)b;
 
   args.lda = *ldA;
   args.ldb = *ldB;
 
-  args.beta = (void *)alpha;
+  args.beta = (float *)alpha;
 
   TOUPPER(side_arg);
   TOUPPER(uplo_arg);
@@ -256,16 +256,16 @@ void CNAME(enum CBLAS_ORDER order,
 
   PRINT_DEBUG_CNAME;
 
-  args.a = (void *)a;
-  args.b = (void *)b;
+  args.a = (float *)a;
+  args.b = (float *)b;
 
   args.lda = lda;
   args.ldb = ldb;
 
 #ifndef COMPLEX
-  args.beta = (void *)&alpha;
+  args.beta = (float *)&alpha;
 #else
-  args.beta = (void *)alpha;
+  args.beta = (float *)alpha;
 #endif
 
   side   = -1;

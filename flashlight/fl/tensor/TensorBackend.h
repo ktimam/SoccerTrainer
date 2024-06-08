@@ -61,7 +61,7 @@ class TensorBackend {
 #define FL_CREATE_FUN_LITERAL_BACKEND_DECL(TYPE)               \
   virtual Tensor fromScalar(TYPE value, const dtype type) = 0; \
   virtual Tensor full(const Shape& dims, TYPE value, const dtype type) = 0;
-  FL_CREATE_FUN_LITERAL_BACKEND_DECL(const double&);
+  //FL_CREATE_FUN_LITERAL_BACKEND_DECL(const double&);
   FL_CREATE_FUN_LITERAL_BACKEND_DECL(const float&);
   FL_CREATE_FUN_LITERAL_BACKEND_DECL(const int&);
   FL_CREATE_FUN_LITERAL_BACKEND_DECL(const unsigned&);
@@ -117,11 +117,11 @@ class TensorBackend {
   virtual Tensor
   clip(const Tensor& tensor, const Tensor& low, const Tensor& high) = 0;
   virtual Tensor
-  clip(const Tensor& tensor, const Tensor& low, const double& high);
+  clip(const Tensor& tensor, const Tensor& low, const float& high);
   virtual Tensor
-  clip(const Tensor& tensor, const double& low, const Tensor& high);
+  clip(const Tensor& tensor, const float& low, const Tensor& high);
   virtual Tensor
-  clip(const Tensor& tensor, const double& low, const double& high);
+  clip(const Tensor& tensor, const float& low, const float& high);
   virtual Tensor
   roll(const Tensor& tensor, const int shift, const unsigned axis) = 0;
   virtual Tensor isnan(const Tensor& tensor) = 0;
@@ -132,9 +132,9 @@ class TensorBackend {
   virtual Tensor
   where(const Tensor& condition, const Tensor& x, const Tensor& y) = 0;
   virtual Tensor
-  where(const Tensor& condition, const Tensor& x, const double& y);
+  where(const Tensor& condition, const Tensor& x, const float& y);
   virtual Tensor
-  where(const Tensor& condition, const double& x, const Tensor& y);
+  where(const Tensor& condition, const float& x, const Tensor& y);
   virtual void topk(
       Tensor& values,
       Tensor& indices,
@@ -168,7 +168,7 @@ class TensorBackend {
   FL_BINARY_OP_TYPE_DECL(FUNC, const unsigned long&);      \
   FL_BINARY_OP_TYPE_DECL(FUNC, const long long&);          \
   FL_BINARY_OP_TYPE_DECL(FUNC, const unsigned long long&); \
-  FL_BINARY_OP_TYPE_DECL(FUNC, const double&);             \
+  /*FL_BINARY_OP_TYPE_DECL(FUNC, const double&); */            \
   FL_BINARY_OP_TYPE_DECL(FUNC, const float&);              \
   FL_BINARY_OP_TYPE_DECL(FUNC, const short&);              \
   FL_BINARY_OP_TYPE_DECL(FUNC, const unsigned short&);
@@ -200,14 +200,14 @@ class TensorBackend {
 #undef FL_BINARY_OP_LITERALS_DECL
 
   virtual Tensor minimum(const Tensor& lhs, const Tensor& rhs) = 0;
-  virtual Tensor minimum(const Tensor& lhs, const double& rhs);
-  virtual Tensor minimum(const double& lhs, const Tensor& rhs);
+  virtual Tensor minimum(const Tensor& lhs, const float& rhs);
+  virtual Tensor minimum(const float& lhs, const Tensor& rhs);
   virtual Tensor maximum(const Tensor& lhs, const Tensor& rhs) = 0;
-  virtual Tensor maximum(const Tensor& lhs, const double& rhs);
-  virtual Tensor maximum(const double& lhs, const Tensor& rhs);
+  virtual Tensor maximum(const Tensor& lhs, const float& rhs);
+  virtual Tensor maximum(const float& lhs, const Tensor& rhs);
   virtual Tensor power(const Tensor& lhs, const Tensor& rhs) = 0;
-  virtual Tensor power(const Tensor& lhs, const double& rhs);
-  virtual Tensor power(const double& lhs, const Tensor& rhs);
+  virtual Tensor power(const Tensor& lhs, const float& rhs);
+  virtual Tensor power(const float& lhs, const Tensor& rhs);
 
   /******************************* BLAS ********************************/
   virtual Tensor matmul(
@@ -254,7 +254,7 @@ class TensorBackend {
   virtual Tensor norm(
       const Tensor& input,
       const std::vector<int>& axes,
-      double p,
+      float p,
       const bool keepDims) = 0;
   virtual Tensor countNonzero(
       const Tensor& input,

@@ -27,7 +27,7 @@ const char *getFullName() {
 
 }  // namespace
 
-using cdouble = std::complex<double>;
+//using cdouble = std::complex<float>;
 using cfloat  = std::complex<float>;
 using intl    = long long;
 using uint    = unsigned int;

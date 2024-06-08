@@ -39,7 +39,7 @@ unsigned sift(Array<float>& x, Array<float>& y, Array<float>& score,
         const bool compute_GLOH);
 
 INSTANTIATE(float, float)
-INSTANTIATE(double, double)
+//INSTANTIATE(double, double)
 
 }  // namespace cpu
 }  // namespace arrayfire

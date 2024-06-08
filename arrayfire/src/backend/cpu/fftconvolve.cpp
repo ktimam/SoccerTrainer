@@ -40,7 +40,7 @@ Array<T> fftconvolve(Array<T> const& signal, Array<T> const& filter,
                      const bool expand, AF_BATCH_KIND kind, const int rank) {
     using convT = typename std::conditional<std::is_integral<T>::value ||
                                                 std::is_same<T, float>::value,
-                                            float, double>::type;
+                                            float, float>::type;
 
     constexpr bool IsTypeDouble = std::is_same<T, double>::value;
 
@@ -203,7 +203,7 @@ Array<T> fftconvolve(Array<T> const& signal, Array<T> const& filter,
     template Array<T> fftconvolve<T>(Array<T> const&, Array<T> const&, \
                                      const bool, AF_BATCH_KIND, const int);
 
-//INSTANTIATE(double)
+////INSTANTIATE(double)
 INSTANTIATE(float)
 INSTANTIATE(uint)
 INSTANTIATE(int)

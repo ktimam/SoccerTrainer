@@ -36,7 +36,7 @@ void FrameErrorMeter::add(const Tensor& output, const Tensor& target) {
 }
 
 double FrameErrorMeter::value() const {
-  double error = (n_ > 0) ? (static_cast<double>(sum_ * 100.0) / n_) : 0.0;
+  double error = (n_ > 0) ? (static_cast<float>(sum_ * 100.0) / n_) : 0.0;
   double val = (accuracy_ ? (100.0 - error) : error);
   return val;
 }

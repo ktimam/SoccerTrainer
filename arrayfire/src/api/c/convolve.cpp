@@ -29,7 +29,7 @@ using arrayfire::common::cast;
 using arrayfire::common::half;
 using detail::arithOp;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::convolve;
 using detail::intl;
@@ -156,18 +156,18 @@ af_err convolve(af_array *out, const af_array signal, const af_array filter,
                 output = convolve<cfloat, cfloat>(signal, filter, convBT, rank,
                                                   expand);
                 break;
-            case c64:
+            /*case c64:
                 output = convolve<cdouble, cdouble>(signal, filter, convBT,
                                                     rank, expand);
-                break;
+                break;*/
             case f32:
                 output = convolve<float, float>(signal, filter, convBT, rank,
                                                 expand);
                 break;
-            case f64:
+            /*case f64:
                 output = convolve<double, double>(signal, filter, convBT, rank,
                                                   expand);
-                break;
+                break;*/
             case u32:
                 output =
                     convolve<uint, float>(signal, filter, convBT, rank, expand);
@@ -271,18 +271,18 @@ af_err af_convolve2_sep(af_array *out, const af_array col_filter,
                 output = convolve2<cfloat, cfloat>(signal, col_filter,
                                                    row_filter, expand);
                 break;
-            case c64:
+            /*case c64:
                 output = convolve2<cdouble, cdouble>(signal, col_filter,
                                                      row_filter, expand);
-                break;
+                break;*/
             case f32:
                 output = convolve2<float, float>(signal, col_filter, row_filter,
                                                  expand);
                 break;
-            case f64:
+            /*case f64:
                 output = convolve2<double, double>(signal, col_filter,
                                                    row_filter, expand);
-                break;
+                break;*/
             case u32:
                 output = convolve2<uint, float>(signal, col_filter, row_filter,
                                                 expand);
@@ -366,10 +366,10 @@ af_err af_convolve2_nn(af_array *out, const af_array signal,
                 output = convolve2Strided<float>(signal, filter, stride,
                                                  padding, dilation);
                 break;
-            case f64:
-                output = convolve2Strided<double>(signal, filter, stride,
+            /*case f64:
+                output = convolve2Strided<float>(signal, filter, stride,
                                                   padding, dilation);
-                break;
+                break;*/
             case f16:
                 output = convolve2Strided<half>(signal, filter, stride, padding,
                                                 dilation);
@@ -447,11 +447,11 @@ af_err af_convolve2_gradient_nn(
                     incoming_gradient, original_signal, original_filter,
                     convolved_output, stride, padding, dilation, grad_type);
                 break;
-            case f64:
-                output = conv2GradCall<double>(
+            /*case f64:
+                output = conv2GradCall<float>(
                     incoming_gradient, original_signal, original_filter,
                     convolved_output, stride, padding, dilation, grad_type);
-                break;
+                break;*/
             case f16:
                 output = conv2GradCall<half>(
                     incoming_gradient, original_signal, original_filter,

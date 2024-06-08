@@ -44,7 +44,7 @@ Array<uint> histogram(const Array<T> &in, const unsigned &nbins,
                                       const bool);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(char)
 INSTANTIATE(int)
 INSTANTIATE(uint)

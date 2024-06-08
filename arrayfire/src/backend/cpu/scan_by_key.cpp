@@ -46,9 +46,7 @@ Array<To> scan(const Array<Tk>& key, const Array<Ti>& in, const int dim,
 
 #define INSTANTIATE_SCAN_BY_KEY_ALL(ROp, Tk)           \
     INSTANTIATE_SCAN_BY_KEY(ROp, float, Tk, float)     \
-    INSTANTIATE_SCAN_BY_KEY(ROp, double, Tk, double)   \
     INSTANTIATE_SCAN_BY_KEY(ROp, cfloat, Tk, cfloat)   \
-    INSTANTIATE_SCAN_BY_KEY(ROp, cdouble, Tk, cdouble) \
     INSTANTIATE_SCAN_BY_KEY(ROp, int, Tk, int)         \
     INSTANTIATE_SCAN_BY_KEY(ROp, uint, Tk, uint)       \
     INSTANTIATE_SCAN_BY_KEY(ROp, intl, Tk, intl)       \

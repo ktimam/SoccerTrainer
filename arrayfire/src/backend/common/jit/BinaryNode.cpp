@@ -12,7 +12,7 @@ using af::dim4;
 using af::dtype_traits;
 using detail::Array;
 using detail::BinOp;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createNodeArray;
 
@@ -57,13 +57,11 @@ Array<To> createBinaryNode(const Array<Ti> &lhs, const Array<Ti> &rhs,
         const Array<Ti> &lhs, const Array<Ti> &rhs, const dim4 &odims)
 
 INSTANTIATE(cfloat, float, af_cplx2_t);
-INSTANTIATE(cdouble, double, af_cplx2_t);
+//INSTANTIATE(cdouble, double, af_cplx2_t);
 
 #define INSTANTIATE_ARITH(op)                                \
     INSTANTIATE(float, float, op);                           \
     INSTANTIATE(cfloat, cfloat, op);                         \
-    INSTANTIATE(double, double, op);                         \
-    INSTANTIATE(cdouble, cdouble, op);                       \
     INSTANTIATE(unsigned, unsigned, op);                     \
     INSTANTIATE(short, short, op);                           \
     INSTANTIATE(unsigned short, unsigned short, op);         \
@@ -85,7 +83,6 @@ INSTANTIATE_ARITH(af_max_t);
 
 #define INSTANTIATE_ARITH_REAL(op)                           \
     INSTANTIATE(float, float, op);                           \
-    INSTANTIATE(double, double, op);                         \
     INSTANTIATE(unsigned, unsigned, op);                     \
     INSTANTIATE(short, short, op);                           \
     INSTANTIATE(unsigned short, unsigned short, op);         \
@@ -102,7 +99,6 @@ INSTANTIATE_ARITH_REAL(af_mod_t);
 
 #define INSTANTIATE_FLOATOPS(op)     \
     INSTANTIATE(float, float, op);   \
-    INSTANTIATE(double, double, op); \
     INSTANTIATE(common::half, common::half, op)
 
 INSTANTIATE_FLOATOPS(af_hypot_t);
@@ -127,9 +123,7 @@ INSTANTIATE_BITOP(af_bitxor_t);
 
 #define INSTANTIATE_LOGIC(op)                  \
     INSTANTIATE(char, float, op);              \
-    INSTANTIATE(char, double, op);             \
     INSTANTIATE(char, cfloat, op);             \
-    INSTANTIATE(char, cdouble, op);            \
     INSTANTIATE(char, common::half, op);       \
     INSTANTIATE(char, unsigned, op);           \
     INSTANTIATE(char, short, op);              \

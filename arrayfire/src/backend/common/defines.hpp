@@ -11,18 +11,21 @@
 
 #include <common/internal_enums.hpp>
 
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 #include <string>
 
 inline std::string clipFilePath(std::string path, std::string str) {
-    try {
+    //try {
         std::string::size_type pos = path.rfind(str);
         if (pos == std::string::npos) {
             return path;
         } else {
             return path.substr(pos);
         }
-    } catch (...) { return path; }
+    //} catch (...) { return path; }
 }
 
 #define UNUSED(expr) \
@@ -65,7 +68,10 @@ using LibHandle = void*;
 
 namespace arrayfire {
 namespace common {
+#ifndef MULTITHREADING_DISABLED
 using mutex_t      = std::mutex;
 using lock_guard_t = std::lock_guard<mutex_t>;
+#endif
+
 }  // namespace common
 }  // namespace arrayfire

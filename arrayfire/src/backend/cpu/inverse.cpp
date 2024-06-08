@@ -43,9 +43,9 @@ using getri_func_def = int (*)(ORDER_TYPE, int, T *, int, const int *);
 
 INV_FUNC_DEF(getri)
 INV_FUNC(getri, float, s)
-INV_FUNC(getri, double, d)
+//INV_FUNC(getri, double, d)
 INV_FUNC(getri, cfloat, c)
-INV_FUNC(getri, cdouble, z)
+//INV_FUNC(getri, cdouble, z)
 
 template<typename T>
 Array<T> inverse(const Array<T> &in) {
@@ -73,8 +73,8 @@ Array<T> inverse(const Array<T> &in) {
 
 INSTANTIATE(float)
 INSTANTIATE(cfloat)
-INSTANTIATE(double)
-INSTANTIATE(cdouble)
+//INSTANTIATE(double)
+//INSTANTIATE(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire
@@ -93,8 +93,8 @@ Array<T> inverse(const Array<T> &in) {
 
 INSTANTIATE(float)
 INSTANTIATE(cfloat)
-INSTANTIATE(double)
-INSTANTIATE(cdouble)
+//INSTANTIATE(double)
+//INSTANTIATE(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

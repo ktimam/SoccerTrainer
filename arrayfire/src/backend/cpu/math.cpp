@@ -22,22 +22,22 @@ cfloat scalar(float val) {
     return cval;
 }
 
-cdouble scalar(double val) {
-    cdouble cval = {val, 0};
-    return cval;
-}
+//cdouble scalar(double val) {
+//    cdouble cval = {val, 0};
+//    return cval;
+//}
 
 cfloat min(cfloat lhs, cfloat rhs) { return abs(lhs) < abs(rhs) ? lhs : rhs; }
 
-cdouble min(cdouble lhs, cdouble rhs) {
-    return abs(lhs) < abs(rhs) ? lhs : rhs;
-}
+//cdouble min(cdouble lhs, cdouble rhs) {
+//    return abs(lhs) < abs(rhs) ? lhs : rhs;
+//}
 
 cfloat max(cfloat lhs, cfloat rhs) { return abs(lhs) > abs(rhs) ? lhs : rhs; }
 
-cdouble max(cdouble lhs, cdouble rhs) {
-    return abs(lhs) > abs(rhs) ? lhs : rhs;
-}
+//cdouble max(cdouble lhs, cdouble rhs) {
+//    return abs(lhs) > abs(rhs) ? lhs : rhs;
+//}
 
 }  // namespace cpu
 }  // namespace arrayfire

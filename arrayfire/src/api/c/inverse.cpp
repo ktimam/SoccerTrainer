@@ -16,7 +16,7 @@
 #include <af/defines.h>
 #include <af/lapack.h>
 
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 
 template<typename T>
@@ -49,9 +49,9 @@ af_err af_inverse(af_array* out, const af_array in, const af_mat_prop options) {
 
         switch (type) {
             case f32: output = inverse<float>(in); break;
-            case f64: output = inverse<double>(in); break;
+            //case f64: output = inverse<float>(in); break;
             case c32: output = inverse<cfloat>(in); break;
-            case c64: output = inverse<cdouble>(in); break;
+            //case c64: output = inverse<cdouble>(in); break;
             default: TYPE_ERROR(1, type);
         }
         std::swap(*out, output);

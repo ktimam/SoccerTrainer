@@ -20,10 +20,10 @@ double clipGradNorm(const std::vector<Variable>& parameters, double maxNorm) {
       continue;
     }
     const auto& grad = p.grad().tensor();
-    gradNorm += fl::sum(grad * grad).asScalar<double>();
+    gradNorm += fl::sum(grad * grad).asScalar<float>();
   }
   gradNorm = std::sqrt(gradNorm);
-  double scale = maxNorm / (gradNorm + 1e-6);
+  float scale = maxNorm / (gradNorm + 1e-6);
   if (scale >= 1.0) {
     return gradNorm;
   }

@@ -82,7 +82,7 @@ class ArrayFireBackend : public TensorBackend {
 #define AF_BACKEND_CREATE_FUN_LITERAL_DECL(TYPE)            \
   Tensor fromScalar(TYPE value, const dtype type) override; \
   Tensor full(const Shape& dims, TYPE value, const dtype type) override;
-  AF_BACKEND_CREATE_FUN_LITERAL_DECL(const double&);
+  //AF_BACKEND_CREATE_FUN_LITERAL_DECL(const double&);
   AF_BACKEND_CREATE_FUN_LITERAL_DECL(const float&);
   AF_BACKEND_CREATE_FUN_LITERAL_DECL(const int&);
   AF_BACKEND_CREATE_FUN_LITERAL_DECL(const unsigned&);
@@ -176,7 +176,7 @@ class ArrayFireBackend : public TensorBackend {
   FL_AF_BINARY_OP_TYPE_DECL(FUNC, const unsigned long&);      \
   FL_AF_BINARY_OP_TYPE_DECL(FUNC, const long long&);          \
   FL_AF_BINARY_OP_TYPE_DECL(FUNC, const unsigned long long&); \
-  FL_AF_BINARY_OP_TYPE_DECL(FUNC, const double&);             \
+  /*FL_AF_BINARY_OP_TYPE_DECL(FUNC, const double&);  */           \
   FL_AF_BINARY_OP_TYPE_DECL(FUNC, const float&);              \
   FL_AF_BINARY_OP_TYPE_DECL(FUNC, const short&);              \
   FL_AF_BINARY_OP_TYPE_DECL(FUNC, const unsigned short&);
@@ -258,7 +258,7 @@ class ArrayFireBackend : public TensorBackend {
   Tensor norm(
       const Tensor& input,
       const std::vector<int>& axes,
-      double p,
+      float p,
       const bool keepDims) override;
   Tensor countNonzero(
       const Tensor& input,

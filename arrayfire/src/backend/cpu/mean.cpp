@@ -133,18 +133,18 @@ To mean(const Array<Ti> &in) {
     template To mean<Ti, Tw, To>(const Array<Ti> &in); \
     template Array<To> mean<Ti, Tw, To>(const Array<Ti> &in, const int dim);
 
-INSTANTIATE(double, double, double);
+//INSTANTIATE(double, double, double);
 INSTANTIATE(float, float, float);
 INSTANTIATE(int, float, float);
 INSTANTIATE(unsigned, float, float);
-INSTANTIATE(intl, double, double);
-INSTANTIATE(uintl, double, double);
+//INSTANTIATE(intl, double, double);
+//INSTANTIATE(uintl, double, double);
 INSTANTIATE(short, float, float);
 INSTANTIATE(ushort, float, float);
 INSTANTIATE(uchar, float, float);
 INSTANTIATE(char, float, float);
 INSTANTIATE(cfloat, float, cfloat);
-INSTANTIATE(cdouble, double, cdouble);
+//INSTANTIATE(cdouble, double, cdouble);
 INSTANTIATE(half, float, half);
 INSTANTIATE(half, float, float);
 
@@ -153,10 +153,10 @@ INSTANTIATE(half, float, float);
     template Array<T> mean<T, Tw>(const Array<T> &in, const Array<Tw> &wts, \
                                   const int dim);
 
-INSTANTIATE_WGT(double, double);
+//INSTANTIATE_WGT(double, double);
 INSTANTIATE_WGT(float, float);
 INSTANTIATE_WGT(cfloat, float);
-INSTANTIATE_WGT(cdouble, double);
+//INSTANTIATE_WGT(cdouble, double);
 INSTANTIATE_WGT(half, float);
 
 }  // namespace cpu

@@ -290,7 +290,7 @@ unsigned orb(Array<float>& x, Array<float>& y, Array<float>& score,
         const float scl_fctr, const unsigned levels, const bool blur_img);
 
 INSTANTIATE(float, float)
-INSTANTIATE(double, double)
+//INSTANTIATE(double, double)
 
 }  // namespace cpu
 }  // namespace arrayfire

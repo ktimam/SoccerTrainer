@@ -19,12 +19,12 @@
 namespace fl {
 namespace detail {
 
-Tensor uniform(const Shape& shape, double min, double max, fl::dtype type) {
+Tensor uniform(const Shape& shape, float min, float max, fl::dtype type) {
   Tensor result = fl::rand(shape, type);
   result = (max - min) * result + min;
   return result;
 }
-Tensor normal(const Shape& shape, double stdv, double mean, fl::dtype type) {
+Tensor normal(const Shape& shape, float stdv, float mean, fl::dtype type) {
   Tensor result = fl::randn(shape, type);
   result = stdv * result + mean;
   return result;
@@ -34,8 +34,8 @@ Tensor kaimingUniform(
     const Shape& shape,
     int fanIn,
     fl::dtype type /* = fl::dtype::f32 */) {
-  double stdv = std::sqrt(1.0 / static_cast<double>(fanIn));
-  double limit = std::sqrt(3.0) * stdv;
+  float stdv = std::sqrt(1.0 / static_cast<float>(fanIn));
+  float limit = std::sqrt(3.0) * stdv;
   return detail::uniform(shape, -limit, limit, type);
 }
 
@@ -43,7 +43,7 @@ Tensor kaimingNormal(
     const Shape& shape,
     int fanIn,
     fl::dtype type /* = fl::dtype::f32 */) {
-  double stdv = std::sqrt(1.0 / static_cast<double>(fanIn));
+  float stdv = std::sqrt(1.0 / static_cast<float>(fanIn));
   return detail::normal(shape, stdv, 0, type);
 }
 
@@ -52,8 +52,8 @@ Tensor glorotUniform(
     int fanIn,
     int fanOut,
     fl::dtype type /* = fl::dtype::f32 */) {
-  double stdv = std::sqrt(2.0 / static_cast<double>(fanIn + fanOut));
-  double limit = std::sqrt(3.0) * stdv;
+  float stdv = std::sqrt(2.0 / static_cast<float>(fanIn + fanOut));
+  float limit = std::sqrt(3.0) * stdv;
   return detail::uniform(shape, -limit, limit, type);
 }
 
@@ -62,38 +62,38 @@ Tensor glorotNormal(
     int fanIn,
     int fanOut,
     fl::dtype type /* = fl::dtype::f32 */) {
-  double stdv = std::sqrt(2.0 / static_cast<double>(fanIn + fanOut));
+  float stdv = std::sqrt(2.0 / static_cast<float>(fanIn + fanOut));
   return detail::normal(shape, stdv, 0, type);
 }
 
 Tensor erfinv(const Tensor& y) {
-  if (fl::any(fl::abs(y) >= 1.).scalar<char>()) {
+  if (fl::any(fl::abs(y) >= 1.f).scalar<char>()) {
     throw std::runtime_error("[erfinv] input is out of range (-1, 1)");
   }
-  double a[4] = {0.886226899, -1.645349621, 0.914624893, -0.140543331};
-  double b[4] = {-2.118377725, 1.442710462, -0.329097515, 0.012229801};
-  double c[4] = {-1.970840454, -1.624906493, 3.429567803, 1.641345311};
-  double d[2] = {3.543889200, 1.637067800};
+  float a[4] = {0.886226899, -1.645349621, 0.914624893, -0.140543331};
+  float b[4] = {-2.118377725, 1.442710462, -0.329097515, 0.012229801};
+  float c[4] = {-1.970840454, -1.624906493, 3.429567803, 1.641345311};
+  float d[2] = {3.543889200, 1.637067800};
 
-  auto centralMask = fl::abs(y) <= 0.7;
+  auto centralMask = fl::abs(y) <= 0.7f;
 
   auto z = y * y;
   auto num = (((a[3] * z + a[2]) * z + a[1]) * z + a[0]);
-  auto dem = ((((b[3] * z + b[2]) * z + b[1]) * z + b[0]) * z + 1.0);
+  auto dem = ((((b[3] * z + b[2]) * z + b[1]) * z + b[0]) * z + 1.0f);
   z = y * num / dem;
   auto x = z * centralMask;
 
-  z = fl::sqrt(-fl::log((1.0 - fl::abs(y)) / 2.0));
+  z = fl::sqrt(-fl::log((1.0f - fl::abs(y)) / 2.0f));
   num = ((c[3] * z + c[2]) * z + c[1]) * z + c[0];
-  dem = (d[1] * z + d[0]) * z + 1.0;
+  dem = (d[1] * z + d[0]) * z + 1.0f;
   // TODO{fl::Tensor}{operator} - check af::sign - zero case?
   z = fl::sign(y).astype(fl::dtype::f32); // -1 for negative, 1 for positive
   z = z * num / dem;
   x = x + z * !centralMask;
 
   /* Two steps of Newton-Raphson correction */
-  x = x - (fl::erf(x) - y) / ((2.0 / std::sqrt(M_PI)) * fl::exp(-x * x));
-  x = x - (fl::erf(x) - y) / ((2.0 / std::sqrt(M_PI)) * fl::exp(-x * x));
+  x = x - (fl::erf(x) - y) / ((2.0f / (float)std::sqrt(M_PI)) * fl::exp(-x * x));
+  x = x - (fl::erf(x) - y) / ((2.0f / (float)std::sqrt(M_PI)) * fl::exp(-x * x));
   if (fl::any(fl::isnan(x)).asScalar<bool>() ||
       fl::any(fl::isinf(x)).asScalar<bool>()) {
     throw std::runtime_error("[erfinv] invalid result");
@@ -116,7 +116,7 @@ Variable param(const Tensor& arr) {
 }
 
 Variable constant(
-    double val,
+    float val,
     int outputSize,
     int inputSize,
     fl::dtype type,
@@ -125,7 +125,7 @@ Variable constant(
 }
 
 Variable
-constant(double val, const Shape& dims, fl::dtype type, bool calcGrad) {
+constant(float val, const Shape& dims, fl::dtype type, bool calcGrad) {
   return Variable(fl::full(dims, val, type), calcGrad);
 }
 
@@ -148,8 +148,8 @@ Variable identity(const Shape& dims, fl::dtype type, bool calcGrad) {
 Variable uniform(
     int outputSize,
     int inputSize,
-    double min,
-    double max,
+    float min,
+    float max,
     fl::dtype type,
     bool calcGrad) {
   return uniform(Shape({outputSize, inputSize}), min, max, type, calcGrad);
@@ -157,8 +157,8 @@ Variable uniform(
 
 Variable uniform(
     const Shape& dims,
-    double min,
-    double max,
+    float min,
+    float max,
     fl::dtype type,
     bool calcGrad) {
   return Variable(detail::uniform(dims, min, max, type), calcGrad);
@@ -167,8 +167,8 @@ Variable uniform(
 Variable normal(
     int outputSize,
     int inputSize,
-    double stdv,
-    double mean,
+    float stdv,
+    float mean,
     fl::dtype type,
     bool calcGrad) {
   return normal(Shape({outputSize, inputSize}), stdv, mean, type, calcGrad);
@@ -176,8 +176,8 @@ Variable normal(
 
 Variable normal(
     const Shape& dims,
-    double stdv,
-    double mean,
+    float stdv,
+    float mean,
     fl::dtype type,
     bool calcGrad) {
   return Variable(detail::normal(dims, stdv, mean, type), calcGrad);
@@ -219,14 +219,14 @@ Variable glorotNormal(
 
 Variable truncNormal(
     const Shape& shape,
-    double stdv,
-    double mean,
-    double minCufOff,
-    double maxCutOff,
+    float stdv,
+    float mean,
+    float minCufOff,
+    float maxCutOff,
     fl::dtype type,
     bool calcGrad) {
   // following: https://git.io/JYYAr
-  auto normCdf = [](double x) {
+  auto normCdf = [](float x) {
     return (1. + std::erf(x / std::sqrt(2.))) / 2.;
   };
 
@@ -234,10 +234,10 @@ Variable truncNormal(
   auto u = 2 * normCdf((maxCutOff - mean) / stdv) - 1;
 
   float eps = 1e-7;
-  auto result = fl::rand(shape, type) * (u - l) + l;
+  auto result = fl::rand(shape, type) * (float)(u - l) + (float)l;
   result = fl::clip(result, -1 + eps, 1 - eps); // make sure erf is in range
   result = detail::erfinv(result);
-  result = mean + result * (stdv * std::sqrt(2.));
+  result = mean + result * (stdv * (float)std::sqrt(2.));
   result = fl::clip(result, minCufOff, maxCutOff);
   return Variable(result, calcGrad);
 }

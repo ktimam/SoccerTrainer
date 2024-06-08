@@ -145,18 +145,18 @@ int CNAME(BLASLONG m, BLASLONG n, FLOAT *alpha, FLOAT *x, BLASLONG incx, FLOAT *
   args.m = m;
   args.n = n;
 
-  args.a = (void *)x;
-  args.b = (void *)y;
-  args.c = (void *)a;
+  args.a = (float *)x;
+  args.b = (float *)y;
+  args.c = (float *)a;
 
   args.lda = incx;
   args.ldb = incy;
   args.ldc = lda;
 
 #ifndef COMPLEX
-  args.alpha = (void *)&alpha;
+  args.alpha = (float *)&alpha;
 #else
-  args.alpha = (void *) alpha;
+  args.alpha = (float *) alpha;
 #endif
 
   num_cpu  = 0;

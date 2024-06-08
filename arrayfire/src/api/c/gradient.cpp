@@ -17,7 +17,7 @@
 
 using af::dim4;
 using arrayfire::getArray;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 
 template<typename T>
@@ -42,8 +42,8 @@ af_err af_gradient(af_array *grows, af_array *gcols, const af_array in) {
         switch (type) {
             case f32: gradient<float>(&grad0, &grad1, in); break;
             case c32: gradient<cfloat>(&grad0, &grad1, in); break;
-            case f64: gradient<double>(&grad0, &grad1, in); break;
-            case c64: gradient<cdouble>(&grad0, &grad1, in); break;
+            //case f64: gradient<float>(&grad0, &grad1, in); break;
+            //case c64: gradient<cdouble>(&grad0, &grad1, in); break;
             default: TYPE_ERROR(1, type);
         }
         std::swap(*grows, grad0);

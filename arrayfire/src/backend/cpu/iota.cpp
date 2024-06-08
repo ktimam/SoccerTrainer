@@ -36,7 +36,7 @@ Array<T> iota(const dim4 &dims, const dim4 &tile_dims) {
     template Array<T> iota<T>(const af::dim4 &dims, const af::dim4 &tile_dims);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(intl)

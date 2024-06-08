@@ -17,7 +17,7 @@
 
 using af::dim4;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -54,15 +54,15 @@ af_err af_unwrap(af_array* out, const af_array in, const dim_t wx,
             case f32:
                 output = unwrap<float>(in, wx, wy, sx, sy, px, py, is_column);
                 break;
-            case f64:
-                output = unwrap<double>(in, wx, wy, sx, sy, px, py, is_column);
-                break;
+            /*case f64:
+                output = unwrap<float>(in, wx, wy, sx, sy, px, py, is_column);
+                break;*/
             case c32:
                 output = unwrap<cfloat>(in, wx, wy, sx, sy, px, py, is_column);
                 break;
-            case c64:
+            /*case c64:
                 output = unwrap<cdouble>(in, wx, wy, sx, sy, px, py, is_column);
-                break;
+                break;*/
             case s32:
                 output = unwrap<int>(in, wx, wy, sx, sy, px, py, is_column);
                 break;

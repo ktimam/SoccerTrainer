@@ -52,7 +52,7 @@ Variable Variable::operator()(const std::vector<Index>& indices) const {
                       std::vector<Variable>& inputs,
                       const Variable& gradOutput) {
     if (!inputs[0].isGradAvailable()) {
-      auto grad = fl::full(inDims, 0.0, inType);
+      auto grad = fl::full(inDims, 0.0f, inType);
       inputs[0].addGrad(Variable(grad, false));
     }
 
@@ -71,7 +71,7 @@ Variable Variable::flat(const fl::Index& index) const {
                       std::vector<Variable>& inputs,
                       const Variable& gradOutput) {
     if (!inputs[0].isGradAvailable()) {
-      auto grad = fl::full(inDims, 0.0, inType);
+      auto grad = fl::full(inDims, 0.0f, inType);
       inputs[0].addGrad(Variable(grad, false));
     }
     auto& grad = inputs[0].grad().tensor();

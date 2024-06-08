@@ -20,7 +20,7 @@ af::dtype flToAfType(fl::dtype type) {
       kFlashlightTypeToArrayFire = {
           {fl::dtype::f16, af::dtype::f16},
           {fl::dtype::f32, af::dtype::f32},
-          {fl::dtype::f64, af::dtype::f64},
+          //{fl::dtype::f64, af::dtype::f64},
           {fl::dtype::b8, af::dtype::b8},
           {fl::dtype::s16, af::dtype::s16},
           {fl::dtype::s32, af::dtype::s32},
@@ -37,7 +37,7 @@ fl::dtype afToFlType(af::dtype type) {
       kArrayFireTypeToFlashlight = {
           {af::dtype::f16, fl::dtype::f16},
           {af::dtype::f32, fl::dtype::f32},
-          {af::dtype::f64, fl::dtype::f64},
+          //{af::dtype::f64, fl::dtype::f64},
           {af::dtype::b8, fl::dtype::b8},
           {af::dtype::s16, fl::dtype::s16},
           {af::dtype::s32, fl::dtype::s32},
@@ -255,8 +255,8 @@ af::array fromFlData(
   switch (afType) {
     case f32:
       return af::array(dims, reinterpret_cast<const float*>(ptr), loc);
-    case f64:
-      return af::array(dims, reinterpret_cast<const double*>(ptr), loc);
+    /*case f64:
+      return af::array(dims, reinterpret_cast<const double*>(ptr), loc);*/
     case s32:
       return af::array(dims, reinterpret_cast<const int*>(ptr), loc);
     case u32:

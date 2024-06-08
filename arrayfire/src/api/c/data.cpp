@@ -27,7 +27,7 @@
 
 using af::dim4;
 using arrayfire::common::half;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createValueArray;
 using detail::intl;
@@ -53,8 +53,8 @@ af_err af_constant(af_array *result, const double value, const unsigned ndims,
         switch (type) {
             case f32: out = createHandleFromValue<float>(d, value); break;
             case c32: out = createHandleFromValue<cfloat>(d, value); break;
-            case f64: out = createHandleFromValue<double>(d, value); break;
-            case c64: out = createHandleFromValue<cdouble>(d, value); break;
+            //case f64: out = createHandleFromValue<float>(d, value); break;
+            //case c64: out = createHandleFromValue<cdouble>(d, value); break;
             case b8: out = createHandleFromValue<char>(d, value); break;
             case s32: out = createHandleFromValue<int>(d, value); break;
             case u32: out = createHandleFromValue<uint>(d, value); break;
@@ -91,7 +91,7 @@ af_err af_constant_complex(af_array *result, const double real,
 
         switch (type) {
             case c32: out = createCplx<cfloat, float>(d, real, imag); break;
-            case c64: out = createCplx<cdouble, double>(d, real, imag); break;
+            //case c64: out = createCplx<cdouble, double>(d, real, imag); break;
             default: TYPE_ERROR(5, type);
         }
 
@@ -155,8 +155,8 @@ af_err af_identity(af_array *out, const unsigned ndims, const dim_t *const dims,
         switch (type) {
             case f32: result = identity_<float>(d); break;
             case c32: result = identity_<cfloat>(d); break;
-            case f64: result = identity_<double>(d); break;
-            case c64: result = identity_<cdouble>(d); break;
+            //case f64: result = identity_<float>(d); break;
+            //case c64: result = identity_<cdouble>(d); break;
             case s32: result = identity_<int>(d); break;
             case u32: result = identity_<uint>(d); break;
             case u8: result = identity_<uchar>(d); break;
@@ -195,7 +195,7 @@ af_err af_range(af_array *result, const unsigned ndims, const dim_t *const dims,
 
         switch (type) {
             case f32: out = range_<float>(d, seq_dim); break;
-            case f64: out = range_<double>(d, seq_dim); break;
+            //case f64: out = range_<float>(d, seq_dim); break;
             case s32: out = range_<int>(d, seq_dim); break;
             case u32: out = range_<uint>(d, seq_dim); break;
             case s64: out = range_<intl>(d, seq_dim); break;
@@ -235,7 +235,7 @@ af_err af_iota(af_array *result, const unsigned ndims, const dim_t *const dims,
 
         switch (type) {
             case f32: out = iota_<float>(d, t); break;
-            case f64: out = iota_<double>(d, t); break;
+            //case f64: out = iota_<float>(d, t); break;
             case s32: out = iota_<int>(d, t); break;
             case u32: out = iota_<uint>(d, t); break;
             case s64: out = iota_<intl>(d, t); break;
@@ -277,8 +277,8 @@ af_err af_diag_create(af_array *out, const af_array in, const int num) {
         switch (type) {
             case f32: result = diagCreate<float>(in, num); break;
             case c32: result = diagCreate<cfloat>(in, num); break;
-            case f64: result = diagCreate<double>(in, num); break;
-            case c64: result = diagCreate<cdouble>(in, num); break;
+            //case f64: result = diagCreate<float>(in, num); break;
+            //case c64: result = diagCreate<cdouble>(in, num); break;
             case s32: result = diagCreate<int>(in, num); break;
             case u32: result = diagCreate<uint>(in, num); break;
             case s64: result = diagCreate<intl>(in, num); break;
@@ -316,8 +316,8 @@ af_err af_diag_extract(af_array *out, const af_array in, const int num) {
         switch (type) {
             case f32: result = diagExtract<float>(in, num); break;
             case c32: result = diagExtract<cfloat>(in, num); break;
-            case f64: result = diagExtract<double>(in, num); break;
-            case c64: result = diagExtract<cdouble>(in, num); break;
+            //case f64: result = diagExtract<float>(in, num); break;
+            //case c64: result = diagExtract<cdouble>(in, num); break;
             case s32: result = diagExtract<int>(in, num); break;
             case u32: result = diagExtract<uint>(in, num); break;
             case s64: result = diagExtract<intl>(in, num); break;
@@ -357,9 +357,9 @@ af_err af_lower(af_array *out, const af_array in, bool is_unit_diag) {
         af_array res = nullptr;
         switch (type) {
             case f32: res = triangle<float>(in, false, is_unit_diag); break;
-            case f64: res = triangle<double>(in, false, is_unit_diag); break;
+            //case f64: res = triangle<float>(in, false, is_unit_diag); break;
             case c32: res = triangle<cfloat>(in, false, is_unit_diag); break;
-            case c64: res = triangle<cdouble>(in, false, is_unit_diag); break;
+            //case c64: res = triangle<cdouble>(in, false, is_unit_diag); break;
             case s32: res = triangle<int>(in, false, is_unit_diag); break;
             case u32: res = triangle<uint>(in, false, is_unit_diag); break;
             case s64: res = triangle<intl>(in, false, is_unit_diag); break;
@@ -386,9 +386,9 @@ af_err af_upper(af_array *out, const af_array in, bool is_unit_diag) {
         af_array res = nullptr;
         switch (type) {
             case f32: res = triangle<float>(in, true, is_unit_diag); break;
-            case f64: res = triangle<double>(in, true, is_unit_diag); break;
+            //case f64: res = triangle<float>(in, true, is_unit_diag); break;
             case c32: res = triangle<cfloat>(in, true, is_unit_diag); break;
-            case c64: res = triangle<cdouble>(in, true, is_unit_diag); break;
+            //case c64: res = triangle<cdouble>(in, true, is_unit_diag); break;
             case s32: res = triangle<int>(in, true, is_unit_diag); break;
             case u32: res = triangle<uint>(in, true, is_unit_diag); break;
             case s64: res = triangle<intl>(in, true, is_unit_diag); break;
@@ -440,9 +440,9 @@ af_err af_pad(af_array *out, const af_array in, const unsigned begin_ndims,
         af_array res = 0;
         switch (type) {
             case f32: res = pad<float>(in, lPad, uPad, pad_type); break;
-            case f64: res = pad<double>(in, lPad, uPad, pad_type); break;
+            //case f64: res = pad<float>(in, lPad, uPad, pad_type); break;
             case c32: res = pad<cfloat>(in, lPad, uPad, pad_type); break;
-            case c64: res = pad<cdouble>(in, lPad, uPad, pad_type); break;
+            //case c64: res = pad<cdouble>(in, lPad, uPad, pad_type); break;
             case s32: res = pad<int>(in, lPad, uPad, pad_type); break;
             case u32: res = pad<uint>(in, lPad, uPad, pad_type); break;
             case s64: res = pad<intl>(in, lPad, uPad, pad_type); break;

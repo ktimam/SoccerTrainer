@@ -53,13 +53,13 @@ Array<T> exampleFunction(const Array<T> &a, const Array<T> &b,
 // are present in the switch case statement
 // in src/api/c/exampleFunction.cpp should be available
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(uchar)
 INSTANTIATE(char)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

@@ -19,7 +19,7 @@
 #include <cstdio>
 
 using af::dim4;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 
 af_err af_fir(af_array* y, const af_array b, const af_array x) {
@@ -30,7 +30,7 @@ af_err af_fir(af_array* y, const af_array b, const af_array x) {
         dim4 xdims    = getInfo(x).dims();
         af_seq seqs[] = {af_span, af_span, af_span, af_span};
         seqs[0].begin = 0.;
-        seqs[0].end   = static_cast<double>(xdims[0]) - 1.;
+        seqs[0].end   = static_cast<float>(xdims[0]) - 1.;
         seqs[0].step  = 1.;
         af_array res;
         AF_CHECK(af_index(&res, out, 4, seqs));
@@ -86,9 +86,9 @@ af_err af_iir(af_array* y, const af_array b, const af_array a,
         af_array res;
         switch (xtype) {
             case f32: res = iir<float>(b, a, x); break;
-            case f64: res = iir<double>(b, a, x); break;
+            //case f64: res = iir<float>(b, a, x); break;
             case c32: res = iir<cfloat>(b, a, x); break;
-            case c64: res = iir<cdouble>(b, a, x); break;
+            //case c64: res = iir<cdouble>(b, a, x); break;
             default: TYPE_ERROR(1, xtype);
         }
 

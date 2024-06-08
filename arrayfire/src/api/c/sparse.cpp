@@ -29,7 +29,7 @@ using arrayfire::common::createHostDataSparseArray;
 using arrayfire::common::SparseArray;
 using arrayfire::common::SparseArrayBase;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::sparseConvertDenseToStorage;
 
@@ -225,18 +225,18 @@ af_err af_create_sparse_array(af_array *out, const dim_t nRows,
                 output = createSparseArrayFromData<float>(dims, values, rowIdx,
                                                           colIdx, stype);
                 break;
-            case f64:
-                output = createSparseArrayFromData<double>(dims, values, rowIdx,
+            /*case f64:
+                output = createSparseArrayFromData<float>(dims, values, rowIdx,
                                                            colIdx, stype);
-                break;
+                break;*/
             case c32:
                 output = createSparseArrayFromData<cfloat>(dims, values, rowIdx,
                                                            colIdx, stype);
                 break;
-            case c64:
+            /*case c64:
                 output = createSparseArrayFromData<cdouble>(
                     dims, values, rowIdx, colIdx, stype);
-                break;
+                break;*/
             default: TYPE_ERROR(1, vInfo.getType());
         }
         std::swap(*out, output);
@@ -264,7 +264,7 @@ af_err af_create_sparse_array_from_ptr(
             AF_ERROR("Storage type is out of range/unsupported", AF_ERR_ARG);
         }
 
-        TYPE_ASSERT(type == f32 || type == f64 || type == c32 || type == c64);
+        TYPE_ASSERT(type == f32 /*|| type == f64*/ || type == c32 /*|| type == c64*/);
 
         af_array output = nullptr;
 
@@ -276,21 +276,21 @@ af_err af_create_sparse_array_from_ptr(
                     dims, nNZ, static_cast<const float *>(values), rowIdx,
                     colIdx, stype, source);
                 break;
-            case f64:
-                output = createSparseArrayFromPtr<double>(
+            /*case f64:
+                output = createSparseArrayFromPtr<float>(
                     dims, nNZ, static_cast<const double *>(values), rowIdx,
                     colIdx, stype, source);
-                break;
+                break;*/
             case c32:
                 output = createSparseArrayFromPtr<cfloat>(
                     dims, nNZ, static_cast<const cfloat *>(values), rowIdx,
                     colIdx, stype, source);
                 break;
-            case c64:
+            /*case c64:
                 output = createSparseArrayFromPtr<cdouble>(
                     dims, nNZ, static_cast<const cdouble *>(values), rowIdx,
                     colIdx, stype, source);
-                break;
+                break;*/
             default: TYPE_ERROR(1, type);
         }
         std::swap(*out, output);
@@ -325,15 +325,15 @@ af_err af_create_sparse_array_from_dense(af_array *out, const af_array in,
             case f32:
                 output = createSparseArrayFromDense<float>(in, stype);
                 break;
-            case f64:
-                output = createSparseArrayFromDense<double>(in, stype);
-                break;
+            /*case f64:
+                output = createSparseArrayFromDense<float>(in, stype);
+                break;*/
             case c32:
                 output = createSparseArrayFromDense<cfloat>(in, stype);
                 break;
-            case c64:
+            /*case c64:
                 output = createSparseArrayFromDense<cdouble>(in, stype);
-                break;
+                break;*/
             default: TYPE_ERROR(1, info.getType());
         }
         std::swap(*out, output);
@@ -374,15 +374,15 @@ af_err af_sparse_convert_to(af_array *out, const af_array in,
             case f32:
                 output = sparseConvertStorage<float>(in, destStorage);
                 break;
-            case f64:
-                output = sparseConvertStorage<double>(in, destStorage);
-                break;
+            /*case f64:
+                output = sparseConvertStorage<float>(in, destStorage);
+                break;*/
             case c32:
                 output = sparseConvertStorage<cfloat>(in, destStorage);
                 break;
-            case c64:
+            /*case c64:
                 output = sparseConvertStorage<cdouble>(in, destStorage);
-                break;
+                break;*/
             default: AF_ERROR("Output storage type is not valid", AF_ERR_ARG);
         }
         std::swap(*out, output);
@@ -405,15 +405,15 @@ af_err af_sparse_to_dense(af_array *out, const af_array in) {
             case f32:
                 output = sparseConvertStorage<float>(in, AF_STORAGE_DENSE);
                 break;
-            case f64:
-                output = sparseConvertStorage<double>(in, AF_STORAGE_DENSE);
-                break;
+            /*case f64:
+                output = sparseConvertStorage<float>(in, AF_STORAGE_DENSE);
+                break;*/
             case c32:
                 output = sparseConvertStorage<cfloat>(in, AF_STORAGE_DENSE);
                 break;
-            case c64:
+            /*case c64:
                 output = sparseConvertStorage<cdouble>(in, AF_STORAGE_DENSE);
-                break;
+                break;*/
             default: AF_ERROR("Output storage type is not valid", AF_ERR_ARG);
         }
         std::swap(*out, output);
@@ -443,9 +443,9 @@ af_err af_sparse_get_values(af_array *out, const af_array in) {
 
         switch (base.getType()) {
             case f32: output = getSparseValues<float>(in); break;
-            case f64: output = getSparseValues<double>(in); break;
+            //case f64: output = getSparseValues<float>(in); break;
             case c32: output = getSparseValues<cfloat>(in); break;
-            case c64: output = getSparseValues<cdouble>(in); break;
+            //case c64: output = getSparseValues<cdouble>(in); break;
             default: TYPE_ERROR(1, base.getType());
         }
         std::swap(*out, output);

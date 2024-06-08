@@ -1508,13 +1508,13 @@ private:
         else if ((parseFlags & kParseNanAndInfFlag) && CEREAL_RAPIDJSON_LIKELY((s.Peek() == 'I' || s.Peek() == 'N'))) {
             if (Consume(s, 'N')) {
                 if (Consume(s, 'a') && Consume(s, 'N')) {
-                    d = std::numeric_limits<double>::quiet_NaN();
+                    d = std::numeric_limits<float>::quiet_NaN();
                     useNanOrInf = true;
                 }
             }
             else if (CEREAL_RAPIDJSON_LIKELY(Consume(s, 'I'))) {
                 if (Consume(s, 'n') && Consume(s, 'f')) {
-                    d = (minus ? -std::numeric_limits<double>::infinity() : std::numeric_limits<double>::infinity());
+                    d = (minus ? -std::numeric_limits<float>::infinity() : std::numeric_limits<float>::infinity());
                     useNanOrInf = true;
 
                     if (CEREAL_RAPIDJSON_UNLIKELY(s.Peek() == 'i' && !(Consume(s, 'i') && Consume(s, 'n')
@@ -1538,7 +1538,7 @@ private:
                 while (CEREAL_RAPIDJSON_LIKELY(s.Peek() >= '0' && s.Peek() <= '9')) {
                      if (CEREAL_RAPIDJSON_UNLIKELY(i64 >= CEREAL_RAPIDJSON_UINT64_C2(0x0CCCCCCC, 0xCCCCCCCC))) // 2^63 = 9223372036854775808
                         if (CEREAL_RAPIDJSON_LIKELY(i64 != CEREAL_RAPIDJSON_UINT64_C2(0x0CCCCCCC, 0xCCCCCCCC) || s.Peek() > '8')) {
-                            d = static_cast<double>(i64);
+                            d = static_cast<float>(i64);
                             useDouble = true;
                             break;
                         }
@@ -1549,7 +1549,7 @@ private:
                 while (CEREAL_RAPIDJSON_LIKELY(s.Peek() >= '0' && s.Peek() <= '9')) {
                     if (CEREAL_RAPIDJSON_UNLIKELY(i64 >= CEREAL_RAPIDJSON_UINT64_C2(0x19999999, 0x99999999))) // 2^64 - 1 = 18446744073709551615
                         if (CEREAL_RAPIDJSON_LIKELY(i64 != CEREAL_RAPIDJSON_UINT64_C2(0x19999999, 0x99999999) || s.Peek() > '5')) {
-                            d = static_cast<double>(i64);
+                            d = static_cast<float>(i64);
                             useDouble = true;
                             break;
                         }
@@ -1591,10 +1591,10 @@ private:
                     }
                 }
 
-                d = static_cast<double>(i64);
+                d = static_cast<float>(i64);
 #else
                 // Use double to store significand in 32-bit architecture
-                d = static_cast<double>(use64bit ? i64 : i);
+                d = static_cast<float>(use64bit ? i64 : i);
 #endif
                 useDouble = true;
             }
@@ -1617,7 +1617,7 @@ private:
         int exp = 0;
         if (Consume(s, 'e') || Consume(s, 'E')) {
             if (!useDouble) {
-                d = static_cast<double>(use64bit ? i64 : i);
+                d = static_cast<float>(use64bit ? i64 : i);
                 useDouble = true;
             }
 
@@ -1701,7 +1701,7 @@ private:
                    d = internal::StrtodNormalPrecision(d, p);
 
                // Use > max, instead of == inf, to fix bogus warning -Wfloat-equal
-               if (d > (std::numeric_limits<double>::max)()) {
+               if (d > (std::numeric_limits<float>::max)()) {
                    // Overflow
                    // TODO: internal::StrtodX should report overflow (or underflow)
                    CEREAL_RAPIDJSON_PARSE_ERROR(kParseErrorNumberTooBig, startOffset);

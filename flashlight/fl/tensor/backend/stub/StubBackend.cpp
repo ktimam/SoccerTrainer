@@ -95,7 +95,7 @@ Tensor StubBackend::rand(const Shape& /* shape */, dtype /* type */) {
     throw std::invalid_argument(                                               \
         "StubBackend::full - not implemented for type " + std::string(#TYPE)); \
   }
-FL_STUB_BACKEND_CREATE_FUN_LITERAL_DEF(const double&);
+//FL_STUB_BACKEND_CREATE_FUN_LITERAL_DEF(const double&);
 FL_STUB_BACKEND_CREATE_FUN_LITERAL_DEF(const float&);
 FL_STUB_BACKEND_CREATE_FUN_LITERAL_DEF(const int&);
 FL_STUB_BACKEND_CREATE_FUN_LITERAL_DEF(const unsigned&);
@@ -324,7 +324,7 @@ Tensor StubBackend::argsort(
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const unsigned long&);      \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const long long&);          \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const unsigned long long&); \
-  FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const double&);             \
+  /*FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const double&);*/             \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const float&);              \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const short&);              \
   FL_AF_BINARY_OP_TYPE_DEF(FUNC, OP, const unsigned short&);
@@ -480,7 +480,7 @@ Tensor StubBackend::std(
 Tensor StubBackend::norm(
     const Tensor& /* input */,
     const std::vector<int>& /* axes */,
-    double /* p */ /* = 2 */,
+    float /* p */ /* = 2 */,
     const bool /* keepDims */) {
   FL_STUB_BACKEND_UNIMPLEMENTED;
 }

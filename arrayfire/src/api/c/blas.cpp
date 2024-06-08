@@ -29,7 +29,7 @@ using arrayfire::getSparseArray;
 using arrayfire::getSparseArrayBase;
 using arrayfire::common::half;
 using arrayfire::common::SparseArrayBase;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::gemm;
 using detail::matmul;
@@ -115,12 +115,12 @@ af_err af_sparse_matmul(af_array *out, const af_array lhs, const af_array rhs,
             case c32:
                 output = sparseMatmul<cfloat>(lhs, rhs, optLhs, optRhs);
                 break;
-            case f64:
-                output = sparseMatmul<double>(lhs, rhs, optLhs, optRhs);
+            /*case f64:
+                output = sparseMatmul<float>(lhs, rhs, optLhs, optRhs);
                 break;
             case c64:
                 output = sparseMatmul<cdouble>(lhs, rhs, optLhs, optRhs);
-                break;
+                break;*/
             default: TYPE_ERROR(1, lhs_type);
         }
         std::swap(*out, output);
@@ -200,8 +200,8 @@ af_err af_gemm(af_array *out, const af_mat_prop optLhs,
                              static_cast<const cfloat *>(alpha), lhs, rhs,
                              static_cast<const cfloat *>(beta));
                 break;
-            case f64:
-                gemm<double>(&output, optLhs, optRhs,
+            /*case f64:
+                gemm<float>(&output, optLhs, optRhs,
                              static_cast<const double *>(alpha), lhs, rhs,
                              static_cast<const double *>(beta));
                 break;
@@ -209,7 +209,7 @@ af_err af_gemm(af_array *out, const af_mat_prop optLhs,
                 gemm<cdouble>(&output, optLhs, optRhs,
                               static_cast<const cdouble *>(alpha), lhs, rhs,
                               static_cast<const cdouble *>(beta));
-                break;
+                break;*/
             case f16:
                 gemm<half>(&output, optLhs, optRhs,
                            static_cast<const half *>(alpha), lhs, rhs,
@@ -274,7 +274,7 @@ af_err af_matmul(af_array *out, const af_array lhs, const af_array rhs,
                                  &beta));
                 break;
             }
-            case f64: {
+            /*case f64: {
                 double alpha = 1.0;
                 double beta  = 0.0;
                 AF_CHECK(af_gemm(&gemm_out, optLhs, optRhs, &alpha, lhs, rhs,
@@ -287,7 +287,7 @@ af_err af_matmul(af_array *out, const af_array lhs, const af_array rhs,
                 AF_CHECK(af_gemm(&gemm_out, optLhs, optRhs, &alpha, lhs, rhs,
                                  &beta));
                 break;
-            }
+            }*/
             default: TYPE_ERROR(1, lhs_type);
         }
 
@@ -330,8 +330,8 @@ af_err af_dot(af_array *out, const af_array lhs, const af_array rhs,
             case f16: output = dot<half>(lhs, rhs, optLhs, optRhs); break;
             case f32: output = dot<float>(lhs, rhs, optLhs, optRhs); break;
             case c32: output = dot<cfloat>(lhs, rhs, optLhs, optRhs); break;
-            case f64: output = dot<double>(lhs, rhs, optLhs, optRhs); break;
-            case c64: output = dot<cdouble>(lhs, rhs, optLhs, optRhs); break;
+            //case f64: output = dot<float>(lhs, rhs, optLhs, optRhs); break;
+            //case c64: output = dot<cdouble>(lhs, rhs, optLhs, optRhs); break;
             default: TYPE_ERROR(1, lhs_type);
         }
         std::swap(*out, output);
@@ -357,19 +357,19 @@ af_err af_dot_all(double *rval, double *ival, const af_array lhs,
         af_dtype lhs_type        = lhsInfo.getType();
 
         switch (lhs_type) {
-            case f16: *rval = static_cast<double>(dotAll<half>(out)); break;
+            //case f16: *rval = static_cast<float>(dotAll<half>(out)); break;
             case f32: *rval = dotAll<float>(out); break;
-            case f64: *rval = dotAll<double>(out); break;
+            //case f64: *rval = dotAll<float>(out); break;
             case c32: {
                 cfloat temp = dotAll<cfloat>(out);
                 *rval       = real(temp);
                 if (ival) { *ival = imag(temp); }
             } break;
-            case c64: {
+            /*case c64: {
                 cdouble temp = dotAll<cdouble>(out);
                 *rval        = real(temp);
                 if (ival) { *ival = imag(temp); }
-            } break;
+            } break;*/
             default: TYPE_ERROR(1, lhs_type);
         }
 

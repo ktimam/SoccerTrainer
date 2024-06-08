@@ -75,10 +75,10 @@ af_err af_orb(af_features* feat, af_array* desc, const af_array in,
                 orb<float, float>(*feat, tmp_desc, in, fast_thr, max_feat,
                                   scl_fctr, levels, blur_img);
                 break;
-            case f64:
+            /*case f64:
                 orb<double, double>(*feat, tmp_desc, in, fast_thr, max_feat,
                                     scl_fctr, levels, blur_img);
-                break;
+                break;*/
             default: TYPE_ERROR(1, type);
         }
         std::swap(*desc, tmp_desc);

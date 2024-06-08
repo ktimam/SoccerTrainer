@@ -34,7 +34,7 @@ using sp_cfloat  = MKL_Complex8;
 using sp_cdouble = MKL_Complex16;
 #else
 using sp_cfloat  = cfloat;
-using sp_cdouble = cdouble;
+//using sp_cdouble = cdouble;
 
 // From mkl_spblas.h
 typedef enum {
@@ -52,8 +52,8 @@ struct blas_base {
 template<typename T>
 struct blas_base<T,
                  typename std::enable_if<common::is_complex<T>::value>::type> {
-    using type = typename std::conditional<std::is_same<T, cdouble>::value,
-                                           sp_cdouble, sp_cfloat>::type;
+    using type = typename std::conditional<std::is_same<T, std::complex<float>>::value,
+                                           std::complex<float>, sp_cfloat>::type;
 };
 
 template<typename T>
@@ -286,10 +286,10 @@ cfloat getConjugate(const cfloat &in) {
     return std::conj(in);
 }
 
-template<>
-cdouble getConjugate(const cdouble &in) {
-    return std::conj(in);
-}
+//template<>
+//cdouble getConjugate(const cdouble &in) {
+//    return std::conj(in);
+//}
 
 template<typename T, bool conjugate>
 void mv(Param<T> output, CParam<T> values, CParam<int> rowIdx,
@@ -458,9 +458,9 @@ Array<T> matmul(const common::SparseArray<T> &lhs, const Array<T> &rhs,
                                 af_mat_prop optRhs);
 
 INSTANTIATE_SPARSE(float)
-INSTANTIATE_SPARSE(double)
+//INSTANTIATE_SPARSE(double)
 INSTANTIATE_SPARSE(cfloat)
-INSTANTIATE_SPARSE(cdouble)
+//INSTANTIATE_SPARSE(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

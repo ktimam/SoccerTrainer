@@ -133,7 +133,7 @@ bool ArrayInfo::isComplex() const { return arrayfire::common::isComplex(type); }
 
 bool ArrayInfo::isReal() const { return arrayfire::common::isReal(type); }
 
-bool ArrayInfo::isDouble() const { return arrayfire::common::isDouble(type); }
+//bool ArrayInfo::isDouble() const { return arrayfire::common::isDouble(type); }
 
 bool ArrayInfo::isSingle() const { return arrayfire::common::isSingle(type); }
 

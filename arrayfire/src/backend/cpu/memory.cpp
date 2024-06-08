@@ -101,8 +101,8 @@ void pinnedFree(void *ptr) { memoryManager().unlock(ptr, false); }
 
 INSTANTIATE(float)
 INSTANTIATE(cfloat)
-INSTANTIATE(double)
-INSTANTIATE(cdouble)
+//INSTANTIATE(double)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(char)

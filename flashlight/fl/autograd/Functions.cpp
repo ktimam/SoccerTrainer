@@ -122,7 +122,7 @@ Variable operator+(const Variable& lhs, const Variable& rhs) {
   return Variable(result, {lhs.withoutData(), rhs.withoutData()}, gradFunc);
 }
 
-Variable operator+(const Variable& lhs, const double& rhsVal) {
+Variable operator+(const Variable& lhs, const float& rhsVal) {
   auto result = (lhs.tensor() + rhsVal).astype(lhs.type());
   auto gradFunc = [](std::vector<Variable>& inputs,
                      const Variable& gradOutput) {
@@ -131,7 +131,7 @@ Variable operator+(const Variable& lhs, const double& rhsVal) {
   return Variable(result, {lhs.withoutData()}, gradFunc);
 }
 
-Variable operator+(const double& lhsVal, const Variable& rhs) {
+Variable operator+(const float& lhsVal, const Variable& rhs) {
   return rhs + lhsVal;
 }
 
@@ -146,7 +146,7 @@ Variable operator-(const Variable& lhs, const Variable& rhs) {
   return Variable(result, {lhs.withoutData(), rhs.withoutData()}, gradFunc);
 }
 
-Variable operator-(const Variable& lhs, const double& rhsVal) {
+Variable operator-(const Variable& lhs, const float& rhsVal) {
   auto result = (lhs.tensor() - rhsVal).astype(lhs.type());
   auto gradFunc = [](std::vector<Variable>& inputs,
                      const Variable& gradOutput) {
@@ -155,7 +155,7 @@ Variable operator-(const Variable& lhs, const double& rhsVal) {
   return Variable(result, {lhs.withoutData()}, gradFunc);
 }
 
-Variable operator-(const double& lhsVal, const Variable& rhs) {
+Variable operator-(const float& lhsVal, const Variable& rhs) {
   auto result = (lhsVal - rhs.tensor()).astype(rhs.type());
   auto gradFunc = [](std::vector<Variable>& inputs,
                      const Variable& gradOutput) {
@@ -185,7 +185,7 @@ Variable operator*(const Variable& lhs, const Variable& rhs) {
       gradFunc);
 }
 
-Variable operator*(const Variable& lhs, const double& rhsVal) {
+Variable operator*(const Variable& lhs, const float& rhsVal) {
   auto result = (lhs.tensor() * rhsVal).astype(lhs.type());
   auto gradFunc =
       [rhsVal](std::vector<Variable>& inputs, const Variable& gradOutput) {
@@ -194,7 +194,7 @@ Variable operator*(const Variable& lhs, const double& rhsVal) {
   return Variable(result, {lhs.withoutData()}, gradFunc);
 }
 
-Variable operator*(const double& lhsVal, const Variable& rhs) {
+Variable operator*(const float& lhsVal, const Variable& rhs) {
   return rhs * lhsVal;
 }
 
@@ -217,7 +217,7 @@ Variable operator/(const Variable& lhs, const Variable& rhs) {
       result, {rhs.isCalcGrad() ? lhs : lhs.withoutData(), rhs}, gradFunc);
 }
 
-Variable operator/(const Variable& lhs, const double& rhsVal) {
+Variable operator/(const Variable& lhs, const float& rhsVal) {
   auto result = (lhs.tensor() / rhsVal).astype(lhs.type());
   auto gradFunc =
       [rhsVal](std::vector<Variable>& inputs, const Variable& gradOutput) {
@@ -226,7 +226,7 @@ Variable operator/(const Variable& lhs, const double& rhsVal) {
   return Variable(result, {lhs.withoutData()}, gradFunc);
 }
 
-Variable operator/(const double& lhsVal, const Variable& rhs) {
+Variable operator/(const float& lhsVal, const Variable& rhs) {
   auto result = (lhsVal / rhs.tensor()).astype(rhs.type());
   auto gradFunc = [lhsVal](
                       std::vector<Variable>& inputs,
@@ -243,12 +243,12 @@ Variable operator>(const Variable& lhs, const Variable& rhs) {
   return Variable(result, false);
 }
 
-Variable operator>(const Variable& lhs, const double& rhsVal) {
+Variable operator>(const Variable& lhs, const float& rhsVal) {
   auto result = (lhs.tensor() > rhsVal).astype(lhs.type());
   return Variable(result, false);
 }
 
-Variable operator>(const double& lhsVal, const Variable& rhs) {
+Variable operator>(const float& lhsVal, const Variable& rhs) {
   auto result = (lhsVal > rhs.tensor()).astype(rhs.type());
   return Variable(result, false);
 }
@@ -259,12 +259,12 @@ Variable operator<(const Variable& lhs, const Variable& rhs) {
   return Variable(result, false);
 }
 
-Variable operator<(const Variable& lhs, const double& rhsVal) {
+Variable operator<(const Variable& lhs, const float& rhsVal) {
   auto result = (lhs.tensor() < rhsVal).astype(lhs.type());
   return Variable(result, false);
 }
 
-Variable operator<(const double& lhsVal, const Variable& rhs) {
+Variable operator<(const float& lhsVal, const Variable& rhs) {
   auto result = (lhsVal < rhs.tensor()).astype(rhs.type());
   return Variable(result, false);
 }
@@ -275,12 +275,12 @@ Variable operator>=(const Variable& lhs, const Variable& rhs) {
   return Variable(result, false);
 }
 
-Variable operator>=(const Variable& lhs, const double& rhsVal) {
+Variable operator>=(const Variable& lhs, const float& rhsVal) {
   auto result = (lhs.tensor() >= rhsVal).astype(lhs.type());
   return Variable(result, false);
 }
 
-Variable operator>=(const double& lhsVal, const Variable& rhs) {
+Variable operator>=(const float& lhsVal, const Variable& rhs) {
   auto result = (lhsVal >= rhs.tensor()).astype(rhs.type());
   return Variable(result, false);
 }
@@ -291,12 +291,12 @@ Variable operator<=(const Variable& lhs, const Variable& rhs) {
   return Variable(result, false);
 }
 
-Variable operator<=(const Variable& lhs, const double& rhsVal) {
+Variable operator<=(const Variable& lhs, const float& rhsVal) {
   auto result = (lhs.tensor() <= rhsVal).astype(lhs.type());
   return Variable(result, false);
 }
 
-Variable operator<=(const double& lhsVal, const Variable& rhs) {
+Variable operator<=(const float& lhsVal, const Variable& rhs) {
   auto result = (lhsVal <= rhs.tensor()).astype(rhs.type());
   return Variable(result, false);
 }
@@ -326,7 +326,7 @@ Variable max(const Variable& lhs, const Variable& rhs) {
   return Variable(result, {lhs, rhs}, gradFunc);
 }
 
-Variable max(const Variable& lhs, const double& rhsVal) {
+Variable max(const Variable& lhs, const float& rhsVal) {
   auto result = fl::maximum(lhs.tensor(), rhsVal).astype(lhs.type());
   auto gradFunc =
       [rhsVal](std::vector<Variable>& inputs, const Variable& gradOutput) {
@@ -337,7 +337,7 @@ Variable max(const Variable& lhs, const double& rhsVal) {
   return Variable(result, {lhs}, gradFunc);
 }
 
-Variable max(const double& lhsVal, const Variable& rhs) {
+Variable max(const float& lhsVal, const Variable& rhs) {
   return max(rhs, lhsVal);
 }
 
@@ -355,7 +355,7 @@ Variable min(const Variable& lhs, const Variable& rhs) {
   return Variable(result, {lhs, rhs}, gradFunc);
 }
 
-Variable min(const Variable& lhs, const double& rhsVal) {
+Variable min(const Variable& lhs, const float& rhsVal) {
   auto result = fl::minimum(lhs.tensor(), rhsVal).astype(lhs.type());
   auto gradFunc =
       [rhsVal](std::vector<Variable>& inputs, const Variable& gradOutput) {
@@ -366,12 +366,12 @@ Variable min(const Variable& lhs, const double& rhsVal) {
   return Variable(result, {lhs}, gradFunc);
 }
 
-Variable min(const double& lhsVal, const Variable& rhs) {
+Variable min(const float& lhsVal, const Variable& rhs) {
   return min(rhs, lhsVal);
 }
 
 Variable negate(const Variable& input) {
-  auto result = (0.0 - input.tensor()).astype(input.type());
+  auto result = (0.0f - input.tensor()).astype(input.type());
   auto gradFunc = [](std::vector<Variable>& inputs,
                      const Variable& gradOutput) {
     inputs[0].addGrad(Variable(negate(gradOutput).tensor(), false));
@@ -380,7 +380,7 @@ Variable negate(const Variable& input) {
 }
 
 Variable reciprocal(const Variable& input) {
-  auto result = 1.0 / FL_ADJUST_INPUT_TYPE(input.tensor());
+  auto result = 1.0f / FL_ADJUST_INPUT_TYPE(input.tensor());
   auto gradFunc = [](std::vector<Variable>& inputs,
                      const Variable& gradOutput) {
     auto res = reciprocal(inputs[0]);
@@ -415,12 +415,12 @@ Variable log1p(const Variable& input) {
   auto gradFunc = [](std::vector<Variable>& inputs,
                      const Variable& gradOutput) {
     inputs[0].addGrad(
-        Variable((gradOutput.tensor() / (1.0 + inputs[0].tensor())), false));
+        Variable((gradOutput.tensor() / (1.0f + inputs[0].tensor())), false));
   };
   return Variable(result, {input}, gradFunc);
 }
 
-Variable pow(const Variable& input, double p) {
+Variable pow(const Variable& input, float p) {
   auto result = fl::power(FL_ADJUST_INPUT_TYPE(input.tensor()), p);
   auto gradFunc = [p](std::vector<Variable>& inputs,
                       const Variable& gradOutput) {
@@ -456,13 +456,13 @@ Variable tanh(const Variable& input) {
   auto gradFunc =
       [result](std::vector<Variable>& inputs, const Variable& gradOutput) {
         auto grad =
-            Variable((1.0 - result * result) * gradOutput.tensor(), false);
+            Variable((1.0f - result * result) * gradOutput.tensor(), false);
         inputs[0].addGrad(Variable(grad.tensor(), false));
       };
   return Variable(result, {input.withoutData()}, gradFunc);
 }
 
-Variable clamp(const Variable& input, const double lo, const double hi) {
+Variable clamp(const Variable& input, const float lo, const float hi) {
   auto result = fl::clip(input.tensor(), lo, hi);
   auto gradFunc = [lo, hi, result](
                       std::vector<Variable>& inputs,
@@ -495,7 +495,7 @@ Variable sigmoid(const Variable& input) {
   return Variable(result, {input.withoutData()}, gradFunc);
 }
 
-Variable swish(const Variable& input, double beta) {
+Variable swish(const Variable& input, float beta) {
   return input * sigmoid(beta * input);
 }
 
@@ -504,7 +504,7 @@ Variable erf(const Variable& input) {
   auto gradFunc = [](std::vector<Variable>& inputs,
                      const Variable& gradOutput) {
     auto x = inputs[0].tensor();
-    auto grad = gradOutput.tensor() * 2 / std::sqrt(M_PI) * fl::exp(-(x * x));
+    auto grad = gradOutput.tensor() * 2.0f / (float)std::sqrt(M_PI) * fl::exp(-(x * x));
     inputs[0].addGrad(Variable(grad, false));
   };
   return Variable(result, {input}, gradFunc);
@@ -759,7 +759,7 @@ Variable var(
     throw std::invalid_argument(
         "cannot compute unbiased variance with only one sample");
   }
-  auto val = 1.0 / (isbiased ? n : n - 1);
+  auto val = 1.0f / (isbiased ? n : n - 1);
   result = val * (result - n * avg * avg);
 
   auto gradFunc =
@@ -784,7 +784,7 @@ Variable var(
 Variable norm(
     const Variable& input,
     const std::vector<int>& axes,
-    double p /* = 2 */,
+    float p /* = 2 */,
     bool keepDims /* = false */) {
   if (p <= 0) {
     throw std::out_of_range("Lp norm: p must be > 0");
@@ -817,8 +817,8 @@ Variable norm(
 Variable normalize(
     const Variable& in,
     const std::vector<int>& axes,
-    double p /* = 2 */,
-    double eps /* = 1e-12 */) {
+    float p /* = 2 */,
+    float eps /* = 1e-12 */) {
   auto input = FL_ADJUST_INPUT_TYPE(in);
   Variable norm = fl::norm(input, axes, p);
   Variable invscale = max(norm, eps);
@@ -1119,7 +1119,7 @@ Variable categoricalCrossEntropy(
   auto result = mask * x;
   auto ignoreMask = (y == ignoreIndex).flatten(); // [X, 1]
   result = fl::sum(result, {0}).flatten(); // [X, 1]
-  result(ignoreMask) = 0.;
+  result(ignoreMask) = 0.f;
 
   Tensor denominator;
   if (reduction == ReduceMode::NONE) {
@@ -1147,7 +1147,7 @@ Variable categoricalCrossEntropy(
       grad = fl::tile(grad, {X});
     }
     // [1 X]
-    grad(ignoreMask) = 0.;
+    grad(ignoreMask) = 0.f;
     grad = fl::reshape(grad, {1, X});
     grad = fl::tile(grad, {C}) * mask;
     inputs[0].addGrad(Variable(fl::reshape(grad, inputDims), false));
@@ -1506,8 +1506,8 @@ Variable batchnorm(
     Variable& runningVar,
     const std::vector<int>& axes,
     bool train,
-    double momentum,
-    double epsilon) {
+    float momentum,
+    float epsilon) {
   auto payload = detail::createAutogradPayload(_input, weight, bias);
   auto input = FL_ADJUST_INPUT_TYPE(_input);
 
@@ -1600,7 +1600,7 @@ Variable gatedlinearunit(const Variable& input, const int dim) {
     auto gradGlu = Tensor(inDims, inType);
     gradGlu(fhalf) = shalfout * gradOutput.tensor();
     gradGlu(shalf) =
-        shalfout * (1.0 - shalfout) * fhalfout * gradOutput.tensor();
+        shalfout * (1.0f - shalfout) * fhalfout * gradOutput.tensor();
     inputs[0].addGrad(Variable(gradGlu, false));
   };
   return Variable(fhalfout * shalfout, {input.withoutData()}, gradFunc);
@@ -1754,7 +1754,7 @@ Variable embedding(const Variable& input, const Variable& embeddings) {
 Variable padding(
     const Variable& input,
     std::vector<std::pair<int, int>> pad,
-    double val) {
+    float val) {
   if (pad.size() > input.ndim()) {
     throw std::invalid_argument(
         "padding: number of padding dimensions exceeds number "
@@ -1777,7 +1777,7 @@ Variable padding(
   return Variable(result, {input.withoutData()}, gradFunc);
 }
 
-Variable dropout(const Variable& input, double p) {
+Variable dropout(const Variable& input, float p) {
   if (p > 0.0) {
     auto mask = Variable(
         (fl::rand(input.shape(), input.type()) > p).astype(input.type()), false);
@@ -1810,7 +1810,7 @@ fl::Variable relativePositionEmbeddingRotate(const fl::Variable& input) {
   int d1 = data.dim(1);
   int d2 = data.dim(2);
   data = fl::concatenate(
-      /* axis = */ 0, data, fl::full({d1, d1, d2}, 0.0, data.type()));
+      /* axis = */ 0, data, fl::full({d1, d1, d2}, 0.0f, data.type()));
   data = fl::reshape(data, {(d0 + d1) * d1, 1, d2});
   data = data(fl::range(0, (d1 + d0 - 1) * d1));
   data = fl::reshape(data, {d0 + d1 - 1, d1, d2});
@@ -1820,7 +1820,7 @@ fl::Variable relativePositionEmbeddingRotate(const fl::Variable& input) {
     auto gradData = gradOutput.tensor();
     gradData = fl::reshape(gradData, {(d0 + d1 - 1) * d1, 1, d2});
     gradData = fl::concatenate(
-        0, gradData, fl::full({d1, 1, d2}, 0.0, gradData.type()));
+        0, gradData, fl::full({d1, 1, d2}, 0.0f, gradData.type()));
     gradData = reshape(gradData, {d0 + d1, d1, d2});
     gradData = Variable(gradData, false)(fl::range(0, d0)).tensor();
     inputs[0].addGrad(fl::Variable(gradData, false));
@@ -1836,7 +1836,7 @@ fl::Variable multiheadAttention(
     const fl::Variable& mask,
     const fl::Variable& padMask,
     const int32_t nHeads,
-    const double pDropout,
+    const float pDropout,
     const int32_t offset /* = 0 */) {
   if (query.ndim() != 3) {
     throw std::invalid_argument(

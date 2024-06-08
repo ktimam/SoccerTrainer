@@ -68,12 +68,12 @@ AFAPI af_cfloat var(const array& in, const af_var_bias bias) {
     return {static_cast<float>(real), static_cast<float>(imag)};
 }
 
-template<>
-AFAPI af_cdouble var(const array& in, const af_var_bias bias) {
-    double real, imag;
-    AF_THROW(af_var_all_v2(&real, &imag, in.get(), bias));
-    return {real, imag};
-}
+//template<>
+//AFAPI af_cdouble var(const array& in, const af_var_bias bias) {
+//    double real, imag;
+//    AF_THROW(af_var_all_v2(&real, &imag, in.get(), bias));
+//    return {real, imag};
+//}
 
 template<>
 AFAPI af_cfloat var(const array& in, const bool isbiased) {
@@ -82,12 +82,12 @@ AFAPI af_cfloat var(const array& in, const bool isbiased) {
     return var<af_cfloat>(in, bias);
 }
 
-template<>
-AFAPI af_cdouble var(const array& in, const bool isbiased) {
-    const af_var_bias bias =
-        (isbiased ? AF_VARIANCE_SAMPLE : AF_VARIANCE_POPULATION);
-    return var<af_cdouble>(in, bias);
-}
+//template<>
+//AFAPI af_cdouble var(const array& in, const bool isbiased) {
+//    const af_var_bias bias =
+//        (isbiased ? AF_VARIANCE_SAMPLE : AF_VARIANCE_POPULATION);
+//    return var<af_cdouble>(in, bias);
+//}
 
 template<>
 AFAPI af_cfloat var(const array& in, const array& weights) {
@@ -96,15 +96,15 @@ AFAPI af_cfloat var(const array& in, const array& weights) {
     return {static_cast<float>(real), static_cast<float>(imag)};
 }
 
-template<>
-AFAPI af_cdouble var(const array& in, const array& weights) {
-    double real, imag;
-    AF_THROW(af_var_all_weighted(&real, &imag, in.get(), weights.get()));
-    return {real, imag};
-}
+//template<>
+//AFAPI af_cdouble var(const array& in, const array& weights) {
+//    double real, imag;
+//    AF_THROW(af_var_all_weighted(&real, &imag, in.get(), weights.get()));
+//    return {real, imag};
+//}
 
 INSTANTIATE_VAR(float);
-INSTANTIATE_VAR(double);
+//INSTANTIATE_VAR(double);
 INSTANTIATE_VAR(int);
 INSTANTIATE_VAR(unsigned int);
 INSTANTIATE_VAR(long long);

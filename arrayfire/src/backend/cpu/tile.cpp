@@ -40,9 +40,9 @@ Array<T> tile(const Array<T> &in, const af::dim4 &tileDims) {
     template Array<T> tile<T>(const Array<T> &in, const af::dim4 &tileDims);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(intl)

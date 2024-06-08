@@ -34,7 +34,7 @@ using af::dim4;
 using arrayfire::common::half;
 using detail::arithOp;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::cplx;
 using detail::createValueArray;
@@ -84,7 +84,7 @@ static af_err af_unary(af_array *out, const af_array in) {
         switch (type) {
             case f16: res = unaryOp<half, op>(in); break;
             case f32: res = unaryOp<float, op>(in); break;
-            case f64: res = unaryOp<double, op>(in); break;
+            //case f64: res = unaryOp<double, op>(in); break;
             default: TYPE_ERROR(1, in_type); break;
         }
 
@@ -109,9 +109,9 @@ static af_err af_unary_complex(af_array *out, const af_array in) {
 
         switch (type) {
             case f32: res = unaryOp<float, op>(in); break;
-            case f64: res = unaryOp<double, op>(in); break;
+            //case f64: res = unaryOp<double, op>(in); break;
             case c32: res = unaryOpCplx<cfloat, float, op>(in); break;
-            case c64: res = unaryOpCplx<cdouble, double, op>(in); break;
+            //case c64: res = unaryOpCplx<cdouble, double, op>(in); break;
             case f16: res = unaryOp<half, op>(in); break;
             default: TYPE_ERROR(1, in_type); break;
         }
@@ -732,10 +732,10 @@ static af_err af_check(af_array *out, const af_array in) {
 
         switch (type) {
             case f32: res = checkOp<float, op>(in); break;
-            case f64: res = checkOp<double, op>(in); break;
+            //case f64: res = checkOp<double, op>(in); break;
             case f16: res = checkOp<half, op>(in); break;
             case c32: res = checkOpCplx<cfloat, float, op>(in); break;
-            case c64: res = checkOpCplx<cdouble, double, op>(in); break;
+            //case c64: res = checkOpCplx<cdouble, double, op>(in); break;
             default: TYPE_ERROR(1, in_type); break;
         }
 

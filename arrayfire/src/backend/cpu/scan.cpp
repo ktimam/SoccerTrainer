@@ -75,9 +75,7 @@ Array<To> scan(const Array<Ti>& in, const int dim, bool inclusive_scan) {
 
 #define INSTANTIATE_SCAN_ALL(ROp)           \
     INSTANTIATE_SCAN(ROp, float, float)     \
-    INSTANTIATE_SCAN(ROp, double, double)   \
     INSTANTIATE_SCAN(ROp, cfloat, cfloat)   \
-    INSTANTIATE_SCAN(ROp, cdouble, cdouble) \
     INSTANTIATE_SCAN(ROp, int, int)         \
     INSTANTIATE_SCAN(ROp, uint, uint)       \
     INSTANTIATE_SCAN(ROp, intl, intl)       \

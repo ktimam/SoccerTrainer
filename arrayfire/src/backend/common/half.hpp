@@ -969,7 +969,7 @@ class alignas(2) half {
     }
 
     __DH__ explicit half(double value) noexcept
-        : data_(float2half<double>(value)) {}
+        : data_(float2half<float>(value)) {}
 
 #if defined(__CUDA_ARCH__)
     AF_CONSTEXPR

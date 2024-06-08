@@ -64,8 +64,8 @@ Array<T> index(const Array<T>& in, const af_index_t idxrs[]) {
 #define INSTANTIATE(T) \
     template Array<T> index<T>(const Array<T>& in, const af_index_t idxrs[]);
 
-INSTANTIATE(cdouble)
-INSTANTIATE(double)
+//INSTANTIATE(cdouble)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
 INSTANTIATE(float)
 INSTANTIATE(uintl)

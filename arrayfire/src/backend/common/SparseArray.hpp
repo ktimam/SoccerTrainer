@@ -89,7 +89,7 @@ class SparseArrayBase {
     INSTANTIATE_INFO(bool, isVector)
     INSTANTIATE_INFO(bool, isComplex)
     INSTANTIATE_INFO(bool, isReal)
-    INSTANTIATE_INFO(bool, isDouble)
+    //INSTANTIATE_INFO(bool, isDouble)
     INSTANTIATE_INFO(bool, isSingle)
     INSTANTIATE_INFO(bool, isHalf)
     INSTANTIATE_INFO(bool, isRealFloating)

@@ -51,7 +51,7 @@
 #define ERROR_NAME "SSPMV "
 #endif
 
-static  int (*spmv[])(BLASLONG, FLOAT, FLOAT *, FLOAT *, BLASLONG, FLOAT *, BLASLONG, void *) = {
+static  int (*spmv[])(BLASLONG, FLOAT, FLOAT *, FLOAT *, BLASLONG, FLOAT *, BLASLONG, float *buffer) = {
 #ifdef XDOUBLE
   qspmv_U, qspmv_L,
 #elif defined(DOUBLE)

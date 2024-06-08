@@ -24,7 +24,7 @@
 using af::dim4;
 using arrayfire::getCopyOnWriteArray;
 using arrayfire::common::half;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::select_scalar;
@@ -65,9 +65,9 @@ af_err af_replace(af_array a, const af_array cond, const af_array b) {
         switch (ainfo.getType()) {
             case f16: replace<half>(a, cond, b); break;
             case f32: replace<float>(a, cond, b); break;
-            case f64: replace<double>(a, cond, b); break;
+            //case f64: replace<float>(a, cond, b); break;
             case c32: replace<cfloat>(a, cond, b); break;
-            case c64: replace<cdouble>(a, cond, b); break;
+            //case c64: replace<cdouble>(a, cond, b); break;
             case s32: replace<int>(a, cond, b); break;
             case u32: replace<uint>(a, cond, b); break;
             case s64: replace<intl>(a, cond, b); break;
@@ -107,9 +107,9 @@ af_err replaceScalar(af_array a, const af_array cond, const ScalarType b) {
         switch (ainfo.getType()) {
             case f16: replace_scalar<half>(a, cond, b); break;
             case f32: replace_scalar<float>(a, cond, b); break;
-            case f64: replace_scalar<double>(a, cond, b); break;
+            //case f64: replace_scalar<float>(a, cond, b); break;
             case c32: replace_scalar<cfloat>(a, cond, b); break;
-            case c64: replace_scalar<cdouble>(a, cond, b); break;
+            //case c64: replace_scalar<cdouble>(a, cond, b); break;
             case s32: replace_scalar<int>(a, cond, b); break;
             case u32: replace_scalar<uint>(a, cond, b); break;
             case s64: replace_scalar<intl>(a, cond, b); break;

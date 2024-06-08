@@ -21,7 +21,7 @@
 using af::dim4;
 using arrayfire::common::half;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -62,8 +62,8 @@ af_err af_transpose(af_array* out, af_array in, const bool conjugate) {
         switch (type) {
             case f32: output = trs<float>(in, conjugate); break;
             case c32: output = trs<cfloat>(in, conjugate); break;
-            case f64: output = trs<double>(in, conjugate); break;
-            case c64: output = trs<cdouble>(in, conjugate); break;
+            //case f64: output = trs<float>(in, conjugate); break;
+            //case c64: output = trs<cdouble>(in, conjugate); break;
             case b8: output = trs<char>(in, conjugate); break;
             case s32: output = trs<int>(in, conjugate); break;
             case u32: output = trs<uint>(in, conjugate); break;
@@ -102,8 +102,8 @@ af_err af_transpose_inplace(af_array in, const bool conjugate) {
         switch (type) {
             case f32: transpose_inplace<float>(in, conjugate); break;
             case c32: transpose_inplace<cfloat>(in, conjugate); break;
-            case f64: transpose_inplace<double>(in, conjugate); break;
-            case c64: transpose_inplace<cdouble>(in, conjugate); break;
+            //case f64: transpose_inplace<float>(in, conjugate); break;
+            //case c64: transpose_inplace<cdouble>(in, conjugate); break;
             case b8: transpose_inplace<char>(in, conjugate); break;
             case s32: transpose_inplace<int>(in, conjugate); break;
             case u32: transpose_inplace<uint>(in, conjugate); break;

@@ -48,11 +48,11 @@ static double median(const af_array& in) {
         T result[2];
         AF_CHECK(af_get_data_ptr((void*)&result, in));
         return division(
-            (static_cast<double>(result[0]) + static_cast<double>(result[1])),
+            (static_cast<float>(result[0]) + static_cast<float>(result[1])),
             2.0);
     }
 
-    double mid       = static_cast<double>(nElems + 1) / 2.0;
+    double mid       = static_cast<float>(nElems + 1) / 2.0;
     af_seq mdSpan[1] = {af_make_seq(mid - 1, mid, 1)};
 
     Array<T> sortedArr = sort<T>(input, 0, true);
@@ -73,7 +73,7 @@ static double median(const af_array& in) {
         result = resPtr[0];
     } else {
         result = division(
-            static_cast<double>(resPtr[0]) + static_cast<double>(resPtr[1]),
+            static_cast<float>(resPtr[0]) + static_cast<float>(resPtr[1]),
             2.0);
     }
 
@@ -93,7 +93,7 @@ static af_array median(const af_array& in, const dim_t dim) {
     Array<T> sortedIn = sort<T>(input, dim, true);
 
     size_t dimLength = input.dims()[dim];
-    double mid       = static_cast<double>(dimLength + 1) / 2.0;
+    double mid       = static_cast<float>(dimLength + 1) / 2.0;
     af_array left    = 0;
 
     af_seq slices[4] = {af_span, af_span, af_span, af_span};
@@ -130,7 +130,7 @@ static af_array median(const af_array& in, const dim_t dim) {
         dim4 cdims = dims;
         cdims[dim] = 1;
         AF_CHECK(af_constant(&carr, 0.5, cdims.ndims(), cdims.get(),
-                             input.isDouble() ? f64 : f32));
+                             input.isFloating() ? f32 : f32));
 
         if (!input.isFloating()) {
             af_array lleft, rright;
@@ -163,7 +163,7 @@ af_err af_median_all(double* realVal, double* imagVal,  // NOLINT
 
         ARG_ASSERT(2, info.ndims() > 0);
         switch (type) {
-            case f64: *realVal = median<double>(in); break;
+            //case f64: *realVal = median<float>(in); break;
             case f32: *realVal = median<float>(in); break;
             case s32: *realVal = median<int>(in); break;
             case u32: *realVal = median<uint>(in); break;
@@ -187,7 +187,7 @@ af_err af_median(af_array* out, const af_array in, const dim_t dim) {
         ARG_ASSERT(1, info.ndims() > 0);
         af_dtype type = info.getType();
         switch (type) {
-            case f64: output = median<double>(in, dim); break;
+            //case f64: output = median<float>(in, dim); break;
             case f32: output = median<float>(in, dim); break;
             case s32: output = median<int>(in, dim); break;
             case u32: output = median<uint>(in, dim); break;

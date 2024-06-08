@@ -40,8 +40,8 @@ template<>
 struct fmt::formatter<af::dim4> : ostream_formatter {};
 template<>
 struct fmt::formatter<std::complex<float>> : ostream_formatter {};
-template<>
-struct fmt::formatter<std::complex<double>> : ostream_formatter {};
+//template<>
+//struct fmt::formatter<std::complex<float>> : ostream_formatter {};
 #endif
 
 template<>

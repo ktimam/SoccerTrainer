@@ -127,7 +127,10 @@ class DefaultMemoryManager final : public common::MemoryManagerBase {
     DefaultMemoryManager(DefaultMemoryManager &&other)                 = delete;
     DefaultMemoryManager &operator=(const DefaultMemoryManager &other) = delete;
     DefaultMemoryManager &operator=(DefaultMemoryManager &&other)      = delete;
+
+#ifndef MULTITHREADING_DISABLED
     common::mutex_t memory_mutex;
+#endif
     // backend-specific
     std::vector<memory_info> memory;
     // backend-agnostic

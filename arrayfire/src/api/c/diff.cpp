@@ -18,7 +18,7 @@
 using af::dim4;
 using arrayfire::getArray;
 using arrayfire::getHandle;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -55,8 +55,8 @@ af_err af_diff1(af_array* out, const af_array in, const int dim) {
         switch (type) {
             case f32: output = diff1<float>(in, dim); break;
             case c32: output = diff1<cfloat>(in, dim); break;
-            case f64: output = diff1<double>(in, dim); break;
-            case c64: output = diff1<cdouble>(in, dim); break;
+            //case f64: output = diff1<float>(in, dim); break;
+            //case c64: output = diff1<cdouble>(in, dim); break;
             case b8: output = diff1<char>(in, dim); break;
             case s32: output = diff1<int>(in, dim); break;
             case u32: output = diff1<uint>(in, dim); break;
@@ -92,8 +92,8 @@ af_err af_diff2(af_array* out, const af_array in, const int dim) {
         switch (type) {
             case f32: output = diff2<float>(in, dim); break;
             case c32: output = diff2<cfloat>(in, dim); break;
-            case f64: output = diff2<double>(in, dim); break;
-            case c64: output = diff2<cdouble>(in, dim); break;
+            //case f64: output = diff2<float>(in, dim); break;
+            //case c64: output = diff2<cdouble>(in, dim); break;
             case b8: output = diff2<char>(in, dim); break;
             case s32: output = diff2<int>(in, dim); break;
             case u32: output = diff2<uint>(in, dim); break;

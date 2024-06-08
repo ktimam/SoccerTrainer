@@ -45,7 +45,7 @@ af_err convert(af_array* out, const af_array& in) {
 
         af_array output = 0;
         switch (iType) {
-            case f64: output = convert<double, isHSV2RGB>(in); break;
+            //case f64: output = convert<double, isHSV2RGB>(in); break;
             case f32: output = convert<float, isHSV2RGB>(in); break;
             default: TYPE_ERROR(1, iType); break;
         }

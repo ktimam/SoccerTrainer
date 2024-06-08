@@ -64,7 +64,7 @@ af_err af_dog(af_array* out, const af_array in, const int radius1,
         af_dtype type = info.getType();
         switch (type) {
             case f32: output = dog<float, float>(in, radius1, radius2); break;
-            case f64: output = dog<double, double>(in, radius1, radius2); break;
+            //case f64: output = dog<double, double>(in, radius1, radius2); break;
             case b8: output = dog<char, float>(in, radius1, radius2); break;
             case s32: output = dog<int, float>(in, radius1, radius2); break;
             case u32: output = dog<uint, float>(in, radius1, radius2); break;

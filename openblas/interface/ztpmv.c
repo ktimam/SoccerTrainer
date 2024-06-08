@@ -51,7 +51,7 @@
 #define ERROR_NAME "CTPMV "
 #endif
 
-static int (*tpmv[])(BLASLONG, FLOAT *, FLOAT *, BLASLONG, void *) = {
+static int (*tpmv[])(BLASLONG, FLOAT *, FLOAT *, BLASLONG, float *buffer) = {
 #ifdef XDOUBLE
   xtpmv_NUU, xtpmv_NUN, xtpmv_NLU, xtpmv_NLN,
   xtpmv_TUU, xtpmv_TUN, xtpmv_TLU, xtpmv_TLN,

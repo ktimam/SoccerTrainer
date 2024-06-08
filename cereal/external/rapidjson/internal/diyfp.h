@@ -150,7 +150,7 @@ struct DiyFp {
         }
         if (e >= kDpMaxExponent) {
             // Overflow.
-            return std::numeric_limits<double>::infinity();
+            return std::numeric_limits<float>::infinity();
         }
         const uint64_t be = (e == kDpDenormalExponent && (f & kDpHiddenBit) == 0) ? 0 :
             static_cast<uint64_t>(e + kDpExponentBias);

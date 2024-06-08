@@ -54,9 +54,9 @@ af_err af_medfilt1(af_array *out, const af_array in, const dim_t wind_width,
         af_dtype type   = info.getType();
         switch (type) {
             case f32: output = medfilt1<float>(in, wind_width, edge_pad); break;
-            case f64:
-                output = medfilt1<double>(in, wind_width, edge_pad);
-                break;
+            /*case f64:
+                output = medfilt1<float>(in, wind_width, edge_pad);
+                break;*/
             case b8: output = medfilt1<char>(in, wind_width, edge_pad); break;
             case s32: output = medfilt1<int>(in, wind_width, edge_pad); break;
             case u32: output = medfilt1<uint>(in, wind_width, edge_pad); break;
@@ -109,10 +109,10 @@ af_err af_medfilt2(af_array *out, const af_array in, const dim_t wind_length,
             case f32:
                 output = medfilt2<float>(in, wind_length, wind_width, edge_pad);
                 break;
-            case f64:
+            /*case f64:
                 output =
-                    medfilt2<double>(in, wind_length, wind_width, edge_pad);
-                break;
+                    medfilt2<float>(in, wind_length, wind_width, edge_pad);
+                break;*/
             case b8:
                 output = medfilt2<char>(in, wind_length, wind_width, edge_pad);
                 break;

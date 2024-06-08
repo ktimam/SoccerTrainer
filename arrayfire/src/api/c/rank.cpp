@@ -22,7 +22,7 @@
 
 using af::dim4;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createEmptyArray;
 using detail::createValueArray;
@@ -74,9 +74,9 @@ af_err af_rank(uint* out, const af_array in, const double tol) {
         if (i_info.ndims() != 0) {
             switch (type) {
                 case f32: output = rank<float>(in, tol); break;
-                case f64: output = rank<double>(in, tol); break;
+                //case f64: output = rank<float>(in, tol); break;
                 case c32: output = rank<cfloat>(in, tol); break;
-                case c64: output = rank<cdouble>(in, tol); break;
+                //case c64: output = rank<cdouble>(in, tol); break;
                 default: TYPE_ERROR(1, type);
             }
         }

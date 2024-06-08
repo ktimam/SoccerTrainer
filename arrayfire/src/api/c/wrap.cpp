@@ -16,7 +16,7 @@
 #include <af/image.h>
 
 using af::dim4;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -66,9 +66,9 @@ void af_wrap_common(af_array* out, const af_array in, const dim_t ox,
     // clang-format off
     switch(in_type) {
         case f32: wrap<float  >(out, in, wx, wy, sx, sy, px, py, is_column);  break;
-        case f64: wrap<double >(out, in, wx, wy, sx, sy, px, py, is_column);  break;
+        //case f64: wrap<double >(out, in, wx, wy, sx, sy, px, py, is_column);  break;
         case c32: wrap<cfloat >(out, in, wx, wy, sx, sy, px, py, is_column);  break;
-        case c64: wrap<cdouble>(out, in, wx, wy, sx, sy, px, py, is_column);  break;
+        //case c64: wrap<cdouble>(out, in, wx, wy, sx, sy, px, py, is_column);  break;
         case s32: wrap<int    >(out, in, wx, wy, sx, sy, px, py, is_column);  break;
         case u32: wrap<uint   >(out, in, wx, wy, sx, sy, px, py, is_column);  break;
         case s64: wrap<intl   >(out, in, wx, wy, sx, sy, px, py, is_column);  break;

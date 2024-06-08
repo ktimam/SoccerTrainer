@@ -37,8 +37,6 @@ Array<in_t> lookup(const Array<in_t> &input, const Array<idx_t> &indices,
 #define INSTANTIATE(T)                                                         \
     template Array<T> lookup<T, float>(const Array<T> &, const Array<float> &, \
                                        const unsigned);                        \
-    template Array<T> lookup<T, double>(                                       \
-        const Array<T> &, const Array<double> &, const unsigned);              \
     template Array<T> lookup<T, int>(const Array<T> &, const Array<int> &,     \
                                      const unsigned);                          \
     template Array<T> lookup<T, unsigned>(                                     \
@@ -58,8 +56,8 @@ Array<in_t> lookup(const Array<in_t> &input, const Array<idx_t> &indices,
 
 INSTANTIATE(float);
 INSTANTIATE(cfloat);
-INSTANTIATE(double);
-INSTANTIATE(cdouble);
+//INSTANTIATE(double);
+//INSTANTIATE(cdouble);
 INSTANTIATE(int);
 INSTANTIATE(unsigned);
 INSTANTIATE(intl);

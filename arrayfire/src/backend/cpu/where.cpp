@@ -66,8 +66,8 @@ Array<uint> where(const Array<T> &in) {
 
 INSTANTIATE(float)
 INSTANTIATE(cfloat)
-INSTANTIATE(double)
-INSTANTIATE(cdouble)
+//INSTANTIATE(double)
+//INSTANTIATE(cdouble)
 INSTANTIATE(char)
 INSTANTIATE(int)
 INSTANTIATE(uint)

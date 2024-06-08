@@ -42,7 +42,7 @@
 
 const static FLOAT dm1 = -1.;
 
-int CNAME(BLASLONG m, FLOAT *a, BLASLONG lda, FLOAT *b, BLASLONG incb, void *buffer){
+int CNAME(BLASLONG m, FLOAT *a, BLASLONG lda, FLOAT *b, BLASLONG incb, float *buffer){
 
   BLASLONG i, is, min_i;
   FLOAT *gemvbuffer = (FLOAT *)buffer;

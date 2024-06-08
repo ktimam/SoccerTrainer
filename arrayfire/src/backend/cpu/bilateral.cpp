@@ -33,7 +33,7 @@ Array<outType> bilateral(const Array<inType> &in, const float &sSigma,
     template Array<outT> bilateral<inT, outT>(const Array<inT> &, \
                                               const float &, const float &);
 
-INSTANTIATE(double, double)
+//INSTANTIATE(double, double)
 INSTANTIATE(float, float)
 INSTANTIATE(char, float)
 INSTANTIATE(int, float)

@@ -81,12 +81,12 @@ af_err af_corrcoef(double* realVal, double* imagVal, const af_array X,
         }
 
         switch (xType) {
-            case f64: *realVal = corrcoef<double, double>(X, Y); break;
+            //case f64: *realVal = corrcoef<double, double>(X, Y); break;
             case f32: *realVal = corrcoef<float, float>(X, Y); break;
             case s32: *realVal = corrcoef<int, float>(X, Y); break;
             case u32: *realVal = corrcoef<uint, float>(X, Y); break;
-            case s64: *realVal = corrcoef<intl, double>(X, Y); break;
-            case u64: *realVal = corrcoef<uintl, double>(X, Y); break;
+            //case s64: *realVal = corrcoef<intl, double>(X, Y); break;
+            //case u64: *realVal = corrcoef<uintl, double>(X, Y); break;
             case s16: *realVal = corrcoef<short, float>(X, Y); break;
             case u16: *realVal = corrcoef<ushort, float>(X, Y); break;
             case u8: *realVal = corrcoef<uchar, float>(X, Y); break;

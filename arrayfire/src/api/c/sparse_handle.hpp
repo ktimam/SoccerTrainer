@@ -78,9 +78,9 @@ common::SparseArray<To> castSparse(const af_array &in) {
 
     switch (info.getType()) {
         case f32: CAST_SPARSE(float);
-        case f64: CAST_SPARSE(double);
+        //case f64: CAST_SPARSE(double);
         case c32: CAST_SPARSE(detail::cfloat);
-        case c64: CAST_SPARSE(detail::cdouble);
+        //case c64: CAST_SPARSE(detail::cdouble);
         default: TYPE_ERROR(1, info.getType());
     }
 }

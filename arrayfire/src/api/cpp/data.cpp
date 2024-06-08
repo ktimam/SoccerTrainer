@@ -41,10 +41,10 @@ template<>
 struct is_complex<af::cfloat> {
     static const bool value = true;
 };
-template<>
-struct is_complex<af::cdouble> {
-    static const bool value = true;
-};
+//template<>
+//struct is_complex<af::cdouble> {
+//    static const bool value = true;
+//};
 
 array constant(af_half val, const dim4 &dims, const dtype type) {
     af_array res;
@@ -60,7 +60,7 @@ array constant(T val, const dim4 &dims, dtype type) {
     af_array res;
     if (type != s64 && type != u64) {
         AF_THROW(
-            af_constant(&res, (double)val, dims.ndims(), dims.get(), type));
+            af_constant(&res, (float)val, dims.ndims(), dims.get(), type));
     } else if (type == s64) {
         AF_THROW(
             af_constant_long(&res, (long long)val, dims.ndims(), dims.get()));
@@ -74,7 +74,7 @@ array constant(T val, const dim4 &dims, dtype type) {
 template<typename T>
 typename enable_if<static_cast<bool>(is_complex<T>::value), array>::type
 constant(T val, const dim4 &dims, const dtype type) {
-    if (type != c32 && type != c64) {
+    if (type != c32 /*&& type != c64*/) {
         return ::constant(real(val), dims, type);
     }
     af_array res;
@@ -125,14 +125,14 @@ array constant(T val, const dim_t d0, const dim_t d1, const dim_t d2,
     template AFAPI array constant<TYPE>(TYPE val, const dim_t d0,            \
                                         const dim_t d1, const dim_t d2,      \
                                         const dim_t d3, const af::dtype ty);
-CONSTANT(double);
+//CONSTANT(double);
 CONSTANT(float);
 CONSTANT(int);
 CONSTANT(unsigned);
 CONSTANT(char);
 CONSTANT(unsigned char);
 CONSTANT(cfloat);
-CONSTANT(cdouble);
+//CONSTANT(cdouble);
 CONSTANT(long);
 CONSTANT(unsigned long);
 CONSTANT(long long);

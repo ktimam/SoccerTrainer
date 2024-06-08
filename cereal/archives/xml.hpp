@@ -114,7 +114,7 @@ namespace cereal
               @param indent_ Whether to indent each line of XML
               @param outputType_ Whether to output the type of each serialized object as an attribute
               @param sizeAttributes_ Whether dynamically sized containers output the size=dynamic attribute */
-          explicit Options( int precision_ = std::numeric_limits<double>::max_digits10,
+          explicit Options( int precision_ = std::numeric_limits<float>::max_digits10,
                             bool indent_ = true,
                             bool outputType_ = false,
                             bool sizeAttributes_ = true ) :

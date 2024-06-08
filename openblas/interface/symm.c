@@ -174,8 +174,8 @@ void NAME(char *SIDE, char *UPLO,
 
   PRINT_DEBUG_NAME;
 
-  args.alpha = (void *)alpha;
-  args.beta  = (void *)beta;
+  args.alpha = (float *)alpha;
+  args.beta  = (float *)beta;
 
   TOUPPER(side_arg);
   TOUPPER(uplo_arg);
@@ -192,7 +192,7 @@ void NAME(char *SIDE, char *UPLO,
   args.m = *M;
   args.n = *N;
 
-  args.c = (void *)c;
+  args.c = (float *)c;
   args.ldc = *ldC;
 
   info = 0;
@@ -200,8 +200,8 @@ void NAME(char *SIDE, char *UPLO,
   if (args.ldc < MAX(1, args.m)) info = 12;
 
   if (!side) {
-    args.a = (void *)a;
-    args.b = (void *)b;
+    args.a = (float *)a;
+    args.b = (float *)b;
 
     args.lda = *ldA;
     args.ldb = *ldB;
@@ -210,8 +210,8 @@ void NAME(char *SIDE, char *UPLO,
     if (args.lda < MAX(1, args.m)) info =  7;
 
   } else {
-    args.a = (void *)b;
-    args.b = (void *)a;
+    args.a = (float *)b;
+    args.b = (float *)a;
 
     args.lda = *ldB;
     args.ldb = *ldA;
@@ -270,14 +270,14 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_SIDE Side, enum CBLAS_UPLO Uplo,
   PRINT_DEBUG_CNAME;
 
 #ifndef COMPLEX
-  args.alpha = (void *)&alpha;
-  args.beta  = (void *)&beta;
+  args.alpha = (float *)&alpha;
+  args.beta  = (float *)&beta;
 #else
-  args.alpha = (void *)alpha;
-  args.beta  = (void *)beta;
+  args.alpha = (float *)alpha;
+  args.beta  = (float *)beta;
 #endif
 
-  args.c = (void *)c;
+  args.c = (float *)c;
   args.ldc = ldc;
 
   side  = -1;
@@ -299,8 +299,8 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_SIDE Side, enum CBLAS_UPLO Uplo,
     if (args.ldc < MAX(1, args.m)) info = 12;
 
     if (!side) {
-      args.a = (void *)a;
-      args.b = (void *)b;
+      args.a = (float *)a;
+      args.b = (float *)b;
 
       args.lda = lda;
       args.ldb = ldb;
@@ -309,8 +309,8 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_SIDE Side, enum CBLAS_UPLO Uplo,
       if (args.lda < MAX(1, args.m)) info =  7;
 
     } else {
-      args.a = (void *)b;
-      args.b = (void *)a;
+      args.a = (float *)b;
+      args.b = (float *)a;
 
       args.lda = ldb;
       args.ldb = lda;
@@ -340,8 +340,8 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_SIDE Side, enum CBLAS_UPLO Uplo,
     if (args.ldc < MAX(1, args.m)) info = 12;
 
     if (!side) {
-      args.a = (void *)a;
-      args.b = (void *)b;
+      args.a = (float *)a;
+      args.b = (float *)b;
 
       args.lda = lda;
       args.ldb = ldb;
@@ -350,8 +350,8 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_SIDE Side, enum CBLAS_UPLO Uplo,
       if (args.lda < MAX(1, args.m)) info =  7;
 
     } else {
-      args.a = (void *)b;
-      args.b = (void *)a;
+      args.a = (float *)b;
+      args.b = (float *)a;
 
       args.lda = ldb;
       args.ldb = lda;

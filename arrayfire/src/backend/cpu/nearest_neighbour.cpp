@@ -62,7 +62,7 @@ void nearest_neighbour(Array<uint>& idx, Array<To>& dist, const Array<T>& query,
         const af_match_type dist_type);
 
 INSTANTIATE(float, float)
-INSTANTIATE(double, double)
+//INSTANTIATE(double, double)
 INSTANTIATE(int, int)
 INSTANTIATE(uint, uint)
 INSTANTIATE(intl, intl)

@@ -36,7 +36,7 @@ using arrayfire::common::convert2Canonical;
 using arrayfire::common::createSpanIndex;
 using arrayfire::common::flat;
 using arrayfire::common::half;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::index;
 using detail::intl;
@@ -106,8 +106,8 @@ af_err af_index(af_array* result, const af_array in, const unsigned ndims,
         switch (type) {
             case f32: out = indexBySeqs<float>(in, indices_); break;
             case c32: out = indexBySeqs<cfloat>(in, indices_); break;
-            case f64: out = indexBySeqs<double>(in, indices_); break;
-            case c64: out = indexBySeqs<cdouble>(in, indices_); break;
+            //case f64: out = indexBySeqs<float>(in, indices_); break;
+            //case c64: out = indexBySeqs<cdouble>(in, indices_); break;
             case b8: out = indexBySeqs<char>(in, indices_); break;
             case s32: out = indexBySeqs<int>(in, indices_); break;
             case u32: out = indexBySeqs<unsigned>(in, indices_); break;
@@ -140,8 +140,8 @@ static af_array lookup(const af_array& in, const af_array& idx,
     switch (inType) {
         case f32: return lookup<float, idx_t>(in, idx, dim);
         case c32: return lookup<cfloat, idx_t>(in, idx, dim);
-        case f64: return lookup<double, idx_t>(in, idx, dim);
-        case c64: return lookup<cdouble, idx_t>(in, idx, dim);
+        //case f64: return lookup<double, idx_t>(in, idx, dim);
+        //case c64: return lookup<cdouble, idx_t>(in, idx, dim);
         case s32: return lookup<int, idx_t>(in, idx, dim);
         case u32: return lookup<unsigned, idx_t>(in, idx, dim);
         case s64: return lookup<intl, idx_t>(in, idx, dim);
@@ -171,14 +171,14 @@ af_err af_lookup(af_array* out, const af_array in, const af_array indices,
         af_dtype idxType = idxInfo.getType();
 
         ARG_ASSERT(2, (idxType != c32));
-        ARG_ASSERT(2, (idxType != c64));
+        //ARG_ASSERT(2, (idxType != c64));
         ARG_ASSERT(2, (idxType != b8));
 
         af_array output = 0;
 
         switch (idxType) {
             case f32: output = lookup<float>(in, indices, dim); break;
-            case f64: output = lookup<double>(in, indices, dim); break;
+            //case f64: output = lookup<float>(in, indices, dim); break;
             case s32: output = lookup<int>(in, indices, dim); break;
             case u32: output = lookup<unsigned>(in, indices, dim); break;
             case s16: output = lookup<short>(in, indices, dim); break;
@@ -252,7 +252,7 @@ af_err af_index_gen(af_array* out, const af_array in, const dim_t ndims,
                     af_dtype idxType         = idxInfo.getType();
 
                     ARG_ASSERT(3, (idxType != c32));
-                    ARG_ASSERT(3, (idxType != c64));
+                    //ARG_ASSERT(3, (idxType != c64));
                     ARG_ASSERT(3, (idxType != b8));
 
                     idxrs[i] = {{indexs[i].idx.arr}, isSeq, indexs[i].isBatch};
@@ -279,8 +279,8 @@ af_err af_index_gen(af_array* out, const af_array in, const dim_t ndims,
 
         af_array output = 0;
         switch (inType) {
-            case c64: output = genIndex<cdouble>(in, ptr); break;
-            case f64: output = genIndex<double>(in, ptr); break;
+            //case c64: output = genIndex<cdouble>(in, ptr); break;
+            //case f64: output = genIndex<float>(in, ptr); break;
             case c32: output = genIndex<cfloat>(in, ptr); break;
             case f32: output = genIndex<float>(in, ptr); break;
             case u64: output = genIndex<uintl>(in, ptr); break;

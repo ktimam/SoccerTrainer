@@ -35,26 +35,26 @@ inline size_t dtypeSize(af::dtype type) {
         case u64:
         case s64:
         case c32:
-        case f64: return 8;
-        case c64: return 16;
+        /*case f64:*/ return 8;
+        //case c64: return 16;
         default: AF_RETURN_ERROR("Unsupported type", AF_ERR_INTERNAL);
     }
 }
 
 constexpr bool isComplex(af::dtype type) {
-    return ((type == c32) || (type == c64));
+    return ((type == c32) /*|| (type == c64)*/);
 }
 
 constexpr bool isReal(af::dtype type) { return !isComplex(type); }
 
-constexpr bool isDouble(af::dtype type) { return (type == f64 || type == c64); }
+//constexpr bool isDouble(af::dtype type) { return (type == f64 || type == c64); }
 
 constexpr bool isSingle(af::dtype type) { return (type == f32 || type == c32); }
 
 constexpr bool isHalf(af::dtype type) { return (type == f16); }
 
 constexpr bool isRealFloating(af::dtype type) {
-    return (type == f64 || type == f32 || type == f16);
+    return (/*type == f64 ||*/ type == f32 || type == f16);
 }
 
 constexpr bool isInteger(af::dtype type) {

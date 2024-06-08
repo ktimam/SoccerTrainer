@@ -136,9 +136,9 @@ af_err convert(af_array* out, const af_array in, const float r, const float g,
 
         af_array output = 0;
         switch (iType) {
-            case f64:
+            /*case f64:
                 output = convert<double, double, isRGB2GRAY>(in, r, g, b);
-                break;
+                break;*/
             case f32:
                 output = convert<float, float, isRGB2GRAY>(in, r, g, b);
                 break;

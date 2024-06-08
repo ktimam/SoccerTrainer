@@ -22,7 +22,7 @@
 using af::dim4;
 using arrayfire::common::half;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -103,8 +103,8 @@ af_err af_reorder(af_array *out, const af_array in, const af::dim4 &rdims) {
         switch (type) {
             case f32: output = reorder<float>(in, rdims); break;
             case c32: output = reorder<cfloat>(in, rdims); break;
-            case f64: output = reorder<double>(in, rdims); break;
-            case c64: output = reorder<cdouble>(in, rdims); break;
+            //case f64: output = reorder<float>(in, rdims); break;
+            //case c64: output = reorder<cdouble>(in, rdims); break;
             case b8: output = reorder<char>(in, rdims); break;
             case s32: output = reorder<int>(in, rdims); break;
             case u32: output = reorder<uint>(in, rdims); break;

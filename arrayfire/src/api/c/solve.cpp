@@ -18,7 +18,7 @@
 
 using af::dim4;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::solveLU;
 
@@ -73,9 +73,9 @@ af_err af_solve(af_array* out, const af_array a, const af_array b,
 
         switch (a_type) {
             case f32: output = solve<float>(a, b, options); break;
-            case f64: output = solve<double>(a, b, options); break;
+            //case f64: output = solve<float>(a, b, options); break;
             case c32: output = solve<cfloat>(a, b, options); break;
-            case c64: output = solve<cdouble>(a, b, options); break;
+            //case c64: output = solve<cdouble>(a, b, options); break;
             default: TYPE_ERROR(1, a_type);
         }
         std::swap(*out, output);
@@ -134,9 +134,9 @@ af_err af_solve_lu(af_array* out, const af_array a, const af_array piv,
 
         switch (a_type) {
             case f32: output = solve_lu<float>(a, piv, b, options); break;
-            case f64: output = solve_lu<double>(a, piv, b, options); break;
+            //case f64: output = solve_lu<float>(a, piv, b, options); break;
             case c32: output = solve_lu<cfloat>(a, piv, b, options); break;
-            case c64: output = solve_lu<cdouble>(a, piv, b, options); break;
+            //case c64: output = solve_lu<cdouble>(a, piv, b, options); break;
             default: TYPE_ERROR(1, a_type);
         }
         std::swap(*out, output);

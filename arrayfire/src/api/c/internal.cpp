@@ -21,7 +21,7 @@
 
 using af::dim4;
 using arrayfire::common::half;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::createStridedArray;
 using detail::intl;
@@ -66,21 +66,21 @@ af_err af_create_strided_array(af_array *arr, const void *data,
                     dims, strides, offset, static_cast<float *>(in_data),
                     isdev));
                 break;
-            case f64:
-                res = getHandle(createStridedArray<double>(
+            /*case f64:
+                res = getHandle(createStridedArray<float>(
                     dims, strides, offset, static_cast<double *>(in_data),
                     isdev));
-                break;
+                break;*/
             case c32:
                 res = getHandle(createStridedArray<cfloat>(
                     dims, strides, offset, static_cast<cfloat *>(in_data),
                     isdev));
                 break;
-            case c64:
+            /*case c64:
                 res = getHandle(createStridedArray<cdouble>(
                     dims, strides, offset, static_cast<cdouble *>(in_data),
                     isdev));
-                break;
+                break;*/
             case u32:
                 res = getHandle(createStridedArray<uint>(
                     dims, strides, offset, static_cast<uint *>(in_data),
@@ -164,9 +164,9 @@ af_err af_get_raw_ptr(void **ptr, const af_array arr) {
 
         switch (ty) {
             case f32: res = getRawPtr(getArray<float>(arr)); break;
-            case f64: res = getRawPtr(getArray<double>(arr)); break;
+            //case f64: res = getRawPtr(getArray<float>(arr)); break;
             case c32: res = getRawPtr(getArray<cfloat>(arr)); break;
-            case c64: res = getRawPtr(getArray<cdouble>(arr)); break;
+            //case c64: res = getRawPtr(getArray<cdouble>(arr)); break;
             case u32: res = getRawPtr(getArray<uint>(arr)); break;
             case s32: res = getRawPtr(getArray<int>(arr)); break;
             case u64: res = getRawPtr(getArray<uintl>(arr)); break;
@@ -201,9 +201,9 @@ af_err af_is_owner(bool *result, const af_array arr) {
 
         switch (ty) {
             case f32: res = getArray<float>(arr).isOwner(); break;
-            case f64: res = getArray<double>(arr).isOwner(); break;
+            //case f64: res = getArray<float>(arr).isOwner(); break;
             case c32: res = getArray<cfloat>(arr).isOwner(); break;
-            case c64: res = getArray<cdouble>(arr).isOwner(); break;
+            //case c64: res = getArray<cdouble>(arr).isOwner(); break;
             case u32: res = getArray<uint>(arr).isOwner(); break;
             case s32: res = getArray<int>(arr).isOwner(); break;
             case u64: res = getArray<uintl>(arr).isOwner(); break;
@@ -230,9 +230,9 @@ af_err af_get_allocated_bytes(size_t *bytes, const af_array arr) {
 
         switch (ty) {
             case f32: res = getArray<float>(arr).getAllocatedBytes(); break;
-            case f64: res = getArray<double>(arr).getAllocatedBytes(); break;
+            //case f64: res = getArray<float>(arr).getAllocatedBytes(); break;
             case c32: res = getArray<cfloat>(arr).getAllocatedBytes(); break;
-            case c64: res = getArray<cdouble>(arr).getAllocatedBytes(); break;
+            //case c64: res = getArray<cdouble>(arr).getAllocatedBytes(); break;
             case u32: res = getArray<uint>(arr).getAllocatedBytes(); break;
             case s32: res = getArray<int>(arr).getAllocatedBytes(); break;
             case u64: res = getArray<uintl>(arr).getAllocatedBytes(); break;

@@ -95,9 +95,9 @@ af_err af_transform_coordinates(af_array *out, const af_array tf,
             case f32:
                 output = transform_coordinates<float>(tf, d0_, d1_);
                 break;
-            case f64:
-                output = transform_coordinates<double>(tf, d0_, d1_);
-                break;
+            /*case f64:
+                output = transform_coordinates<float>(tf, d0_, d1_);
+                break;*/
             default: TYPE_ERROR(1, type);
         }
         std::swap(*out, output);

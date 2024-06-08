@@ -79,7 +79,7 @@ af_err af_topk(af_array *values, af_array *indices, const af_array in,
         switch (type) {
             // TODO(umar): FIX RETURN VALUES HERE
             case f32: topk<float>(values, indices, in, k, rdim, ord); break;
-            case f64: topk<double>(values, indices, in, k, rdim, ord); break;
+            //case f64: topk<float>(values, indices, in, k, rdim, ord); break;
             case u32: topk<uint>(values, indices, in, k, rdim, ord); break;
             case s32: topk<int>(values, indices, in, k, rdim, ord); break;
             case f16: topk<half>(values, indices, in, k, rdim, ord); break;

@@ -18,7 +18,7 @@
 #include <af/dim4.hpp>
 #include <complex>
 
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -131,9 +131,9 @@ af_err af_accum(af_array* out, const af_array in, const int dim) {
 
         switch (type) {
             case f32: res = scan<af_add_t, float, float>(in, dim); break;
-            case f64: res = scan<af_add_t, double, double>(in, dim); break;
+            //case f64: res = scan<af_add_t, double, double>(in, dim); break;
             case c32: res = scan<af_add_t, cfloat, cfloat>(in, dim); break;
-            case c64: res = scan<af_add_t, cdouble, cdouble>(in, dim); break;
+            //case c64: res = scan<af_add_t, cdouble, cdouble>(in, dim); break;
             case u32: res = scan<af_add_t, uint, uint>(in, dim); break;
             case s32: res = scan<af_add_t, int, int>(in, dim); break;
             case u64: res = scan<af_add_t, uintl, uintl>(in, dim); break;
@@ -174,15 +174,15 @@ af_err af_scan(af_array* out, const af_array in, const int dim, af_binary_op op,
             case f32:
                 res = scan_op<float, float>(in, dim, op, inclusive_scan);
                 break;
-            case f64:
+            /*case f64:
                 res = scan_op<double, double>(in, dim, op, inclusive_scan);
-                break;
+                break;*/
             case c32:
                 res = scan_op<cfloat, cfloat>(in, dim, op, inclusive_scan);
                 break;
-            case c64:
+            /*case c64:
                 res = scan_op<cdouble, cdouble>(in, dim, op, inclusive_scan);
-                break;
+                break;*/
             case u32:
                 res = scan_op<uint, uint>(in, dim, op, inclusive_scan);
                 break;
@@ -240,16 +240,16 @@ af_err af_scan_by_key(af_array* out, const af_array key, const af_array in,
             case f32:
                 res = scan_op<float, float>(key, in, dim, op, inclusive_scan);
                 break;
-            case f64:
+            /*case f64:
                 res = scan_op<double, double>(key, in, dim, op, inclusive_scan);
-                break;
+                break;*/
             case c32:
                 res = scan_op<cfloat, cfloat>(key, in, dim, op, inclusive_scan);
                 break;
-            case c64:
+            /*case c64:
                 res =
                     scan_op<cdouble, cdouble>(key, in, dim, op, inclusive_scan);
-                break;
+                break;*/
             case s16:
             case s32:
                 res = scan_op<int, int>(key, in, dim, op, inclusive_scan);

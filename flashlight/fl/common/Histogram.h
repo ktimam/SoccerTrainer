@@ -138,7 +138,7 @@ HistogramStats<T> FixedBucketSizeHistogram(
 
     stats.min = std::min(stats.min, *itr);
     stats.max = std::max(stats.max, *itr);
-    double denominator = static_cast<double>(stats.numValues + 1);
+    double denominator = static_cast<float>(stats.numValues + 1);
     double ratio = stats.numValues / denominator;
     simpleMovingAverage = simpleMovingAverage * ratio + (*itr / denominator);
     ++stats.numValues;
@@ -161,7 +161,7 @@ HistogramStats<T> FixedBucketSizeHistogram(
       continue;
     }
     double index =
-        std::round(static_cast<double>(*itr - stats.min) / bucketWidth);
+        std::round(static_cast<float>(*itr - stats.min) / bucketWidth);
     size_t intIndex = std::min(static_cast<size_t>(index), nBuckets - 1);
 
     HistogramBucket<T>& bucket = stats.buckets[intIndex];
@@ -197,7 +197,7 @@ std::string HistogramBucket<T>::prettyString(
   ss << "] ";
   fromatCountIntoStream(ss, count);
   ss << ": ";
-  const double numTicks = static_cast<double>(count) / countPerTick;
+  const double numTicks = static_cast<float>(count) / countPerTick;
   for (int i = 0; i < std::round(numTicks); ++i) {
     ss << "*";
   }
@@ -228,7 +228,7 @@ std::string HistogramStats<T>::prettyString(
   ss << "] numBuckets=[" << buckets.size() << "]\n";
   if (buckets.size() > 1) {
     double countPerTick =
-        static_cast<double>(maxNumValuesPerBucket) / maxBarWidth;
+        static_cast<float>(maxNumValuesPerBucket) / maxBarWidth;
     for (const auto& bucket : buckets) {
       ss << bucket.prettyString(
           countPerTick, fromatCountIntoStream, fromatValuesIntoStream);

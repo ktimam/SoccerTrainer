@@ -46,7 +46,7 @@ Array<T> meanshift(const Array<T> &in, const float &spatialSigma,
                                    const bool &);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(char)
 INSTANTIATE(int)
 INSTANTIATE(uint)

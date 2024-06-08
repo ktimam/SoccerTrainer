@@ -29,9 +29,9 @@ void gradient(Array<T> &grad0, Array<T> &grad1, const Array<T> &in) {
                               const Array<T> &in);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 
 }  // namespace cpu
 }  // namespace arrayfire

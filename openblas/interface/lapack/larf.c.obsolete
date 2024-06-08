@@ -65,12 +65,12 @@ int NAME(char *SIDE, blasint *M, blasint *N, FLOAT *v, blasint *incV, FLOAT *tau
 
   args.m    = *M;
   args.n    = *N;
-  args.a    = (void *)v;
+  args.a    = (float *)v;
   args.lda  = *incV;
-  args.c    = (void *)c;
+  args.c    = (float *)c;
   args.ldc  = *ldC;
 
-  args.alpha = (void *)tau;
+  args.alpha = (float *)tau;
 
   side  = -1;
   if (side_arg  == 'L') side  = 0;

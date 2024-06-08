@@ -18,7 +18,7 @@
 #include <af/lapack.h>
 
 using arrayfire::getArray;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 
 template<typename T>
@@ -53,9 +53,9 @@ af_err af_cholesky(af_array *out, int *info, const af_array in,
         af_array output;
         switch (type) {
             case f32: output = cholesky<float>(info, in, is_upper); break;
-            case f64: output = cholesky<double>(info, in, is_upper); break;
+            //case f64: output = cholesky<float>(info, in, is_upper); break;
             case c32: output = cholesky<cfloat>(info, in, is_upper); break;
-            case c64: output = cholesky<cdouble>(info, in, is_upper); break;
+            //case c64: output = cholesky<cdouble>(info, in, is_upper); break;
             default: TYPE_ERROR(1, type);
         }
         std::swap(*out, output);
@@ -83,9 +83,9 @@ af_err af_cholesky_inplace(int *info, af_array in, const bool is_upper) {
 
         switch (type) {
             case f32: out = cholesky_inplace<float>(in, is_upper); break;
-            case f64: out = cholesky_inplace<double>(in, is_upper); break;
+            //case f64: out = cholesky_inplace<float>(in, is_upper); break;
             case c32: out = cholesky_inplace<cfloat>(in, is_upper); break;
-            case c64: out = cholesky_inplace<cdouble>(in, is_upper); break;
+            //case c64: out = cholesky_inplace<cdouble>(in, is_upper); break;
             default: TYPE_ERROR(1, type);
         }
         std::swap(*info, out);

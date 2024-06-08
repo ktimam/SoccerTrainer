@@ -105,9 +105,9 @@ Array<T> convolve2(Array<T> const &signal, Array<accT> const &c_filter,
                                          Array<accT> const &,                  \
                                          Array<accT> const &, const bool);
 
-INSTANTIATE(cdouble, cdouble)
+//INSTANTIATE(cdouble, cdouble)
 INSTANTIATE(cfloat, cfloat)
-INSTANTIATE(double, double)
+//INSTANTIATE(double, double)
 INSTANTIATE(float, float)
 INSTANTIATE(uint, float)
 INSTANTIATE(int, float)
@@ -170,7 +170,7 @@ Array<T> convolve2(Array<T> const &signal, Array<T> const &filter,
                                    Array<T> const &filter, const dim4 stride, \
                                    const dim4 padding, const dim4 dilation);
 
-INSTANTIATE(double)
+////INSTANTIATE(double)
 INSTANTIATE(float)
 INSTANTIATE(half)
 #undef INSTANTIATE
@@ -251,7 +251,7 @@ Array<T> conv2FilterGradient(const Array<T> &incoming_gradient,
         Array<T> const &original_filter, Array<T> const &convolved_output,  \
         const dim4 stride, const dim4 padding, const dim4 dilation);
 
-INSTANTIATE(double)
+////INSTANTIATE(double)
 INSTANTIATE(float)
 INSTANTIATE(half)
 #undef INSTANTIATE

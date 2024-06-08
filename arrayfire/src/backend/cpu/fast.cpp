@@ -116,7 +116,7 @@ unsigned fast(Array<float> &x_out, Array<float> &y_out, Array<float> &score_out,
         const bool nonmax, const float feature_ratio, const unsigned edge);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(char)
 INSTANTIATE(int)
 INSTANTIATE(uint)

@@ -19,7 +19,7 @@
 
 using af::dim4;
 using arrayfire::common::half;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -61,8 +61,8 @@ af_err af_moddims(af_array* out, const af_array in, const unsigned ndims,
         switch (type) {
             case f32: output = modDims<float>(in, newDims); break;
             case c32: output = modDims<cfloat>(in, newDims); break;
-            case f64: output = modDims<double>(in, newDims); break;
-            case c64: output = modDims<cdouble>(in, newDims); break;
+            //case f64: output = modDims<float>(in, newDims); break;
+            //case c64: output = modDims<cdouble>(in, newDims); break;
             case b8: output = modDims<char>(in, newDims); break;
             case s32: output = modDims<int>(in, newDims); break;
             case u32: output = modDims<uint>(in, newDims); break;
@@ -94,8 +94,8 @@ af_err af_flat(af_array* out, const af_array in) {
             switch (type) {
                 case f32: output = flat<float>(in); break;
                 case c32: output = flat<cfloat>(in); break;
-                case f64: output = flat<double>(in); break;
-                case c64: output = flat<cdouble>(in); break;
+                //case f64: output = flat<float>(in); break;
+                //case c64: output = flat<cdouble>(in); break;
                 case b8: output = flat<char>(in); break;
                 case s32: output = flat<int>(in); break;
                 case u32: output = flat<uint>(in); break;

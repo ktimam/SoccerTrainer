@@ -46,9 +46,9 @@ Array<T> resize(const Array<T> &in, const dim_t odim0, const dim_t odim1,
                                 const af_interp_type method);
 
 INSTANTIATE(float)
-INSTANTIATE(double)
+//INSTANTIATE(double)
 INSTANTIATE(cfloat)
-INSTANTIATE(cdouble)
+//INSTANTIATE(cdouble)
 INSTANTIATE(int)
 INSTANTIATE(uint)
 INSTANTIATE(intl)

@@ -25,7 +25,7 @@ using af::dim4;
 using arrayfire::common::half;
 using detail::arithOp;
 using detail::Array;
-using detail::cdouble;
+//using detail::cdouble;
 using detail::cfloat;
 using detail::intl;
 using detail::uchar;
@@ -59,9 +59,9 @@ af_err af_clamp(af_array* out, const af_array in, const af_array lo,
         af_array res;
         switch (otype) {
             case f32: res = clampOp<float>(in, lo, hi, odims); break;
-            case f64: res = clampOp<double>(in, lo, hi, odims); break;
+            ////case f64: res = clampOp<float>(in, lo, hi, odims); break;
             case c32: res = clampOp<cfloat>(in, lo, hi, odims); break;
-            case c64: res = clampOp<cdouble>(in, lo, hi, odims); break;
+            ////case c64: res = clampOp<cdouble>(in, lo, hi, odims); break;
             case s32: res = clampOp<int>(in, lo, hi, odims); break;
             case u32: res = clampOp<uint>(in, lo, hi, odims); break;
             case u8: res = clampOp<uchar>(in, lo, hi, odims); break;
