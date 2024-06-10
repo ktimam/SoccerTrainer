@@ -40,15 +40,15 @@ namespace cereal
   { RapidJSONException( const char * what_ ) : Exception( what_ ) {} };
 }
 
-// Inform rapidjson that assert will throw
+// Inform rapidjson that assert will //throw
 #ifndef CEREAL_RAPIDJSON_ASSERT_THROWS
 #define CEREAL_RAPIDJSON_ASSERT_THROWS
 #endif // CEREAL_RAPIDJSON_ASSERT_THROWS
 
-// Override rapidjson assertions to throw exceptions by default
+// Override rapidjson assertions to //throw exceptions by default
 #ifndef CEREAL_RAPIDJSON_ASSERT
 #define CEREAL_RAPIDJSON_ASSERT(x) if(!(x)){ \
-  throw ::cereal::RapidJSONException("rapidjson internal assertion failure: " #x); }
+  //throw ::cereal::RapidJSONException("rapidjson internal assertion failure: " #x); }
 #endif // RAPIDJSON_ASSERT
 
 // Enable support for parsing of nan, inf, -inf
@@ -470,7 +470,7 @@ namespace cereal
         auto decoded = base64::decode( encoded );
 
         if( size != decoded.size() )
-          throw Exception("Decoded binary data size does not match specified size");
+          //throw Exception("Decoded binary data size does not match specified size");
 
         std::memcpy( data, decoded.data(), decoded.size() );
         itsNextName = nullptr;
@@ -516,13 +516,13 @@ namespace cereal
           GenericValue const & value()
           {
             if( itsIndex >= itsSize )
-              throw cereal::Exception("No more objects in input");
+              //throw cereal::Exception("No more objects in input");
 
             switch(itsType)
             {
               case Value : return itsValueItBegin[itsIndex];
               case Member: return itsMemberItBegin[itsIndex].value;
-              default: throw cereal::Exception("JSONInputArchive internal error: null or empty iterator to object or array!");
+              default: //throw cereal::Exception("JSONInputArchive internal error: null or empty iterator to object or array!");
             }
           }
 
@@ -552,7 +552,7 @@ namespace cereal
               }
             }
 
-            throw Exception("JSON Parsing failed - provided NVP (" + std::string(searchName) + ") not found");
+            //throw Exception("JSON Parsing failed - provided NVP (" + std::string(searchName) + ") not found");
           }
 
         private:

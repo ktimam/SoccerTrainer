@@ -32,7 +32,8 @@ void WeightNorm::transformDims() {
   normDim_.clear();
   int vNumdims = module_->param(0).ndim();
   if (dim_ < 0 || dim_ > vNumdims) {
-    throw std::invalid_argument("invalid dimension for WeightNorm");
+    /*throw*/ std::invalid_argument("invalid dimension for WeightNorm");
+        return;
   }
   for (int i = 0; i < vNumdims; i++) {
     if (i != dim_) {
@@ -57,8 +58,8 @@ void WeightNorm::computeWeight() {
     nm = norm(nm, {1}, /* p = */ 2, /* keepDims = */ true);
     nm = reorder(nm, {1, 2, 3, 0});
   } else {
-    throw std::invalid_argument(
-        "Wrong dimension for Weight Norm: " + std::to_string(dim_));
+    /*throw*/ std::invalid_argument("Wrong dimension for Weight Norm: " + std::to_string(dim_));
+        return;
   }
   auto wt = v * tileAs(g / nm, v);
   module_->setParams(wt, 0);
@@ -75,7 +76,8 @@ void WeightNorm::initParams() {
   } else if (moduleParams.size() == 1) {
     params_ = {v, g};
   } else {
-    throw std::invalid_argument("WeightNorm only supports Linear and Conv2D");
+    /*throw*/ std::invalid_argument("WeightNorm only supports Linear and Conv2D");
+        return;
   }
 }
 

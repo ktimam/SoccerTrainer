@@ -197,7 +197,7 @@ af_array iterDeconv(const af_array in, const af_array ker, const uint iters,
 af_err af_iterative_deconv(af_array* out, const af_array in, const af_array ker,
                            const unsigned iterations, const float relax_factor,
                            const af_iterative_deconv_algo algo) {
-    try {
+    /*try*/ {
         const ArrayInfo& inputInfo  = getInfo(in);
         const dim4& inputDims       = inputInfo.dims();
         const ArrayInfo& kernelInfo = getInfo(ker);
@@ -304,7 +304,7 @@ af_array invDeconv(const af_array in, const af_array ker, const float gamma,
 
 af_err af_inverse_deconv(af_array* out, const af_array in, const af_array psf,
                          const float gamma, const af_inverse_deconv_algo algo) {
-    try {
+    /*try*/ {
         const ArrayInfo& inputInfo = getInfo(in);
         const dim4& inputDims      = inputInfo.dims();
         const ArrayInfo& psfInfo   = getInfo(psf);

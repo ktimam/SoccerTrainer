@@ -169,7 +169,7 @@ static inline af_array pinverse(const af_array in, const double tol) {
 
 af_err af_pinverse(af_array *out, const af_array in, const double tol,
                    const af_mat_prop options) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
 
         af_dtype type = i_info.getType();

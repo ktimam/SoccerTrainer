@@ -125,9 +125,9 @@ af_err set_global_error_string(const string &msg, af_err err) {
 af_err processException() {
     stringstream ss;
     af_err err = AF_ERR_INTERNAL;
-
-    try {
-        throw;
+#ifdef DONT_UNCOMMENT
+    /*try*/ {
+        /*throw;*/
     } catch (const DimensionError &ex) {
         ss << "In function " << ex.getFunctionName() << "\n"
            << "In file " << ex.getFileName() << ":" << ex.getLine() << "\n"
@@ -198,7 +198,7 @@ af_err processException() {
     } catch (const std::exception &ex) {
         err = set_global_error_string(ex.what(), AF_ERR_UNKNOWN);
     } catch (...) { err = set_global_error_string(ss.str(), AF_ERR_UNKNOWN); }
-
+#endif
     return err;
 }
 

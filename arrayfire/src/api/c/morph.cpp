@@ -116,7 +116,7 @@ static inline af_array morph3d(const af_array &in, const af_array &mask,
 
 af_err morph(af_array *out, const af_array &in, const af_array &mask,
              bool isDilation) {
-    try {
+    /*try*/ {
         const ArrayInfo &info  = getInfo(in);
         const ArrayInfo &mInfo = getInfo(mask);
         af::dim4 dims          = info.dims();
@@ -149,7 +149,7 @@ af_err morph(af_array *out, const af_array &in, const af_array &mask,
 
 af_err morph3d(af_array *out, const af_array &in, const af_array &mask,
                bool isDilation) {
-    try {
+    /*try*/ {
         const ArrayInfo &info  = getInfo(in);
         const ArrayInfo &mInfo = getInfo(mask);
         af::dim4 dims          = info.dims();

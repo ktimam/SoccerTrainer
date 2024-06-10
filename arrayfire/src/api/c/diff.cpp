@@ -37,7 +37,7 @@ static inline af_array diff2(const af_array in, const int dim) {
 }
 
 af_err af_diff1(af_array* out, const af_array in, const int dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, ((dim >= 0) && (dim < 4)));
 
         const ArrayInfo& info = getInfo(in);
@@ -75,7 +75,7 @@ af_err af_diff1(af_array* out, const af_array in, const int dim) {
 }
 
 af_err af_diff2(af_array* out, const af_array in, const int dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, ((dim >= 0) && (dim < 4)));
 
         const ArrayInfo& info = getInfo(in);

@@ -540,7 +540,7 @@ namespace af
             af::exception ex(msg, __PRETTY_FUNCTION__, "include/af/array.h",
                              __LINE__, __aferr);
             af_free_host(msg);
-            throw std::move(ex);
+            /*throw*/ std::move(ex);
           }
         }
 
@@ -558,7 +558,7 @@ namespace af
             af::exception ex(msg, __PRETTY_FUNCTION__, "include/af/array.h",
                              __LINE__, __aferr);
             af_free_host(msg);
-            throw std::move(ex);
+            /*throw*/ std::move(ex);
           }
         }
 #endif

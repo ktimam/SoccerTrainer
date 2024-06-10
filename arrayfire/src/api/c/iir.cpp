@@ -23,7 +23,7 @@ using af::dim4;
 using detail::cfloat;
 
 af_err af_fir(af_array* y, const af_array b, const af_array x) {
-    try {
+    /*try*/ {
         af_array out;
         AF_CHECK(af_convolve1(&out, x, b, AF_CONV_EXPAND, AF_CONV_AUTO));
 
@@ -49,7 +49,7 @@ inline static af_array iir(const af_array b, const af_array a,
 
 af_err af_iir(af_array* y, const af_array b, const af_array a,
               const af_array x) {
-    try {
+    /*try*/ {
         const ArrayInfo& ainfo = getInfo(a);
         const ArrayInfo& binfo = getInfo(b);
         const ArrayInfo& xinfo = getInfo(x);

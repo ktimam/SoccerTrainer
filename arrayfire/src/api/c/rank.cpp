@@ -58,7 +58,7 @@ static inline uint rank(const af_array in, double tol) {
 }
 
 af_err af_rank(uint* out, const af_array in, const double tol) {
-    try {
+    /*try*/ {
         const ArrayInfo& i_info = getInfo(in);
 
         if (i_info.ndims() > 2) {

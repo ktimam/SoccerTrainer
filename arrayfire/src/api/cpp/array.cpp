@@ -70,7 +70,7 @@ af_array gforReorder(const af_array in, unsigned dim) {
 
 af::dim4 seqToDims(af_index_t *indices, af::dim4 parentDims,
                    bool reorder = true) {
-    try {
+    /*try*/ {
         af::dim4 odims(1);
         for (int i = 0; i < AF_MAX_DIMS; i++) {
             if (indices[i].isSeq) {
@@ -94,7 +94,7 @@ af::dim4 seqToDims(af_index_t *indices, af::dim4 parentDims,
             }
         }
         return odims;
-    } catch (const logic_error &err) { AF_THROW_ERR(err.what(), AF_ERR_SIZE); }
+    } /*catch (const logic_error &err) { AF_THROW_ERR(err.what(), AF_ERR_SIZE); }*/
 }
 
 unsigned numDims(const af_array arr) {

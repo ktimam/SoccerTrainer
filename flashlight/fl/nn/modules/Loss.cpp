@@ -18,11 +18,8 @@ Variable MeanSquaredError::forward(
     const Variable& inputs,
     const Variable& targets) {
   if (inputs.shape() != targets.shape()) {
-    throw std::invalid_argument(
-        "MeanSquaredError::forward - inputs and targets are of different"
-        " sizes: {inputs: " +
-        inputs.shape().toString() + ", targets: " + targets.shape().toString() +
-        "}");
+    /*throw*/ std::invalid_argument( "MeanSquaredError::forward - inputs and targets are of different" " sizes: {inputs: " +inputs.shape().toString() + ", targets: " + targets.shape().toString() +"}");
+        return Variable();
   }
 
   auto df = inputs - targets;
@@ -42,11 +39,8 @@ Variable MeanAbsoluteError::forward(
     const Variable& inputs,
     const Variable& targets) {
   if (inputs.shape() != targets.shape()) {
-    throw std::invalid_argument(
-        "MeanAbsoluteError::forward - inputs and targets are of different"
-        " sizes: {inputs: " +
-        inputs.shape().toString() + ", targets: " + targets.shape().toString() +
-        "}");
+    /*throw*/ std::invalid_argument("MeanAbsoluteError::forward - inputs and targets are of different"" sizes: {inputs: " + inputs.shape().toString() + ", targets: " + targets.shape().toString() +"}");
+        return Variable();
   }
 
   auto df = inputs - targets;
@@ -112,7 +106,8 @@ Variable AdaptiveSoftMaxLoss::cast(
     const Shape& outDims,
     const Tensor& indices) {
   if (input.elements() != indices.elements()) {
-    throw std::invalid_argument("AdaptiveSoftMaxLoss: input, indices mismatch");
+    /*throw*/ std::invalid_argument("AdaptiveSoftMaxLoss: input, indices mismatch");
+        return Variable();
   }
   Tensor output = fl::full(outDims, 0, input.type());
   output(indices) = input.tensor().flatten();
@@ -134,19 +129,19 @@ Variable AdaptiveSoftMaxLoss::forward(
   // inputs: N x T x B
   // targets: T x B
   if (inputs.ndim() != 3) {
-    throw std::invalid_argument(
-        "AdaptiveSoftMaxLoss::forward expects input tensor with "
-        "3 dimensions in N x T x B ordering.");
+    /*throw*/ std::invalid_argument("AdaptiveSoftMaxLoss::forward expects input tensor with ""3 dimensions in N x T x B ordering.");
+        return Variable();
   }
   if (targets.ndim() != 2) {
-    throw std::invalid_argument(
-        "AdaptiveSoftMaxLoss::forward expects target tensor with "
-        "2 dimensions in T x B ordering.");
+    /*throw*/ std::invalid_argument("AdaptiveSoftMaxLoss::forward expects target tensor with ""2 dimensions in T x B ordering.");
+        return Variable();
   }
   if (inputs.dim(1) != targets.dim(0)) {
-    throw std::invalid_argument("AdaptiveSoftMaxLoss: length mismatch");
+    /*throw*/ std::invalid_argument("AdaptiveSoftMaxLoss: length mismatch");
+        return Variable();
   } else if (inputs.dim(2) != targets.dim(1)) {
-    throw std::invalid_argument("AdaptiveSoftMaxLoss: batch size mismatch");
+    /*throw*/ std::invalid_argument("AdaptiveSoftMaxLoss: batch size mismatch");
+        return Variable();
   }
 
   auto N = inputs.dim(0);

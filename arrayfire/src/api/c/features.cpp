@@ -13,7 +13,7 @@
 #include <af/features.h>
 
 af_err af_release_features(af_features featHandle) {
-    try {
+    /*try*/ {
         af_features_t feat = *static_cast<af_features_t *>(featHandle);
         if (feat.n > 0) {
             if (feat.x != 0) { AF_CHECK(af_release_array(feat.x)); }
@@ -38,7 +38,7 @@ af_features getFeaturesHandle(const af_features_t feat) {
 }
 
 af_err af_create_features(af_features *featHandle, dim_t num) {
-    try {
+    /*try*/ {
         af_features_t feat;
         feat.n = num;
 
@@ -64,7 +64,7 @@ af_features_t getFeatures(const af_features featHandle) {
 
 af_err af_retain_features(af_features *outHandle,
                           const af_features featHandle) {
-    try {
+    /*try*/ {
         af_features_t feat = getFeatures(featHandle);
         af_features_t out;
 
@@ -82,7 +82,7 @@ af_err af_retain_features(af_features *outHandle,
 }
 
 af_err af_get_features_num(dim_t *num, const af_features featHandle) {
-    try {
+    /*try*/ {
         af_features_t feat = getFeatures(featHandle);
         *num               = feat.n;
     }
@@ -91,7 +91,7 @@ af_err af_get_features_num(dim_t *num, const af_features featHandle) {
 }
 
 af_err af_get_features_xpos(af_array *out, const af_features featHandle) {
-    try {
+    /*try*/ {
         af_features_t feat = getFeatures(featHandle);
         *out               = feat.x;
     }
@@ -100,7 +100,7 @@ af_err af_get_features_xpos(af_array *out, const af_features featHandle) {
 }
 
 af_err af_get_features_ypos(af_array *out, const af_features featHandle) {
-    try {
+    /*try*/ {
         af_features_t feat = getFeatures(featHandle);
         *out               = feat.y;
     }
@@ -109,7 +109,7 @@ af_err af_get_features_ypos(af_array *out, const af_features featHandle) {
 }
 
 af_err af_get_features_score(af_array *out, const af_features featHandle) {
-    try {
+    /*try*/ {
         af_features_t feat = getFeatures(featHandle);
         *out               = feat.score;
     }
@@ -119,7 +119,7 @@ af_err af_get_features_score(af_array *out, const af_features featHandle) {
 
 af_err af_get_features_orientation(af_array *out,
                                    const af_features featHandle) {
-    try {
+    /*try*/ {
         af_features_t feat = getFeatures(featHandle);
         *out               = feat.orientation;
     }
@@ -128,7 +128,7 @@ af_err af_get_features_orientation(af_array *out,
 }
 
 af_err af_get_features_size(af_array *out, const af_features featHandle) {
-    try {
+    /*try*/ {
         af_features_t feat = getFeatures(featHandle);
         *out               = feat.size;
     }

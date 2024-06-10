@@ -23,7 +23,8 @@ int getActiveDeviceId(const fl::DeviceType type) {
 #if FL_BACKEND_CUDA
       return fl::cuda::getActiveDeviceId();
 #endif
-      throw std::runtime_error("CUDA is unsupported");
+      /*throw*/ std::runtime_error("CUDA is unsupported");
+        return 0;
     }
   }
 }
@@ -47,8 +48,8 @@ DeviceManager::DeviceManager() {
 void DeviceManager::enforceDeviceTypeAvailable(
   std::string_view errorPrefix, const DeviceType type) const {
   if (!isDeviceTypeAvailable(type)) {
-    throw std::runtime_error(
-      std::string(errorPrefix) + " device type unavailable");
+    /*throw*/ std::runtime_error(std::string(errorPrefix) + " device type unavailable");
+        return;
   }
 }
 
@@ -90,8 +91,8 @@ Device& DeviceManager::getDevice(const DeviceType type, int id) const {
   enforceDeviceTypeAvailable("[DeviceManager::getActiveDevice]", type);
   auto& idToDevice = deviceTypeToInfo_.at(type);
   if (idToDevice.count(id) == 0) {
-    throw std::runtime_error(
-      "[DeviceManager::getDevice] unknown device id");
+    /*throw*/ std::runtime_error("[DeviceManager::getDevice] unknown device id");
+        //return;
   }
   return *idToDevice.at(id);
 }

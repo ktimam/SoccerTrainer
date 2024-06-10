@@ -25,7 +25,7 @@ std::shared_ptr<MemoryManagerAdapter>
 MemoryManagerAdapter* MemoryManagerInstaller::getImpl(
     af_memory_manager manager) {
   void* ptr;
-  AF_CHECK(af_memory_manager_get_payload(manager, &ptr));
+  AF_CHECK_RET(af_memory_manager_get_payload(manager, &ptr), (MemoryManagerAdapter*)ptr);
   return (MemoryManagerAdapter*)ptr;
 }
 
@@ -33,16 +33,14 @@ MemoryManagerInstaller::MemoryManagerInstaller(
     std::shared_ptr<MemoryManagerAdapter> managerImpl)
     : impl_(managerImpl) {
   if (!impl_) {
-    throw std::invalid_argument(
-        "MemoryManagerInstaller::MemoryManagerInstaller - "
-        "passed MemoryManagerAdapter is null");
+    /*throw*/ std::invalid_argument("MemoryManagerInstaller::MemoryManagerInstaller - ""passed MemoryManagerAdapter is null");
+        return;
   }
 
   af_memory_manager itf = impl_->getHandle();
   if (!impl_->getHandle()) {
-    throw std::invalid_argument(
-        "MemoryManagerInstaller::MemoryManagerInstaller - "
-        "passed MemoryManagerAdapter has null handle");
+    /*throw*/ std::invalid_argument("MemoryManagerInstaller::MemoryManagerInstaller - ""passed MemoryManagerAdapter has null handle");
+        return;
   }
 
   // Set appropriate function pointers for each class method
@@ -61,7 +59,7 @@ MemoryManagerInstaller::MemoryManagerInstaller(
   };
   AF_CHECK(af_memory_manager_set_shutdown_fn(itf, shutdownFn));
   // ArrayFire expects the memory managers alloc fn to return an af_err, not to
-  // throw, if a problem with allocation occurred
+  // //throw, if a problem with allocation occurred
   auto allocFn = [](af_memory_manager manager,
                     void** ptr,
                     /* bool */ int userLock,
@@ -69,9 +67,9 @@ MemoryManagerInstaller::MemoryManagerInstaller(
                     dim_t* dims,
                     const unsigned elSize) {
     MemoryManagerAdapter* m = MemoryManagerInstaller::getImpl(manager);
-    try {
+    /*try*/ {
       *ptr = m->alloc(userLock, ndims, dims, elSize);
-    } catch (af::exception& ex) {
+    } /* catch (af::exception& ex) {
       m->log(
           "allocFn: alloc failed with af exception " +
           std::to_string(ex.err()));
@@ -79,7 +77,7 @@ MemoryManagerInstaller::MemoryManagerInstaller(
     } catch (...) {
       m->log("allocFn: alloc failed with unspecified exception");
       return af_err(AF_ERR_UNKNOWN);
-    }
+    } */
     // Log
     m->log(
         "alloc",
@@ -167,20 +165,20 @@ MemoryManagerInstaller::MemoryManagerInstaller(
   // Native and device memory manager functions
   auto getActiveDeviceIdFn = [itf]() {
     int id;
-    AF_CHECK(af_memory_manager_get_active_device_id(itf, &id));
+    AF_CHECK_RET(af_memory_manager_get_active_device_id(itf, &id), id);
     return id;
   };
   impl_->deviceInterface->getActiveDeviceId = std::move(getActiveDeviceIdFn);
   auto getMaxMemorySizeFn = [itf](int id) {
     size_t out;
-    AF_CHECK(af_memory_manager_get_max_memory_size(itf, &out, id));
+    AF_CHECK_RET(af_memory_manager_get_max_memory_size(itf, &out, id), out);
     return out;
   };
   impl_->deviceInterface->getMaxMemorySize = std::move(getMaxMemorySizeFn);
-  // nativeAlloc could throw via AF_CHECK:
+  // nativeAlloc could //throw via AF_CHECK:
   auto nativeAllocFn = [itf](const size_t bytes) {
     void* ptr;
-    AF_CHECK(af_memory_manager_native_alloc(itf, &ptr, bytes));
+    AF_CHECK_RET(af_memory_manager_native_alloc(itf, &ptr, bytes), ptr);
     MemoryManagerInstaller::getImpl(itf)->log(
         "nativeAlloc", bytes, (std::uintptr_t)ptr);
     return ptr;
@@ -194,7 +192,7 @@ MemoryManagerInstaller::MemoryManagerInstaller(
   impl_->deviceInterface->nativeFree = std::move(nativeFreeFn);
   auto getMemoryPressureThresholdFn = [itf]() {
     float pressure;
-    AF_CHECK(af_memory_manager_get_memory_pressure_threshold(itf, &pressure));
+    AF_CHECK_RET(af_memory_manager_get_memory_pressure_threshold(itf, &pressure), pressure);
     return pressure;
   };
   impl_->deviceInterface->getMemoryPressureThreshold =

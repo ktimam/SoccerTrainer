@@ -65,7 +65,7 @@ struct fmt::formatter<arrayfire::common::Version> {
                 case 'M': show_major = true; break;
                 case 'm': show_minor = true; break;
                 case 'p': show_patch = true; break;
-                default: throw format_error("invalid format");
+                //default: throw format_error("invalid format");
             }
             ++it;
         } while (it != end && *it != '}');

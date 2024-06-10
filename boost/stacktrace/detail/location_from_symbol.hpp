@@ -22,23 +22,23 @@ namespace boost { namespace stacktrace { namespace detail {
 
 #if !defined(BOOST_WINDOWS) && !defined(__CYGWIN__)
 class location_from_symbol {
-    ::Dl_info dli_;
+    //::Dl_info dli_;
 
 public:
     explicit location_from_symbol(const void* addr) noexcept
-        : dli_()
+        //: dli_()
     {
-        if (!::dladdr(const_cast<void*>(addr), &dli_)) { // `dladdr` on Solaris accepts nonconst addresses
-            dli_.dli_fname = 0;
-        }
+        //if (!::dladdr(const_cast<void*>(addr), &dli_)) { // `dladdr` on Solaris accepts nonconst addresses
+        //    dli_.dli_fname = 0;
+        //}
     }
 
     bool empty() const noexcept {
-        return !dli_.dli_fname;
+        return false;// !dli_.dli_fname;
     }
 
     const char* name() const noexcept {
-        return dli_.dli_fname;
+        return "dli not present!!!";// dli_.dli_fname;
     }
 };
 

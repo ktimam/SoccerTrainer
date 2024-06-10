@@ -125,12 +125,12 @@ Allocator::Allocator() { logger = common::loggerFactory("mem"); }
 
 void Allocator::shutdown() {
     for (int n = 0; n < cpu::getDeviceCount(); n++) {
-        try {
+        /*try*/ {
             cpu::setDevice(n);
             shutdownMemoryManager();
-        } catch (const AfError &err) {
-            continue;  // Do not throw any errors while shutting down
-        }
+        } /*catch (const AfError& err) {
+            continue;  // Do not //throw any errors while shutting down
+        }*/
     }
 }
 

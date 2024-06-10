@@ -98,11 +98,13 @@ namespace cpu {
 template<typename T>
 Array<T> cholesky(int *info, const Array<T> &in, const bool is_upper) {
     AF_ERROR("Linear Algebra is disabled on CPU", AF_ERR_NOT_CONFIGURED);
+    return createEmptyArray<T>(af::dim4());
 }
 
 template<typename T>
 int cholesky_inplace(Array<T> &in, const bool is_upper) {
     AF_ERROR("Linear Algebra is disabled on CPU", AF_ERR_NOT_CONFIGURED);
+    return 0;
 }
 
 #define INSTANTIATE_CH(T)                                                 \

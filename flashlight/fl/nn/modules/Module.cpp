@@ -21,14 +21,16 @@ Module::Module(const std::vector<Variable>& params)
 
 Variable Module::param(int position) const {
   if (!(position >= 0 && position < params_.size())) {
-    throw std::out_of_range("Module param index out of range");
+    /*throw*/ std::out_of_range("Module param index out of range");
+        return Variable();
   }
   return params_[position];
 }
 
 void Module::setParams(const Variable& var, int position) {
   if (!(position >= 0 && position < params_.size())) {
-    throw std::out_of_range("Module param index out of range");
+    /*throw*/ std::out_of_range("Module param index out of range");
+        return;
   }
   params_[position] = var;
 }
@@ -82,7 +84,8 @@ UnaryModule::UnaryModule(const std::vector<Variable>& params)
 std::vector<Variable> UnaryModule::forward(
     const std::vector<Variable>& inputs) {
   if (inputs.size() != 1) {
-    throw std::invalid_argument("UnaryModule expects only one input");
+    /*throw*/ std::invalid_argument("UnaryModule expects only one input");
+        return std::vector<Variable>();
   }
   return {forward(inputs[0])};
 }
@@ -99,7 +102,8 @@ BinaryModule::BinaryModule(const std::vector<Variable>& params)
 std::vector<Variable> BinaryModule::forward(
     const std::vector<Variable>& inputs) {
   if (inputs.size() != 2) {
-    throw std::invalid_argument("BinaryModule expects two inputs");
+    /*throw*/ std::invalid_argument("BinaryModule expects two inputs");
+        return std::vector<Variable>();
   }
   return {forward(inputs[0], inputs[1])};
 }

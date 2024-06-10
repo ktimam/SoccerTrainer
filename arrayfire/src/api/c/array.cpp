@@ -36,7 +36,7 @@ using detail::uintl;
 using detail::ushort;
 
 af_err af_get_data_ptr(void *data, const af_array arr) {
-    try {
+    /*try*/ {
         af_dtype type = getInfo(arr).getType();
         // clang-format off
         switch (type) {
@@ -65,7 +65,7 @@ af_err af_get_data_ptr(void *data, const af_array arr) {
 af_err af_create_array(af_array *result, const void *const data,
                        const unsigned ndims, const dim_t *const dims,
                        const af_dtype type) {
-    try {
+    /*try*/ {
         af_array out;
         AF_CHECK(af_init());
 
@@ -126,7 +126,7 @@ af_err af_create_array(af_array *result, const void *const data,
 // Strong Exception Guarantee
 af_err af_create_handle(af_array *result, const unsigned ndims,
                         const dim_t *const dims, const af_dtype type) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
 
         if (ndims > 0) { ARG_ASSERT(2, ndims > 0 && dims != NULL); }
@@ -143,7 +143,7 @@ af_err af_create_handle(af_array *result, const unsigned ndims,
 
 // Strong Exception Guarantee
 af_err af_copy_array(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in, false);
         const af_dtype type   = info.getType();
 
@@ -192,7 +192,7 @@ af_err af_copy_array(af_array *out, const af_array in) {
 
 // Strong Exception Guarantee
 af_err af_get_data_ref_count(int *use_count, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in, false);
         const af_dtype type   = info.getType();
 
@@ -220,7 +220,7 @@ af_err af_get_data_ref_count(int *use_count, const af_array in) {
 }
 
 af_err af_release_array(af_array arr) {
-    try {
+    /*try*/ {
         if (arr == 0) { return AF_SUCCESS; }
         const ArrayInfo &info = getInfo(arr, false);
         af_dtype type         = info.getType();
@@ -258,7 +258,7 @@ af_err af_release_array(af_array arr) {
 }
 
 af_err af_retain_array(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         *out = retain(in);
     }
     CATCHALL;
@@ -278,7 +278,7 @@ void write_array(af_array arr, const T *const data, const size_t bytes,
 af_err af_write_array(af_array arr, const void *data, const size_t bytes,
                       af_source src) {
     if (bytes == 0) { return AF_SUCCESS; }
-    try {
+    /*try*/ {
         af_dtype type = getInfo(arr).getType();
         ARG_ASSERT(1, (data != nullptr));
         ARG_ASSERT(3, (src == afHost || src == afDevice));
@@ -334,7 +334,7 @@ af_err af_write_array(af_array arr, const void *data, const size_t bytes,
 }
 
 af_err af_get_elements(dim_t *elems, const af_array arr) {
-    try {
+    /*try*/ {
         // Do not check for device mismatch
         *elems = getInfo(arr, false).elements();
     }
@@ -343,7 +343,7 @@ af_err af_get_elements(dim_t *elems, const af_array arr) {
 }
 
 af_err af_get_type(af_dtype *type, const af_array arr) {
-    try {
+    /*try*/ {
         // Do not check for device mismatch
         *type = getInfo(arr, false).getType();
     }
@@ -353,7 +353,7 @@ af_err af_get_type(af_dtype *type, const af_array arr) {
 
 af_err af_get_dims(dim_t *d0, dim_t *d1, dim_t *d2, dim_t *d3,
                    const af_array in) {
-    try {
+    /*try*/ {
         // Do not check for device mismatch
         const ArrayInfo &info = getInfo(in, false);
         *d0                   = info.dims()[0];
@@ -366,7 +366,7 @@ af_err af_get_dims(dim_t *d0, dim_t *d1, dim_t *d2, dim_t *d3,
 }
 
 af_err af_get_numdims(unsigned *nd, const af_array in) {
-    try {
+    /*try*/ {
         // Do not check for device mismatch
         const ArrayInfo &info = getInfo(in, false);
         *nd                   = info.ndims();
@@ -378,7 +378,7 @@ af_err af_get_numdims(unsigned *nd, const af_array in) {
 #undef INSTANTIATE
 #define INSTANTIATE(fn1, fn2)                           \
     af_err fn1(bool *result, const af_array in) {       \
-        try {                                           \
+        /*try*/ {                                           \
             const ArrayInfo &info = getInfo(in, false); \
             *result               = info.fn2();         \
         }                                               \
@@ -410,7 +410,7 @@ inline void getScalar(T *out, const af_array &arr) {
 }
 
 af_err af_get_scalar(void *output_value, const af_array arr) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, (output_value != NULL));
 
         const ArrayInfo &info = getInfo(arr);

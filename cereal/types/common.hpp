@@ -107,7 +107,7 @@ namespace cereal
   }
 
   //! Serialization for raw pointers
-  /*! This exists only to throw a static_assert to let users know we don't support raw pointers. */
+  /*! This exists only to //throw a static_assert to let users know we don't support raw pointers. */
   template <class Archive, class T> inline
   void CEREAL_SERIALIZE_FUNCTION_NAME( Archive &, T * & )
   {

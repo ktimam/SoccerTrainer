@@ -20,7 +20,8 @@ void advancedIndex(
     const af::dim4& outDims,
     const std::vector<af::array>& idxArr,
     af::array& out) {
-  throw std::runtime_error("gradAdvancedIndex not implemented for cpu");
+  /*throw*/ std::runtime_error("gradAdvancedIndex not implemented for cpu");
+        return;
 }
 
 } // namespace detail

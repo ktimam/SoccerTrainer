@@ -80,7 +80,7 @@ static inline void reduce_key(af_array *keys_out, af_array *vals_out,
 
 template<af_op_t op, typename To>
 static af_err reduce_type(af_array *out, const af_array in, const int dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, dim >= 0);
         ARG_ASSERT(2, dim < 4);
 
@@ -122,7 +122,7 @@ template<af_op_t op, typename To>
 static af_err reduce_by_key_type(af_array *keys_out, af_array *vals_out,
                                  const af_array keys, const af_array vals,
                                  const int dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(4, dim >= 0);
         ARG_ASSERT(4, dim < 4);
 
@@ -184,7 +184,7 @@ static af_err reduce_by_key_type(af_array *keys_out, af_array *vals_out,
 
 template<af_op_t op>
 static af_err reduce_common(af_array *out, const af_array in, const int dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, dim >= 0);
         ARG_ASSERT(2, dim < 4);
 
@@ -225,7 +225,7 @@ template<af_op_t op>
 static af_err reduce_by_key_common(af_array *keys_out, af_array *vals_out,
                                    const af_array keys, const af_array vals,
                                    const int dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(4, dim >= 0);
         ARG_ASSERT(4, dim < 4);
 
@@ -294,7 +294,7 @@ static af_err reduce_by_key_common(af_array *keys_out, af_array *vals_out,
 template<af_op_t op>
 static af_err reduce_promote(af_array *out, const af_array in, const int dim,
                              bool change_nan = false, float nanval = 0.0) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, dim >= 0);
         ARG_ASSERT(2, dim < 4);
 
@@ -368,7 +368,7 @@ static af_err reduce_promote_by_key(af_array *keys_out, af_array *vals_out,
                                     const af_array keys, const af_array vals,
                                     const int dim, bool change_nan = false,
                                     float nanval = 0.0) {
-    try {
+    /*try*/ {
         ARG_ASSERT(4, dim >= 0);
         ARG_ASSERT(4, dim < 4);
 
@@ -552,7 +552,7 @@ static inline Tret reduce_all(const af_array in, bool change_nan = false,
 
 template<af_op_t op, typename To>
 static af_err reduce_all_type(float *real, float *imag, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         af_dtype type            = in_info.getType();
 
@@ -586,7 +586,7 @@ static af_err reduce_all_type(float *real, float *imag, const af_array in) {
 
 template<af_op_t op, typename To>
 static af_err reduce_all_type_array(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         af_dtype type            = in_info.getType();
 
@@ -619,7 +619,7 @@ static af_err reduce_all_type_array(af_array *out, const af_array in) {
 template<af_op_t op>
 static af_err reduce_all_common(float *real_val, float *imag_val,
                                 const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         af_dtype type            = in_info.getType();
 
@@ -669,7 +669,7 @@ static af_err reduce_all_common(float *real_val, float *imag_val,
 
 template<af_op_t op>
 static af_err reduce_all_common_array(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         af_dtype type            = in_info.getType();
 
@@ -705,7 +705,7 @@ template<af_op_t op>
 static af_err reduce_all_promote(float *real_val, float *imag_val,
                                  const af_array in, bool change_nan = false,
                                  float nanval = 0) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         af_dtype type            = in_info.getType();
 
@@ -766,7 +766,7 @@ template<af_op_t op>
 static af_err reduce_all_promote_array(af_array *out, const af_array in,
                                        bool change_nan = false,
                                        float nanval   = 0.0) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
 
         af_dtype type = in_info.getType();
@@ -923,7 +923,7 @@ static inline void rreduce(af_array *res, af_array *loc, const af_array in,
 template<af_op_t op>
 static af_err ireduce_common(af_array *val, af_array *idx, const af_array in,
                              const int dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(3, dim >= 0);
         ARG_ASSERT(3, dim < 4);
 
@@ -975,7 +975,7 @@ af_err af_imax(af_array *val, af_array *idx, const af_array in, const int dim) {
 template<af_op_t op>
 static af_err rreduce_common(af_array *val, af_array *idx, const af_array in,
                              const af_array ragged_len, const int dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(3, dim >= 0);
         ARG_ASSERT(3, dim < 4);
 
@@ -1052,7 +1052,7 @@ static inline Tret ireduce_all(unsigned *loc, const af_array in) {
 template<af_op_t op>
 static af_err ireduce_all_common(float *real_val, float *imag_val,
                                  unsigned *loc, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         af_dtype type            = in_info.getType();
 

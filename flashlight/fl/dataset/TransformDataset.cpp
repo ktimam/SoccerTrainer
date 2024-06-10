@@ -16,7 +16,8 @@ TransformDataset::TransformDataset(
     const std::vector<TransformFunction>& transformfns)
     : dataset_(dataset), transformFns_(transformfns) {
   if (!dataset_) {
-    throw std::invalid_argument("dataset to be transformed is null");
+    /*throw*/ std::invalid_argument("dataset to be transformed is null");
+        return;
   }
 }
 

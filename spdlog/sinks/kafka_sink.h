@@ -40,7 +40,7 @@ class kafka_sink : public base_sink<Mutex> {
 public:
     kafka_sink(kafka_sink_config config)
         : config_{std::move(config)} {
-        try {
+        /*try*/ {
             std::string errstr;
             conf_.reset(RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL));
             RdKafka::Conf::ConfResult confRes =
@@ -64,9 +64,9 @@ public:
             if (topic_ == nullptr) {
                 throw_spdlog_ex(fmt_lib::format("create topic failed err:{}", errstr));
             }
-        } catch (const std::exception &e) {
+        } /* catch (const std::exception &e) {
             throw_spdlog_ex(fmt_lib::format("error create kafka instance: {}", e.what()));
-        }
+        } */
     }
 
     ~kafka_sink() { producer_->flush(config_.flush_timeout_ms); }

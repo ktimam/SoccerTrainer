@@ -71,7 +71,7 @@ static inline void svdInPlace(af_array *s, af_array *u, af_array *vt,
 }
 
 af_err af_svd(af_array *u, af_array *s, af_array *vt, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         dim4 dims             = info.dims();
 
@@ -98,7 +98,7 @@ af_err af_svd(af_array *u, af_array *s, af_array *vt, const af_array in) {
 }
 
 af_err af_svd_inplace(af_array *u, af_array *s, af_array *vt, af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         dim4 dims             = info.dims();
 

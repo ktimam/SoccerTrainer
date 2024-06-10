@@ -40,7 +40,7 @@ void replace(af_array a, const af_array cond, const af_array b) {
 }
 
 af_err af_replace(af_array a, const af_array cond, const af_array b) {
-    try {
+    /*try*/ {
         const ArrayInfo& ainfo = getInfo(a);
         const ArrayInfo& binfo = getInfo(b);
         const ArrayInfo& cinfo = getInfo(cond);
@@ -92,7 +92,7 @@ void replace_scalar(af_array a, const af_array cond, const ScalarType& b) {
 
 template<typename ScalarType>
 af_err replaceScalar(af_array a, const af_array cond, const ScalarType b) {
-    try {
+    /*try*/ {
         const ArrayInfo& ainfo = getInfo(a);
         const ArrayInfo& cinfo = getInfo(cond);
 

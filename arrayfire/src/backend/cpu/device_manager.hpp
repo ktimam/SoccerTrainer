@@ -12,7 +12,10 @@
 #include <platform.hpp>
 #include <queue.hpp>
 #include <memory>
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 #include <string>
 
 using arrayfire::common::MemoryManagerBase;
@@ -140,7 +143,7 @@ class DeviceManager {
     std::unique_ptr<arrayfire::common::ForgeManager> fgMngr;
     const CPUInfo cinfo;
     std::unique_ptr<MemoryManagerBase> memManager;
-    std::mutex mutex;
+    //std::mutex mutex;
 };
 
 }  // namespace cpu

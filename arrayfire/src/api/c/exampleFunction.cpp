@@ -51,7 +51,7 @@ af_array example(const af_array& a, const af_array& b,
 
 af_err af_example_function(af_array* out, const af_array a,
                            const af_someenum_t param) {
-    try {
+    /*try*/ {
         af_array output = 0;
         const ArrayInfo& info =
             getInfo(a);  // ArrayInfo is the base class which
@@ -83,7 +83,7 @@ af_err af_example_function(af_array* out, const af_array a,
             default:
                 TYPE_ERROR(1,
                            type);  // Another helpful macro from err_common.hpp
-                                   // that helps throw type based error messages
+                                   // that helps //throw type based error messages
         }
 
         std::swap(*out, output);  // if the function has returned successfully,

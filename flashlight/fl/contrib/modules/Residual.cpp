@@ -19,14 +19,16 @@ std::unordered_set<int> Residual::getProjectionsIndices() const {
 void Residual::addScale(int beforeLayer, float scale) {
   int nLayers = modules_.size() - projectionsIndices_.size();
   if (beforeLayer < 1 || beforeLayer > nLayers + 1) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Residual: invalid layer index " + std::to_string(beforeLayer) +
         " before which apply the scaling");
+        return;
   }
   if (scales_.find(beforeLayer - 1) != scales_.end()) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Residual: scaling before layer " + std::to_string(beforeLayer) +
         " was already added; adding only once is allowed");
+        return;
   }
   scales_[beforeLayer - 1] = scale;
 }
@@ -36,16 +38,18 @@ void Residual::checkShortcut(int fromLayer, int toLayer) {
 
   if (fromLayer < 0 || fromLayer >= nLayers || toLayer <= 0 ||
       toLayer > nLayers + 2 || toLayer - fromLayer <= 1) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Residual: invalid skip connection; check fromLayer=" +
         std::to_string(fromLayer) + " and toLayer=" + std::to_string(toLayer) +
         " parameters. They are out of range of added layers");
+        return;
   }
   if (shortcut_.find(toLayer - 1) != shortcut_.end() &&
       shortcut_[toLayer - 1].find(fromLayer) != shortcut_[toLayer - 1].end()) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Residual: skip connection for fromLayer " + std::to_string(fromLayer) +
         " to toLayer " + std::to_string(toLayer) + " is already added");
+        return;
   }
 }
 
@@ -72,7 +76,8 @@ Variable Residual::applyScale(const Variable& input, const int layerIndex) {
 
 std::vector<Variable> Residual::forward(const std::vector<Variable>& inputs) {
   if (inputs.size() != 1) {
-    throw std::invalid_argument("Residual module expects only one input");
+    /*throw*/ std::invalid_argument("Residual module expects only one input");
+        return std::vector<Variable>();
   }
   return {forward(inputs[0])};
 }

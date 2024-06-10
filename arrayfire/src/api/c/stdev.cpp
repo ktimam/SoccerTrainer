@@ -99,7 +99,7 @@ af_err af_stdev_all(double* realVal, double* imagVal, const af_array in) {
 af_err af_stdev_all_v2(double* realVal, double* imagVal, const af_array in,
                        const af_var_bias bias) {
     UNUSED(imagVal);  // TODO implement for complex values
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af_dtype type         = info.getType();
         switch (type) {
@@ -137,7 +137,7 @@ af_err af_stdev(af_array* out, const af_array in, const dim_t dim) {
 
 af_err af_stdev_v2(af_array* out, const af_array in, const af_var_bias bias,
                    const dim_t dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, (dim >= 0 && dim <= 3));
 
         af_array output       = 0;

@@ -15,7 +15,7 @@
 #include "flashlight/fl/dataset/FileBlobDataset.h"
 #include "flashlight/fl/dataset/MemoryBlobDataset.h"
 #include "flashlight/fl/dataset/MergeDataset.h"
-#include "flashlight/fl/dataset/PrefetchDataset.h"
+//#include "flashlight/fl/dataset/PrefetchDataset.h"
 #include "flashlight/fl/dataset/ResampleDataset.h"
 #include "flashlight/fl/dataset/SpanDataset.h"
 #include "flashlight/fl/dataset/ShuffleDataset.h"

@@ -76,7 +76,7 @@ static af_array hist_equal(const af_array& in, const af_array& hist) {
 }
 
 af_err af_hist_equal(af_array* out, const af_array in, const af_array hist) {
-    try {
+    /*try*/ {
         const ArrayInfo& dataInfo = getInfo(in);
         const ArrayInfo& histInfo = getInfo(hist);
 

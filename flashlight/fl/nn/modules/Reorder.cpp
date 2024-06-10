@@ -19,9 +19,8 @@ Reorder::Reorder(Shape shape) : shape_(std::move(shape)) {}
 
 Variable Reorder::forward(const Variable& input) {
   if (input.ndim() != shape_.ndim()) {
-    throw std::invalid_argument(
-        "Reorder::forward - input tensor has different "
-        "number of dimensions than reorder shape.");
+    /*throw*/ std::invalid_argument("Reorder::forward - input tensor has different ""number of dimensions than reorder shape.");
+        return Variable();
   }
   return reorder(input, shape_);
 }

@@ -26,12 +26,12 @@ void EditDistanceMeter::reset() {
 
 void EditDistanceMeter::add(const Tensor& output, const Tensor& target) {
   if (target.ndim() != 1) {
-    throw std::invalid_argument(
-        "target must be 1-dimensional for EditDistanceMeter");
+    /*throw*/ std::invalid_argument("target must be 1-dimensional for EditDistanceMeter");
+        return;
   }
   if (output.ndim() != 1) {
-    throw std::invalid_argument(
-        "output must be 1-dimensional for EditDistanceMeter");
+    /*throw*/ std::invalid_argument("output must be 1-dimensional for EditDistanceMeter");
+        return;
   }
   int len1 = output.dim(0);
   int len2 = target.dim(0);

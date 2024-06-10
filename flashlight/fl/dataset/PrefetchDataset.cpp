@@ -23,11 +23,13 @@ PrefetchDataset::PrefetchDataset(
       prefetchSize_(prefetchSize),
       curIdx_(-1) {
   if (!dataset_) {
-    throw std::invalid_argument("dataset to be prefetched is null");
+    /*throw*/ std::invalid_argument("dataset to be prefetched is null");
+        return;
   }
   if (!(numThreads_ > 0 && prefetchSize_ > 0) &&
       !(numThreads_ == 0 && prefetchSize_ == 0)) {
-    throw std::invalid_argument("invalid numThreads or prefetchSize");
+    /*throw*/ std::invalid_argument("invalid numThreads or prefetchSize");
+        return;
   }
   //if (numThreads_ > 0) {
   //  auto deviceId = fl::getDevice();

@@ -73,7 +73,7 @@ af_err af_cov(af_array* out, const af_array X, const af_array Y,
 
 af_err af_cov_v2(af_array* out, const af_array X, const af_array Y,
                  const af_var_bias bias) {
-    try {
+    /*try*/ {
         const ArrayInfo& xInfo = getInfo(X);
         const ArrayInfo& yInfo = getInfo(Y);
         dim4 xDims             = xInfo.dims();

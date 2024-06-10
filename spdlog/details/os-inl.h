@@ -19,7 +19,7 @@
 #include <string>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <thread>
+//#include <thread>
 
 #ifdef _WIN32
     #include <spdlog/details/windows_include.h>
@@ -244,7 +244,7 @@ SPDLOG_INLINE size_t filesize(FILE *f) {
     #pragma warning(pop)
 #endif
 
-// Return utc offset in minutes or throw spdlog_ex on failure
+// Return utc offset in minutes or //throw spdlog_ex on failure
 SPDLOG_INLINE int utc_minutes_offset(const std::tm &tm) {
 #ifdef _WIN32
     #if _WIN32_WINNT < _WIN32_WINNT_WS08
@@ -353,7 +353,7 @@ SPDLOG_INLINE size_t _thread_id() SPDLOG_NOEXCEPT {
     #endif
     return static_cast<size_t>(tid);
 #else  // Default to standard C++11 (other Unix)
-    return static_cast<size_t>(std::hash<std::thread::id>()(std::this_thread::get_id()));
+    return 111;// static_cast<size_t>(std::hash<std::thread::id>()(std::this_thread::get_id()));
 #endif
 }
 
@@ -373,7 +373,7 @@ SPDLOG_INLINE void sleep_for_millis(unsigned int milliseconds) SPDLOG_NOEXCEPT {
 #if defined(_WIN32)
     ::Sleep(milliseconds);
 #else
-    std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+    //std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 #endif
 }
 

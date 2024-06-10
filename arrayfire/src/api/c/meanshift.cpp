@@ -34,7 +34,7 @@ static inline af_array mean_shift(const af_array &in, const float &s_sigma,
 af_err af_mean_shift(af_array *out, const af_array in,
                      const float spatial_sigma, const float chromatic_sigma,
                      const unsigned num_iterations, const bool is_color) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, (spatial_sigma >= 0));
         ARG_ASSERT(3, (chromatic_sigma >= 0));
         ARG_ASSERT(4, (num_iterations > 0));

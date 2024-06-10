@@ -126,7 +126,7 @@ static int save(const char *key, const af_array arr, const char *filename,
 
 af_err af_save_array(int *index, const char *key, const af_array arr,
                      const char *filename, const bool append) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, key != NULL);
         ARG_ASSERT(2, filename != NULL);
 
@@ -328,7 +328,7 @@ int checkVersionAndFindIndex(const char *filename, const char *k) {
 
 af_err af_read_array_index(af_array *out, const char *filename,
                            const unsigned index) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
 
         ARG_ASSERT(1, filename != NULL);
@@ -341,7 +341,7 @@ af_err af_read_array_index(af_array *out, const char *filename,
 }
 
 af_err af_read_array_key(af_array *out, const char *filename, const char *key) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         ARG_ASSERT(1, filename != NULL);
         ARG_ASSERT(2, key != NULL);
@@ -360,7 +360,7 @@ af_err af_read_array_key(af_array *out, const char *filename, const char *key) {
 
 af_err af_read_array_key_check(int *index, const char *filename,
                                const char *key) {
-    try {
+    /*try*/ {
         ARG_ASSERT(1, filename != NULL);
         ARG_ASSERT(2, key != NULL);
 

@@ -56,8 +56,8 @@ af_mat_prop flToAfMatrixProperty(MatrixProperty property) {
     case MatrixProperty::Transpose:
       return AF_MAT_TRANS;
     default:
-      throw std::invalid_argument(
-          "flToAfMatrixProperty: invalid property specified");
+      /*throw*/ std::invalid_argument("flToAfMatrixProperty: invalid property specified");
+        return AF_MAT_NONE;
   }
 }
 
@@ -72,9 +72,8 @@ af_storage flToAfStorageType(StorageType storageType) {
     case StorageType::COO:
       return AF_STORAGE_COO;
     default:
-      throw std::invalid_argument(
-          "flToAfStorageType: Flashlight storage type "
-          "doesn't have an ArrayFire analog");
+      /*throw*/ std::invalid_argument("flToAfStorageType: Flashlight storage type ""doesn't have an ArrayFire analog");
+        return AF_STORAGE_DENSE;
   }
 }
 
@@ -85,15 +84,15 @@ af_topk_function flToAfTopKSortMode(SortMode sortMode) {
     case SortMode::Ascending:
       return AF_TOPK_MIN;
     default:
-      throw std::invalid_argument(
-          "flToAfTopKSortMode: sort mode with no ArrayFire analog specified");
+      /*throw*/ std::invalid_argument("flToAfTopKSortMode: sort mode with no ArrayFire analog specified");
+        return AF_TOPK_MIN;
   }
 }
 
 af::dim4 flToAfDims(const Shape& shape) {
   if (shape.ndim() > 4) {
-    throw std::invalid_argument(
-        "flToAfDims: ArrayFire shapes can't be more than 4 dimensions");
+    /*throw*/ std::invalid_argument("flToAfDims: ArrayFire shapes can't be more than 4 dimensions");
+        return af::dim4();
   }
 
   af::dim4 out(1, 1, 1, 1);
@@ -105,7 +104,8 @@ af::dim4 flToAfDims(const Shape& shape) {
 
 void afToFlDims(const af::dim4& d, const unsigned numDims, Shape& s) {
   if (numDims > AF_MAX_DIMS) {
-    throw std::invalid_argument("afToFlDims - numDims > AF_MAX_DIMS");
+    /*throw*/ std::invalid_argument("afToFlDims - numDims > AF_MAX_DIMS");
+        return;
   }
 
   auto& storage = s.get();
@@ -141,11 +141,11 @@ af::seq flRangeToAfSeq(const fl::range& range) {
   const auto& optEnd = range.end();
   const int end = optEnd.has_value() ? optEnd.value() - 1 : af::end;
   // There could be have other empty sequence representations, e.g., (0, -1)
-  // for axis with 1 element. In those cases, AF will throw internally --
-  // we can't throw here because these cases  axis-size dependent.
+  // for axis with 1 element. In those cases, AF will //throw internally --
+  // we can't //throw here because these cases  axis-size dependent.
   if (optEnd.has_value() && optEnd.value() == start) {
-    throw std::runtime_error(
-        "flRangeToAfSeq: AF seq can't represent empty sequence");
+    /*throw*/ std::runtime_error("flRangeToAfSeq: AF seq can't represent empty sequence");
+        return af::seq();
   }
   return af::seq(start, end, range.stride());
 }
@@ -161,8 +161,8 @@ af::index flToAfIndex(const fl::Index& idx) {
     case IndexType::Literal:
       return af::index(idx.get<Dim>());
     default:
-      throw std::invalid_argument(
-          "flToAfIndex: fl::Index has unknown or invalid type.");
+      /*throw*/ std::invalid_argument("flToAfIndex: fl::Index has unknown or invalid type.");
+        return af::index();
   }
 }
 
@@ -231,9 +231,8 @@ af_source flToAfLocation(Location location) {
     case Location::Device:
       return afDevice;
     default:
-      throw std::invalid_argument(
-          "flToAfLocation: no valid ArrayFire location exists "
-          " for given Flashlight location.");
+      /*throw*/ std::invalid_argument("flToAfLocation: no valid ArrayFire location exists "" for given Flashlight location.");
+        return afHost;
   }
 }
 
@@ -275,8 +274,8 @@ af::array fromFlData(
     case u8:
       return af::array(dims, reinterpret_cast<const unsigned char*>(ptr), loc);
     default:
-      throw std::invalid_argument(
-          "fromFlData: can't construct ArrayFire array from given type.");
+      /*throw*/ std::invalid_argument("fromFlData: can't construct ArrayFire array from given type.");
+        return af::array();
   }
 }
 
@@ -289,9 +288,8 @@ af_border_type flToAfPadType(PadType type) {
     case PadType::Symmetric:
       return AF_PAD_SYM;
     default:
-      throw std::invalid_argument(
-          "flToAfPadType: Flashlight padding "
-          "type not supported by ArrayFire");
+      /*throw*/ std::invalid_argument("flToAfPadType: Flashlight padding ""type not supported by ArrayFire");
+        return AF_PAD_ZERO;
   }
 }
 

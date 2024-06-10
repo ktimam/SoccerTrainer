@@ -69,7 +69,7 @@ static inline T dotAll(af_array out) {
 
 af_err af_sparse_matmul(af_array *out, const af_array lhs, const af_array rhs,
                         const af_mat_prop optLhs, const af_mat_prop optRhs) {
-    try {
+    /*try*/ {
         const SparseArrayBase lhsBase = getSparseArrayBase(lhs);
         const ArrayInfo &rhsInfo      = getInfo(rhs);
 
@@ -133,7 +133,7 @@ af_err af_sparse_matmul(af_array *out, const af_array lhs, const af_array rhs,
 af_err af_gemm(af_array *out, const af_mat_prop optLhs,
                const af_mat_prop optRhs, const void *alpha, const af_array lhs,
                const af_array rhs, const void *beta) {
-    try {
+    /*try*/ {
         const ArrayInfo &lhsInfo = getInfo(lhs, false);
         const ArrayInfo &rhsInfo = getInfo(rhs, true);
 
@@ -226,7 +226,7 @@ af_err af_gemm(af_array *out, const af_mat_prop optLhs,
 
 af_err af_matmul(af_array *out, const af_array lhs, const af_array rhs,
                  const af_mat_prop optLhs, const af_mat_prop optRhs) {
-    try {
+    /*try*/ {
         const ArrayInfo &lhsInfo = getInfo(lhs, false);
         const ArrayInfo &rhsInfo = getInfo(rhs, true);
 
@@ -299,7 +299,7 @@ af_err af_matmul(af_array *out, const af_array lhs, const af_array rhs,
 
 af_err af_dot(af_array *out, const af_array lhs, const af_array rhs,
               const af_mat_prop optLhs, const af_mat_prop optRhs) {
-    try {
+    /*try*/ {
         const ArrayInfo &lhsInfo = getInfo(lhs);
         const ArrayInfo &rhsInfo = getInfo(rhs);
 
@@ -346,7 +346,7 @@ af_err af_dot_all(double *rval, double *ival, const af_array lhs,
     using namespace detail;  // NOLINT needed for imag and real functions
                              // name resolution
 
-    try {
+    /*try*/ {
         *rval = 0;
         if (ival) { *ival = 0; }
 

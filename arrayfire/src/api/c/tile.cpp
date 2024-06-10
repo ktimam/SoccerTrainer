@@ -38,7 +38,7 @@ static inline af_array tile(const af_array in, const af::dim4 &tileDims) {
 }
 
 af_err af_tile(af_array *out, const af_array in, const af::dim4 &tileDims) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 

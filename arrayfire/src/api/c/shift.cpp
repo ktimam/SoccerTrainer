@@ -28,7 +28,7 @@ static inline af_array shift(const af_array in, const int sdims[4]) {
 }
 
 af_err af_shift(af_array *out, const af_array in, const int sdims[4]) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 

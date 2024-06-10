@@ -36,7 +36,7 @@ ArrayPair sobelDerivatives(const af_array &in, const unsigned &ker_size) {
 
 af_err af_sobel_operator(af_array *dx, af_array *dy, const af_array img,
                          const unsigned ker_size) {
-    try {
+    /*try*/ {
         // FIXME: ADD SUPPORT FOR OTHER KERNEL SIZES
         // ARG_ASSERT(4, (ker_size==3 || ker_size==5 || ker_size==7));
         ARG_ASSERT(4, (ker_size == 3));

@@ -56,7 +56,7 @@ namespace af
 
         \returns array read from the index location
 
-        \note This function will throw an exception if the index is out of bounds
+        \note This function will //throw an exception if the index is out of bounds
 
         \ingroup stream_func_read
     */
@@ -70,7 +70,7 @@ namespace af
 
         \returns array read by key
 
-        \note This function will throw an exception if the key is not found.
+        \note This function will //throw an exception if the key is not found.
 
         \ingroup stream_func_read
     */
@@ -201,7 +201,7 @@ extern "C" {
         \param[in] filename is the path to the location on disk
         \param[in] index is the 0-based sequential location of the array to be read
 
-        \note This function will throw an exception if the key is not found.
+        \note This function will //throw an exception if the key is not found.
 
         \ingroup stream_func_read
     */
@@ -214,7 +214,7 @@ extern "C" {
         \param[in] filename is the path to the location on disk
         \param[in] key is the tag/name of the array to be read. The key needs to have an exact match.
 
-        \note This function will throw an exception if the key is not found.
+        \note This function will //throw an exception if the key is not found.
 
         \ingroup stream_func_read
     */

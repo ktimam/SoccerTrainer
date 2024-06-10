@@ -192,7 +192,7 @@ af_err af_var(af_array* out, const af_array in, const bool isbiased,
 
 af_err af_var_v2(af_array* out, const af_array in, const af_var_bias bias,
                  const dim_t dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(3, (dim >= 0 && dim <= 3));
 
         af_array output       = 0;
@@ -250,7 +250,7 @@ af_err af_var_v2(af_array* out, const af_array in, const af_var_bias bias,
 
 af_err af_var_weighted(af_array* out, const af_array in, const af_array weights,
                        const dim_t dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(3, (dim >= 0 && dim <= 3));
 
         af_array output        = 0;
@@ -335,7 +335,7 @@ af_err af_var_all(double* realVal, double* imagVal, const af_array in,
 
 af_err af_var_all_v2(double* realVal, double* imagVal, const af_array in,
                      const af_var_bias bias) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af_dtype type         = info.getType();
         switch (type) {
@@ -369,7 +369,7 @@ af_err af_var_all_v2(double* realVal, double* imagVal, const af_array in,
 
 af_err af_var_all_weighted(double* realVal, double* imagVal, const af_array in,
                            const af_array weights) {
-    try {
+    /*try*/ {
         const ArrayInfo& iInfo = getInfo(in);
         const ArrayInfo& wInfo = getInfo(weights);
         af_dtype iType         = iInfo.getType();
@@ -413,7 +413,7 @@ af_err af_var_all_weighted(double* realVal, double* imagVal, const af_array in,
 af_err af_meanvar(af_array* mean, af_array* var, const af_array in,
                   const af_array weights, const af_var_bias bias,
                   const dim_t dim) {
-    try {
+    /*try*/ {
         const ArrayInfo& iInfo = getInfo(in);
         if (weights != 0) {
             const ArrayInfo& wInfo = getInfo(weights);

@@ -160,7 +160,7 @@ AF_BATCH_KIND identifyBatchKind(const dim4 &sDims, const dim4 &fDims,
 
 af_err fft_convolve(af_array *out, const af_array signal, const af_array filter,
                     const bool expand, const int baseDim) {
-    try {
+    /*try*/ {
         const ArrayInfo &sInfo = getInfo(signal);
         const ArrayInfo &fInfo = getInfo(filter);
 
@@ -239,7 +239,7 @@ af_err af_fft_convolve1(af_array *out, const af_array signal,
 
 af_err af_fft_convolve2(af_array *out, const af_array signal,
                         const af_array filter, const af_conv_mode mode) {
-    try {
+    /*try*/ {
         if (getInfo(signal).dims().ndims() < 2 &&
             getInfo(filter).dims().ndims() < 2) {
             return fft_convolve(out, signal, filter, mode == AF_CONV_EXPAND, 1);
@@ -251,7 +251,7 @@ af_err af_fft_convolve2(af_array *out, const af_array signal,
 
 af_err af_fft_convolve3(af_array *out, const af_array signal,
                         const af_array filter, const af_conv_mode mode) {
-    try {
+    /*try*/ {
         if (getInfo(signal).dims().ndims() < 3 &&
             getInfo(filter).dims().ndims() < 3) {
             return fft_convolve(out, signal, filter, mode == AF_CONV_EXPAND, 2);

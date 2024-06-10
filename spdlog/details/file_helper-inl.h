@@ -14,7 +14,7 @@
 #include <chrono>
 #include <cstdio>
 #include <string>
-#include <thread>
+//#include <thread>
 #include <tuple>
 
 namespace spdlog {

@@ -82,7 +82,7 @@ static fg_image convert_and_copy_image(const af_array in) {
 
 af_err af_draw_image(const af_window window, const af_array in,
                      const af_cell* const props) {
-    try {
+    /*try*/ {
         if (window == 0) { AF_ERROR("Not a valid window", AF_ERR_INTERNAL); }
 
         const ArrayInfo& info = getInfo(in);

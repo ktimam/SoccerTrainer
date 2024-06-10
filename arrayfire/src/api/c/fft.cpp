@@ -44,7 +44,7 @@ af_array fft(const af_array in, const float norm_factor, const dim_t npad,
 af_err fft(af_array *out, const af_array in, const float norm_factor,
            const dim_t npad, const dim_t *const pad, const int rank,
            const bool direction) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
         const dim4 &dims      = info.dims();
@@ -130,7 +130,7 @@ void fft_inplace(af_array in, const float norm_factor, int rank,
 
 af_err fft_inplace(af_array in, const float norm_factor, int rank,
                    bool direction) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
         af::dim4 dims         = info.dims();
@@ -188,7 +188,7 @@ af_array fft_r2c(const af_array in, const float norm_factor, const dim_t npad,
 
 af_err fft_r2c(af_array *out, const af_array in, const float norm_factor,
                const dim_t npad, const dim_t *const pad, const int rank) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
         af::dim4 dims         = info.dims();
@@ -246,7 +246,7 @@ static af_array fft_c2r(const af_array in, const float norm_factor,
 
 af_err fft_c2r(af_array *out, const af_array in, const float norm_factor,
                const bool is_odd, const int rank) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
         af::dim4 idims        = info.dims();
@@ -290,7 +290,7 @@ af_err af_fft3_c2r(af_array *out, const af_array in, const float norm_factor,
 }
 
 af_err af_set_fft_plan_cache_size(size_t cache_size) {
-    try {
+    /*try*/ {
         detail::setFFTPlanCacheSize(cache_size);
     }
     CATCHALL;

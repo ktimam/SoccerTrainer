@@ -92,13 +92,16 @@ void advancedIndex(
   auto outType = out.type();
 
   if ((inpType != af::dtype::f32) && (inpType != af::dtype::f16)) {
-    throw std::invalid_argument("Input type must be f16/f32");
+    /*throw*/ std::invalid_argument("Input type must be f16/f32");
+        return;
   }
   if ((outType != af::dtype::f32) && (outType != af::dtype::f16)) {
-    throw std::invalid_argument("Output type must be f16/f32");
+    /*throw*/ std::invalid_argument("Output type must be f16/f32");
+        return;
   }
   if (idxArr.size() != 4) {
-    throw std::invalid_argument("Index array vector must be length 4");
+    /*throw*/ std::invalid_argument("Index array vector must be length 4");
+        return;
   }
 
   af::dim4 idxPtr;
@@ -113,17 +116,19 @@ void advancedIndex(
       continue;
     }
     if (validIndexTypes.find(idxArr[i].type()) == validIndexTypes.end()) {
-      throw std::invalid_argument(
+      /*throw*/ std::invalid_argument(
           "Index type must be one of s32/s64/u32/u64, observed type is " +
           std::to_string(idxArr[i].type()));
+        return;
     }
     idxTypes.push_back(idxArr[i].type());
     idxPtr[i] = (dim_t)(idxArr[i].device<void>());
   }
   for (int i = 0; i + 1 < idxTypes.size(); i++) {
     if (idxTypes[i] != idxTypes[i + 1]) {
-      throw std::invalid_argument(
+      /*throw*/ std::invalid_argument(
           "Index type must be the same across all dimensions");
+        return;
     }
   }
 
@@ -181,11 +186,13 @@ void advancedIndex(
         static_cast<const dim_t*>(arrIdxPtrDev),
         static_cast<float*>(outRawPtr));
   } else {
-    throw std::invalid_argument("Index type must be one of s32/s64/u32/u64");
+    /*throw*/ std::invalid_argument("Index type must be one of s32/s64/u32/u64");
+        return;
   }
   if (cudaPeekAtLastError() != cudaSuccess) {
-    throw std::runtime_error(
+    /*throw*/ std::runtime_error(
         "ArrayFireTensor advancedIndex kernel CUDA failure");
+        return;
   }
 
   inpCast.unlock();

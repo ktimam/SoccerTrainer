@@ -35,7 +35,7 @@ af_err af_create_strided_array(af_array *arr, const void *data,
                                const dim_t *const dims_,
                                const dim_t *const strides_, const af_dtype ty,
                                const af_source location) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, offset >= 0);
         ARG_ASSERT(3, ndims >= 1 && ndims <= 4);
         ARG_ASSERT(4, dims_ != NULL);
@@ -136,7 +136,7 @@ af_err af_create_strided_array(af_array *arr, const void *data,
 
 af_err af_get_strides(dim_t *s0, dim_t *s1, dim_t *s2, dim_t *s3,
                       const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         *s0                   = info.strides()[0];
         *s1                   = info.strides()[1];
@@ -148,7 +148,7 @@ af_err af_get_strides(dim_t *s0, dim_t *s1, dim_t *s2, dim_t *s3,
 }
 
 af_err af_get_offset(dim_t *offset, const af_array arr) {
-    try {
+    /*try*/ {
         dim_t res = getInfo(arr).getOffset();
         std::swap(*offset, res);
     }
@@ -157,7 +157,7 @@ af_err af_get_offset(dim_t *offset, const af_array arr) {
 }
 
 af_err af_get_raw_ptr(void **ptr, const af_array arr) {
-    try {
+    /*try*/ {
         void *res = NULL;
 
         af_dtype ty = getInfo(arr).getType();
@@ -186,7 +186,7 @@ af_err af_get_raw_ptr(void **ptr, const af_array arr) {
 }
 
 af_err af_is_linear(bool *result, const af_array arr) {
-    try {
+    /*try*/ {
         *result = getInfo(arr).isLinear();
     }
     CATCHALL
@@ -194,7 +194,7 @@ af_err af_is_linear(bool *result, const af_array arr) {
 }
 
 af_err af_is_owner(bool *result, const af_array arr) {
-    try {
+    /*try*/ {
         bool res = false;
 
         af_dtype ty = getInfo(arr).getType();
@@ -223,7 +223,7 @@ af_err af_is_owner(bool *result, const af_array arr) {
 }
 
 af_err af_get_allocated_bytes(size_t *bytes, const af_array arr) {
-    try {
+    /*try*/ {
         af_dtype ty = getInfo(arr).getType();
 
         size_t res = 0;

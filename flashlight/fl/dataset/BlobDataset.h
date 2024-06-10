@@ -9,7 +9,10 @@
 
 #include "flashlight/fl/dataset/Dataset.h"
 
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 #include <unordered_map>
 #include <vector>
 
@@ -87,7 +90,10 @@ class FL_API BlobDataset : public Dataset {
   std::vector<int64_t> offsets_;
   int64_t indexOffset_;
   std::unordered_map<int, DataTransformFunction> hostTransforms_;
+#ifndef MULTITHREADING_DISABLED
   mutable std::mutex mutex_;
+#endif // MULTITHREADING_DISABLED
+
 
   std::vector<uint8_t> readRawArray(const BlobDatasetEntry& e) const;
   Tensor readArray(const BlobDatasetEntry& e, int i) const;

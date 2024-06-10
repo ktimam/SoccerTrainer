@@ -30,7 +30,7 @@ class InteropManager {
     InteropManager() {}
 
     ~InteropManager() {
-        try {
+        /*try*/ {
             destroyResources();
         } catch (const AfError &ex) {
             std::string perr = getEnvVar("AF_PRINT_ERRORS");

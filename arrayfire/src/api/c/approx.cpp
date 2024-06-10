@@ -117,7 +117,7 @@ af_err af_approx1_uniform(af_array *yo, const af_array yi, const af_array xo,
                           const int xdim, const float xi_beg,
                           const float xi_step, const af_interp_type method,
                           const float offGrid) {
-    try {
+    /*try*/ {
         af_approx1_common(yo, yi, xo, xdim, xi_beg, xi_step, method, offGrid,
                           true);
     }
@@ -130,7 +130,7 @@ af_err af_approx1_uniform_v2(af_array *yo, const af_array yi, const af_array xo,
                              const int xdim, const float xi_beg,
                              const float xi_step, const af_interp_type method,
                              const float offGrid) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, yo != 0);  // need to dereference yo in next call
         af_approx1_common(yo, yi, xo, xdim, xi_beg, xi_step, method, offGrid,
                           *yo == 0);
@@ -142,7 +142,7 @@ af_err af_approx1_uniform_v2(af_array *yo, const af_array yi, const af_array xo,
 
 af_err af_approx1(af_array *yo, const af_array yi, const af_array xo,
                   const af_interp_type method, const float offGrid) {
-    try {
+    /*try*/ {
         af_approx1_common(yo, yi, xo, 0, 0.0, 1.0, method, offGrid, true);
     }
     CATCHALL;
@@ -152,7 +152,7 @@ af_err af_approx1(af_array *yo, const af_array yi, const af_array xo,
 
 af_err af_approx1_v2(af_array *yo, const af_array yi, const af_array xo,
                      const af_interp_type method, const float offGrid) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, yo != 0);  // need to dereference yo in next call
         af_approx1_common(yo, yi, xo, 0, 0.0, 1.0, method, offGrid, *yo == 0);
     }
@@ -245,7 +245,7 @@ af_err af_approx2_uniform(af_array *zo, const af_array zi, const af_array xo,
                           const int ydim, const float yi_beg,
                           const float yi_step, const af_interp_type method,
                           const float offGrid) {
-    try {
+    /*try*/ {
         af_approx2_common(zo, zi, xo, xdim, xi_beg, xi_step, yo, ydim, yi_beg,
                           yi_step, method, offGrid, true);
     }
@@ -260,7 +260,7 @@ af_err af_approx2_uniform_v2(af_array *zo, const af_array zi, const af_array xo,
                              const int ydim, const float yi_beg,
                              const float yi_step, const af_interp_type method,
                              const float offGrid) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, zo != 0);  // need to dereference zo in next call
         af_approx2_common(zo, zi, xo, xdim, xi_beg, xi_step, yo, ydim, yi_beg,
                           yi_step, method, offGrid, *zo == 0);
@@ -273,7 +273,7 @@ af_err af_approx2_uniform_v2(af_array *zo, const af_array zi, const af_array xo,
 af_err af_approx2(af_array *zo, const af_array zi, const af_array xo,
                   const af_array yo, const af_interp_type method,
                   const float offGrid) {
-    try {
+    /*try*/ {
         af_approx2_common(zo, zi, xo, 0, 0.0, 1.0, yo, 1, 0.0, 1.0, method,
                           offGrid, true);
     }
@@ -285,7 +285,7 @@ af_err af_approx2(af_array *zo, const af_array zi, const af_array xo,
 af_err af_approx2_v2(af_array *zo, const af_array zi, const af_array xo,
                      const af_array yo, const af_interp_type method,
                      const float offGrid) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, zo != 0);  // need to dereference zo in next call
         af_approx2_common(zo, zi, xo, 0, 0.0, 1.0, yo, 1, 0.0, 1.0, method,
                           offGrid, *zo == 0);

@@ -82,7 +82,7 @@ static af_array indexBySeqs(const af_array& src,
 
 af_err af_index(af_array* result, const af_array in, const unsigned ndims,
                 const af_seq* indices) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, (ndims > 0 && ndims <= AF_MAX_DIMS));
 
         const ArrayInfo& inInfo = getInfo(in);
@@ -157,7 +157,7 @@ static af_array lookup(const af_array& in, const af_array& idx,
 
 af_err af_lookup(af_array* out, const af_array in, const af_array indices,
                  const unsigned dim) {
-    try {
+    /*try*/ {
         const ArrayInfo& idxInfo = getInfo(indices);
 
         if (idxInfo.ndims() == 0) {
@@ -205,7 +205,7 @@ static inline af_array genIndex(const af_array& in, const af_index_t idxrs[]) {
 
 af_err af_index_gen(af_array* out, const af_array in, const dim_t ndims,
                     const af_index_t* indexs) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, (ndims > 0 && ndims <= AF_MAX_DIMS));
         ARG_ASSERT(3, (indexs != NULL));
 
@@ -305,7 +305,7 @@ af_seq af_make_seq(double begin, double end, double step) {
 }
 
 af_err af_create_indexers(af_index_t** indexers) {
-    try {
+    /*try*/ {
         auto* out = new af_index_t[AF_MAX_DIMS];
         for (int i = 0; i < AF_MAX_DIMS; ++i) {
             out[i].idx.seq = af_span;
@@ -320,7 +320,7 @@ af_err af_create_indexers(af_index_t** indexers) {
 
 af_err af_set_array_indexer(af_index_t* indexer, const af_array idx,
                             const dim_t dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, (indexer != NULL));
         ARG_ASSERT(1, (idx != NULL));
         ARG_ASSERT(2, (dim >= 0 && dim <= 3));
@@ -332,7 +332,7 @@ af_err af_set_array_indexer(af_index_t* indexer, const af_array idx,
 
 af_err af_set_seq_indexer(af_index_t* indexer, const af_seq* idx,
                           const dim_t dim, const bool is_batch) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, (indexer != NULL));
         ARG_ASSERT(1, (idx != NULL));
         ARG_ASSERT(2, (dim >= 0 && dim <= 3));
@@ -347,7 +347,7 @@ af_err af_set_seq_indexer(af_index_t* indexer, const af_seq* idx,
 af_err af_set_seq_param_indexer(af_index_t* indexer, const double begin,
                                 const double end, const double step,
                                 const dim_t dim, const bool is_batch) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, (indexer != NULL));
         ARG_ASSERT(4, (dim >= 0 && dim <= 3));
         af_seq s             = af_make_seq(begin, end, step);
@@ -360,7 +360,7 @@ af_err af_set_seq_param_indexer(af_index_t* indexer, const double begin,
 }
 
 af_err af_release_indexers(af_index_t* indexers) {
-    try {
+    /*try*/ {
         delete[] indexers;
     }
     CATCHALL;

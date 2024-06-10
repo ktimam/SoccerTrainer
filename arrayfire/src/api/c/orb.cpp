@@ -54,7 +54,7 @@ af_err af_orb(af_features* feat, af_array* desc, const af_array in,
               const float fast_thr, const unsigned max_feat,
               const float scl_fctr, const unsigned levels,
               const bool blur_img) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af::dim4 dims         = info.dims();
 

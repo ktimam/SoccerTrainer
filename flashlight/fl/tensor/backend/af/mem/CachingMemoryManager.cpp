@@ -12,7 +12,10 @@
 #include <iostream>
 #include <limits>
 #include <memory>
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 #include <numeric>
 #include <stdexcept>
 #include <string>
@@ -83,14 +86,15 @@ std::string formatMemory(size_t bytes) {
 size_t getEnvAsBytesFromFloatMb(const char* name, size_t defaultVal) {
   const char* env = std::getenv(name);
   if (env) {
-    try {
+    /*try*/ {
       const double mb = std::stod(env);
       return std::round(mb * kMB);
-    } catch (std::exception& ex) {
+    } /* catch (std::exception& ex) {
       std::cerr << "getEnvAsBytesFromFloatMb: Invalid environment "
                 << "variable value: name=" << name << " value=" << env;
-      throw ex;
-    }
+      //throw ex;
+        return 0;
+    } */
   }
   return defaultVal;
 }
@@ -151,7 +155,10 @@ void* CachingMemoryManager::alloc(
     dim_t* dims,
     const unsigned elementSize) {
   auto& memoryInfo = getDeviceMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::recursive_mutex> lock(memoryInfo.mutexAll_);
+#endif // MULTITHREADING_DISABLED
+
   size_t size = elementSize;
   for (unsigned i = 0; i < ndims; ++i) {
     size *= dims[i];
@@ -177,7 +184,7 @@ void* CachingMemoryManager::alloc(
   } else {
     void* ptr = nullptr;
     size_t allocSize = getAllocationSize(size);
-    mallocWithRetry(allocSize, &ptr); // could throw
+    mallocWithRetry(allocSize, &ptr); // could //throw
     block = new Block(allocSize, ptr);
     memoryInfo.stats_.allocatedBytes_ += allocSize;
   }
@@ -218,7 +225,10 @@ size_t CachingMemoryManager::allocated(void* ptr) {
     return 0;
   }
   auto& memoryInfo = getDeviceMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::recursive_mutex> lock(memoryInfo.mutexAll_);
+#endif // MULTITHREADING_DISABLED
+
   auto it = memoryInfo.allocatedBlocks_.find(ptr);
   if (it == memoryInfo.allocatedBlocks_.end()) {
     return 0;
@@ -231,7 +241,10 @@ void CachingMemoryManager::unlock(void* ptr, bool userUnlock) {
     return;
   }
   auto& memoryInfo = getDeviceMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::recursive_mutex> lock(memoryInfo.mutexAll_);
+#endif // MULTITHREADING_DISABLED
+
   auto it = memoryInfo.allocatedBlocks_.find(ptr);
   if (it == memoryInfo.allocatedBlocks_.end()) {
     // Probably came from user, just free it
@@ -257,10 +270,14 @@ void CachingMemoryManager::unlock(void* ptr, bool userUnlock) {
 
 void CachingMemoryManager::freeBlock(CachingMemoryManager::Block* block) {
   if (block->inUse()) {
-    throw std::runtime_error("trying to free a block which is in use");
+    /*throw*/ std::runtime_error("trying to free a block which is in use");
+        return;
   }
   auto& memoryInfo = getDeviceMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::recursive_mutex> lock(memoryInfo.mutexAll_);
+#endif // MULTITHREADING_DISABLED
+
 
   const bool isSmallAlloc = (block->size_ <= kSmallSize);
   CachingMemoryManager::BlockSet& pool =
@@ -302,11 +319,11 @@ void CachingMemoryManager::mallocWithRetry(size_t size, void** ptr) {
   // Try nativeMalloc. If nativeMalloc fails, frees all non-split cached blocks
   // and retries.
   auto& memInfo = getDeviceMemoryInfo();
-  try {
+  /*try*/ {
     ++memInfo.stats_.totalNativeMallocs_;
     *ptr = this->deviceInterface->nativeAlloc(size);
-  } catch (std::exception&) {
-    try {
+  } /* catch (std::exception&) {
+    /*try {
       signalMemoryCleanup();
       ++memInfo.stats_.totalNativeMallocs_;
       *ptr = this->deviceInterface->nativeAlloc(size);
@@ -322,9 +339,10 @@ void CachingMemoryManager::mallocWithRetry(size_t size, void** ptr) {
                 << ") with error '" << ex.what() << "'" << std::endl;
       // note: converting here an af exception to std exception prevents to
       // catch the af error code at the user level. Rethrowing.
-      throw;
+      /*throw;
+        return;
     }
-  }
+  } */
 }
 
 void CachingMemoryManager::freeBlocks(
@@ -353,7 +371,10 @@ void CachingMemoryManager::freeBlocks(
 void CachingMemoryManager::signalMemoryCleanup() {
   // Free all non-split cached blocks on device
   auto& memoryInfo = getDeviceMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::recursive_mutex> lock(memoryInfo.mutexAll_);
+#endif // MULTITHREADING_DISABLED
+
 
   freeBlocks(
       memoryInfo.largeBlocks_,
@@ -380,7 +401,10 @@ void CachingMemoryManager::printInfo(
     std::ostream* _ostream) {
   std::ostream& ostream = *_ostream;
   auto& memInfo = getDeviceMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::recursive_mutex> lock(memInfo.mutexAll_);
+#endif // MULTITHREADING_DISABLED
+
 
   ostream << msg << "\nType: CachingMemoryManager" << std::endl
           << "\nDevice: " << memInfo.deviceId_ << ", Capacity: "
@@ -399,7 +423,10 @@ void CachingMemoryManager::userLock(const void* ptr) {
     return;
   }
   auto& memoryInfo = getDeviceMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::recursive_mutex> lock(memoryInfo.mutexAll_);
+#endif // MULTITHREADING_DISABLED
+
 
   auto it = memoryInfo.allocatedBlocks_.find(const_cast<void*>(ptr));
   if (it == memoryInfo.allocatedBlocks_.end()) {
@@ -422,7 +449,10 @@ bool CachingMemoryManager::isUserLocked(const void* ptr) {
     return false;
   }
   auto& memoryInfo = getDeviceMemoryInfo();
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::recursive_mutex> lock(memoryInfo.mutexAll_);
+#endif // MULTITHREADING_DISABLED
+
   auto it = memoryInfo.allocatedBlocks_.find(const_cast<void*>(ptr));
   if (it == memoryInfo.allocatedBlocks_.end()) {
     return false;
@@ -437,7 +467,8 @@ CachingMemoryManager::getDeviceMemoryInfo(int device /* = -1*/) {
   }
   auto it = deviceMemInfos_.find(device);
   if (it == deviceMemInfos_.end() || !it->second) {
-    throw std::runtime_error("meminfo for the device doesn't exist");
+    /*throw*/ std::runtime_error("meminfo for the device doesn't exist");
+        //return;
   }
   return *(it->second);
 }

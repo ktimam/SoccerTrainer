@@ -28,14 +28,16 @@ namespace fl {
 
 const af::array& toArray(const Tensor& tensor) {
   if (tensor.backendType() != TensorBackendType::ArrayFire) {
-    throw std::invalid_argument("toArray: tensor is not ArrayFire-backed");
+    /*throw*/ std::invalid_argument("toArray: tensor is not ArrayFire-backed");
+        return af::array();
   }
   return tensor.getAdapter<ArrayFireTensor>().getHandle();
 }
 
 af::array& toArray(Tensor& tensor) {
   if (tensor.backendType() != TensorBackendType::ArrayFire) {
-    throw std::invalid_argument("toArray: tensor is not ArrayFire-backed");
+    /*throw*/ std::invalid_argument("toArray: tensor is not ArrayFire-backed");
+        return tensor.getAdapter<ArrayFireTensor>().getHandle();
   }
   return tensor.getAdapter<ArrayFireTensor>().getHandle();
 }
@@ -114,9 +116,8 @@ af::array::array_proxy ArrayFireTensor::IndexedArrayComponent::get(
     case 4:
       return a(i[0], i[1], i[2], i[3]);
     default:
-      throw std::invalid_argument(
-          "ArrayFireTensor::IndexedArrayComponent::get - "
-          "given invalid number of index components.");
+      /*throw*/ std::invalid_argument("ArrayFireTensor::IndexedArrayComponent::get - ""given invalid number of index components.");
+        return a(i[0]);
   }
 }
 
@@ -203,8 +204,8 @@ Location ArrayFireTensor::location() {
     case AF_BACKEND_CPU:
       return Location::Host;
     default:
-      throw std::logic_error(
-          "ArrayFireTensor::location got an unmatched location");
+      /*throw*/ std::logic_error( "ArrayFireTensor::location got an unmatched location");
+        return Location::Host;
   }
 }
 
@@ -228,9 +229,8 @@ bool ArrayFireTensor::isLocked() {
   bool res;
   auto err = af_is_locked_array(&res, getHandle().get());
   if (err != AF_SUCCESS) {
-    throw std::runtime_error(
-        "ArrayFireTensor::isLocked - af_is_locked_array returned error: " +
-        std::to_string(err));
+    /*throw*/ std::runtime_error("ArrayFireTensor::isLocked - af_is_locked_array returned error: " +std::to_string(err));
+        return false;
   }
   return res;
 }
@@ -256,9 +256,8 @@ Tensor ArrayFireTensor::astype(const dtype type) {
 
 Tensor ArrayFireTensor::index(const std::vector<Index>& indices) {
   if (indices.size() > AF_MAX_DIMS) {
-    throw std::invalid_argument(
-        "ArrayFire-backed tensor was indexed with > 4 elements:"
-        "ArrayFire tensors support up to 4 dimensions.");
+    /*throw*/ std::invalid_argument("ArrayFire-backed tensor was indexed with > 4 elements:""ArrayFire tensors support up to 4 dimensions.");
+        return Tensor();
   }
 
   // TODO: vet and stress test this a lot more/add proper support for
@@ -277,9 +276,8 @@ Tensor ArrayFireTensor::index(const std::vector<Index>& indices) {
   }
 
   if (indices.size() > afIndices.size()) {
-    throw std::logic_error(
-        "ArrayFireTensor::index internal error - passed indiecs is larger "
-        "than the number of af indices");
+    /*throw*/ std::logic_error("ArrayFireTensor::index internal error - passed indiecs is larger ""than the number of af indices");
+        return Tensor();
   }
 
   // Fill in corresponding index types for each af index
@@ -405,18 +403,16 @@ af::array ArrayFireTensor::adjustInPlaceOperandDims(const Tensor& operand) {
     // This case is only reachable via tensor-based indexing or indexing on a
     // tensor via Tensor::flat()
     if (numDims_ != 1) {
-      throw std::invalid_argument(
-          "ArrayFireTensor::adjustInPlaceOperandDims "
-          "index size was 1 but tensor has greater than 1 dimension.");
+      /*throw*/ std::invalid_argument("ArrayFireTensor::adjustInPlaceOperandDims ""index size was 1 but tensor has greater than 1 dimension.");
+        return af::array();
     }
   } else if (indices_ && !indices_.value().empty()) {
     // All other indexing operations
     const auto& indices = indices_.value();
     const auto& indexTypes = indexTypes_.value();
     if (indices.size() != indexTypes.size()) {
-      throw std::invalid_argument(
-          "ArrayFireTensor adjustInPlaceOperandDims - passed indices"
-          " and indexTypes are of different sizes.");
+      /*throw*/ std::invalid_argument("ArrayFireTensor adjustInPlaceOperandDims - passed indices"" and indexTypes are of different sizes.");
+        return af::array();
     }
 
     // If the dimensions being indexed are 1 and collapsing them yields the same
@@ -449,7 +445,7 @@ af::array ArrayFireTensor::adjustInPlaceOperandDims(const Tensor& operand) {
         if (i < indexTypes.size()) {
           if (indexTypes[i] == IndexType::Tensor) {
             dim_t size;
-            AF_CHECK(af_get_elements(&size, indices[i].get().idx.arr));
+            AF_CHECK_RET(af_get_elements(&size, indices[i].get().idx.arr), af::array());
             postIdxDims[i] = size;
           } else if (indexTypes[i] == IndexType::Range) {
             postIdxDims[i] = af::seq(indices[i].get().idx.seq).size;
@@ -467,9 +463,8 @@ af::array ArrayFireTensor::adjustInPlaceOperandDims(const Tensor& operand) {
     if (condensedDims == operandDims) {
       newDims = postIdxDims;
     } else {
-      throw std::invalid_argument(
-          "ArrayFireTensor adjustInPlaceOperandDims: can't apply operation "
-          "in-place to indexed ArrayFireTensor - dimensions don't match.");
+      /*throw*/ std::invalid_argument("ArrayFireTensor adjustInPlaceOperandDims: can't apply operation ""in-place to indexed ArrayFireTensor - dimensions don't match.");
+        return af::array();
     }
   } else {
     // No indexing so no change in dimensions required

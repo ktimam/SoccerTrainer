@@ -32,7 +32,7 @@ static inline af_array resize(const af_array in, const dim_t odim0,
 
 af_err af_resize(af_array* out, const af_array in, const dim_t odim0,
                  const dim_t odim1, const af_interp_type method) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af_dtype type         = info.getType();
 

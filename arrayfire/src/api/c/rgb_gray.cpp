@@ -116,7 +116,7 @@ static af_array convert(const af_array& in, const float r, const float g,
 template<bool isRGB2GRAY>
 af_err convert(af_array* out, const af_array in, const float r, const float g,
                const float b) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af_dtype iType        = info.getType();
         af::dim4 inputDims    = info.dims();

@@ -45,24 +45,20 @@ Tensor ArrayFireBackend::transpose(
         tensor.ndim());
   } else {
     if (axes.ndim() > AF_MAX_DIMS) {
-      throw std::invalid_argument(
-          "ArrayFire tensor transpose was given "
-          "permutation dims with > 4 axes");
+      /*throw*/ std::invalid_argument("ArrayFire tensor transpose was given ""permutation dims with > 4 axes");
+        return Tensor();
     }
     if (axes.ndim() != tensor.ndim()) {
-      throw std::invalid_argument(
-          "ArrayFire tensor transpose axes don't match tensor's for "
-          "permutation - axes must have the same number of "
-          "dimensions as the tensor");
+      /*throw*/ std::invalid_argument("ArrayFire tensor transpose axes don't match tensor's for ""permutation - axes must have the same number of ""dimensions as the tensor");
+        return Tensor();
     }
     // reorder based on specified dimensions
     std::vector<dim_t> d(AF_MAX_DIMS);
     std::iota(std::begin(d), std::end(d), 0);
     for (size_t i = 0; i < axes.ndim(); ++i) {
       if (axes[i] > tensor.ndim() - 1) {
-        throw std::invalid_argument(
-            "ArrayFireBackend::transpose - given dimension is larger "
-            "than the number of dimensions in the tensor");
+        /*throw*/ std::invalid_argument("ArrayFireBackend::transpose - given dimension is larger ""than the number of dimensions in the tensor");
+        return Tensor();
       }
 
       d[i] = axes[i];
@@ -105,8 +101,8 @@ Tensor ArrayFireBackend::concatenate(
       break;
     default:
       // TODO: iteratively concat to remove this limitation
-      throw std::invalid_argument(
-          "ArrayFire concatenate doesn't support > 4 tensors");
+      /*throw*/ std::invalid_argument("ArrayFire concatenate doesn't support > 4 tensors");
+        return Tensor();
   }
 
   unsigned numDims = tensors[0].ndim();
@@ -114,7 +110,7 @@ Tensor ArrayFireBackend::concatenate(
     numDims = axis + 1;
   }
 
-  // All tensors have the same numdims else AF would throw
+  // All tensors have the same numdims else AF would //throw
   return toTensor<ArrayFireTensor>(std::move(out), numDims);
 }
 
@@ -128,8 +124,8 @@ Tensor ArrayFireBackend::pad(
     const std::vector<std::pair<int, int>>& padWidths,
     const PadType type) {
   if (padWidths.size() > AF_MAX_DIMS) {
-    throw std::invalid_argument(
-        "ArrayFireBackend::pad - given padWidths for more than 4 dimensions");
+    /*throw*/ std::invalid_argument("ArrayFireBackend::pad - given padWidths for more than 4 dimensions");
+        return Tensor();
   }
 
   // convert ((begin_1, end_1), ..., (begin_k, end_k)) to ((begin_1, ...,

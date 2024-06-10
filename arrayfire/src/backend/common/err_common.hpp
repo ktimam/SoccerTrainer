@@ -149,7 +149,7 @@ af_err set_global_error_string(const std::string& msg,
 #define DIM_ASSERT(INDEX, COND)                                          \
     do {                                                                 \
         if ((COND) == false) {                                           \
-            throw DimensionError(__AF_FUNC__, __AF_FILENAME__, __LINE__, \
+            /* throw */ DimensionError(__AF_FUNC__, __AF_FILENAME__, __LINE__, \
                                  INDEX, #COND,                           \
                                  boost::stacktrace::stacktrace());       \
         }                                                                \
@@ -158,22 +158,22 @@ af_err set_global_error_string(const std::string& msg,
 #define ARG_ASSERT(INDEX, COND)                                                \
     do {                                                                       \
         if ((COND) == false) {                                                 \
-            throw ArgumentError(__AF_FUNC__, __AF_FILENAME__, __LINE__, INDEX, \
+            /* throw */ ArgumentError(__AF_FUNC__, __AF_FILENAME__, __LINE__, INDEX, \
                                 #COND, boost::stacktrace::stacktrace());       \
         }                                                                      \
     } while (0)
 
 #define TYPE_ERROR(INDEX, type)                                              \
-    do {                                                                     \
+    /*do {                                                                     \
         throw TypeError(__AF_FUNC__, __AF_FILENAME__, __LINE__, INDEX, type, \
                         boost::stacktrace::stacktrace());                    \
-    } while (0)
+    } while (0)*/
 
 #define AF_ERROR(MSG, ERR_TYPE)                                              \
-    do {                                                                     \
+    /*do {                                                                     \
         throw AfError(__AF_FUNC__, __AF_FILENAME__, __LINE__, MSG, ERR_TYPE, \
                       boost::stacktrace::stacktrace());                      \
-    } while (0)
+    } while (0)*/
 
 #define AF_RETURN_ERROR(MSG, ERR_TYPE)                                       \
     do {                                                                     \
@@ -194,18 +194,18 @@ af_err set_global_error_string(const std::string& msg,
 
 #define AF_ASSERT(COND, MESSAGE) assert(MESSAGE&& COND)
 
-#define CATCHALL                   \
+#define CATCHALL   /*                \
     catch (...) {                  \
         return processException(); \
-    }
+    }*/
 
-#define AF_CHECK(fn)                                                       \
-    do {                                                                   \
+#define AF_CHECK(fn)       fn                                                \
+    /*do {                                                                   \
         af_err __err = fn;                                                 \
         if (__err == AF_SUCCESS) break;                                    \
         throw AfError(__AF_FUNC__, __AF_FILENAME__, __LINE__, "\n", __err, \
                       boost::stacktrace::stacktrace());                    \
-    } while (0)
+    } while (0)*/
 
 static const int MAX_ERR_SIZE = 1024;
 std::string& get_global_error_string() noexcept;

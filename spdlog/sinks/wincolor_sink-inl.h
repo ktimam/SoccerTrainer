@@ -43,7 +43,7 @@ SPDLOG_INLINE wincolor_sink<ConsoleMutex>::~wincolor_sink() {
 template <typename ConsoleMutex>
 void SPDLOG_INLINE wincolor_sink<ConsoleMutex>::set_color(level::level_enum level,
                                                           std::uint16_t color) {
-    std::lock_guard<mutex_t> lock(mutex_);
+    //std::lock_guard<mutex_t> lock(mutex_);
     colors_[static_cast<size_t>(level)] = color;
 }
 
@@ -53,7 +53,7 @@ void SPDLOG_INLINE wincolor_sink<ConsoleMutex>::log(const details::log_msg &msg)
         return;
     }
 
-    std::lock_guard<mutex_t> lock(mutex_);
+    //std::lock_guard<mutex_t> lock(mutex_);
     msg.color_range_start = 0;
     msg.color_range_end = 0;
     memory_buf_t formatted;
@@ -81,20 +81,20 @@ void SPDLOG_INLINE wincolor_sink<ConsoleMutex>::flush() {
 
 template <typename ConsoleMutex>
 void SPDLOG_INLINE wincolor_sink<ConsoleMutex>::set_pattern(const std::string &pattern) {
-    std::lock_guard<mutex_t> lock(mutex_);
+    //std::lock_guard<mutex_t> lock(mutex_);
     formatter_ = std::unique_ptr<spdlog::formatter>(new pattern_formatter(pattern));
 }
 
 template <typename ConsoleMutex>
 void SPDLOG_INLINE
 wincolor_sink<ConsoleMutex>::set_formatter(std::unique_ptr<spdlog::formatter> sink_formatter) {
-    std::lock_guard<mutex_t> lock(mutex_);
+    //std::lock_guard<mutex_t> lock(mutex_);
     formatter_ = std::move(sink_formatter);
 }
 
 template <typename ConsoleMutex>
 void SPDLOG_INLINE wincolor_sink<ConsoleMutex>::set_color_mode(color_mode mode) {
-    std::lock_guard<mutex_t> lock(mutex_);
+    //std::lock_guard<mutex_t> lock(mutex_);
     set_color_mode_impl(mode);
 }
 

@@ -38,7 +38,7 @@ static inline af_array flip(const af_array in, const unsigned dim) {
 
 af_err af_flip(af_array *result, const af_array in, const unsigned dim) {
     af_array out;
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
 
         if (in_info.ndims() <= dim) {

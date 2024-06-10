@@ -48,9 +48,10 @@ class FL_API Stream {
   template <typename T>
   const T& impl() const {
     if (T::type != type()) {
-      throw std::invalid_argument(
+      /*throw*/ std::invalid_argument(
           "[fl::Stream::impl] "
           "specified stream type doesn't match actual stream type.");
+        //return;
     }
     return *(static_cast<const T*>(this));
   }
@@ -126,8 +127,9 @@ class StreamTrait : public Stream {
         relativeSync(waitOn.impl<Derived>());
         break;
       default:
-        throw std::runtime_error(
+        /*throw*/ std::runtime_error(
             "[Stream::relativeSync] Unsupported for different types of streams");
+        return;
     }
   }
 };

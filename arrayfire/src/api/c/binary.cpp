@@ -119,7 +119,7 @@ static inline af_array arithSparseDenseOp(const af_array lhs,
 template<af_op_t op>
 static af_err af_arith(af_array *out, const af_array lhs, const af_array rhs,
                        const bool batchMode) {
-    try {
+    /*try*/ {
         const ArrayInfo &linfo = getInfo(lhs);
         const ArrayInfo &rinfo = getInfo(rhs);
 
@@ -179,7 +179,7 @@ static af_err af_arith(af_array *out, const af_array lhs, const af_array rhs,
 template<af_op_t op>
 static af_err af_arith_real(af_array *out, const af_array lhs,
                             const af_array rhs, const bool batchMode) {
-    try {
+    /*try*/ {
         const ArrayInfo &linfo = getInfo(lhs);
         const ArrayInfo &rinfo = getInfo(rhs);
 
@@ -213,7 +213,7 @@ static af_err af_arith_real(af_array *out, const af_array lhs,
 template<af_op_t op>
 static af_err af_arith_sparse(af_array *out, const af_array lhs,
                               const af_array rhs) {
-    try {
+    /*try*/ {
         const SparseArrayBase linfo = getSparseArrayBase(lhs);
         const SparseArrayBase rinfo = getSparseArrayBase(rhs);
 
@@ -241,7 +241,7 @@ template<af_op_t op>
 static af_err af_arith_sparse_dense(af_array *out, const af_array lhs,
                                     const af_array rhs,
                                     const bool reverse = false) {
-    try {
+    /*try*/ {
         const SparseArrayBase linfo = getSparseArrayBase(lhs);
         if (linfo.ndims() > 2) {
             AF_ERROR(
@@ -277,7 +277,7 @@ static af_err af_arith_sparse_dense(af_array *out, const af_array lhs,
 
 af_err af_add(af_array *out, const af_array lhs, const af_array rhs,
               const bool batchMode) {
-    try {
+    /*try*/ {
         // Check if inputs are sparse
         const ArrayInfo &linfo = getInfo(lhs, false);
         const ArrayInfo &rinfo = getInfo(rhs, false);
@@ -299,7 +299,7 @@ af_err af_add(af_array *out, const af_array lhs, const af_array rhs,
 
 af_err af_mul(af_array *out, const af_array lhs, const af_array rhs,
               const bool batchMode) {
-    try {
+    /*try*/ {
         // Check if inputs are sparse
         const ArrayInfo &linfo = getInfo(lhs, false);
         const ArrayInfo &rinfo = getInfo(rhs, false);
@@ -325,7 +325,7 @@ af_err af_mul(af_array *out, const af_array lhs, const af_array rhs,
 
 af_err af_sub(af_array *out, const af_array lhs, const af_array rhs,
               const bool batchMode) {
-    try {
+    /*try*/ {
         // Check if inputs are sparse
         const ArrayInfo &linfo = getInfo(lhs, false);
         const ArrayInfo &rinfo = getInfo(rhs, false);
@@ -348,7 +348,7 @@ af_err af_sub(af_array *out, const af_array lhs, const af_array rhs,
 
 af_err af_div(af_array *out, const af_array lhs, const af_array rhs,
               const bool batchMode) {
-    try {
+    /*try*/ {
         // Check if inputs are sparse
         const ArrayInfo &linfo = getInfo(lhs, false);
         const ArrayInfo &rinfo = getInfo(rhs, false);
@@ -396,7 +396,7 @@ af_err af_mod(af_array *out, const af_array lhs, const af_array rhs,
 
 af_err af_pow(af_array *out, const af_array lhs, const af_array rhs,
               const bool batchMode) {
-    try {
+    /*try*/ {
         const ArrayInfo &linfo = getInfo(lhs);
         const ArrayInfo &rinfo = getInfo(rhs);
         if (rinfo.isComplex()) {
@@ -441,7 +441,7 @@ af_err af_pow(af_array *out, const af_array lhs, const af_array rhs,
 
 af_err af_root(af_array *out, const af_array lhs, const af_array rhs,
                const bool batchMode) {
-    try {
+    /*try*/ {
         const ArrayInfo &linfo = getInfo(lhs);
         const ArrayInfo &rinfo = getInfo(rhs);
         if (linfo.isComplex() || rinfo.isComplex()) {
@@ -473,7 +473,7 @@ af_err af_root(af_array *out, const af_array lhs, const af_array rhs,
 
 af_err af_atan2(af_array *out, const af_array lhs, const af_array rhs,
                 const bool batchMode) {
-    try {
+    /*try*/ {
         const af_dtype type = implicit(lhs, rhs);
 
         if (type != f32 /*&& type != f64*/) {
@@ -504,7 +504,7 @@ af_err af_atan2(af_array *out, const af_array lhs, const af_array rhs,
 
 af_err af_hypot(af_array *out, const af_array lhs, const af_array rhs,
                 const bool batchMode) {
-    try {
+    /*try*/ {
         const af_dtype type = implicit(lhs, rhs);
 
         if (type != f32 /*&& type != f64*/) {
@@ -545,7 +545,7 @@ static inline af_array logicOp(const af_array lhs, const af_array rhs,
 template<af_op_t op>
 static af_err af_logic(af_array *out, const af_array lhs, const af_array rhs,
                        const bool batchMode) {
-    try {
+    /*try*/ {
         const af_dtype type = implicit(lhs, rhs);
 
         const ArrayInfo &linfo = getInfo(lhs);
@@ -632,7 +632,7 @@ static inline af_array bitOp(const af_array lhs, const af_array rhs,
 template<af_op_t op>
 static af_err af_bitwise(af_array *out, const af_array lhs, const af_array rhs,
                          const bool batchMode) {
-    try {
+    /*try*/ {
         const af_dtype type = implicit(lhs, rhs);
 
         const ArrayInfo &linfo = getInfo(lhs);

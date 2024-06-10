@@ -238,12 +238,12 @@ public:
                       DWORD event_id = 1000 /* according to mscoree.dll */)
         : source_(source),
           event_id_(event_id) {
-        try {
+        /*try*/ {
             current_user_sid_ = internal::sid_t::get_current_user_sid();
-        } catch (...) {
+        } /* catch (...) {
             // get_current_user_sid() is unlikely to fail and if it does, we can still proceed
             // without current_user_sid but in the event log the record will have no user name
-        }
+        } */
     }
 
     ~win_eventlog_sink() {

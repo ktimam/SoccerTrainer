@@ -25,8 +25,20 @@
     if (__err == AF_SUCCESS) {                                                \
       break;                                                                  \
     }                                                                         \
-    throw af::exception(                                                      \
+    /*throw*/ af::exception(                                                      \
         "ArrayFire error: ", __PRETTY_FUNCTION__, __FILE__, __LINE__, __err); \
+        return;                                                               \
+  } while (0)
+
+#define AF_CHECK_RET(fn, ret)                                                          \
+  do {                                                                        \
+    af_err __err = fn;                                                        \
+    if (__err == AF_SUCCESS) {                                                \
+      break;                                                                  \
+    }                                                                         \
+    /*throw*/ af::exception(                                                      \
+        "ArrayFire error: ", __PRETTY_FUNCTION__, __FILE__, __LINE__, __err); \
+        return ret;                                                               \
   } while (0)
 
 namespace fl {

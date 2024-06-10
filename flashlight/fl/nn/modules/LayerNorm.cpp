@@ -51,9 +51,8 @@ Variable LayerNorm::forward(const Variable& _input) {
     }
     input = moddims(_input, Shape(s));
   } else if (input.ndim() > kLnExpectedNumDims) {
-    throw std::invalid_argument(
-        "LayerNorm::forward - input must be " +
-        std::to_string(kLnExpectedNumDims) + " or fewer dimensions.");
+    /*throw*/ std::invalid_argument("LayerNorm::forward - input must be " +std::to_string(kLnExpectedNumDims) + " or fewer dimensions.");
+        return Variable();
   }
 
   Variable dummyInMean, dummyInVar;
@@ -118,8 +117,8 @@ Variable LayerNorm::forward(const Variable& _input) {
         affineDims[ax] = 1;
       }
       if (affineDims.elements() != axisSize_) {
-        throw std::invalid_argument(
-            "[LayerNorm] Input size along the norm axis doesn't with axisSize.");
+        /*throw*/ std::invalid_argument("[LayerNorm] Input size along the norm axis doesn't with axisSize.");
+        return  Variable();
       }
       weight = moddims(params_[0].astype(output.type()), affineDims);
       bias = moddims(params_[1].astype(output.type()), affineDims);

@@ -12,7 +12,8 @@
 #include <af/exception.h>
 
 #define AF_THROW(fn)                                                          \
-    do {                                                                      \
+        fn
+    /*do {                                                                      \
         af_err __err = fn;                                                    \
         if (__err == AF_SUCCESS) break;                                       \
         char *msg = NULL;                                                     \
@@ -20,10 +21,10 @@
         af::exception ex(msg, __AF_FUNC__, __AF_FILENAME__, __LINE__, __err); \
         af_free_host(msg);                                                    \
         throw std::move(ex);                                                  \
-    } while (0)
+    } while (0)*/
 
 #define AF_THROW_ERR(__msg, __err)                                         \
-    do {                                                                   \
-        throw af::exception(__msg, __AF_FUNC__, __AF_FILENAME__, __LINE__, \
+    /*do {                                                                   \
+        //throw af::exception(__msg, __AF_FUNC__, __AF_FILENAME__, __LINE__, \
                             __err);                                        \
-    } while (0)
+    } while (0)*/

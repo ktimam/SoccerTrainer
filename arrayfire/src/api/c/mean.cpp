@@ -62,7 +62,7 @@ static af_array mean(const af_array &in, const af_array &weights,
 }
 
 af_err af_mean(af_array *out, const af_array in, const dim_t dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, (dim >= 0 && dim <= 3));
 
         af_array output       = 0;
@@ -92,7 +92,7 @@ af_err af_mean(af_array *out, const af_array in, const dim_t dim) {
 
 af_err af_mean_weighted(af_array *out, const af_array in,
                         const af_array weights, const dim_t dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(3, (dim >= 0 && dim <= 3));
 
         af_array output        = 0;
@@ -146,7 +146,7 @@ af_err af_mean_weighted(af_array *out, const af_array in,
 }
 
 af_err af_mean_all(double *realVal, double *imagVal, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
         switch (type) {
@@ -182,7 +182,7 @@ af_err af_mean_all(double *realVal, double *imagVal, const af_array in) {
 
 af_err af_mean_all_weighted(double *realVal, double *imagVal, const af_array in,
                             const af_array weights) {
-    try {
+    /*try*/ {
         const ArrayInfo &iInfo = getInfo(in);
         const ArrayInfo &wInfo = getInfo(weights);
         af_dtype iType         = iInfo.getType();

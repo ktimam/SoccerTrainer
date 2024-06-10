@@ -13,8 +13,8 @@
 #include <chrono>
 #include <condition_variable>
 #include <functional>
-#include <mutex>
-#include <thread>
+//#include <mutex>
+//#include <thread>
 namespace spdlog {
 namespace details {
 

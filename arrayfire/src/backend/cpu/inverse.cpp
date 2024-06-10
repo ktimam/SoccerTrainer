@@ -87,6 +87,7 @@ namespace cpu {
 template<typename T>
 Array<T> inverse(const Array<T> &in) {
     AF_ERROR("Linear Algebra is disabled on CPU", AF_ERR_NOT_CONFIGURED);
+    return createEmptyArray<T>(af::dim4());
 }
 
 #define INSTANTIATE(T) template Array<T> inverse<T>(const Array<T> &in);

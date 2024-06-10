@@ -41,9 +41,9 @@ public:
     /// error code.
     exception(const char *msg, const char *func, const char *file, unsigned line, af_err err);
 #endif
-    virtual ~exception() throw() {}
+    virtual ~exception() /* d_throw() */ {}
     /// Returns an error message for the exception in a string format
-    virtual const char *what() const throw() { return m_msg; }
+    virtual const char *what() const /* d_throw() */ { return m_msg; }
 
     /// Writes the exception to a stream
     friend inline std::ostream& operator<<(std::ostream &s, const exception &e)

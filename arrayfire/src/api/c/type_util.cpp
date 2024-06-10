@@ -14,7 +14,7 @@
 #include <af/util.h>
 
 size_t size_of(af_dtype type) {
-    try {
+    /*try*/ {
         switch (type) {
             case f32: return sizeof(float);
             //case f64: return sizeof(double);
@@ -38,7 +38,7 @@ size_t size_of(af_dtype type) {
 }
 
 af_err af_get_size_of(size_t *size, af_dtype type) {
-    try {
+    /*try*/ {
         *size = size_of(type);
         return AF_SUCCESS;
     }

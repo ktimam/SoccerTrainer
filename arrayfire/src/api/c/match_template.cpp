@@ -38,7 +38,7 @@ static af_array match_template(const af_array& sImg, const af_array tImg,
 af_err af_match_template(af_array* out, const af_array search_img,
                          const af_array template_img,
                          const af_match_type m_type) {
-    try {
+    /*try*/ {
         ARG_ASSERT(3, (m_type >= AF_SAD && m_type <= AF_LSSD));
 
         const ArrayInfo& sInfo = getInfo(search_img);

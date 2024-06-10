@@ -90,11 +90,11 @@ std::string frame::name() const {
     }
 
 #if !defined(BOOST_WINDOWS) && !defined(__CYGWIN__)
-    ::Dl_info dli;
-    const bool dl_ok = !!::dladdr(const_cast<void*>(addr_), &dli); // `dladdr` on Solaris accepts nonconst addresses
-    if (dl_ok && dli.dli_sname) {
-        return boost::core::demangle(dli.dli_sname);
-    }
+    //::Dl_info dli;
+    //const bool dl_ok = !!::dladdr(const_cast<void*>(addr_), &dli); // `dladdr` on Solaris accepts nonconst addresses
+    //if (dl_ok && dli.dli_sname) {
+    //    return boost::core::demangle(dli.dli_sname);
+    //}
 #endif
     return boost::stacktrace::detail::name_impl(addr_);
 }

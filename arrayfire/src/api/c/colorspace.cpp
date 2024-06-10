@@ -57,7 +57,7 @@ static void color_space(af_array *out, const af_array image,
 
 af_err af_color_space(af_array *out, const af_array image, const af_cspace_t to,
                       const af_cspace_t from) {
-    try {
+    /*try*/ {
         if (from == to) { return af_retain_array(out, image); }
 
         ARG_ASSERT(2, (to == AF_GRAY || to == AF_RGB || to == AF_HSV ||

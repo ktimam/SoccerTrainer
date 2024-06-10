@@ -69,7 +69,7 @@ static inline af_array unaryOpCplx(const af_array in) {
 
 template<af_op_t op>
 static af_err af_unary(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         ARG_ASSERT(1, in_info.isReal());
 
@@ -96,7 +96,7 @@ static af_err af_unary(af_array *out, const af_array in) {
 
 template<af_op_t op>
 static af_err af_unary_complex(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
 
         af_dtype in_type = in_info.getType();
@@ -561,7 +561,7 @@ struct unaryOpCplxFun<Tc, Tr, af_sqrt_t> {
 };
 
 af_err af_not(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         af_array tmp;
         const ArrayInfo &in_info = getInfo(in);
         if (in_info.ndims() == 0) { return af_retain_array(out, in); }
@@ -584,7 +584,7 @@ static inline af_array bitOpNot(const af_array in) {
 }
 
 af_err af_bitnot(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &iinfo = getInfo(in);
         const af_dtype type    = iinfo.getType();
 
@@ -614,7 +614,7 @@ af_err af_bitnot(af_array *out, const af_array in) {
 }
 
 af_err af_arg(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         if (in_info.ndims() == 0) { return af_retain_array(out, in); }
 
@@ -640,7 +640,7 @@ af_err af_arg(af_array *out, const af_array in) {
 }
 
 af_err af_pow2(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         af_array two;
         const ArrayInfo &in_info = getInfo(in);
         if (in_info.ndims() == 0) { return af_retain_array(out, in); }
@@ -658,7 +658,7 @@ af_err af_pow2(af_array *out, const af_array in) {
 }
 
 af_err af_factorial(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         af_array one;
         const ArrayInfo &in_info = getInfo(in);
         if (in_info.ndims() == 0) { return af_retain_array(out, in); }
@@ -719,7 +719,7 @@ static inline af_array checkOpCplx(const af_array in) {
 
 template<af_op_t op>
 static af_err af_check(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
 
         af_dtype in_type = in_info.getType();

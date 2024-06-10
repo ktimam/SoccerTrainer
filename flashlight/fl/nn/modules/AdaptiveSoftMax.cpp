@@ -21,7 +21,8 @@ AdaptiveSoftMax::AdaptiveSoftMax(
     float divValue)
     : UnaryModule(), cutoff_(cutoff), divValue_(divValue) {
   if (cutoff_.empty()) {
-    throw std::invalid_argument("invalid cutoff for AdaptiveSoftMaxLoss");
+    /*throw*/ std::invalid_argument("invalid cutoff for AdaptiveSoftMaxLoss");
+        return;
   }
 
   int outputSize = cutoff_[0] + cutoff_.size() - 1;
@@ -75,7 +76,8 @@ Variable AdaptiveSoftMax::forward(const Variable& inputs) {
   // return -- [C_out, .. , N]
   auto inputSize = inputs.dim(0);
   if (inputSize != params_[0].dim(1)) {
-    throw std::invalid_argument("invalid input dimension for AdaptiveSoftMax");
+    /*throw*/ std::invalid_argument("invalid input dimension for AdaptiveSoftMax");
+        return Variable();
   }
 
   auto inputsFlattened = moddims(inputs, {inputSize, -1});
@@ -93,8 +95,8 @@ Variable AdaptiveSoftMax::predict(const Variable& inputs) const {
   // return -- [1, .. , N]
   auto inputSize = inputs.dim(0);
   if (inputSize != params_[0].dim(1)) {
-    throw std::invalid_argument(
-        "invalid input dimension for AdaptiveSoftMaxLoss");
+    /*throw*/ std::invalid_argument("invalid input dimension for AdaptiveSoftMaxLoss");
+        return Variable();
   }
 
   auto inputsFlattened = moddims(inputs, {inputSize, -1});

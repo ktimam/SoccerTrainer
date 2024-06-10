@@ -11,6 +11,6 @@
 
 #define CPU_NOT_SUPPORTED(message)                                          \
     do {                                                                    \
-        throw SupportError(__AF_FUNC__, __AF_FILENAME__, __LINE__, message, \
+        //throw SupportError(__AF_FUNC__, __AF_FILENAME__, __LINE__, message, \
                            boost::stacktrace::stacktrace());                \
     } while (0)

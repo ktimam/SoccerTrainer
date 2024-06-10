@@ -115,7 +115,7 @@ static inline af_array scan_op(const af_array in, const int dim,
 }
 
 af_err af_accum(af_array* out, const af_array in, const int dim) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, dim >= 0);
         ARG_ASSERT(2, dim < 4);
 
@@ -156,7 +156,7 @@ af_err af_accum(af_array* out, const af_array in, const int dim) {
 
 af_err af_scan(af_array* out, const af_array in, const int dim, af_binary_op op,
                bool inclusive_scan) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, dim >= 0);
         ARG_ASSERT(2, dim < 4);
 
@@ -219,7 +219,7 @@ af_err af_scan(af_array* out, const af_array in, const int dim, af_binary_op op,
 
 af_err af_scan_by_key(af_array* out, const af_array key, const af_array in,
                       const int dim, af_binary_op op, bool inclusive_scan) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, dim >= 0);
         ARG_ASSERT(2, dim < 4);
 

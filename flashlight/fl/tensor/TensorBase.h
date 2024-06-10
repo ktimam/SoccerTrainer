@@ -10,7 +10,7 @@
 #include <functional>
 #include <memory>
 #include <optional>
-#include <ostream>
+//#include <ostream>
 #include <stdexcept>
 #include <type_traits>
 #include <utility>
@@ -479,8 +479,9 @@ class FL_API Tensor {
       case dtype::u16:
         return scalar<unsigned short>();
       default:
-        throw std::invalid_argument(
+        /*throw*/ std::invalid_argument(
             "Tensor::asScaler - no castable type exists.");
+        return scalar<unsigned short>();
     }
   }
 
@@ -1717,9 +1718,10 @@ Tensor to(Tensor&& t) {
   }
 
   if (t.isSparse()) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Tensor type conversion between sparse "
         "tensors not yet supported.");
+        return Tensor();
   } else {
     // TODO: dynamically fix the memory location based on the type of
     // backend/where base memory is
@@ -1749,8 +1751,9 @@ bool areTensorTypesEqual(
  */
 #define FL_TENSOR_DTYPES_MATCH_CHECK(...)                                     \
   if (!detail::areTensorTypesEqual(__VA_ARGS__)) {                            \
-    throw std::invalid_argument(                                              \
+    /*throw*/ std::invalid_argument(                                              \
         std::string(__func__) + ": tensors are not all of the same types. "); \
+        return;                                                               \
   }
 
 } // namespace fl

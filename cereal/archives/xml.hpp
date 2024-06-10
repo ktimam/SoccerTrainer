@@ -432,13 +432,13 @@ namespace cereal
           //std::cerr << "-----Error-----" << std::endl;
           //std::cerr << e.what() << std::endl;
           //std::cerr << e.where<char>() << std::endl;
-          throw Exception("XML Parsing failed - likely due to invalid characters or invalid naming");
+          //throw Exception("XML Parsing failed - likely due to invalid characters or invalid naming");
         }
 
         // Parse the root
         auto root = itsXML.first_node( xml_detail::CEREAL_XML_STRING );
         if( root == nullptr )
-          throw Exception("Could not detect cereal root node - likely due to empty or invalid input");
+          //throw Exception("Could not detect cereal root node - likely due to empty or invalid input");
         else
           itsNodes.emplace( root );
       }
@@ -462,7 +462,7 @@ namespace cereal
         auto decoded = base64::decode( encoded );
 
         if( size != decoded.size() )
-          throw Exception("Decoded binary data size does not match specified size");
+          //throw Exception("Decoded binary data size does not match specified size");
 
         std::memcpy( data, decoded.data(), decoded.size() );
 
@@ -484,7 +484,7 @@ namespace cereal
 
           We check to see if the specified NVP matches what the next automatically loaded node is.  If they
           match, we just continue as normal, going in order.  If they don't match, we attempt to find a node
-          named after the NVP that is being loaded.  If that NVP does not exist, we throw an exception. */
+          named after the NVP that is being loaded.  If that NVP does not exist, we //throw an exception. */
       void startNode()
       {
         auto next = itsNodes.top().child; // By default we would move to the next child node
@@ -498,7 +498,7 @@ namespace cereal
           next = itsNodes.top().search( expectedName );
 
           if( next == nullptr )
-            throw Exception("XML Parsing failed - provided NVP (" + std::string(expectedName) + ") not found");
+            //throw Exception("XML Parsing failed - provided NVP (" + std::string(expectedName) + ") not found");
         }
 
         itsNodes.emplace( next );
@@ -621,7 +621,7 @@ namespace cereal
           std::istringstream is( itsNodes.top().node->value() );
           is >> value;
           if( std::fpclassify( value ) != FP_SUBNORMAL )
-            throw;
+            /*throw;*/
         }
       }
 
@@ -638,7 +638,7 @@ namespace cereal
           std::istringstream is( itsNodes.top().node->value() );
           is >> value;
           if( std::fpclassify( value ) != FP_SUBNORMAL )
-            throw;
+            /*throw;*/
         }
       }
 
@@ -655,7 +655,7 @@ namespace cereal
           std::istringstream is( itsNodes.top().node->value() );
           is >> value;
           if( std::fpclassify( value ) != FP_SUBNORMAL )
-            throw;
+            /*throw;*/
         }
       }
 

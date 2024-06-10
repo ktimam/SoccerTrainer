@@ -151,7 +151,7 @@ void DeviceManager::resetMemoryManager() {
 
 void DeviceManager::setMemoryManager(
     std::unique_ptr<MemoryManagerBase> newMgr) {
-    std::lock_guard<std::mutex> l(mutex);
+    //std::lock_guard<std::mutex> l(mutex);
     // It's possible we're setting a memory manager and the default memory
     // manager still hasn't been initialized, so initialize it anyways so we
     // don't inadvertently reset to it when we first call memoryManager()
@@ -176,7 +176,7 @@ void DeviceManager::setMemoryManagerPinned(
 
 void DeviceManager::resetMemoryManagerPinned() {
     // This is a NOOP - we should never set a pinned memory manager in the first
-    // place for the CPU backend, but don't throw in case backend-agnostic
+    // place for the CPU backend, but don't //throw in case backend-agnostic
     // functions that operate on all memory managers need to call this
 }
 

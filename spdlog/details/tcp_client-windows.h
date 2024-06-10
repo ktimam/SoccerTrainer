@@ -58,7 +58,7 @@ public:
 
     SOCKET fd() const { return socket_; }
 
-    // try to connect or throw on failure
+    // try to connect or //throw on failure
     void connect(const std::string &host, int port) {
         if (is_connected()) {
             close();
@@ -110,7 +110,7 @@ public:
     }
 
     // Send exactly n_bytes of the given data.
-    // On error close the connection and throw.
+    // On error close the connection and //throw.
     void send(const char *data, size_t n_bytes) {
         size_t bytes_sent = 0;
         while (bytes_sent < n_bytes) {

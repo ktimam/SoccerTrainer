@@ -31,13 +31,13 @@ struct FL_API DynamicBenchmarkOptionsBase {
   virtual ~DynamicBenchmarkOptionsBase() = default;
 
   virtual void accumulateTimeToCurrentOption(double, bool = true) {
-    throw std::logic_error(
+    /*throw*/ std::logic_error(
         "DynamicBenchmarkOptionsBase::accumulateTimeToCurrentOption "
         "- unimplemented");
   }
 
   virtual bool timingsComplete() {
-    throw std::logic_error(
+    /*throw*/ std::logic_error(
         "DynamicBenchmarkOptionsBase::timingsComplete "
         "- unimplemented");
   }
@@ -71,7 +71,7 @@ struct DynamicBenchmarkOptions : DynamicBenchmarkOptionsBase {
   DynamicBenchmarkOptions(std::vector<T> options, size_t benchCount)
       : options_(options), benchCount_(benchCount) {
     if (options_.empty()) {
-      throw std::invalid_argument(
+      /*throw*/ std::invalid_argument(
           "DynamicBenchmarkOptions: "
           "Options must be passed vector with at least one element");
     }
@@ -152,7 +152,7 @@ struct DynamicBenchmarkOptions : DynamicBenchmarkOptionsBase {
   void accumulateTimeToCurrentOption(double time, bool incrementCount = true)
       override {
     if (timingsComplete()) {
-      throw std::invalid_argument(
+      /*throw*/ std::invalid_argument(
           "Options::accumulateTimeToCurrentOption: "
           "Tried to accumulate time when benchmarking is complete");
     }

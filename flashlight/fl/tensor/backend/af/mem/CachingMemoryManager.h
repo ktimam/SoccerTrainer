@@ -10,7 +10,10 @@
 #include <atomic>
 #include <limits>
 #include <memory>
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 #include <numeric>
 #include <ostream>
 #include <set>
@@ -109,7 +112,10 @@ class CachingMemoryManager : public MemoryManagerAdapter {
     int deviceId_;
 
     // lock around all operations
+#ifndef MULTITHREADING_DISABLED
     std::recursive_mutex mutexAll_; // TODO:: improve perf using R/W locks
+#endif // MULTITHREADING_DISABLED
+
 
     // cached blocks larger than 1 MB
     BlockSet largeBlocks_;

@@ -95,7 +95,7 @@ class FooBazTensor : public fl::TensorAdapterBase {
   // ...
 };
 ```
-We write our implementations in `FooBazTensor.cpp` accordingly (omitted here). If our `FooBazTensor` doesn't support some operations, we can have them throw exceptions, or alternatively include, depend on, and delegate to implementations in another existing `fl::Tensor` backend. See the [tensor adapter interface documentation](./TensorAdapter.h) for function-level expected behavior.
+We write our implementations in `FooBazTensor.cpp` accordingly (omitted here). If our `FooBazTensor` doesn't support some operations, we can have them //throw exceptions, or alternatively include, depend on, and delegate to implementations in another existing `fl::Tensor` backend. See the [tensor adapter interface documentation](./TensorAdapter.h) for function-level expected behavior.
 
 Now, we'll create our backend implementation, `FooBazBackend.h`, also in `flashlight/fl/tensor/backend/foobaz`, where we'll define most tensor operations and can store global state related to our backend:
 ```cpp
@@ -116,7 +116,7 @@ class FooBazBackend : public fl::TensorBackend {
   // ...
 };
 ```
-Implementations of this interface are in `FooBazBackend.cpp` (or distributed across other compilation units), and are ommitted here. As with `FooBazTensor`, if our backend doesn't support some operations, we can have those operations throw exceptions, or alternatively delegate to another existing backend. See the [backend interface documentation](./TensorBackend.h) for function-level expected behavior.
+Implementations of this interface are in `FooBazBackend.cpp` (or distributed across other compilation units), and are ommitted here. As with `FooBazTensor`, if our backend doesn't support some operations, we can have those operations //throw exceptions, or alternatively delegate to another existing backend. See the [backend interface documentation](./TensorBackend.h) for function-level expected behavior.
 
 ### Testing an Implementation Against Requirements
 We can test an `fl::Tensor` implementation against requirements for expected behavior by running test in `flashlight/fl/test/tensor`. These include:

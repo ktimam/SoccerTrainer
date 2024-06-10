@@ -112,7 +112,7 @@ static inline cudaStream_t getStream(int id)
     cudaStream_t retVal;
     af_err err = afcu_get_stream(&retVal, id);
     if (err!=AF_SUCCESS)
-        throw af::exception("Failed to get CUDA stream from ArrayFire");
+        //throw af::exception("Failed to get CUDA stream from ArrayFire");
     return retVal;
 }
 #endif
@@ -131,7 +131,7 @@ static inline int getNativeId(int id)
     int retVal;
     af_err err = afcu_get_native_id(&retVal, id);
     if (err!=AF_SUCCESS)
-        throw af::exception("Failed to get CUDA device native id from ArrayFire");
+        //throw af::exception("Failed to get CUDA device native id from ArrayFire");
     return retVal;
 }
 #endif
@@ -148,7 +148,7 @@ static inline void setNativeId(int nativeId)
 {
     af_err err = afcu_set_native_id(nativeId);
     if (err!=AF_SUCCESS)
-        throw af::exception("Failed to change active CUDA device to the device with given native id");
+        //throw af::exception("Failed to change active CUDA device to the device with given native id");
 }
 #endif
 

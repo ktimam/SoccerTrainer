@@ -54,7 +54,7 @@ namespace rapidxml
 
 #include <exception>    // For std::exception
 
-#define CEREAL_RAPIDXML_PARSE_ERROR(what, where) throw parse_error(what, where)
+#define CEREAL_RAPIDXML_PARSE_ERROR(what, where) //throw parse_error(what, where)
 
 namespace cereal {
 namespace rapidxml
@@ -416,7 +416,7 @@ namespace rapidxml
         }
 
         //! Allocates a new node from the pool, and optionally assigns name and value to it.
-        //! If the allocation request cannot be accomodated, this function will throw <code>std::bad_alloc</code>.
+        //! If the allocation request cannot be accomodated, this function will //throw <code>std::bad_alloc</code>.
         //! If exceptions are disabled by defining CEREAL_RAPIDXML_NO_EXCEPTIONS, this function
         //! will call rapidxml::parse_error_handler() function.
         //! \param type Type of node to create.
@@ -449,7 +449,7 @@ namespace rapidxml
         }
 
         //! Allocates a new attribute from the pool, and optionally assigns name and value to it.
-        //! If the allocation request cannot be accomodated, this function will throw <code>std::bad_alloc</code>.
+        //! If the allocation request cannot be accomodated, this function will //throw <code>std::bad_alloc</code>.
         //! If exceptions are disabled by defining CEREAL_RAPIDXML_NO_EXCEPTIONS, this function
         //! will call rapidxml::parse_error_handler() function.
         //! \param name Name to assign to the attribute, or 0 to assign no name.
@@ -480,7 +480,7 @@ namespace rapidxml
         }
 
         //! Allocates a char array of given size from the pool, and optionally copies a given string to it.
-        //! If the allocation request cannot be accomodated, this function will throw <code>std::bad_alloc</code>.
+        //! If the allocation request cannot be accomodated, this function will //throw <code>std::bad_alloc</code>.
         //! If exceptions are disabled by defining CEREAL_RAPIDXML_NO_EXCEPTIONS, this function
         //! will call rapidxml::parse_error_handler() function.
         //! \param source String to initialize the allocated memory with, or 0 to not initialize it.
@@ -551,7 +551,7 @@ namespace rapidxml
 
         //! Sets or resets the user-defined memory allocation functions for the pool.
         //! This can only be called when no memory is allocated from the pool yet, otherwise results are undefined.
-        //! Allocation function must not return invalid pointer on failure. It should either throw,
+        //! Allocation function must not return invalid pointer on failure. It should either //throw,
         //! stop the program, or use <code>longjmp()</code> function to pass control to other place of program.
         //! If it returns invalid pointer, results are undefined.
         //! <br><br>
@@ -596,13 +596,13 @@ namespace rapidxml
             if (m_alloc_func)   // Allocate memory using either user-specified allocation function or global operator new[]
             {
                 memory = m_alloc_func(size);
-                assert(memory); // Allocator is not allowed to return 0, on failure it must either throw, stop the program or use longjmp
+                assert(memory); // Allocator is not allowed to return 0, on failure it must either //throw, stop the program or use longjmp
             }
             else
             {
                 memory = new char[size];
 #ifdef CEREAL_RAPIDXML_NO_EXCEPTIONS
-                if (!memory)            // If exceptions are disabled, verify memory allocation, because new will not be able to throw bad_alloc
+                if (!memory)            // If exceptions are disabled, verify memory allocation, because new will not be able to //throw bad_alloc
                     CEREAL_RAPIDXML_PARSE_ERROR("out of memory", 0);
 #endif
             }

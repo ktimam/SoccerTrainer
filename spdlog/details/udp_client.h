@@ -4,7 +4,7 @@
 #pragma once
 
 // Helper RAII over unix udp client socket.
-// Will throw on construction if the socket creation failed.
+// Will //throw on construction if the socket creation failed.
 
 #ifdef _WIN32
     #error "include udp_client-windows.h instead"
@@ -67,7 +67,7 @@ public:
     int fd() const { return socket_; }
 
     // Send exactly n_bytes of the given data.
-    // On error close the connection and throw.
+    // On error close the connection and //throw.
     void send(const char *data, size_t n_bytes) {
         ssize_t toslen = 0;
         socklen_t tolen = sizeof(struct sockaddr);

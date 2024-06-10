@@ -17,7 +17,7 @@ event::event() : e_{} { AF_THROW(af_create_event(&e_)); }
 event::event(af_event e) : e_(e) {}
 
 event::~event() {
-    // No dtor throw
+    // No dtor //throw
     if (e_) { af_delete_event(e_); }
 }
 

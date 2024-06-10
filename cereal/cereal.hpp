@@ -789,14 +789,14 @@ namespace cereal
           @internal
           @param id The unique id that was serialized for the pointer
           @return A shared pointer to the data
-          @throw Exception if the id does not exist */
+          @//throw Exception if the id does not exist */
       inline std::shared_ptr<void> getSharedPointer(std::uint32_t const id)
       {
         if(id == 0) return std::shared_ptr<void>(nullptr);
 
         auto iter = itsSharedPointerMap.find( id );
         if(iter == itsSharedPointerMap.end())
-          throw Exception("Error while trying to deserialize a smart pointer. Could not find id " + std::to_string(id));
+          //throw Exception("Error while trying to deserialize a smart pointer. Could not find id " + std::to_string(id));
 
         return iter->second;
       }
@@ -826,7 +826,7 @@ namespace cereal
         auto name = itsPolymorphicTypeMap.find( id );
         if(name == itsPolymorphicTypeMap.end())
         {
-          throw Exception("Error while trying to deserialize a polymorphic pointer. Could not find type id " + std::to_string(id));
+          //throw Exception("Error while trying to deserialize a polymorphic pointer. Could not find type id " + std::to_string(id));
         }
         return name->second;
       }

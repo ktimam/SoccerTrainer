@@ -167,12 +167,12 @@ class debugging_symbols: boost::noncopyable {
         return idebug;
     }
 
-    std::lock_guard<std::mutex> guard_;
+    //std::lock_guard<std::mutex> guard_;
     com_holder< ::IDebugSymbols>& idebug_;
 public:
     debugging_symbols() noexcept
-        : guard_( get_mutex_inst() )
-        , idebug_( get_static_debug_inst() )
+        : /*guard_( get_mutex_inst() )
+        ,*/ idebug_( get_static_debug_inst() )
     {}
 #else
 

@@ -20,7 +20,7 @@
 
 namespace fl {
 
-// throw invalid_argument with descriptive message if given types don't match
+// //throw invalid_argument with descriptive message if given types don't match
 FL_API void deviceImplTypeCheck(DeviceType expect, DeviceType actual);
 
 /**

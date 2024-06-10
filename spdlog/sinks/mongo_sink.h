@@ -43,11 +43,11 @@ public:
         : instance_(std::move(instance)),
           db_name_(db_name),
           coll_name_(collection_name) {
-        try {
+        /*try*/ {
             client_ = spdlog::details::make_unique<mongocxx::client>(mongocxx::uri{uri});
-        } catch (const std::exception &e) {
+        } /* catch (const std::exception &e) {
             throw_spdlog_ex(fmt_lib::format("Error opening database: {}", e.what()));
-        }
+        } */
     }
 
     ~mongo_sink() { flush_(); }

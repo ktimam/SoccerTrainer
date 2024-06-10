@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <iterator>
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
 #endif
 #include <sstream>
@@ -44,7 +44,7 @@ void DefaultMemoryManager::cleanDeviceMemoryManager(int device) {
   size_t bytesFreed = 0;
   MemoryInfo& current = memory[device];
   {
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
     std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
     // Return if all buffers are locked
@@ -127,7 +127,8 @@ void DefaultMemoryManager::addMemoryManagement(int device) {
 
 void DefaultMemoryManager::removeMemoryManagement(int device) {
   if ((size_t)device >= memory.size()) {
-    throw std::runtime_error("No matching device found");
+    /*throw*/ std::runtime_error("No matching device found");
+        return;
   }
 
   // Do garbage collection for the device and leave the
@@ -174,7 +175,7 @@ void* DefaultMemoryManager::alloc(
         this->signalMemoryCleanup();
       }
 
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
       std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
       free_iter iter = current.freeMap.find(allocBytes);
@@ -192,19 +193,19 @@ void* DefaultMemoryManager::alloc(
     // Only comes here if buffer size not found or in debug mode
     if (ptr == nullptr) {
       // Perform garbage collection if memory can not be allocated
-      try {
+      /*try*/ {
         ptr = this->deviceInterface->nativeAlloc(allocBytes);
-      } catch (std::exception&) {
+      } /* catch (std::exception&) {
         // FIXME: assume that the exception is due to out of memory, and don't
         // continue propagating it
         // If out of memory, run garbage collect and try again
         // if (ex.err() != AF_ERR_NO_MEM) {
-        //   throw;
+        //   /*throw;
         // }
         this->signalMemoryCleanup();
         ptr = this->deviceInterface->nativeAlloc(allocBytes);
-      }
-#ifdef MULTITHREADING_SAFE
+      } */
+#ifndef MULTITHREADING_DISABLED
       std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
       // Increment these two only when it succeeds to come here.
@@ -240,7 +241,7 @@ void DefaultMemoryManager::unlock(void* ptr, bool userUnlock) {
   uptr_t freedPtr(
       nullptr, [this](void* p) { this->deviceInterface->nativeFree(p); });
   {
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
     std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
     MemoryInfo& current = this->getCurrentMemoryInfo();
@@ -288,7 +289,7 @@ void DefaultMemoryManager::signalMemoryCleanup() {
 }
 
 float DefaultMemoryManager::getMemoryPressure() {
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
   MemoryInfo& current = this->getCurrentMemoryInfo();
@@ -301,7 +302,7 @@ float DefaultMemoryManager::getMemoryPressure() {
 }
 
 bool DefaultMemoryManager::jitTreeExceedsMemoryPressure(size_t bytes) {
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
   MemoryInfo& current = this->getCurrentMemoryInfo();
@@ -320,7 +321,7 @@ void DefaultMemoryManager::printInfo(
           << "|     POINTER      |    SIZE    |  AF LOCK  | USER LOCK |\n"
           << "---------------------------------------------------------\n";
 
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
   for (auto& kv : current.lockedMap) {
@@ -366,7 +367,7 @@ void DefaultMemoryManager::printInfo(
 void DefaultMemoryManager::userLock(const void* ptr) {
   MemoryInfo& current = this->getCurrentMemoryInfo();
 
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
 
@@ -386,7 +387,7 @@ void DefaultMemoryManager::userUnlock(const void* ptr) {
 
 bool DefaultMemoryManager::isUserLocked(const void* ptr) {
   MemoryInfo& current = this->getCurrentMemoryInfo();
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
   locked_iter iter = current.lockedMap.find(const_cast<void*>(ptr));
@@ -398,21 +399,21 @@ bool DefaultMemoryManager::isUserLocked(const void* ptr) {
 }
 
 size_t DefaultMemoryManager::getMemStepSize() {
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
   return this->memStepSize;
 }
 
 void DefaultMemoryManager::setMemStepSize(size_t new_step_size) {
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
   this->memStepSize = new_step_size;
 }
 
 size_t DefaultMemoryManager::getMaxBytes() {
-#ifdef MULTITHREADING_SAFE
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(this->memoryMutex);
 #endif
   return this->getCurrentMemoryInfo().maxBytes;

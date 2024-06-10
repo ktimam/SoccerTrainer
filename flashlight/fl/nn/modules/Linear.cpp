@@ -27,8 +27,8 @@ Linear::Linear(const Variable& w)
 Linear::Linear(const Variable& w, const Variable& b)
     : UnaryModule({w, b}), nIn_(w.dim(1)), nOut_(w.dim(0)), bias_(true) {
   if (b.dim(0) != w.dim(0)) {
-    throw std::invalid_argument(
-        "dimension mismatch between Linear weight and bias");
+    /*throw*/ std::invalid_argument("dimension mismatch between Linear weight and bias");
+        return;
   }
 }
 

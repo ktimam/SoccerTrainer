@@ -18,7 +18,8 @@ void deviceImplTypeCheck(DeviceType expect, DeviceType actual) {
     oss << "[fl::Device::impl] "
         << "specified device type: [" << expect << "] "
         << "doesn't match actual device type: [" << actual << "]";
-    throw std::invalid_argument(oss.str());
+    /*throw*/ std::invalid_argument(oss.str());
+        return;
   }
 }
 
@@ -28,8 +29,8 @@ const std::unordered_set<std::shared_ptr<Stream>>& Device::getStreams() const {
 
 void Device::addStream(std::shared_ptr<Stream> stream) {
   if (&stream->device() != this) {
-    throw std::runtime_error(
-      "[Device::addStream] Must add stream to owner device");
+    /*throw*/ std::runtime_error("[Device::addStream] Must add stream to owner device");
+        return;
   }
   streams_.insert(stream);
 }

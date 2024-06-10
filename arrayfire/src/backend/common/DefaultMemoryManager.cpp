@@ -211,14 +211,14 @@ void *DefaultMemoryManager::alloc(bool user_lock, const unsigned ndims,
         // Only comes here if buffer size not found or in debug mode
         if (ptr == nullptr) {
             // Perform garbage collection if memory can not be allocated
-            try {
+            /*try*/ {
                 ptr = this->nativeAlloc(alloc_bytes);
-            } catch (const AfError &ex) {
+            } /*catch (const AfError& ex) {
                 // If out of memory, run garbage collect and try again
-                if (ex.getError() != AF_ERR_NO_MEM) { throw; }
+                if (ex.getError() != AF_ERR_NO_MEM) { /*throw;}
                 this->signalMemoryCleanup();
                 ptr = this->nativeAlloc(alloc_bytes);
-            }
+            }*/
 #ifndef MULTITHREADING_DISABLED
             lock_guard_t lock(this->memory_mutex);
 #endif

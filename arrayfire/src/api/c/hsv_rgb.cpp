@@ -32,7 +32,7 @@ static af_array convert(const af_array& in) {
 
 template<bool isHSV2RGB>
 af_err convert(af_array* out, const af_array& in) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af_dtype iType        = info.getType();
         af::dim4 inputDims    = info.dims();

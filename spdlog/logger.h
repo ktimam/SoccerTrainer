@@ -39,7 +39,8 @@
         }                                                                                 \
         catch (...) {                                                                     \
             err_handler_("Rethrowing unknown exception in logger");                       \
-            throw;                                                                        \
+            /*throw;*/                                                                       \
+        return;                                                                             \
         }
 #else
     #define SPDLOG_LOGGER_CATCH(location)

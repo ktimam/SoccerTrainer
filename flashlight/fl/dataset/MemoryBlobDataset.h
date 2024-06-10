@@ -10,7 +10,10 @@
 #include "flashlight/fl/dataset/BlobDataset.h"
 
 #include <fstream>
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 
 namespace fl {
 
@@ -38,7 +41,10 @@ class FL_API MemoryBlobDataset : public BlobDataset {
   bool isEmptyData() const override;
 
  private:
+#ifndef MULTITHREADING_DISABLED
   mutable std::mutex writeMutex_;
+#endif // MULTITHREADING_DISABLED
+
   mutable std::vector<char> data_;
 };
 

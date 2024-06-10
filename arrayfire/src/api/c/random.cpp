@@ -127,7 +127,7 @@ void validateRandomType(const af_random_engine_type type) {
 }  // namespace
 
 af_err af_get_default_random_engine(af_random_engine *r) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
 
         // RandomEngine contains device buffers which are dependent on
@@ -151,7 +151,7 @@ af_err af_get_default_random_engine(af_random_engine *r) {
 
 af_err af_create_random_engine(af_random_engine *engineHandle,
                                af_random_engine_type rtype, uintl seed) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         validateRandomType(rtype);
 
@@ -184,7 +184,7 @@ af_err af_create_random_engine(af_random_engine *engineHandle,
 
 af_err af_retain_random_engine(af_random_engine *outHandle,
                                const af_random_engine engineHandle) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         *outHandle = getRandomEngineHandle(*(getRandomEngine(engineHandle)));
     }
@@ -194,7 +194,7 @@ af_err af_retain_random_engine(af_random_engine *outHandle,
 
 af_err af_random_engine_set_type(af_random_engine *engine,
                                  const af_random_engine_type rtype) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         validateRandomType(rtype);
         RandomEngine *e = getRandomEngine(*engine);
@@ -230,7 +230,7 @@ af_err af_random_engine_set_type(af_random_engine *engine,
 
 af_err af_random_engine_get_type(af_random_engine_type *rtype,
                                  const af_random_engine engine) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         RandomEngine *e = getRandomEngine(engine);
         *rtype          = e->type;
@@ -240,7 +240,7 @@ af_err af_random_engine_get_type(af_random_engine_type *rtype,
 }
 
 af_err af_set_default_random_engine_type(const af_random_engine_type rtype) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         af_random_engine e;
         AF_CHECK(af_get_default_random_engine(&e));
@@ -251,7 +251,7 @@ af_err af_set_default_random_engine_type(const af_random_engine_type rtype) {
 }
 
 af_err af_random_engine_set_seed(af_random_engine *engine, const uintl seed) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         RandomEngine *e = getRandomEngine(*engine);
         *(e->seed)      = seed;
@@ -266,7 +266,7 @@ af_err af_random_engine_set_seed(af_random_engine *engine, const uintl seed) {
 }
 
 af_err af_random_engine_get_seed(uintl *const seed, af_random_engine engine) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         RandomEngine *e = getRandomEngine(engine);
         *seed           = *(e->seed);
@@ -278,7 +278,7 @@ af_err af_random_engine_get_seed(uintl *const seed, af_random_engine engine) {
 af_err af_random_uniform(af_array *out, const unsigned ndims,
                          const dim_t *const dims, const af_dtype type,
                          af_random_engine engine) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         af_array result;
 
@@ -310,7 +310,7 @@ af_err af_random_uniform(af_array *out, const unsigned ndims,
 af_err af_random_normal(af_array *out, const unsigned ndims,
                         const dim_t *const dims, const af_dtype type,
                         af_random_engine engine) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         af_array result;
 
@@ -332,7 +332,7 @@ af_err af_random_normal(af_array *out, const unsigned ndims,
 }
 
 af_err af_release_random_engine(af_random_engine engineHandle) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         delete getRandomEngine(engineHandle);
     }
@@ -342,7 +342,7 @@ af_err af_release_random_engine(af_random_engine engineHandle) {
 
 af_err af_randu(af_array *out, const unsigned ndims, const dim_t *const dims,
                 const af_dtype type) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         af_array result;
 
@@ -375,7 +375,7 @@ af_err af_randu(af_array *out, const unsigned ndims, const dim_t *const dims,
 
 af_err af_randn(af_array *out, const unsigned ndims, const dim_t *const dims,
                 const af_dtype type) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         af_array result;
 
@@ -399,7 +399,7 @@ af_err af_randn(af_array *out, const unsigned ndims, const dim_t *const dims,
 }
 
 af_err af_set_seed(const uintl seed) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         af_random_engine engine;
         AF_CHECK(af_get_default_random_engine(&engine));
@@ -410,7 +410,7 @@ af_err af_set_seed(const uintl seed) {
 }
 
 af_err af_get_seed(uintl *seed) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         af_random_engine e;
         AF_CHECK(af_get_default_random_engine(&e));

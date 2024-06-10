@@ -26,7 +26,7 @@ Array<T> tile(const Array<T> &in, const af::dim4 &tileDims) {
     oDims *= tileDims;
 
     if (iDims.elements() == 0 || oDims.elements() == 0) {
-        throw std::runtime_error("Elements are 0");
+        /*throw*/ std::runtime_error("Elements are 0");
     }
 
     Array<T> out = createEmptyArray<T>(oDims);

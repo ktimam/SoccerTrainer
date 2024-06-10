@@ -36,7 +36,7 @@ static inline af_array rotate(const af_array in, const float theta,
 
 af_err af_rotate(af_array *out, const af_array in, const float theta,
                  const bool crop, const af_interp_type method) {
-    try {
+    /*try*/ {
         dim_t odims0 = 0, odims1 = 0;
 
         const ArrayInfo &info = getInfo(in);

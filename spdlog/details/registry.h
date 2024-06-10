@@ -9,12 +9,12 @@
 // This class is thread safe
 
 #include <spdlog/common.h>
-#include <spdlog/details/periodic_worker.h>
+//#include <spdlog/details/periodic_worker.h>
 
 #include <chrono>
-#include <functional>
+//#include <functional>
 #include <memory>
-#include <mutex>
+//#include <mutex>
 #include <string>
 #include <unordered_map>
 
@@ -63,17 +63,17 @@ public:
 
     void flush_on(level::level_enum log_level);
 
-    template <typename Rep, typename Period>
-    void flush_every(std::chrono::duration<Rep, Period> interval) {
-        std::lock_guard<std::mutex> lock(flusher_mutex_);
-        auto clbk = [this]() { this->flush_all(); };
-        periodic_flusher_ = details::make_unique<periodic_worker>(clbk, interval);
-    }
+    //template <typename Rep, typename Period>
+    //void flush_every(std::chrono::duration<Rep, Period> interval) {
+    //    //std::lock_guard<std::mutex> lock(flusher_mutex_);
+    //    auto clbk = [this]() { this->flush_all(); };
+    //    periodic_flusher_ = details::make_unique<periodic_worker>(clbk, interval);
+    //}
 
-    std::unique_ptr<periodic_worker> &get_flusher() {
-        std::lock_guard<std::mutex> lock(flusher_mutex_);
-        return periodic_flusher_;
-    }
+    //std::unique_ptr<periodic_worker> &get_flusher() {
+    //    //std::lock_guard<std::mutex> lock(flusher_mutex_);
+    //    return periodic_flusher_;
+    //}
 
     void set_error_handler(err_handler handler);
 
@@ -88,7 +88,7 @@ public:
     // clean all resources and threads started by the registry
     void shutdown();
 
-    std::recursive_mutex &tp_mutex();
+    //std::recursive_mutex &tp_mutex();
 
     void set_automatic_registration(bool automatic_registration);
 
@@ -106,8 +106,8 @@ private:
     void throw_if_exists_(const std::string &logger_name);
     void register_logger_(std::shared_ptr<logger> new_logger);
     bool set_level_from_cfg_(logger *logger);
-    std::mutex logger_map_mutex_, flusher_mutex_;
-    std::recursive_mutex tp_mutex_;
+    //std::mutex logger_map_mutex_, flusher_mutex_;
+    //std::recursive_mutex tp_mutex_;
     std::unordered_map<std::string, std::shared_ptr<logger>> loggers_;
     log_levels log_levels_;
     std::unique_ptr<formatter> formatter_;
@@ -115,7 +115,7 @@ private:
     level::level_enum flush_level_ = level::off;
     err_handler err_handler_;
     std::shared_ptr<thread_pool> tp_;
-    std::unique_ptr<periodic_worker> periodic_flusher_;
+    //std::unique_ptr<periodic_worker> periodic_flusher_;
     std::shared_ptr<logger> default_logger_;
     bool automatic_registration_ = true;
     size_t backtrace_n_messages_ = 0;

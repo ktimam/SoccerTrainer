@@ -23,7 +23,8 @@ std::vector<int64_t> makePermutationFromFn(
     int64_t size,
     const fl::Dataset::PermutationFunction& fn) {
   if (!fn) {
-    throw std::invalid_argument("PermutationFunction is null");
+    /*throw*/ std::invalid_argument("PermutationFunction is null");
+        return std::vector<int64_t>();
   }
   auto perm = makeIdentityPermutation(size);
   std::transform(perm.begin(), perm.end(), perm.begin(), fn);
@@ -42,7 +43,8 @@ ResampleDataset::ResampleDataset(
     std::vector<int64_t> resamplevec)
     : dataset_(dataset) {
   if (!dataset_) {
-    throw std::invalid_argument("dataset to be resampled is null");
+    /*throw*/ std::invalid_argument("dataset to be resampled is null");
+        return;
   }
   resample(std::move(resamplevec));
 }

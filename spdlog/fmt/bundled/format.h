@@ -121,13 +121,13 @@ template <typename Exception> inline void do_throw(const Exception& x) {
   // Silence unreachable code warnings in MSVC and NVCC because these
   // are nearly impossible to fix in a generic code.
   volatile bool b = true;
-  if (b) throw x;
+  //if (b) throw x;
 }
 }  // namespace detail
 FMT_END_NAMESPACE
 #      define FMT_THROW(x) detail::do_throw(x)
 #    else
-#      define FMT_THROW(x) throw x
+#      define FMT_THROW(x) /*throw x*/
 #    endif
 #  else
 #    define FMT_THROW(x) \
@@ -282,7 +282,7 @@ namespace detail {
 FMT_CONSTEXPR inline void abort_fuzzing_if(bool condition) {
   ignore_unused(condition);
 #ifdef FMT_FUZZ
-  if (condition) throw std::runtime_error("fuzzing limit reached");
+  if (condition) /*throw*/ std::runtime_error("fuzzing limit reached");
 #endif
 }
 
@@ -908,10 +908,10 @@ class basic_memory_buffer final : public detail::buffer<T> {
         std::allocator_traits<Allocator>::allocate(alloc_, new_capacity);
     // Suppress a bogus -Wstringop-overflow in gcc 13.1 (#3481).
     detail::assume(this->size() <= new_capacity);
-    // The following code doesn't throw, so the raw pointer above doesn't leak.
+    // The following code doesn't //throw, so the raw pointer above doesn't leak.
     std::uninitialized_copy_n(old_data, this->size(), new_data);
     this->set(new_data, new_capacity);
-    // deallocate must not throw according to the standard, but even if it does,
+    // deallocate must not //throw according to the standard, but even if it does,
     // the buffer already uses the new storage and will deallocate it in
     // destructor.
     if (old_data != store_) alloc_.deallocate(old_data, old_capacity);
@@ -1400,7 +1400,7 @@ template <typename WChar, typename Buffer = memory_buffer> class to_utf8 {
   auto str() const -> std::string { return std::string(&buffer_[0], size()); }
 
   // Performs conversion returning a bool instead of throwing exception on
-  // conversion error. This method may still throw in case of memory allocation
+  // conversion error. This method may still //throw in case of memory allocation
   // error.
   auto convert(basic_string_view<WChar> s,
                to_utf8_error_policy policy = to_utf8_error_policy::abort)
@@ -3934,7 +3934,7 @@ FMT_API auto vsystem_error(int error_code, string_view format_str,
     const char* filename = "madeup";
     std::FILE* file = std::fopen(filename, "r");
     if (!file)
-      throw fmt::system_error(errno, "cannot open file '{}'", filename);
+      //throw fmt::system_error(errno, "cannot open file '{}'", filename);
   \endrst
  */
 template <typename... T>

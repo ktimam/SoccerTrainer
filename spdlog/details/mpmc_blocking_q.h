@@ -14,7 +14,7 @@
 
 #include <atomic>
 #include <condition_variable>
-#include <mutex>
+//#include <mutex>
 
 namespace spdlog {
 namespace details {
@@ -30,7 +30,7 @@ public:
     // try to enqueue and block if no room left
     void enqueue(T &&item) {
         {
-            std::unique_lock<std::mutex> lock(queue_mutex_);
+            //std::unique_lock<std::mutex> lock(queue_mutex_);
             pop_cv_.wait(lock, [this] { return !this->q_.full(); });
             q_.push_back(std::move(item));
         }
@@ -40,7 +40,7 @@ public:
     // enqueue immediately. overrun oldest message in the queue if no room left.
     void enqueue_nowait(T &&item) {
         {
-            std::unique_lock<std::mutex> lock(queue_mutex_);
+            //std::unique_lock<std::mutex> lock(queue_mutex_);
             q_.push_back(std::move(item));
         }
         push_cv_.notify_one();
@@ -49,7 +49,7 @@ public:
     void enqueue_if_have_room(T &&item) {
         bool pushed = false;
         {
-            std::unique_lock<std::mutex> lock(queue_mutex_);
+            //std::unique_lock<std::mutex> lock(queue_mutex_);
             if (!q_.full()) {
                 q_.push_back(std::move(item));
                 pushed = true;
@@ -67,7 +67,7 @@ public:
     // Return true, if succeeded dequeue item, false otherwise
     bool dequeue_for(T &popped_item, std::chrono::milliseconds wait_duration) {
         {
-            std::unique_lock<std::mutex> lock(queue_mutex_);
+            //std::unique_lock<std::mutex> lock(queue_mutex_);
             if (!push_cv_.wait_for(lock, wait_duration, [this] { return !this->q_.empty(); })) {
                 return false;
             }
@@ -81,7 +81,7 @@ public:
     // blocking dequeue without a timeout.
     void dequeue(T &popped_item) {
         {
-            std::unique_lock<std::mutex> lock(queue_mutex_);
+            //std::unique_lock<std::mutex> lock(queue_mutex_);
             push_cv_.wait(lock, [this] { return !this->q_.empty(); });
             popped_item = std::move(q_.front());
             q_.pop_front();
@@ -95,7 +95,7 @@ public:
 
     // try to enqueue and block if no room left
     void enqueue(T &&item) {
-        std::unique_lock<std::mutex> lock(queue_mutex_);
+        //std::unique_lock<std::mutex> lock(queue_mutex_);
         pop_cv_.wait(lock, [this] { return !this->q_.full(); });
         q_.push_back(std::move(item));
         push_cv_.notify_one();
@@ -103,14 +103,14 @@ public:
 
     // enqueue immediately. overrun oldest message in the queue if no room left.
     void enqueue_nowait(T &&item) {
-        std::unique_lock<std::mutex> lock(queue_mutex_);
+        //std::unique_lock<std::mutex> lock(queue_mutex_);
         q_.push_back(std::move(item));
         push_cv_.notify_one();
     }
 
     void enqueue_if_have_room(T &&item) {
         bool pushed = false;
-        std::unique_lock<std::mutex> lock(queue_mutex_);
+        //std::unique_lock<std::mutex> lock(queue_mutex_);
         if (!q_.full()) {
             q_.push_back(std::move(item));
             pushed = true;
@@ -126,7 +126,7 @@ public:
     // dequeue with a timeout.
     // Return true, if succeeded dequeue item, false otherwise
     bool dequeue_for(T &popped_item, std::chrono::milliseconds wait_duration) {
-        std::unique_lock<std::mutex> lock(queue_mutex_);
+        //std::unique_lock<std::mutex> lock(queue_mutex_);
         if (!push_cv_.wait_for(lock, wait_duration, [this] { return !this->q_.empty(); })) {
             return false;
         }
@@ -138,7 +138,7 @@ public:
 
     // blocking dequeue without a timeout.
     void dequeue(T &popped_item) {
-        std::unique_lock<std::mutex> lock(queue_mutex_);
+        //std::unique_lock<std::mutex> lock(queue_mutex_);
         push_cv_.wait(lock, [this] { return !this->q_.empty(); });
         popped_item = std::move(q_.front());
         q_.pop_front();
@@ -148,19 +148,19 @@ public:
 #endif
 
     size_t overrun_counter() {
-        std::unique_lock<std::mutex> lock(queue_mutex_);
+        //std::unique_lock<std::mutex> lock(queue_mutex_);
         return q_.overrun_counter();
     }
 
     size_t discard_counter() { return discard_counter_.load(std::memory_order_relaxed); }
 
     size_t size() {
-        std::unique_lock<std::mutex> lock(queue_mutex_);
+        //std::unique_lock<std::mutex> lock(queue_mutex_);
         return q_.size();
     }
 
     void reset_overrun_counter() {
-        std::unique_lock<std::mutex> lock(queue_mutex_);
+        //std::unique_lock<std::mutex> lock(queue_mutex_);
         q_.reset_overrun_counter();
     }
 

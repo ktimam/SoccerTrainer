@@ -40,7 +40,7 @@ af_array flat(const af_array in) {
 
 af_err af_moddims(af_array* out, const af_array in, const unsigned ndims,
                   const dim_t* const dims) {
-    try {
+    /*try*/ {
         if (ndims == 0) {
             *out = retain(in);
             return AF_SUCCESS;
@@ -82,7 +82,7 @@ af_err af_moddims(af_array* out, const af_array in, const unsigned ndims,
 }
 
 af_err af_flat(af_array* out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
 
         if (info.ndims() == 1) {

@@ -74,13 +74,13 @@ CEREAL_RAPIDJSON_DIAG_OFF(effc++)
     This macros can be used as a customization point for the internal
     error handling mechanism of RapidJSON.
 
-    A common usage model is to throw an exception instead of requiring the
+    A common usage model is to //throw an exception instead of requiring the
     caller to explicitly check the \ref rapidjson::GenericReader::Parse's
     return value:
 
     \code
     #define CEREAL_RAPIDJSON_PARSE_ERROR_NORETURN(parseErrorCode,offset) \
-       throw ParseException(parseErrorCode, #parseErrorCode, offset)
+       //throw ParseException(parseErrorCode, #parseErrorCode, offset)
 
     #include <stdexcept>               // std::runtime_error
     #include "rapidjson/error/error.h" // rapidjson::ParseResult

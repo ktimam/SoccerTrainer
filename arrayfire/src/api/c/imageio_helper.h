@@ -80,7 +80,7 @@ static void FreeImageErrorHandler(FREE_IMAGE_FORMAT oFif,
 static af_err channel_split(const af_array rgb, const af::dim4 &dims,
                             af_array *outr, af_array *outg, af_array *outb,
                             af_array *outa) {
-    try {
+    /*try*/ {
         af_seq idx[4][3] = {{af_span, af_span, {0, 0, 1}},
                             {af_span, af_span, {1, 1, 1}},
                             {af_span, af_span, {2, 2, 1}},

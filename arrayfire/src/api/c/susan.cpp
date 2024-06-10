@@ -55,7 +55,7 @@ static af_features susan(af_array const& in, const unsigned radius,
 af_err af_susan(af_features* out, const af_array in, const unsigned radius,
                 const float diff_thr, const float geom_thr,
                 const float feature_ratio, const unsigned edge) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af::dim4 dims         = info.dims();
 

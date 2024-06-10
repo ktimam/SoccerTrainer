@@ -113,12 +113,12 @@ public:
     }
 
     QTextCharFormat &get_level_color(level::level_enum color_level) {
-        std::lock_guard<Mutex> lock(base_sink<Mutex>::mutex_);
+        //std::lock_guard<Mutex> lock(base_sink<Mutex>::mutex_);
         return colors_.at(static_cast<size_t>(color_level));
     }
 
     QTextCharFormat &get_default_color() {
-        std::lock_guard<Mutex> lock(base_sink<Mutex>::mutex_);
+        //std::lock_guard<Mutex> lock(base_sink<Mutex>::mutex_);
         return default_color_;
     }
 

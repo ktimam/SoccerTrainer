@@ -41,7 +41,7 @@ af_array select(const af_array cond, const af_array a, const af_array b,
 
 af_err af_select(af_array* out, const af_array cond, const af_array a,
                  const af_array b) {
-    try {
+    /*try*/ {
         const ArrayInfo& ainfo     = getInfo(a);
         const ArrayInfo& binfo     = getInfo(b);
         const ArrayInfo& cond_info = getInfo(cond);
@@ -100,7 +100,7 @@ af_array select_scalar(const af_array cond, const af_array a,
 template<typename ScalarType, bool IsScalarTrueOutput>
 af_err selectScalar(af_array* out, const af_array cond, const af_array e,
                     const ScalarType c) {
-    try {
+    /*try*/ {
         const ArrayInfo& einfo = getInfo(e);
         const ArrayInfo& cinfo = getInfo(cond);
 

@@ -83,7 +83,8 @@ class FL_API Dataset {
  protected:
   void checkIndexBounds(int64_t idx) const {
     if (!(idx >= 0 && idx < size())) {
-      throw std::out_of_range("Dataset idx out of range");
+      /*throw*/ std::out_of_range("Dataset idx out of range");
+        return;
     }
   }
 };

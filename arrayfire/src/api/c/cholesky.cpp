@@ -34,7 +34,7 @@ static inline int cholesky_inplace(af_array in, const bool is_upper) {
 
 af_err af_cholesky(af_array *out, int *info, const af_array in,
                    const bool is_upper) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
 
         if (i_info.ndims() > 2) {
@@ -66,7 +66,7 @@ af_err af_cholesky(af_array *out, int *info, const af_array in,
 }
 
 af_err af_cholesky_inplace(int *info, af_array in, const bool is_upper) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
 
         if (i_info.ndims() > 2) {

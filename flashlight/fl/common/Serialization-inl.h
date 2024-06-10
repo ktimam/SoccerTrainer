@@ -205,7 +205,7 @@ void save(
   const auto& tensor = tensor_.val;
   // TODO{fl::Tensor}{sparse} figure out what to do here...
   if (tensor.isSparse()) {
-    throw cereal::Exception(
+    /*throw*/ cereal::Exception(
         "Serialzation of sparse Tensor is not supported yet!");
   }
   std::vector<uint8_t> vec(tensor.bytes());

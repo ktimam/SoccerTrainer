@@ -29,7 +29,7 @@ inline af_array sat(const af_array& in) {
 }
 
 af_err af_sat(af_array* out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         const dim4& dims      = info.dims();
 

@@ -102,11 +102,11 @@ Variable Variable::astype(fl::dtype newType) const {
 
 Variable& Variable::grad() const {
   if (!sharedGrad_->calcGrad) {
-    throw std::logic_error("gradient calculation disabled for this Variable");
+    /*throw*/ std::logic_error("gradient calculation disabled for this Variable");
   }
 
   if (!sharedGrad_->grad) {
-    throw std::logic_error("gradient not calculated yet for this Variable");
+    /*throw*/ std::logic_error("gradient not calculated yet for this Variable");
   }
 
   return *sharedGrad_->grad;
@@ -194,7 +194,7 @@ void Variable::addGrad(const Variable& childGrad) {
          << childGrad.type() << " to a Variable of type " << this->type()
          << ". You might be performing an operation with "
             "two inputs of different types.";
-      throw std::invalid_argument(ss.str());
+      /*throw*/ std::invalid_argument(ss.str());
     }
     if (childGrad.shape() != this->shape()) {
       std::stringstream ss;
@@ -202,7 +202,7 @@ void Variable::addGrad(const Variable& childGrad) {
             "to this Variable's dimensions: this variable has shape "
          << this->shape() << " whereas the child gradient has dimensions "
          << childGrad.shape() << std::endl;
-      throw std::invalid_argument(ss.str());
+      /*throw*/ std::invalid_argument(ss.str());
     }
     if (sharedGrad_->grad) {
       // Prevent increment of array refcount to avoid a copy
@@ -237,7 +237,7 @@ void Variable::applyGradHook() {
 void Variable::calcGradInputs(bool retainGraph) {
   if (sharedGrad_->gradFunc) {
     if (!sharedGrad_->grad) {
-      throw std::logic_error("gradient was not propagated to this Variable");
+      /*throw*/ std::logic_error("gradient was not propagated to this Variable");
     }
 
     sharedGrad_->gradFunc(sharedGrad_->inputs, *sharedGrad_->grad);

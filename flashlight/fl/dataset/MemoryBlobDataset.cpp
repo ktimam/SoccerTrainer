@@ -19,7 +19,10 @@ int64_t MemoryBlobDataset::writeData(
     int64_t offset,
     const char* data,
     int64_t size) const {
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(writeMutex_);
+#endif // MULTITHREADING_DISABLED
+
   if (offset + size > data_.size()) {
     data_.resize(offset + size);
   }
@@ -39,7 +42,10 @@ int64_t MemoryBlobDataset::readData(int64_t offset, char* data, int64_t size)
 }
 
 void MemoryBlobDataset::flushData() {
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(writeMutex_);
+#endif // MULTITHREADING_DISABLED
+
 }
 
 bool MemoryBlobDataset::isEmptyData() const {

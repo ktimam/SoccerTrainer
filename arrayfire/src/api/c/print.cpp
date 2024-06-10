@@ -140,7 +140,7 @@ static void printSparse(const char *exp, af_array arr, const int precision,
 }
 
 af_err af_print_array(af_array arr) {
-    try {
+    /*try*/ {
         const ArrayInfo &info =
             getInfo(arr, false);  // Don't assert sparse/dense
         af_dtype type = info.getType();
@@ -178,7 +178,7 @@ af_err af_print_array(af_array arr) {
 
 af_err af_print_array_gen(const char *exp, const af_array arr,
                           const int precision) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, exp != NULL);
         const ArrayInfo &info =
             getInfo(arr, false);  // Don't assert sparse/dense
@@ -217,7 +217,7 @@ af_err af_print_array_gen(const char *exp, const af_array arr,
 
 af_err af_array_to_string(char **output, const char *exp, const af_array arr,
                           const int precision, bool transpose) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, exp != NULL);
         const ArrayInfo &info =
             getInfo(arr, false);  // Don't assert sparse/dense

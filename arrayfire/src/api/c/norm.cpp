@@ -121,7 +121,7 @@ double norm(const af_array a, const af_norm_type type, const double p,
 
 af_err af_norm(double *out, const af_array in, const af_norm_type type,
                const double p, const double q) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
 
         if (i_info.ndims() > 2) {

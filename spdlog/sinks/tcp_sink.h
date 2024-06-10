@@ -41,7 +41,7 @@ struct tcp_sink_config {
 template <typename Mutex>
 class tcp_sink : public spdlog::sinks::base_sink<Mutex> {
 public:
-    // connect to tcp host/port or throw if failed
+    // connect to tcp host/port or //throw if failed
     // host can be hostname or ip address
 
     explicit tcp_sink(tcp_sink_config sink_config)

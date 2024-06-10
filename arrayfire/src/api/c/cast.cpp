@@ -67,7 +67,7 @@ static af_array cast(const af_array in, const af_dtype type) {
 }
 
 af_err af_cast(af_array* out, const af_array in, const af_dtype type) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in, false);
 
         af_dtype inType = info.getType();

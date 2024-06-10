@@ -13,7 +13,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
-#include <thread>
+//#include <thread>
 #include <unordered_map>
 #include <utility>
 
@@ -52,29 +52,29 @@ typename std::invoke_result<Fn, Args...>::type retryWithBackoff(
     Fn&& f,
     Args&&... args) {
   if (!(initial.count() >= 0.0)) {
-    throw std::invalid_argument("retryWithBackoff: bad initial");
+    /*throw*/ std::invalid_argument("retryWithBackoff: bad initial");
   } else if (!(factor >= 0.0)) {
-    throw std::invalid_argument("retryWithBackoff: bad factor");
+    /*throw*/ std::invalid_argument("retryWithBackoff: bad factor");
   } else if (maxIters <= 0) {
-    throw std::invalid_argument("retryWithBackoff: bad maxIters");
+    /*throw*/ std::invalid_argument("retryWithBackoff: bad maxIters");
   }
   auto sleepSecs = initial.count();
   for (int64_t i = 0; i < maxIters; ++i) {
-    try {
+    /*try*/ {
       return f(std::forward<Args>(args)...);
-    } catch (...) {
+    } /* catch (...) {
       if (i >= maxIters - 1) {
         throw;
       }
-    }
+    } */
     if (sleepSecs > 0.0) {
       /* sleep override */
-      std::this_thread::sleep_for(
-          std::chrono::duration<float>(std::min(1e7, sleepSecs)));
+      /*std::this_thread::sleep_for(
+          std::chrono::duration<float>(std::min(1e7, sleepSecs)));*/
     }
     sleepSecs *= factor;
   }
-  throw std::logic_error("retryWithBackoff: hit unreachable");
+  /*throw*/ std::logic_error("retryWithBackoff: hit unreachable");
 }
 
 /**

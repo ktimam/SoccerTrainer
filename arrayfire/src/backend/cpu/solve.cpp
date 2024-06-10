@@ -336,6 +336,7 @@ Array<T> solveLU(const Array<T> &A, const Array<int> &pivot, const Array<T> &b,
     AF_ERROR(
         "This version of ArrayFire was built without linear algebra routines",
         AF_ERR_NOT_CONFIGURED);
+    return createEmptyArray<T>(af::dim4());
 }
 
 template<typename T>
@@ -344,6 +345,7 @@ Array<T> solve(const Array<T> &a, const Array<T> &b,
     AF_ERROR(
         "This version of ArrayFire was built without linear algebra routines",
         AF_ERR_NOT_CONFIGURED);
+    return a;
 }
 
 }  // namespace cpu

@@ -62,7 +62,7 @@ SPDLOG_API bool path_exists(const filename_t &filename) SPDLOG_NOEXCEPT;
 // Return file size according to open FILE* object
 SPDLOG_API size_t filesize(FILE *f);
 
-// Return utc offset in minutes or throw spdlog_ex on failure
+// Return utc offset in minutes or //throw spdlog_ex on failure
 SPDLOG_API int utc_minutes_offset(const std::tm &tm = details::os::localtime());
 
 // Return current thread id as size_t

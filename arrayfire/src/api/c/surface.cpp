@@ -145,7 +145,7 @@ fg_chart setup_surface(fg_window window, const af_array xVals,
 af_err af_draw_surface(const af_window window, const af_array xVals,
                        const af_array yVals, const af_array S,
                        const af_cell* const props) {
-    try {
+    /*try*/ {
         if (window == 0) { AF_ERROR("Not a valid window", AF_ERR_INTERNAL); }
 
         const ArrayInfo& Xinfo = getInfo(xVals);

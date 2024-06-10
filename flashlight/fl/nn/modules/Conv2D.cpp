@@ -95,12 +95,12 @@ Conv2D::Conv2D(
       bias_(true),
       groups_(groups) {
   if (b.dim(2) != w.dim(3)) {
-    throw std::invalid_argument(
-        "output channel dimension mismatch between Conv2D weight and bias");
+    /*throw*/ std::invalid_argument("output channel dimension mismatch between Conv2D weight and bias");
+        return;
   }
   if (b.elements() != b.dim(2)) {
-    throw std::invalid_argument(
-        "only 3rd dimension of Conv2D bias may be non-singleton");
+    /*throw*/ std::invalid_argument("only 3rd dimension of Conv2D bias may be non-singleton");
+        return;
   }
 }
 
@@ -143,7 +143,8 @@ Variable Conv2D::forward(const Variable& input) {
   auto px = derivePadding(input.dim(0), xFilter_, xStride_, xPad_, xDilation_);
   auto py = derivePadding(input.dim(1), yFilter_, yStride_, yPad_, yDilation_);
   if (!(px >= 0 && py >= 0)) {
-    throw std::invalid_argument("invalid padding for Conv2D");
+    /*throw*/ std::invalid_argument("invalid padding for Conv2D");
+        return Variable();
   }
 
   if (bias_) {

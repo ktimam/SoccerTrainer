@@ -20,7 +20,8 @@ FileBlobDataset::FileBlobDataset(
   {
     std::ofstream fs(name_, (truncate ? mode_ | std::ios_base::trunc : mode_));
     if (!fs.is_open()) {
-      throw std::runtime_error("could not open file " + name.string());
+      /*throw*/ std::runtime_error("could not open file " + name.string());
+        return;
     }
   }
   readIndex();
@@ -43,7 +44,10 @@ std::shared_ptr<std::fstream> FileBlobDataset::getStream() const {
     // Link threadFileHandles to the object
     // so the file handle can be cleaned at destruction.
     {
+#ifndef MULTITHREADING_DISABLED
       std::lock_guard<std::mutex> lock(afhmutex_);
+#endif // MULTITHREADING_DISABLED
+
       auto i = allFileHandles_.begin();
       bool match = false;
       while (i != std::end(allFileHandles_)) {
@@ -97,7 +101,10 @@ bool FileBlobDataset::isEmptyData() const {
 }
 
 FileBlobDataset::~FileBlobDataset() {
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(afhmutex_);
+#endif // MULTITHREADING_DISABLED
+
   for (auto& weakFileHandles : allFileHandles_) {
     auto fileHandles = weakFileHandles.lock();
     if (fileHandles) {

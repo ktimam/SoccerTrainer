@@ -168,7 +168,7 @@ void af_transform_common(af_array *out, const af_array in, const af_array tf,
 af_err af_transform(af_array *out, const af_array in, const af_array tf,
                     const dim_t odim0, const dim_t odim1,
                     const af_interp_type method, const bool inverse) {
-    try {
+    /*try*/ {
         af_transform_common(out, in, tf, odim0, odim1, method, inverse, true);
     }
     CATCHALL;
@@ -179,7 +179,7 @@ af_err af_transform(af_array *out, const af_array in, const af_array tf,
 af_err af_transform_v2(af_array *out, const af_array in, const af_array tf,
                        const dim_t odim0, const dim_t odim1,
                        const af_interp_type method, const bool inverse) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, out != 0);  // need to dereference out in next call
         af_transform_common(out, in, tf, odim0, odim1, method, inverse,
                             *out == 0);
@@ -192,7 +192,7 @@ af_err af_transform_v2(af_array *out, const af_array in, const af_array tf,
 af_err af_translate(af_array *out, const af_array in, const float trans0,
                     const float trans1, const dim_t odim0, const dim_t odim1,
                     const af_interp_type method) {
-    try {
+    /*try*/ {
         float trans_mat[6] = {1, 0, 0, 0, 1, 0};
         trans_mat[2]       = trans0;
         trans_mat[5]       = trans1;
@@ -213,7 +213,7 @@ af_err af_translate(af_array *out, const af_array in, const float trans0,
 af_err af_scale(af_array *out, const af_array in, const float scale0,
                 const float scale1, const dim_t odim0, const dim_t odim1,
                 const af_interp_type method) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
         dim4 idims              = i_info.dims();
 
@@ -257,7 +257,7 @@ af_err af_scale(af_array *out, const af_array in, const float scale0,
 af_err af_skew(af_array *out, const af_array in, const float skew0,
                const float skew1, const dim_t odim0, const dim_t odim1,
                const af_interp_type method, const bool inverse) {
-    try {
+    /*try*/ {
         float tx = std::tan(skew0);
         float ty = std::tan(skew1);
 

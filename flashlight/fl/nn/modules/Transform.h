@@ -57,12 +57,14 @@ class FL_API Transform : public UnaryModule {
 
 template <class Archive>
 void Transform::save(Archive& /* ar */, const uint32_t /* version */) const {
-  throw std::runtime_error("Transform module does not support serialization");
+  /*throw*/ std::runtime_error("Transform module does not support serialization");
+        return;
 }
 
 template <class Archive>
 void Transform::load(Archive& /* ar */, const uint32_t /* version */) {
-  throw std::runtime_error("Transform module does not support serialization");
+  /*throw*/ std::runtime_error("Transform module does not support serialization");
+        return;
 }
 
 } // namespace fl

@@ -188,9 +188,10 @@ Variable Conformer::mhsa(const Variable& input, const Variable& inputPadMask) {
     auto padMaskArr = inputPadMask.tensor();
     Shape newMaskShape = {input.dim(1), input.dim(2)};
     if (padMaskArr.elements() != newMaskShape.elements()) {
-      throw std::runtime_error(
+      /*throw*/ std::runtime_error(
           "Transformer::selfAttention - pad mask requires resize. "
           "This behavior will be fixed in a future release ");
+        return Variable();
     }
     padMaskArr = fl::reshape(padMaskArr, newMaskShape);
     padMask = fl::Variable(fl::log(padMaskArr), false);
@@ -227,17 +228,19 @@ Variable Conformer::conv(const Variable& _input) {
 
 std::vector<Variable> Conformer::forward(const std::vector<Variable>& input) {
   if (input.size() != 2) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Invalid inputs for conformer block: there should be input "
         "and paddding mask (can be empty Variable)");
+        return std::vector<Variable>();
   }
 
   auto x = input[0];
 
   if (x.ndim() != 3) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Conformer::forward - input should be of 3 dimensions "
         "expects an input of size C x T x B - see documentation.");
+        return std::vector<Variable>();
   }
 
   float pDropout = train_ ? pDropout_ : 0.0;

@@ -126,8 +126,8 @@ Tensor join(
     for (int d = 0; d < in.ndim(); ++d) {
       maxDims[d] = std::max(maxDims[d], in.dim(d));
       if (in.type() != type) {
-        throw std::invalid_argument(
-            "join: all arrays should of same type for join");
+        /*throw*/ std::invalid_argument("join: all arrays should of same type for join");
+        return Tensor();
       }
     }
   }
@@ -136,8 +136,8 @@ Tensor join(
     batchDim = maxDims.ndim() - 1;
   }
   if (batchDim < maxDims.ndim() && maxDims[batchDim] > 1) {
-    throw std::invalid_argument(
-        "join: no singleton dim available for batching");
+    /*throw*/ std::invalid_argument("join: no singleton dim available for batching");
+        return Tensor();
   }
   maxDims[batchDim] = inputs.size();
   if (isEmpty) {

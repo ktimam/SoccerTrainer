@@ -10,7 +10,10 @@
 #include <af/memory.h>
 
 #include <memory>
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 
 #include "flashlight/fl/tensor/backend/af/mem/MemoryManagerAdapter.h"
 

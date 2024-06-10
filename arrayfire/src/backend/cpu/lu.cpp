@@ -105,6 +105,7 @@ void lu(Array<T> &lower, Array<T> &upper, Array<int> &pivot,
 template<typename T>
 Array<int> lu_inplace(Array<T> &in, const bool convert_pivot) {
     AF_ERROR("Linear Algebra is disabled on CPU", AF_ERR_NOT_CONFIGURED);
+    return createEmptyArray<int>(af::dim4());
 }
 
 bool isLAPACKAvailable() { return false; }

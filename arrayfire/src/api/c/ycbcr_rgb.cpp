@@ -131,7 +131,7 @@ static af_array convert(const af_array& in, const af_ycc_std standard) {
 
 template<bool isYCbCr2RGB>
 af_err convert(af_array* out, const af_array& in, const af_ycc_std standard) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af_dtype iType        = info.getType();
         af::dim4 inputDims    = info.dims();

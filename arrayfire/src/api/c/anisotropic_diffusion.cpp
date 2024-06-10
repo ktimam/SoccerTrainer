@@ -63,7 +63,7 @@ af_err af_anisotropic_diffusion(af_array* out, const af_array in,
                                 const unsigned iterations,
                                 const af_flux_function fftype,
                                 const af_diffusion_eq eq) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
 
         const af::dim4& inputDimensions = info.dims();

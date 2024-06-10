@@ -172,7 +172,7 @@ namespace cereal
           being thrown.
 
           @param args The arguments to the constructor for T
-          @throw Exception If called more than once */
+          @//throw Exception If called more than once */
       template <class ... Args>
       void operator()( Args && ... args );
       // implementation deferred due to reliance on cereal::access
@@ -181,11 +181,11 @@ namespace cereal
       /*! This must be called after the object has been initialized.
 
           @return A reference to the initialized object
-          @throw Exception If called before initialization */
+          @//throw Exception If called before initialization */
       T * operator->()
       {
         if( !itsValid )
-          throw Exception("Object must be initialized prior to accessing members");
+          //throw Exception("Object must be initialized prior to accessing members");
 
         return itsPtr;
       }
@@ -340,7 +340,7 @@ namespace cereal
   void construct<T>::operator()( Args && ... args )
   {
     if( itsValid )
-      throw Exception("Attempting to construct an already initialized object");
+      //throw Exception("Attempting to construct an already initialized object");
 
     ::cereal::access::construct( itsPtr, std::forward<Args>( args )... );
     itsEnableSharedRestoreFunction();

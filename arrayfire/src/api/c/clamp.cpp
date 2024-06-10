@@ -45,7 +45,7 @@ static inline af_array clampOp(const af_array in, const af_array lo,
 
 af_err af_clamp(af_array* out, const af_array in, const af_array lo,
                 const af_array hi, const bool batch) {
-    try {
+    /*try*/ {
         const ArrayInfo& linfo = getInfo(lo);
         const ArrayInfo& hinfo = getInfo(hi);
         const ArrayInfo& iinfo = getInfo(in);

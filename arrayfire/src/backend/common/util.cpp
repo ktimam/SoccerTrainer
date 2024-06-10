@@ -34,7 +34,7 @@
 #include <numeric>
 #include <sstream>
 #include <string>
-#include <thread>
+//#include <thread>
 #include <vector>
 
 #ifdef __has_include
@@ -56,7 +56,7 @@ using std::rename;
 using std::size_t;
 using std::string;
 using std::stringstream;
-using std::thread;
+//using std::thread;
 using std::to_string;
 using std::uint8_t;
 using std::vector;
@@ -241,7 +241,7 @@ string makeTempFilename() {
     thread_local size_t fileCount = 0u;
 
     ++fileCount;
-    const size_t threadID = hash<thread::id>{}(std::this_thread::get_id());
+    const size_t threadID = 666;// hash<thread::id>{}(std::this_thread::get_id());
 
     return to_string(
         hash<string>{}(to_string(threadID) + "_" + to_string(fileCount)));
@@ -276,7 +276,7 @@ template string toString<unsigned>(unsigned);
 template string toString<unsigned long>(unsigned long);
 template string toString<unsigned long long>(unsigned long long);
 template string toString<float>(float);
-template string toString<float>(double);
+//template string toString<float>(double);
 template string toString<long double>(long double);
 
 template<>

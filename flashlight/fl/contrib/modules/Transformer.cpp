@@ -150,9 +150,10 @@ Variable Transformer::selfAttention(const std::vector<Variable>& input) {
     // TODO{fl::Tensor}{resize} - emulate the ArrayFire resize operation for
     // transformer pad mask
     if (padMaskArr.elements() != newMaskShape.elements()) {
-      throw std::runtime_error(
+      /*throw*/ std::runtime_error(
           "Transformer::selfAttention - pad mask requires resize. "
           "This behavior will be fixed in a future release ");
+        return Variable();
     }
     padMaskArr = fl::reshape(padMaskArr, newMaskShape);
     padMask = fl::Variable(fl::log(padMaskArr), false);
@@ -170,26 +171,30 @@ std::vector<Variable> Transformer::forward(const std::vector<Variable>& input) {
   // padMask is expected to have "1" on the used positions and "0" on padded
   // positions
   if (input.size() != 2) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Invalid inputs for transformer block: there should be at least input and mask");
+        return std::vector<Variable>();
   }
   const auto& x = input.at(input.size() - 2);
   if (x.ndim() != 3) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Transformer::forward - input should be of 3 dimensions "
         "expects an input of size C x T x B - see documentation.");
+        return std::vector<Variable>();
   }
 
   if (!input.back().isEmpty()) {
     if (input.back().ndim() < 2) {
-      throw std::invalid_argument(
+      /*throw*/ std::invalid_argument(
           "Transformer::forward - invalid size for pad mask - "
           "must have at least two dimensions");
+        return std::vector<Variable>();
 
     } else if (x.dim(2) != input.back().dim(1)) {
-      throw std::invalid_argument(
+      /*throw*/ std::invalid_argument(
           "Transformer::forward - invalid inputs for transformer:"
           " input and mask batch sizes are different");
+        return std::vector<Variable>();
     }
   }
 

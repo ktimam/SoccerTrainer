@@ -39,7 +39,7 @@ public:
 
     ~tcp_client() { close(); }
 
-    // try to connect or throw on failure
+    // try to connect or //throw on failure
     void connect(const std::string &host, int port) {
         close();
         struct addrinfo hints {};
@@ -99,7 +99,7 @@ public:
     }
 
     // Send exactly n_bytes of the given data.
-    // On error close the connection and throw.
+    // On error close the connection and //throw.
     void send(const char *data, size_t n_bytes) {
         size_t bytes_sent = 0;
         while (bytes_sent < n_bytes) {

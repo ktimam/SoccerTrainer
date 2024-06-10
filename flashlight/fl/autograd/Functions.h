@@ -101,7 +101,7 @@ std::shared_ptr<AutogradPayload> createAutogradPayload(H head, T... tail) {
  */
 #define FL_VARIABLE_DTYPES_MATCH_CHECK(...)              \
   if (!detail::areVariableTypesEqual(__VA_ARGS__)) {     \
-    throw std::invalid_argument(                         \
+    /*throw*/ std::invalid_argument(                         \
         std::string(__func__) +                          \
         " doesn't support binary "                       \
         "operations with Variables of different types"); \

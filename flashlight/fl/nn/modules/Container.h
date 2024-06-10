@@ -112,7 +112,8 @@ class FL_API Container : public Module {
   template <typename T>
   void add(std::shared_ptr<T> module) {
     if (!module) {
-      throw std::invalid_argument("can't add null Module to Container");
+      /*throw*/ std::invalid_argument("can't add null Module to Container");
+        return;
     }
     for (int i = 0; i < module->numParamTensors(); i++) {
       childParamIdx_[params_.size()] = std::make_tuple(modules_.size(), i);

@@ -525,16 +525,7 @@
     <ClInclude Include="flashlight\fl\optim\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="flashlight\fl\tensor\backend\stub\StubBackend.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="flashlight\fl\tensor\backend\stub\StubTensor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="flashlight\fl\tensor\DefaultTensorType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="flashlight\fl\tensor\Index.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="flashlight\fl\tensor\Init.h">
@@ -666,13 +657,7 @@
     <ClInclude Include="arrayfire\include\af\gfor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="arrayfire\include\af\graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="arrayfire\include\af\half.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="arrayfire\include\af\image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\include\af\index.h">
@@ -739,9 +724,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\api\c\handle.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="arrayfire\src\api\c\imageio_helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\api\c\imgproc_common.hpp">
@@ -943,117 +925,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="spdlog\fmt\xchar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\android_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\ansicolor_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\ansicolor_sink-inl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\base_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\base_sink-inl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\basic_file_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\basic_file_sink-inl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\callback_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\daily_file_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\dist_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\dup_filter_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\hourly_file_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\kafka_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\mongo_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\msvc_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\null_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\ostream_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\qt_sinks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\ringbuffer_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\rotating_file_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\rotating_file_sink-inl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\sink-inl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\stdout_color_sinks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\stdout_color_sinks-inl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\stdout_sinks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\stdout_sinks-inl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\syslog_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\systemd_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\tcp_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\udp_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\win_eventlog_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\wincolor_sink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\sinks\wincolor_sink-inl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\async.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\async_logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="spdlog\async_logger-inl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="spdlog\common.h">
@@ -2538,15 +2409,6 @@
     <ClInclude Include="boost\visit_each.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="threads\async_queue.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\event.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="threads\parallel.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="af_forge\include\fg\chart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2658,9 +2520,6 @@
     <ClInclude Include="arrayfire\src\backend\common\defines.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="arrayfire\src\backend\common\DependencyModule.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="arrayfire\src\backend\common\deprecated.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2680,9 +2539,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\backend\common\forge_loader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="arrayfire\src\backend\common\graphics_common.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\backend\common\half.hpp">
@@ -3021,9 +2877,6 @@
     <ClInclude Include="arrayfire\src\backend\cpu\copy.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="arrayfire\src\backend\cpu\device_manager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="arrayfire\src\backend\cpu\diagonal.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3057,9 +2910,6 @@
     <ClInclude Include="arrayfire\src\backend\cpu\harris.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="arrayfire\src\backend\cpu\hist_graphics.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="arrayfire\src\backend\cpu\histogram.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3073,9 +2923,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\backend\cpu\iir.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="arrayfire\src\backend\cpu\image.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\backend\cpu\index.hpp">
@@ -3139,12 +2986,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\backend\cpu\ParamIterator.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="arrayfire\src\backend\cpu\platform.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="arrayfire\src\backend\cpu\plot.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\backend\cpu\print.hpp">
@@ -3219,9 +3060,6 @@
     <ClInclude Include="arrayfire\src\backend\cpu\sparse_blas.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="arrayfire\src\backend\cpu\surface.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="arrayfire\src\backend\cpu\susan.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3256,9 +3094,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\backend\cpu\utility.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="arrayfire\src\backend\cpu\vector_field.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\src\backend\cpu\where.hpp">
@@ -3384,12 +3219,6 @@
     <ClInclude Include="fftw\reodft\reodft.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fftw\threads\f77funcs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fftw\threads\threads.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="fftw\kernel\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3400,6 +3229,45 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="arrayfire\include\fftw3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="flashlight\fl\tensor\Index.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\backend\cpu\platform.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\backend\cpu\device_manager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\include\af\graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\backend\common\graphics_common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\backend\cpu\hist_graphics.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\include\af\image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\api\c\imageio_helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\backend\cpu\image.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\backend\cpu\surface.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\backend\cpu\plot.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\backend\cpu\vector_field.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="arrayfire\src\backend\common\DependencyModule.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3614,12 +3482,6 @@
     <ClCompile Include="flashlight\fl\optim\Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="flashlight\fl\tensor\backend\stub\StubBackend.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="flashlight\fl\tensor\backend\stub\StubTensor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="flashlight\fl\tensor\DefaultTensorType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -3818,9 +3680,6 @@
     <ClCompile Include="arrayfire\src\api\c\harris.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="arrayfire\src\api\c\hist.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="arrayfire\src\api\c\histeq.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -3834,9 +3693,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\api\c\iir.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\api\c\image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\api\c\imageio.cpp">
@@ -3900,9 +3756,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\api\c\pinverse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\api\c\plot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\api\c\print.cpp">
@@ -3974,9 +3827,6 @@
     <ClCompile Include="arrayfire\src\api\c\stream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="arrayfire\src\api\c\surface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="arrayfire\src\api\c\susan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -4010,16 +3860,10 @@
     <ClCompile Include="arrayfire\src\api\c\var.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="arrayfire\src\api\c\vector_field.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="arrayfire\src\api\c\version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\api\c\where.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\api\c\window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\api\c\wrap.cpp">
@@ -4113,9 +3957,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\api\cpp\gradient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\api\cpp\graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\api\cpp\hamming.cpp">
@@ -4292,9 +4133,6 @@
     <ClCompile Include="arrayfire\src\backend\common\DefaultMemoryManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\common\DependencyModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="arrayfire\src\backend\common\deterministicHash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -4305,9 +4143,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\common\err_common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\common\graphics_common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\common\half.cpp">
@@ -4326,9 +4161,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\common\moddims.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\common\module_loading_windows.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\common\SparseArray.cpp">
@@ -4367,9 +4199,6 @@
     <ClCompile Include="arrayfire\src\backend\cpu\copy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\cpu\device_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="arrayfire\src\backend\cpu\diagonal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -4400,9 +4229,6 @@
     <ClCompile Include="arrayfire\src\backend\cpu\harris.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\cpu\hist_graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="arrayfire\src\backend\cpu\histogram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -4416,9 +4242,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\cpu\iir.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\cpu\image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\cpu\index.cpp">
@@ -4470,12 +4293,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\cpu\orb.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\cpu\platform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\cpu\plot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\cpu\qr.cpp">
@@ -4547,9 +4364,6 @@
     <ClCompile Include="arrayfire\src\backend\cpu\sparse_blas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\cpu\surface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="arrayfire\src\backend\cpu\susan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -4572,9 +4386,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\cpu\unwrap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="arrayfire\src\backend\cpu\vector_field.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="arrayfire\src\backend\cpu\where.cpp">
@@ -5865,33 +5676,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fftw\reodft\rodft00e-r2hc-pad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fftw\threads\api.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fftw\threads\conf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fftw\threads\ct.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fftw\threads\dft-vrank-geq1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fftw\threads\f77api.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fftw\threads\hc2hc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fftw\threads\rdft-vrank-geq1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fftw\threads\threads.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fftw\threads\vrank-geq1-rdft2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="openblas\driver\others\blas_server.c">
@@ -11370,6 +11154,57 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="openblas\src\lapack\ztrtri_UU_single.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\cpu\platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\cpu\device_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\api\cpp\graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\common\graphics_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\cpu\hist_graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\api\c\image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\cpu\image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\api\c\window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\common\module_loading_windows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\api\c\surface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\cpu\surface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\api\c\plot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\cpu\plot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\api\c\hist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\api\c\vector_field.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\cpu\vector_field.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arrayfire\src\backend\common\DependencyModule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

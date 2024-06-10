@@ -89,7 +89,7 @@ Array<T> gaussianKernel(const int rows, const int cols, const double sigma_r,
 
 af_err af_gaussian_kernel(af_array *out, const int rows, const int cols,
                           const double sigma_r, const double sigma_c) {
-    try {
+    /*try*/ {
         af_array res;
         res = getHandle<float>(
             gaussianKernel<float>(rows, cols, sigma_r, sigma_c));

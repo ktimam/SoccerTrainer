@@ -233,7 +233,7 @@ static af_err readImage(af_array* rImage, const uchar* pSrcLine,
 // Load image from disk.
 af_err af_load_image(af_array* out, const char* filename, const bool isColor) {
     using arrayfire::readImage;
-    try {
+    /*try*/ {
         ARG_ASSERT(1, filename != NULL);
 
         FreeImage_Module& _ = getFreeImagePlugin();
@@ -531,7 +531,7 @@ af_err af_load_image(af_array* out, const char* filename, const bool isColor) {
 
 // Save an image to disk.
 af_err af_save_image(const char* filename, const af_array in_) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, filename != NULL);
 
         FreeImage_Module& _ = getFreeImagePlugin();
@@ -723,7 +723,7 @@ af_err af_save_image(const char* filename, const af_array in_) {
 /// Load image from memory.
 af_err af_load_image_memory(af_array* out, const void* ptr) {
     using arrayfire::readImage;
-    try {
+    /*try*/ {
         ARG_ASSERT(1, ptr != NULL);
 
         FreeImage_Module& _ = getFreeImagePlugin();
@@ -859,7 +859,7 @@ af_err af_load_image_memory(af_array* out, const void* ptr) {
 // Save an image to memory.
 af_err af_save_image_memory(void** ptr, const af_array in_,
                             const af_image_format format) {
-    try {
+    /*try*/ {
         FreeImage_Module& _ = getFreeImagePlugin();
 
         // set our own FreeImage error handler
@@ -1037,7 +1037,7 @@ af_err af_save_image_memory(void** ptr, const af_array in_,
 }
 
 af_err af_delete_image_memory(void* ptr) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, ptr != NULL);
 
         FreeImage_Module& _ = getFreeImagePlugin();

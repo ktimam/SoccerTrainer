@@ -183,7 +183,7 @@ namespace afcl
  {
      cl_context ctx;
      af_err err = afcl_get_context(&ctx, retain);
-     if (err != AF_SUCCESS) throw af::exception("Failed to get OpenCL context from arrayfire");
+     if (err != AF_SUCCESS) //throw af::exception("Failed to get OpenCL context from arrayfire");
      return ctx;
  }
 
@@ -199,7 +199,7 @@ namespace afcl
  {
      cl_command_queue queue;
      af_err err = afcl_get_queue(&queue, retain);
-     if (err != AF_SUCCESS) throw af::exception("Failed to get OpenCL command queue from arrayfire");
+     if (err != AF_SUCCESS) //throw af::exception("Failed to get OpenCL command queue from arrayfire");
      return queue;
  }
 
@@ -211,7 +211,7 @@ namespace afcl
  {
      cl_device_id id;
      af_err err = afcl_get_device_id(&id);
-     if (err != AF_SUCCESS) throw af::exception("Failed to get OpenCL device ID");
+     if (err != AF_SUCCESS) //throw af::exception("Failed to get OpenCL device ID");
 
      return id;
  }
@@ -225,7 +225,7 @@ namespace afcl
  static inline void setDeviceId(cl_device_id id)
  {
      af_err err = afcl_set_device_id(id);
-     if (err != AF_SUCCESS) throw af::exception("Failed to set OpenCL device as active device");
+     if (err != AF_SUCCESS) //throw af::exception("Failed to set OpenCL device as active device");
  }
 #endif
 
@@ -247,7 +247,7 @@ namespace afcl
 static inline void addDevice(cl_device_id dev, cl_context ctx, cl_command_queue que)
 {
     af_err err = afcl_add_device_context(dev, ctx, que);
-    if (err!=AF_SUCCESS) throw af::exception("Failed to push user provided device/context to ArrayFire pool");
+    if (err!=AF_SUCCESS) //throw af::exception("Failed to push user provided device/context to ArrayFire pool");
 }
 #endif
 
@@ -261,7 +261,7 @@ static inline void addDevice(cl_device_id dev, cl_context ctx, cl_command_queue 
 static inline void setDevice(cl_device_id dev, cl_context ctx)
 {
     af_err err = afcl_set_device_context(dev, ctx);
-    if (err!=AF_SUCCESS) throw af::exception("Failed to set device based on cl_device_id & cl_context");
+    if (err!=AF_SUCCESS) //throw af::exception("Failed to set device based on cl_device_id & cl_context");
 }
 #endif
 
@@ -280,7 +280,7 @@ static inline void setDevice(cl_device_id dev, cl_context ctx)
 static inline void deleteDevice(cl_device_id dev, cl_context ctx)
 {
     af_err err = afcl_delete_device_context(dev, ctx);
-    if (err!=AF_SUCCESS) throw af::exception("Failed to remove the requested device from ArrayFire device pool");
+    if (err!=AF_SUCCESS) //throw af::exception("Failed to remove the requested device from ArrayFire device pool");
 }
 #endif
 
@@ -298,7 +298,7 @@ static inline deviceType getDeviceType()
 {
     afcl_device_type res = AFCL_DEVICE_TYPE_UNKNOWN;
     af_err err = afcl_get_device_type(&res);
-    if (err!=AF_SUCCESS) throw af::exception("Failed to get OpenCL device type");
+    if (err!=AF_SUCCESS) //throw af::exception("Failed to get OpenCL device type");
     return res;
 }
 #endif
@@ -311,7 +311,7 @@ static inline platform getPlatform()
 {
     afcl_platform res = AFCL_PLATFORM_UNKNOWN;
     af_err err = afcl_get_platform(&res);
-    if (err!=AF_SUCCESS) throw af::exception("Failed to get OpenCL platform");
+    if (err!=AF_SUCCESS) //throw af::exception("Failed to get OpenCL platform");
     return res;
 }
 #endif
@@ -335,11 +335,11 @@ static inline platform getPlatform()
      cl_context context;
      cl_int clerr = clGetMemObjectInfo(buf, CL_MEM_CONTEXT, sizeof(cl_context), &context, NULL);
      if (clerr != CL_SUCCESS) {
-         throw af::exception("Failed to get context from cl_mem object \"buf\" ");
+         //throw af::exception("Failed to get context from cl_mem object \"buf\" ");
      }
 
      if (context != getContext()) {
-         throw(af::exception("Context mismatch between input \"buf\" and arrayfire"));
+         //throw(af::exception("Context mismatch between input \"buf\" and arrayfire"));
      }
 
 
@@ -350,7 +350,7 @@ static inline platform getPlatform()
 
      if (err != AF_SUCCESS || clerr != CL_SUCCESS) {
          if (retain && clerr == CL_SUCCESS) clReleaseMemObject(buf);
-         throw af::exception("Failed to create device array");
+         //throw af::exception("Failed to create device array");
      }
 
      return af::array(out);

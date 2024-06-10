@@ -15,12 +15,14 @@ namespace fl {
 
 void AsymmetricConv1D::checkParams() {
   if (xPad_ != static_cast<int>(PaddingMode::SAME) && xPad_ != 0) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "AsymmetricConv1D: invalid xPad_, now supports only '0' or 'SAME' ");
+        return;
   }
   if (futurePart_ < 0 || futurePart_ > 1) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "AsymmetricConv1D: invalid futurePart_, should be in [0, 1]");
+        return;
   }
 }
 
@@ -66,7 +68,8 @@ Variable AsymmetricConv1D::forward(const Variable& input) {
   auto px =
       fl::derivePadding(input.dim(0), xFilter_, xStride_, xPad_, xDilation_);
   if (!(px >= 0)) {
-    throw std::invalid_argument("invalid padding for AsymmetricConv1D");
+    /*throw*/ std::invalid_argument("invalid padding for AsymmetricConv1D");
+        return Variable();
   }
   Variable output;
   int cutPx = std::abs(2 * (0.5 - futurePart_)) * px;

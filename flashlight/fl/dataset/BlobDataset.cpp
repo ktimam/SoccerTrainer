@@ -7,7 +7,10 @@
 
 #include <array>
 #include <stdexcept>
+#ifndef MULTITHREADING_DISABLED
 #include <thread>
+#endif // MULTITHREADING_DISABLED
+
 
 #include "flashlight/fl/dataset/BlobDataset.h"
 #include "flashlight/fl/tensor/Types.h"
@@ -91,15 +94,17 @@ std::vector<std::vector<uint8_t>> BlobDataset::rawGet(const int64_t idx) const {
 void BlobDataset::add(const std::vector<Tensor>& sample) {
   int64_t entryOffset;
   {
+#ifndef MULTITHREADING_DISABLED
     std::lock_guard<std::mutex> lock(mutex_);
+#endif // MULTITHREADING_DISABLED
+
     entryOffset = entries_.size();
     offsets_.push_back(entries_.size());
     sizes_.push_back(sample.size());
     for (const auto& tensor : sample) {
       if (tensor.ndim() > maxNDims_) {
-        throw std::invalid_argument(
-            "BlobDataset::add - no support for serialization of "
-            "tensors with > 4 dimensions");
+        /*throw*/ std::invalid_argument("BlobDataset::add - no support for serialization of ""tensors with > 4 dimensions");
+        return;
       }
       BlobDatasetEntry e;
       e.type = tensor.type();
@@ -117,9 +122,13 @@ void BlobDataset::add(const std::vector<Tensor>& sample) {
 }
 
 void BlobDataset::add(const BlobDataset& blob, int64_t chunkSize) {
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(mutex_);
+#endif // MULTITHREADING_DISABLED
+
   if (chunkSize <= 0) {
-    throw std::runtime_error("chunkSize must be positive");
+    /*throw*/ std::runtime_error("chunkSize must be positive");
+        return;
   }
   sizes_.insert(sizes_.end(), blob.sizes_.begin(), blob.sizes_.end());
   std::vector<int64_t> offsets = blob.offsets_;
@@ -187,7 +196,10 @@ void BlobDataset::writeArray(const BlobDatasetEntry& e, const Tensor& array) {
 }
 
 void BlobDataset::writeIndex() {
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(mutex_);
+#endif // MULTITHREADING_DISABLED
+
 
   int64_t offset = 0;
   offset += writeData(offset, (char*)&magicNumber, sizeof(int64_t));
@@ -205,7 +217,10 @@ void BlobDataset::writeIndex() {
 }
 
 void BlobDataset::readIndex() {
+#ifndef MULTITHREADING_DISABLED
   std::lock_guard<std::mutex> lock(mutex_);
+#endif // MULTITHREADING_DISABLED
+
 
   entries_.clear();
 
@@ -218,7 +233,8 @@ void BlobDataset::readIndex() {
   int64_t magicNumberCheck = 0;
   int64_t offset = readData(0, (char*)&magicNumberCheck, sizeof(int64_t));
   if (magicNumber != magicNumberCheck) {
-    throw std::runtime_error("BlobDataset::readIndex - not a fl::BlobDataset");
+    /*throw*/ std::runtime_error("BlobDataset::readIndex - not a fl::BlobDataset");
+        return;
   }
   readData(offset, (char*)&indexOffset_, sizeof(int64_t));
   offset = indexOffset_;

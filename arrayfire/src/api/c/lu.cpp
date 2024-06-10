@@ -44,7 +44,7 @@ static inline af_array lu_inplace(af_array in, bool is_lapack_piv) {
 
 af_err af_lu(af_array *lower, af_array *upper, af_array *pivot,
              const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
 
         if (i_info.ndims() > 2) {
@@ -79,7 +79,7 @@ af_err af_lu(af_array *lower, af_array *upper, af_array *pivot,
 }
 
 af_err af_lu_inplace(af_array *pivot, af_array in, const bool is_lapack_piv) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
         af_dtype type           = i_info.getType();
 
@@ -110,7 +110,7 @@ af_err af_lu_inplace(af_array *pivot, af_array in, const bool is_lapack_piv) {
 }
 
 af_err af_is_lapack_available(bool *out) {
-    try {
+    /*try*/ {
         *out = isLAPACKAvailable();
     }
     CATCHALL;

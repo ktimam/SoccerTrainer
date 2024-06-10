@@ -5,8 +5,8 @@ Distributed under the Boost Software License, Version 1.0.
 http://www.boost.org/LICENSE_1_0.txt)
 */
 
-#include <boost/predef/architecture/x86/32.h>
-#include <boost/predef/architecture/x86/64.h>
+//#include <boost/predef/architecture/x86/32.h>
+//#include <boost/predef/architecture/x86/64.h>
 
 #ifndef BOOST_PREDEF_ARCHITECTURE_X86_H
 #define BOOST_PREDEF_ARCHITECTURE_X86_H

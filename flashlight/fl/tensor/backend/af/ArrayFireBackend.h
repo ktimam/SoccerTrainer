@@ -7,7 +7,10 @@
 
 #pragma once
 
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 #include <unordered_map>
 
 #include "flashlight/fl/tensor/TensorBackend.h"

@@ -50,7 +50,7 @@ af_err af_homography(af_array* H, int* inliers, const af_array x_src,
                      const af_array y_dst, const af_homography_type htype,
                      const float inlier_thr, const unsigned iterations,
                      const af_dtype otype) {
-    try {
+    /*try*/ {
         const ArrayInfo& xsinfo = getInfo(x_src);
         const ArrayInfo& ysinfo = getInfo(y_src);
         const ArrayInfo& xdinfo = getInfo(x_dst);

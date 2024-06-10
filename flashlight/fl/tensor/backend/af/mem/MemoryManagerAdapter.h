@@ -165,9 +165,8 @@ template <typename... Values>
 void MemoryManagerAdapter::log(std::string fname, Values... vs) {
   if (loggingEnabled_) {
     if (!logStream_) {
-      throw std::runtime_error(
-          "MemoryManagerAdapter::log: cannot write to logStream_"
-          " - stream is invalid or uninitialized");
+      /*throw*/ std::runtime_error("MemoryManagerAdapter::log: cannot write to logStream_"" - stream is invalid or uninitialized");
+        return;
     }
     logStreamBuffer_ << fname << " ";
     int unpack[]{0, (logStreamBuffer_ << std::to_string(vs) << " ", 0)...};

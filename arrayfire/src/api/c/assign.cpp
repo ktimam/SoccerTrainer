@@ -131,7 +131,7 @@ static if_real<T> assign(Array<T>& out, const vector<af_seq> iv,
 
 af_err af_assign_seq(af_array* out, const af_array lhs, const unsigned ndims,
                      const af_seq* index, const af_array rhs) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, (ndims > 0 && ndims <= AF_MAX_DIMS));
         ARG_ASSERT(1, (lhs != 0));
         ARG_ASSERT(4, (rhs != 0));
@@ -167,7 +167,7 @@ af_err af_assign_seq(af_array* out, const af_array lhs, const unsigned ndims,
             res = lhs;
         }
 
-        try {
+        /*try*/ {
             if (lhs != rhs) {
                 const dim4& outDims = getInfo(res).dims();
                 const dim4& inDims  = getInfo(rhs).dims();
@@ -207,10 +207,10 @@ af_err af_assign_seq(af_array* out, const af_array lhs, const unsigned ndims,
                     default: TYPE_ERROR(1, oType); break;
                 }
             }
-        } catch (...) {
+        } /*catch (...) {
             af_release_array(res);
-            throw;
-        }
+            /*throw;
+        }*/
         swap(*out, res);
     }
     CATCHALL;
@@ -225,7 +225,7 @@ inline void genAssign(af_array& out, const af_index_t* indexs,
 
 af_err af_assign_gen(af_array* out, const af_array lhs, const dim_t ndims,
                      const af_index_t* indexs, const af_array rhs_) {
-    try {
+    /*try*/ {
         ARG_ASSERT(2, (ndims > 0 && ndims <= AF_MAX_DIMS));
         ARG_ASSERT(3, (indexs != NULL));
 
@@ -373,7 +373,7 @@ af_err af_assign_gen(af_array* out, const af_array lhs, const dim_t ndims,
         }
         af_index_t* ptr = idxrs.data();
 
-        try {
+        /*try*/ {
             switch (rhsType) {
                 //case c64: genAssign<cdouble>(output, ptr, rhs); break;
                 //case f64: genAssign<float>(output, ptr, rhs); break;
@@ -390,13 +390,13 @@ af_err af_assign_gen(af_array* out, const af_array lhs, const dim_t ndims,
                 case f16: genAssign<half>(output, ptr, rhs); break;
                 default: TYPE_ERROR(1, rhsType);
             }
-        } catch (...) {
+        } /*catch (...) {
             if (*out != lhs) {
                 AF_CHECK(af_release_array(output));
                 if (isVec) { AF_CHECK(af_release_array(rhs)); }
             }
             throw;
-        }
+        }*/
         if (isVec) { AF_CHECK(af_release_array(rhs)); }
         swap(*out, output);
     }

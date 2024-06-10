@@ -28,7 +28,7 @@ Event &getEvent(af_event handle) {
 af_event getHandle(Event &event) { return static_cast<af_event>(&event); }
 
 af_err af_create_event(af_event *handle) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         *handle = createEvent();
     }
@@ -38,7 +38,7 @@ af_err af_create_event(af_event *handle) {
 }
 
 af_err af_delete_event(af_event handle) {
-    try {
+    /*try*/ {
         delete &getEvent(handle);
     }
     CATCHALL;
@@ -47,7 +47,7 @@ af_err af_delete_event(af_event handle) {
 }
 
 af_err af_mark_event(const af_event handle) {
-    try {
+    /*try*/ {
         markEventOnActiveQueue(handle);
     }
     CATCHALL;
@@ -56,7 +56,7 @@ af_err af_mark_event(const af_event handle) {
 }
 
 af_err af_enqueue_wait_event(const af_event handle) {
-    try {
+    /*try*/ {
         enqueueWaitOnActiveQueue(handle);
     }
     CATCHALL;
@@ -65,7 +65,7 @@ af_err af_enqueue_wait_event(const af_event handle) {
 }
 
 af_err af_block_event(const af_event handle) {
-    try {
+    /*try*/ {
         block(handle);
     }
     CATCHALL;

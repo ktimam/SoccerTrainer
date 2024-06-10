@@ -219,7 +219,7 @@
         The dense matrix on the right hand side cannot be used with any transpose
         options.
 
-        Most functions cannot use sparse arrays and will throw an error with
+        Most functions cannot use sparse arrays and will //throw an error with
         \ref AF_ERR_ARG if a sparse array is given as input.
 
         \note Sparse functionality support was added to ArrayFire in v3.4.0.

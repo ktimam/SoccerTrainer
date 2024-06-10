@@ -52,7 +52,7 @@ using std::swap;
 
 af_err af_device_array(af_array *arr, void *data, const unsigned ndims,
                        const dim_t *const dims, const af_dtype type) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
 
         af_array res;
@@ -115,7 +115,7 @@ af_err af_device_array(af_array *arr, void *data, const unsigned ndims,
 }
 
 af_err af_get_device_ptr(void **data, const af_array arr) {
-    try {
+    /*try*/ {
         af_dtype type = getInfo(arr).getType();
 
         switch (type) {
@@ -150,7 +150,7 @@ inline void lockArray(const af_array arr) {
 af_err af_lock_device_ptr(const af_array arr) { return af_lock_array(arr); }
 
 af_err af_lock_array(const af_array arr) {
-    try {
+    /*try*/ {
         af_dtype type = getInfo(arr).getType();
 
         switch (type) {
@@ -182,7 +182,7 @@ inline bool checkUserLock(const af_array arr) {
 }
 
 af_err af_is_locked_array(bool *res, const af_array arr) {
-    try {
+    /*try*/ {
         af_dtype type = getInfo(arr).getType();
 
         switch (type) {
@@ -215,7 +215,7 @@ inline void unlockArray(const af_array arr) {
 af_err af_unlock_device_ptr(const af_array arr) { return af_unlock_array(arr); }
 
 af_err af_unlock_array(const af_array arr) {
-    try {
+    /*try*/ {
         af_dtype type = getInfo(arr).getType();
 
         switch (type) {
@@ -241,7 +241,7 @@ af_err af_unlock_array(const af_array arr) {
 }
 
 af_err af_alloc_device(void **ptr, const dim_t bytes) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         *ptr = memAllocUser(bytes);
     }
@@ -250,7 +250,7 @@ af_err af_alloc_device(void **ptr, const dim_t bytes) {
 }
 
 af_err af_alloc_device_v2(void **ptr, const dim_t bytes) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
 #ifdef AF_OPENCL
         auto *buf = static_cast<cl::Buffer *>(memAllocUser(bytes));
@@ -269,7 +269,7 @@ af_err af_alloc_device_v2(void **ptr, const dim_t bytes) {
 }
 
 af_err af_alloc_pinned(void **ptr, const dim_t bytes) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         *ptr = static_cast<void *>(pinnedAlloc<char>(bytes));
     }
@@ -278,7 +278,7 @@ af_err af_alloc_pinned(void **ptr, const dim_t bytes) {
 }
 
 af_err af_free_device(void *ptr) {
-    try {
+    /*try*/ {
         memFreeUser(ptr);
     }
     CATCHALL;
@@ -286,7 +286,7 @@ af_err af_free_device(void *ptr) {
 }
 
 af_err af_free_device_v2(void *ptr) {
-    try {
+    /*try*/ {
 #ifdef AF_OPENCL
         auto mem = static_cast<cl_mem>(ptr);
         memFreeUser(new cl::Buffer(mem, false));
@@ -299,7 +299,7 @@ af_err af_free_device_v2(void *ptr) {
 }
 
 af_err af_free_pinned(void *ptr) {
-    try {
+    /*try*/ {
         pinnedFree(ptr);
     }
     CATCHALL;
@@ -319,7 +319,7 @@ af_err af_free_host(void *ptr) {
 }
 
 af_err af_print_mem_info(const char *msg, const int device_id) {
-    try {
+    /*try*/ {
         int device = device_id;
         if (device == -1) { device = static_cast<int>(getActiveDeviceId()); }
 
@@ -335,7 +335,7 @@ af_err af_print_mem_info(const char *msg, const int device_id) {
 }
 
 af_err af_device_gc() {
-    try {
+    /*try*/ {
         signalMemoryCleanup();
     }
     CATCHALL;
@@ -344,7 +344,7 @@ af_err af_device_gc() {
 
 af_err af_device_mem_info(size_t *alloc_bytes, size_t *alloc_buffers,
                           size_t *lock_bytes, size_t *lock_buffers) {
-    try {
+    /*try*/ {
         deviceMemoryInfo(alloc_bytes, alloc_buffers, lock_bytes, lock_buffers);
     }
     CATCHALL;
@@ -352,7 +352,7 @@ af_err af_device_mem_info(size_t *alloc_bytes, size_t *alloc_buffers,
 }
 
 af_err af_set_mem_step_size(const size_t step_bytes) {
-    try {
+    /*try*/ {
         detail::setMemStepSize(step_bytes);
     }
     CATCHALL;
@@ -360,7 +360,7 @@ af_err af_set_mem_step_size(const size_t step_bytes) {
 }
 
 af_err af_get_mem_step_size(size_t *step_bytes) {
-    try {
+    /*try*/ {
         *step_bytes = detail::getMemStepSize();
     }
     CATCHALL;
@@ -382,7 +382,7 @@ af_memory_manager getHandle(MemoryManager &manager) {
 }
 
 af_err af_create_memory_manager(af_memory_manager *manager) {
-    try {
+    /*try*/ {
         AF_CHECK(af_init());
         std::unique_ptr<MemoryManager> m(new MemoryManager());
         *manager = getHandle(*m.release());
@@ -393,7 +393,7 @@ af_err af_create_memory_manager(af_memory_manager *manager) {
 }
 
 af_err af_release_memory_manager(af_memory_manager handle) {
-    try {
+    /*try*/ {
         // NB: does NOT reset the internal memory manager to be the default:
         // af_unset_memory_manager_pinned must be used to fully-reset with a new
         // AF default memory manager
@@ -405,7 +405,7 @@ af_err af_release_memory_manager(af_memory_manager handle) {
 }
 
 af_err af_set_memory_manager(af_memory_manager mgr) {
-    try {
+    /*try*/ {
         std::unique_ptr<MemoryManagerFunctionWrapper> newManager(
             new MemoryManagerFunctionWrapper(mgr));
         // Calls shutdown() on the existing memory manager, but does not free
@@ -418,7 +418,7 @@ af_err af_set_memory_manager(af_memory_manager mgr) {
 }
 
 af_err af_unset_memory_manager() {
-    try {
+    /*try*/ {
         detail::resetMemoryManager();
     }
     CATCHALL;
@@ -427,7 +427,7 @@ af_err af_unset_memory_manager() {
 }
 
 af_err af_set_memory_manager_pinned(af_memory_manager mgr) {
-    try {
+    /*try*/ {
         // NB: does NOT free if a non-default implementation is set as the
         // current memory manager - the user is responsible for freeing any
         // controlled memory
@@ -443,7 +443,7 @@ af_err af_set_memory_manager_pinned(af_memory_manager mgr) {
 }
 
 af_err af_unset_memory_manager_pinned() {
-    try {
+    /*try*/ {
         detail::resetMemoryManagerPinned();
     }
     CATCHALL;
@@ -452,7 +452,7 @@ af_err af_unset_memory_manager_pinned() {
 }
 
 af_err af_memory_manager_get_payload(af_memory_manager handle, void **payload) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         *payload               = manager.payload;
     }
@@ -462,7 +462,7 @@ af_err af_memory_manager_get_payload(af_memory_manager handle, void **payload) {
 }
 
 af_err af_memory_manager_set_payload(af_memory_manager handle, void *payload) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.payload        = payload;
     }
@@ -476,7 +476,7 @@ af_err af_memory_manager_set_payload(af_memory_manager handle, void *payload) {
 
 af_err af_memory_manager_get_active_device_id(af_memory_manager handle,
                                               int *id) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         *id                    = manager.wrapper->getActiveDeviceId();
     }
@@ -488,7 +488,7 @@ af_err af_memory_manager_get_active_device_id(af_memory_manager handle,
 
 af_err af_memory_manager_native_alloc(af_memory_manager handle, void **ptr,
                                       size_t size) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         *ptr                   = manager.wrapper->nativeAlloc(size);
     }
@@ -498,7 +498,7 @@ af_err af_memory_manager_native_alloc(af_memory_manager handle, void **ptr,
 }
 
 af_err af_memory_manager_native_free(af_memory_manager handle, void *ptr) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.wrapper->nativeFree(ptr);
     }
@@ -509,7 +509,7 @@ af_err af_memory_manager_native_free(af_memory_manager handle, void *ptr) {
 
 af_err af_memory_manager_get_max_memory_size(af_memory_manager handle,
                                              size_t *size, int id) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         *size                  = manager.wrapper->getMaxMemorySize(id);
     }
@@ -520,7 +520,7 @@ af_err af_memory_manager_get_max_memory_size(af_memory_manager handle,
 
 af_err af_memory_manager_get_memory_pressure_threshold(af_memory_manager handle,
                                                        float *value) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         *value                 = manager.wrapper->getMemoryPressureThreshold();
     }
@@ -531,7 +531,7 @@ af_err af_memory_manager_get_memory_pressure_threshold(af_memory_manager handle,
 
 af_err af_memory_manager_set_memory_pressure_threshold(af_memory_manager handle,
                                                        float value) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.wrapper->setMemoryPressureThreshold(value);
     }
@@ -545,7 +545,7 @@ af_err af_memory_manager_set_memory_pressure_threshold(af_memory_manager handle,
 
 af_err af_memory_manager_set_initialize_fn(af_memory_manager handle,
                                            af_memory_manager_initialize_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.initialize_fn  = fn;
     }
@@ -556,7 +556,7 @@ af_err af_memory_manager_set_initialize_fn(af_memory_manager handle,
 
 af_err af_memory_manager_set_shutdown_fn(af_memory_manager handle,
                                          af_memory_manager_shutdown_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.shutdown_fn    = fn;
     }
@@ -567,7 +567,7 @@ af_err af_memory_manager_set_shutdown_fn(af_memory_manager handle,
 
 af_err af_memory_manager_set_alloc_fn(af_memory_manager handle,
                                       af_memory_manager_alloc_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.alloc_fn       = fn;
     }
@@ -578,7 +578,7 @@ af_err af_memory_manager_set_alloc_fn(af_memory_manager handle,
 
 af_err af_memory_manager_set_allocated_fn(af_memory_manager handle,
                                           af_memory_manager_allocated_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.allocated_fn   = fn;
     }
@@ -589,7 +589,7 @@ af_err af_memory_manager_set_allocated_fn(af_memory_manager handle,
 
 af_err af_memory_manager_set_unlock_fn(af_memory_manager handle,
                                        af_memory_manager_unlock_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.unlock_fn      = fn;
     }
@@ -600,7 +600,7 @@ af_err af_memory_manager_set_unlock_fn(af_memory_manager handle,
 
 af_err af_memory_manager_set_signal_memory_cleanup_fn(
     af_memory_manager handle, af_memory_manager_signal_memory_cleanup_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager           = getMemoryManager(handle);
         manager.signal_memory_cleanup_fn = fn;
     }
@@ -611,7 +611,7 @@ af_err af_memory_manager_set_signal_memory_cleanup_fn(
 
 af_err af_memory_manager_set_print_info_fn(af_memory_manager handle,
                                            af_memory_manager_print_info_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.print_info_fn  = fn;
     }
@@ -622,7 +622,7 @@ af_err af_memory_manager_set_print_info_fn(af_memory_manager handle,
 
 af_err af_memory_manager_set_user_lock_fn(af_memory_manager handle,
                                           af_memory_manager_user_lock_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.user_lock_fn   = fn;
     }
@@ -633,7 +633,7 @@ af_err af_memory_manager_set_user_lock_fn(af_memory_manager handle,
 
 af_err af_memory_manager_set_user_unlock_fn(
     af_memory_manager handle, af_memory_manager_user_unlock_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager = getMemoryManager(handle);
         manager.user_unlock_fn = fn;
     }
@@ -644,7 +644,7 @@ af_err af_memory_manager_set_user_unlock_fn(
 
 af_err af_memory_manager_set_is_user_locked_fn(
     af_memory_manager handle, af_memory_manager_is_user_locked_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager    = getMemoryManager(handle);
         manager.is_user_locked_fn = fn;
     }
@@ -655,7 +655,7 @@ af_err af_memory_manager_set_is_user_locked_fn(
 
 af_err af_memory_manager_set_get_memory_pressure_fn(
     af_memory_manager handle, af_memory_manager_get_memory_pressure_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager         = getMemoryManager(handle);
         manager.get_memory_pressure_fn = fn;
     }
@@ -667,7 +667,7 @@ af_err af_memory_manager_set_get_memory_pressure_fn(
 af_err af_memory_manager_set_jit_tree_exceeds_memory_pressure_fn(
     af_memory_manager handle,
     af_memory_manager_jit_tree_exceeds_memory_pressure_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager                      = getMemoryManager(handle);
         manager.jit_tree_exceeds_memory_pressure_fn = fn;
     }
@@ -678,7 +678,7 @@ af_err af_memory_manager_set_jit_tree_exceeds_memory_pressure_fn(
 
 af_err af_memory_manager_set_add_memory_management_fn(
     af_memory_manager handle, af_memory_manager_add_memory_management_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager           = getMemoryManager(handle);
         manager.add_memory_management_fn = fn;
     }
@@ -690,7 +690,7 @@ af_err af_memory_manager_set_add_memory_management_fn(
 af_err af_memory_manager_set_remove_memory_management_fn(
     af_memory_manager handle,
     af_memory_manager_remove_memory_management_fn fn) {
-    try {
+    /*try*/ {
         MemoryManager &manager              = getMemoryManager(handle);
         manager.remove_memory_management_fn = fn;
     }
@@ -804,6 +804,7 @@ size_t MemoryManagerFunctionWrapper::getMemStepSize() {
     // backend implementation so the exception can be properly propagated
     AF_ERROR("Memory step size API not implemented for custom memory manager",
              AF_ERR_NOT_SUPPORTED);
+    return 0;
 }
 
 void MemoryManagerFunctionWrapper::setMemStepSize(size_t new_step_size) {

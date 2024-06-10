@@ -134,7 +134,7 @@ FREE_IMAGE_TYPE getFIT(FI_CHANNELS channels, af_dtype type) {
 ////////////////////////////////////////////////////////////////////////////////
 // Load image from disk.
 af_err af_load_image_native(af_array* out, const char* filename) {
-    try {
+    /*try*/ {
         ARG_ASSERT(1, filename != NULL);
 
         FreeImage_Module& _ = getFreeImagePlugin();
@@ -408,7 +408,7 @@ static void save_t(T* pDstLine, const af_array in, const dim4& dims,
 
 // Save an image to disk.
 af_err af_save_image_native(const char* filename, const af_array in) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, filename != NULL);
 
         FreeImage_Module& _ = getFreeImagePlugin();

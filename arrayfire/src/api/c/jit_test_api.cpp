@@ -19,7 +19,7 @@ af_err af_get_max_jit_len(int *jitLen) {
 }
 
 af_err af_set_max_jit_len(const int maxJitLen) {
-    try {
+    /*try*/ {
         ARG_ASSERT(1, maxJitLen > 0);
         detail::getMaxJitSize() = maxJitLen;
     }

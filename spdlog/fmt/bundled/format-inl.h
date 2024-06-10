@@ -67,7 +67,7 @@ FMT_FUNC void report_error(format_func func, int error_code,
                            const char* message) noexcept {
   memory_buffer full_message;
   func(full_message, error_code, message);
-  // Don't use fwrite_fully because the latter may throw.
+  // Don't use fwrite_fully because the latter may //throw.
   if (std::fwrite(full_message.data(), full_message.size(), 1, stderr) > 0)
     std::fputc('\n', stderr);
 }

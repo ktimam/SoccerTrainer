@@ -597,7 +597,7 @@ CEREAL_RAPIDJSON_NAMESPACE_END
  /*! \ingroup CEREAL_RAPIDJSON_CONFIG
     Some functions provide a \c noexcept guarantee, if the compiler supports it.
     In these cases, the \ref CEREAL_RAPIDJSON_ASSERT macro cannot be overridden to
-    throw an exception.  This macro adds a separate customization point for
+    //throw an exception.  This macro adds a separate customization point for
     such cases.
 
     Defaults to C \c assert() (as \ref CEREAL_RAPIDJSON_ASSERT), if \c noexcept is

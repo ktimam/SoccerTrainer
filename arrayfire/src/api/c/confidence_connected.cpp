@@ -195,7 +195,7 @@ af_err af_confidence_cc(af_array* out, const af_array in, const af_array seedx,
                         const af_array seedy, const unsigned radius,
                         const unsigned multiplier, const int iter,
                         const double segmented_value) {
-    try {
+    /*try*/ {
         const ArrayInfo& inInfo         = getInfo(in);
         const ArrayInfo& seedxInfo      = getInfo(seedx);
         const ArrayInfo& seedyInfo      = getInfo(seedy);

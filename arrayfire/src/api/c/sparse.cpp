@@ -178,7 +178,7 @@ af_err af_create_sparse_array(af_array *out, const dim_t nRows,
                               const dim_t nCols, const af_array values,
                               const af_array rowIdx, const af_array colIdx,
                               const af_storage stype) {
-    try {
+    /*try*/ {
         // Checks:
         // rowIdx and colIdx arrays are of s32 type
         // values is of floating point type
@@ -250,7 +250,7 @@ af_err af_create_sparse_array_from_ptr(
     af_array *out, const dim_t nRows, const dim_t nCols, const dim_t nNZ,
     const void *const values, const int *const rowIdx, const int *const colIdx,
     const af_dtype type, const af_storage stype, const af_source source) {
-    try {
+    /*try*/ {
         // Checks:
         // rowIdx and colIdx arrays are of s32 type
         // values is of floating point type
@@ -302,7 +302,7 @@ af_err af_create_sparse_array_from_ptr(
 
 af_err af_create_sparse_array_from_dense(af_array *out, const af_array in,
                                          const af_storage stype) {
-    try {
+    /*try*/ {
         // Checks:
         // stype is within acceptable range
         // values is of floating point type
@@ -345,7 +345,7 @@ af_err af_create_sparse_array_from_dense(af_array *out, const af_array in,
 
 af_err af_sparse_convert_to(af_array *out, const af_array in,
                             const af_storage destStorage) {
-    try {
+    /*try*/ {
         // Handle dense case
         const ArrayInfo &info = getInfo(in, false);
         if (!info.isSparse()) {  // If input is dense
@@ -392,7 +392,7 @@ af_err af_sparse_convert_to(af_array *out, const af_array in,
 }
 
 af_err af_sparse_to_dense(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         af_array output = nullptr;
 
         const SparseArrayBase &base = getSparseArrayBase(in);
@@ -424,7 +424,7 @@ af_err af_sparse_to_dense(af_array *out, const af_array in) {
 
 af_err af_sparse_get_info(af_array *values, af_array *rows, af_array *cols,
                           af_storage *stype, const af_array in) {
-    try {
+    /*try*/ {
         if (values != NULL) { AF_CHECK(af_sparse_get_values(values, in)); }
         if (rows != NULL) { AF_CHECK(af_sparse_get_row_idx(rows, in)); }
         if (cols != NULL) { AF_CHECK(af_sparse_get_col_idx(cols, in)); }
@@ -436,7 +436,7 @@ af_err af_sparse_get_info(af_array *values, af_array *rows, af_array *cols,
 }
 
 af_err af_sparse_get_values(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const SparseArrayBase base = getSparseArrayBase(in);
 
         af_array output = nullptr;
@@ -455,7 +455,7 @@ af_err af_sparse_get_values(af_array *out, const af_array in) {
 }
 
 af_err af_sparse_get_row_idx(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const SparseArrayBase base = getSparseArrayBase(in);
         *out                       = getHandle(base.getRowIdx());
     }
@@ -464,7 +464,7 @@ af_err af_sparse_get_row_idx(af_array *out, const af_array in) {
 }
 
 af_err af_sparse_get_col_idx(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const SparseArrayBase base = getSparseArrayBase(in);
         *out                       = getHandle(base.getColIdx());
     }
@@ -473,7 +473,7 @@ af_err af_sparse_get_col_idx(af_array *out, const af_array in) {
 }
 
 af_err af_sparse_get_nnz(dim_t *out, const af_array in) {
-    try {
+    /*try*/ {
         const SparseArrayBase base = getSparseArrayBase(in);
         *out                       = base.getNNZ();
     }
@@ -482,7 +482,7 @@ af_err af_sparse_get_nnz(dim_t *out, const af_array in) {
 }
 
 af_err af_sparse_get_storage(af_storage *out, const af_array in) {
-    try {
+    /*try*/ {
         const SparseArrayBase base = getSparseArrayBase(in);
         *out                       = base.getStorage();
     }

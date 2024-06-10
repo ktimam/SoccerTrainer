@@ -114,7 +114,7 @@
     #define SPDLOG_CATCH_STD
 #else
     #define SPDLOG_TRY try
-    #define SPDLOG_THROW(ex) throw(ex)
+    #define SPDLOG_THROW(ex) /*throw(ex)*/
     #define SPDLOG_CATCH_STD             \
         catch (const std::exception &) { \
         }

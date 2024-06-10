@@ -36,7 +36,7 @@ inline af_array bilateral(const af_array &in, const float &sp_sig,
 af_err af_bilateral(af_array *out, const af_array in, const float ssigma,
                     const float csigma, const bool iscolor) {
     UNUSED(iscolor);
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
         af::dim4 dims         = info.dims();

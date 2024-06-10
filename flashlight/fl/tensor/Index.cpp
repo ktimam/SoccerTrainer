@@ -34,7 +34,8 @@ Dim range::endVal() const {
   if (end_.has_value()) {
     return end_.value();
   }
-  throw std::runtime_error("[range::endVal] end is end_t");
+  /*throw*/ std::runtime_error("[range::endVal] end is end_t");
+        return Dim();
 }
 
 Dim range::stride() const {

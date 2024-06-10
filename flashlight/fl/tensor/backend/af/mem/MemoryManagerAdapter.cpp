@@ -19,9 +19,8 @@ MemoryManagerAdapter::MemoryManagerAdapter(
     std::ostream* logStream)
     : deviceInterface(itf), logStream_(logStream) {
   if (!itf) {
-    throw std::invalid_argument(
-        "MemoryManagerAdapter::MemoryManagerAdapter - "
-        "memory manager device interface is null");
+    /*throw*/ std::invalid_argument("MemoryManagerAdapter::MemoryManagerAdapter - ""memory manager device interface is null");
+        return;
   }
   if (logStream_) {
     loggingEnabled_ = true;
@@ -58,9 +57,8 @@ void MemoryManagerAdapter::setLoggingEnabled(bool log) {
 
 void MemoryManagerAdapter::setLogFlushInterval(size_t interval) {
   if (interval < 1) {
-    throw std::invalid_argument(
-        "MemoryManagerAdapter::setLogFlushInterval - "
-        "flush interval must be great than zero.");
+    /*throw*/ std::invalid_argument("MemoryManagerAdapter::setLogFlushInterval - ""flush interval must be great than zero.");
+        return;
   }
   logFlushInterval_ = interval;
 }

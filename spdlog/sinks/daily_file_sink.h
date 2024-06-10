@@ -96,7 +96,7 @@ public:
     }
 
     filename_t filename() {
-        std::lock_guard<Mutex> lock(base_sink<Mutex>::mutex_);
+        //std::lock_guard<Mutex> lock(base_sink<Mutex>::mutex_);
         return file_helper_.filename();
     }
 
@@ -113,7 +113,7 @@ protected:
         base_sink<Mutex>::formatter_->format(msg, formatted);
         file_helper_.write(formatted);
 
-        // Do the cleaning only at the end because it might throw on failure.
+        // Do the cleaning only at the end because it might //throw on failure.
         if (should_rotate && max_files_ > 0) {
             delete_old_();
         }

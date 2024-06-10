@@ -65,7 +65,8 @@ size_t getTypeSize(dtype type) {
     case dtype::u64:
       return sizeof(unsigned long long);
     default:
-      throw std::invalid_argument("getTypeSize - invalid type queried.");
+      /*throw*/ std::invalid_argument("getTypeSize - invalid type queried.");
+        return sizeof(unsigned long long);
   }
 }
 
@@ -77,7 +78,8 @@ fl::dtype stringToDtype(const std::string& string) {
   if (kStringToType.find(string) != kStringToType.end()) {
     return kStringToType.at(string);
   }
-  throw std::invalid_argument("stringToDtype: Invalid input type: " + string);
+  /*throw*/ std::invalid_argument("stringToDtype: Invalid input type: " + string);
+        return kStringToType.at(string);
 }
 
 std::ostream& operator<<(std::ostream& ostr, const dtype& s) {

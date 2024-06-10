@@ -44,9 +44,9 @@ public:
 
     Error(const Error& error);
 
-    virtual ~Error() throw();
+    virtual ~Error() /* d_throw() */;
 
-    virtual const char * what() const throw() { return mMessage; }
+    virtual const char * what() const /* d_throw() */ { return mMessage; }
 
     friend inline std::ostream& operator<<(std::ostream &s, const Error &e)
     { return s << e.what(); }

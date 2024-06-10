@@ -18,7 +18,7 @@
 #include <string>
 
 inline std::string clipFilePath(std::string path, std::string str) {
-    //try {
+    ///*try*/ {
         std::string::size_type pos = path.rfind(str);
         if (pos == std::string::npos) {
             return path;

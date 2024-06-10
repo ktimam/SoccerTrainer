@@ -173,7 +173,7 @@
 	#define HALF_NOTHROW	noexcept
 #else
 	#define HALF_NOEXCEPT
-	#define HALF_NOTHROW	throw()
+	#define HALF_NOTHROW	/* d_throw() */
 #endif
 
 #include <algorithm>

@@ -828,14 +828,14 @@ span_noreturn inline void throw_out_of_range( size_t idx, size_t size )
     char buffer[ 2 * 20 + sizeof fmt ];
     sprintf( buffer, fmt, static_cast<long long>(idx), static_cast<long long>(size) );
 
-    throw std::out_of_range( buffer );
+    /*throw*/ std::out_of_range( buffer );
 }
 
 #else // MEMBER_AT
 
 span_noreturn inline void throw_out_of_range( size_t /*idx*/, size_t /*size*/ )
 {
-    throw std::out_of_range( "span::at(): index outside span" );
+    /*throw*/ std::out_of_range( "span::at(): index outside span" );
 }
 #endif  // MEMBER_AT
 #endif  // NO_EXCEPTIONS
@@ -851,7 +851,7 @@ struct contract_violation : std::logic_error
 
 inline void report_contract_violation( char const * msg )
 {
-    throw contract_violation( msg );
+    //throw contract_violation( msg );
 }
 
 #else // span_CONFIG( CONTRACT_VIOLATION_THROWS_V )

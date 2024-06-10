@@ -11,7 +11,10 @@
 #include "flashlight/fl/dataset/BlobDataset.h"
 
 #include <fstream>
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 
 namespace fl {
 
@@ -55,7 +58,10 @@ class FL_API FileBlobDataset : public BlobDataset {
   mutable std::vector<std::weak_ptr<
       std::unordered_map<uintptr_t, std::shared_ptr<std::fstream>>>>
       allFileHandles_;
+#ifndef MULTITHREADING_DISABLED
   mutable std::mutex afhmutex_;
+#endif // MULTITHREADING_DISABLED
+
 };
 
 } // namespace fl

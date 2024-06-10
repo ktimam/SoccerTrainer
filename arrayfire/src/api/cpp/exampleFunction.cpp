@@ -12,7 +12,7 @@
 #include <af/util.h>  // Include the header related to the function
 
 #include "error.hpp"  // AF_THROW macro to use error code C-API
-                      // is going to return and throw corresponding
+                      // is going to return and //throw corresponding
                       // exceptions if call isn't a success
 
 namespace af {

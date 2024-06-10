@@ -8,7 +8,7 @@
 #include <array>
 #include <inttypes.h>
 #include <stdexcept>
-#include <thread>
+//#include <thread>
 #include <utility>
 
 #include "flashlight/fl/common/Logging.h"
@@ -50,34 +50,35 @@ std::string getFileName(const std::string& path) {
 // MMDD HH MM SS UUUUUU
 // 0206 08:42:42.123456
 std::string dateTimeWithMicroSeconds() {
-  auto systemTime = std::chrono::system_clock::now();
-  const time_t secondsSinceEpoc =
-      std::chrono::system_clock::to_time_t(systemTime);
-  const struct tm* timeinfo = localtime(&secondsSinceEpoc);
+  //auto systemTime = std::chrono::system_clock::now();
+  //const time_t secondsSinceEpoc =
+  //    std::chrono::system_clock::to_time_t(systemTime);
+  //const struct tm* timeinfo = localtime(&secondsSinceEpoc);
 
-  // Formate date and time to the seconds as:
-  // MMDD HH MM SS
-  // 1231 08:42:42
-  constexpr size_t bufferSize = 50;
-  char buffer[bufferSize];
-  const size_t nWrittenBytes = std::strftime(buffer, 30, "%m%d %T", timeinfo);
-  if (!nWrittenBytes) {
-    return "getTime() failed to format time";
-  }
+  //// Formate date and time to the seconds as:
+  //// MMDD HH MM SS
+  //// 1231 08:42:42
+  //constexpr size_t bufferSize = 50;
+  //char buffer[bufferSize];
+  //const size_t nWrittenBytes = std::strftime(buffer, 30, "%m%d %T", timeinfo);
+  //if (!nWrittenBytes) {
+  //  return "getTime() failed to format time";
+  //}
 
-  const std::chrono::system_clock::time_point timeInSecondsResolution =
-      std::chrono::system_clock::from_time_t(secondsSinceEpoc);
-  const auto usec = std::chrono::duration_cast<std::chrono::microseconds>(
-      systemTime - timeInSecondsResolution);
+  //const std::chrono::system_clock::time_point timeInSecondsResolution =
+  //    std::chrono::system_clock::from_time_t(secondsSinceEpoc);
+  //const auto usec = std::chrono::duration_cast<std::chrono::microseconds>(
+  //    systemTime - timeInSecondsResolution);
 
-  // Add msec and usec.
-  std::snprintf(
-      buffer + nWrittenBytes,
-      bufferSize - nWrittenBytes,
-      ".%06" PRId64,
-      static_cast<int64_t>(usec.count()));
+  //// Add msec and usec.
+  //std::snprintf(
+  //    buffer + nWrittenBytes,
+  //    bufferSize - nWrittenBytes,
+  //    ".%06" PRId64,
+  //    static_cast<int64_t>(usec.count()));
 
-  return buffer;
+  //return buffer;
+    return "No Time";
 }
 
 void addContext(
@@ -88,7 +89,7 @@ void addContext(
   // and compatibility with glog.
   constexpr size_t threadIdNumDigits = 5;
   std::stringstream ss;
-  ss << std::this_thread::get_id();
+  //ss << std::this_thread::get_id();
   const std::string threadId = ss.str();
 
   (*outputStream) << dateTimeWithMicroSeconds() << ' '
@@ -293,7 +294,7 @@ std::string logLevelName(LogLevel level) {
   ss << "logLevelName(level=" << static_cast<int>(level)
      << ") invalid level. Level should be in the range [0.."
      << (flLogLevelNames.size() - 1) << "]";
-  throw std::invalid_argument(ss.str());
+  /*throw*/ std::invalid_argument(ss.str());
 }
 
 LogLevel logLevelValue(const std::string& level) {
@@ -305,7 +306,7 @@ LogLevel logLevelValue(const std::string& level) {
   std::stringstream ss;
   ss << "logLevelValue(level=" << level
      << ") invalid level. Level should be INFO, WARNING, ERROR or FATAL";
-  throw std::invalid_argument(ss.str());
+  /*throw*/ std::invalid_argument(ss.str());
 }
 
 } // namespace fl

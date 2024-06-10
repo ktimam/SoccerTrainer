@@ -43,7 +43,7 @@ static inline af_array qr_inplace(af_array in) {
 }
 
 af_err af_qr(af_array *q, af_array *r, af_array *tau, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
 
         if (i_info.ndims() > 2) {
@@ -78,7 +78,7 @@ af_err af_qr(af_array *q, af_array *r, af_array *tau, const af_array in) {
 }
 
 af_err af_qr_inplace(af_array *tau, af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
 
         if (i_info.ndims() > 2) {

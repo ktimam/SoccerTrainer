@@ -21,8 +21,8 @@ std::vector<int64_t> partitionByRoundRobin(
     int64_t batchSz /* = 1 */,
     bool allowEmpty /* = false */) {
   if (partitionId < 0 || partitionId >= numPartitions) {
-    throw std::invalid_argument(
-        "invalid partitionId, numPartitions for partitionByRoundRobin");
+    /*throw*/ std::invalid_argument("invalid partitionId, numPartitions for partitionByRoundRobin");
+        return std::vector<int64_t>();
   }
   int64_t nSamplesPerGlobalBatch = numPartitions * batchSz;
   int64_t nGlobalBatches = numSamples / nSamplesPerGlobalBatch;
@@ -67,20 +67,16 @@ dynamicPartitionByRoundRobin(
     int64_t maxSizePerBatch,
     bool allowEmpty /* = false */) {
   if (partitionId < 0 || partitionId >= numPartitions) {
-    throw std::invalid_argument(
-        "[dynamicPartitionByRoundRobin] invalid partitionId, numPartitions");
+    /*throw*/ std::invalid_argument("[dynamicPartitionByRoundRobin] invalid partitionId, numPartitions");
+        return std::pair<std::vector<int64_t>, std::vector<int64_t>>();
   }
   std::vector<int64_t> batchSizes, batchOffsets;
   int64_t sampleIdx = 0, batchStartSampleIdx = 0;
   float maxSampleLen = 0;
   while (sampleIdx < samplesSize.size()) {
     if (samplesSize[sampleIdx] > maxSizePerBatch) {
-      throw std::invalid_argument(
-          "[dynamicPartitionByRoundRobin] invalid samples length: each sample "
-          "should have size <= maxSizePerBatch, either filter data or set larger maxSizePerBatch. "
-          "maxSizePerBatch were set to " +
-          std::to_string(maxSizePerBatch) + " sample size is " +
-          std::to_string(samplesSize[sampleIdx]));
+      /*throw*/ std::invalid_argument("[dynamicPartitionByRoundRobin] invalid samples length: each sample ""should have size <= maxSizePerBatch, either filter data or set larger maxSizePerBatch. ""maxSizePerBatch were set to " +std::to_string(maxSizePerBatch) + " sample size is " +std::to_string(samplesSize[sampleIdx]));
+        return std::pair<std::vector<int64_t>, std::vector<int64_t>>();
     }
     float maxSampleLenOld = maxSampleLen;
     maxSampleLen = std::max(maxSampleLen, samplesSize[sampleIdx]);
@@ -88,8 +84,8 @@ dynamicPartitionByRoundRobin(
         maxSizePerBatch) {
       if (maxSampleLenOld * (sampleIdx - batchStartSampleIdx) >
           maxSizePerBatch) {
-        throw std::invalid_argument(
-            "dynamicPartitionByRoundRobin is doing wrong packing");
+        /*throw*/ std::invalid_argument("dynamicPartitionByRoundRobin is doing wrong packing");
+        return std::pair<std::vector<int64_t>, std::vector<int64_t>>();
       }
       batchSizes.push_back(sampleIdx - batchStartSampleIdx);
       batchOffsets.push_back(batchStartSampleIdx);
@@ -160,7 +156,8 @@ Tensor makeBatch(
 
   for (const auto& d : data) {
     if (d.shape() != dims) {
-      throw std::invalid_argument("dimension mismatch while batching dataset");
+      /*throw*/ std::invalid_argument("dimension mismatch while batching dataset");
+        return Tensor();
     }
   }
 
@@ -169,7 +166,8 @@ Tensor makeBatch(
   // TODO: expand this to > 4 given fl::Tensor - should work out of the box
   // by just removing this check? Possibly also change to ndims >= dims.ndims()
   if (ndims >= 4) {
-    throw std::invalid_argument("# of dims must be < ndim - 1 for batching");
+    /*throw*/ std::invalid_argument("# of dims must be < ndim - 1 for batching");
+        return Tensor();
   }
   // Dimensions of the batched tensor
   std::vector<Dim> batchDims = dims.get();

@@ -29,7 +29,7 @@ static inline af_array setUnique(const af_array in, const bool is_sorted) {
 }
 
 af_err af_set_unique(af_array* out, const af_array in, const bool is_sorted) {
-    try {
+    /*try*/ {
         const ArrayInfo& in_info = getInfo(in);
 
         if (in_info.isEmpty() || in_info.isScalar()) {
@@ -71,7 +71,7 @@ static inline af_array setUnion(const af_array first, const af_array second,
 
 af_err af_set_union(af_array* out, const af_array first, const af_array second,
                     const bool is_unique) {
-    try {
+    /*try*/ {
         const ArrayInfo& first_info  = getInfo(first);
         const ArrayInfo& second_info = getInfo(second);
 
@@ -118,7 +118,7 @@ static inline af_array setIntersect(const af_array first, const af_array second,
 
 af_err af_set_intersect(af_array* out, const af_array first,
                         const af_array second, const bool is_unique) {
-    try {
+    /*try*/ {
         const ArrayInfo& first_info  = getInfo(first);
         const ArrayInfo& second_info = getInfo(second);
 

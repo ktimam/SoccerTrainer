@@ -157,7 +157,7 @@ FMT_API std::system_error vwindows_error(int error_code, string_view format_str,
    LPOFSTRUCT of = LPOFSTRUCT();
    HFILE file = OpenFile(filename, &of, OF_READ);
    if (file == HFILE_ERROR) {
-     throw fmt::windows_error(GetLastError(),
+     //throw fmt::windows_error(GetLastError(),
                               "cannot open file '{}'", filename);
    }
  \endrst
@@ -239,7 +239,7 @@ class buffered_file {
 
 #if FMT_USE_FCNTL
 // A file. Closed file is represented by a file object with descriptor -1.
-// Methods that are not declared with noexcept may throw
+// Methods that are not declared with noexcept may //throw
 // fmt::system_error in case of failure. Note that some errors such as
 // closing the file multiple times will cause a crash on Windows rather
 // than an exception. You can get standard behavior by overriding the
@@ -274,7 +274,7 @@ class FMT_API file {
 
   file(file&& other) noexcept : fd_(other.fd_) { other.fd_ = -1; }
 
-  // Move assignment is not noexcept because close may throw.
+  // Move assignment is not noexcept because close may //throw.
   auto operator=(file&& other) -> file& {
     close();
     fd_ = other.fd_;

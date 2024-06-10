@@ -66,7 +66,7 @@ static inline af_array join_many(const int dim, const unsigned n_arrays,
 
 af_err af_join(af_array *out, const int dim, const af_array first,
                const af_array second) {
-    try {
+    /*try*/ {
         const ArrayInfo &finfo{getInfo(first)};
         const ArrayInfo &sinfo{getInfo(second)};
         const dim4 &fdims{finfo.dims()};
@@ -111,7 +111,7 @@ af_err af_join(af_array *out, const int dim, const af_array first,
 
 af_err af_join_many(af_array *out, const int dim, const unsigned n_arrays,
                     const af_array *inputs) {
-    try {
+    /*try*/ {
         ARG_ASSERT(3, inputs != nullptr);
 
         if (n_arrays == 1) {

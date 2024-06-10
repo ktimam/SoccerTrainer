@@ -44,7 +44,7 @@ static void nearest_neighbour(af_array* idx, af_array* dist,
 af_err af_nearest_neighbour(af_array* idx, af_array* dist, const af_array query,
                             const af_array train, const dim_t dist_dim,
                             const uint n_dist, const af_match_type dist_type) {
-    try {
+    /*try*/ {
         const ArrayInfo& qInfo = getInfo(query);
         const ArrayInfo& tInfo = getInfo(train);
         af_dtype qType         = qInfo.getType();

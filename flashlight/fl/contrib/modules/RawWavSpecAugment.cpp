@@ -42,21 +42,26 @@ RawWavSpecAugment::RawWavSpecAugment(
       rawWavSampleRate_(sampleRate),
       maxKernelSize_(maxKernelSize) {
   if (numFreqMask_ > 0 && freqMaskF_ <= 0) {
-    throw std::invalid_argument("invalid arguments for frequency masking.");
+    /*throw*/ std::invalid_argument("invalid arguments for frequency masking.");
+        return;
   }
   if (numTimeMask_ > 0 && timeMaskT_ <= 0) {
-    throw std::invalid_argument("invalid arguments for time masking.");
+    /*throw*/ std::invalid_argument("invalid arguments for time masking.");
+        return;
   }
   if (numTimeMask_ > 0 && (timeMaskP_ <= 0 || timeMaskP_ > 1.0)) {
-    throw std::invalid_argument("invalid arguments for time masking.");
+    /*throw*/ std::invalid_argument("invalid arguments for time masking.");
+        return;
   }
   if (rawWavLowFreqHz_ < 0 || rawWavHighFreqHz_ < 0 ||
       rawWavLowFreqHz_ >= rawWavHighFreqHz_) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "invalid arguments for raw Wav high and low frequencies.");
+        return;
   }
   if (rawWavNMels_ <= 0) {
-    throw std::invalid_argument("invalid arguments for raw Wav nMels.");
+    /*throw*/ std::invalid_argument("invalid arguments for raw Wav nMels.");
+        return;
   }
   precomputeFilters();
 }
@@ -120,18 +125,19 @@ void RawWavSpecAugment::precomputeFilters() {
     lowPassFilters_.push_back(filter);
   }
   if (ignoredLowPassFilters_ >= lowPassFilters_.size()) {
-    throw std::invalid_argument(
-        "All low pass filters are ignored, too huge kernel for all frequencies");
+    /*throw*/ std::invalid_argument("All low pass filters are ignored, too huge kernel for all frequencies");
+        return;
   }
 }
 
 Variable RawWavSpecAugment::forward(const Variable& input) {
   if (input.isCalcGrad()) {
-    throw std::invalid_argument(
-        "input gradient calculation is not supported for RawWavSpecAugment.");
+    /*throw*/ std::invalid_argument("input gradient calculation is not supported for RawWavSpecAugment.");
+        return Variable();
   }
   if (lowPassFilters_.empty()) {
-    throw std::invalid_argument("invalid RawWavSpecAugment, filters are empty");
+    /*throw*/ std::invalid_argument("invalid RawWavSpecAugment, filters are empty");
+        return Variable();
   }
 
   fl::Variable inputCast = detail::adjustInputType(input, "RawWavSpecAugment");
@@ -141,9 +147,8 @@ Variable RawWavSpecAugment::forward(const Variable& input) {
   }
 
   if (input.ndim() != 3) {
-    throw std::invalid_argument(
-        "RawWavSpecAugment::forward - invalid input shape: "
-        "input is expected to be T x C x B");
+    /*throw*/ std::invalid_argument("RawWavSpecAugment::forward - invalid input shape: ""input is expected to be T x C x B");
+        return Variable();
   }
 
   // input is expected T x C x B (mostly C=1)

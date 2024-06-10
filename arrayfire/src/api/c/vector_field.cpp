@@ -137,7 +137,7 @@ fg_chart setup_vector_field(fg_window window, const vector<af_array>& points,
 af_err vectorFieldWrapper(const af_window window, const af_array points,
                           const af_array directions,
                           const af_cell* const props) {
-    try {
+    /*try*/ {
         if (window == 0) { AF_ERROR("Not a valid window", AF_ERR_INTERNAL); }
 
         const ArrayInfo& pInfo = getInfo(points);
@@ -207,7 +207,7 @@ af_err vectorFieldWrapper(const af_window window, const af_array xPoints,
                           const af_array yPoints, const af_array zPoints,
                           const af_array xDirs, const af_array yDirs,
                           const af_array zDirs, const af_cell* const props) {
-    try {
+    /*try*/ {
         if (window == 0) { AF_ERROR("Not a valid window", AF_SUCCESS); }
 
         const ArrayInfo& xpInfo = getInfo(xPoints);
@@ -313,7 +313,7 @@ af_err vectorFieldWrapper(const af_window window, const af_array xPoints,
 af_err vectorFieldWrapper(const af_window window, const af_array xPoints,
                           const af_array yPoints, const af_array xDirs,
                           const af_array yDirs, const af_cell* const props) {
-    try {
+    /*try*/ {
         if (window == 0) { AF_ERROR("Not a valid window", AF_SUCCESS); }
 
         const ArrayInfo& xpInfo = getInfo(xPoints);

@@ -68,7 +68,8 @@ Tensor glorotNormal(
 
 Tensor erfinv(const Tensor& y) {
   if (fl::any(fl::abs(y) >= 1.f).scalar<char>()) {
-    throw std::runtime_error("[erfinv] input is out of range (-1, 1)");
+    /*throw*/ std::runtime_error("[erfinv] input is out of range (-1, 1)");
+        return Tensor();
   }
   float a[4] = {0.886226899, -1.645349621, 0.914624893, -0.140543331};
   float b[4] = {-2.118377725, 1.442710462, -0.329097515, 0.012229801};
@@ -96,7 +97,8 @@ Tensor erfinv(const Tensor& y) {
   x = x - (fl::erf(x) - y) / ((2.0f / (float)std::sqrt(M_PI)) * fl::exp(-x * x));
   if (fl::any(fl::isnan(x)).asScalar<bool>() ||
       fl::any(fl::isinf(x)).asScalar<bool>()) {
-    throw std::runtime_error("[erfinv] invalid result");
+    /*throw*/ std::runtime_error("[erfinv] invalid result");
+        return Tensor();
   }
   return x;
 }
@@ -133,10 +135,8 @@ Variable
 identity(int outputSize, int inputSize, fl::dtype type, bool calcGrad) {
   // TODO{fl::Tensor}{fixme} add non-square identity to API
   if (inputSize != outputSize) {
-    throw std::invalid_argument(
-        "identity - can't create tensor with "
-        "different in and output size - only square identity "
-        "tensors supported");
+    /*throw*/ std::invalid_argument("identity - can't create tensor with ""different in and output size - only square identity ""tensors supported");
+        return Variable();
   }
   return identity(Shape({inputSize, outputSize}), type, calcGrad);
 }

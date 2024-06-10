@@ -39,7 +39,7 @@ af_err topk(af_array *v, af_array *i, const af_array in, const int k,
 
 af_err af_topk(af_array *values, af_array *indices, const af_array in,
                const int k, const int dim, const af_topk_function order) {
-    try {
+    /*try*/ {
         af::topkFunction ord = (order == AF_TOPK_DEFAULT ? AF_TOPK_MAX : order);
 
         const ArrayInfo &inInfo = getInfo(in);

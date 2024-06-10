@@ -46,7 +46,7 @@ struct fmt::formatter<arrayfire::common::Node> {
                 case 't': type = true; break;
                 case 'c': children = true; break;
                 case 'o': op = true; break;
-                default: throw format_error("invalid format");
+                default: //throw format_error("invalid format");
             }
             ++it;
         }

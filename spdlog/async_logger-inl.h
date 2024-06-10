@@ -50,7 +50,7 @@ if (!pool_ptr) {
 
 std::future<void> future = pool_ptr->post_flush(shared_from_this(), overflow_policy_);
 // Wait for the flush operation to complete.
-// This might throw exception if the flush message get dropped because of overflow.
+// This might //throw exception if the flush message get dropped because of overflow.
 future.get();
 }
 SPDLOG_LOGGER_CATCH(source_loc())

@@ -7,7 +7,10 @@
 
 #include "flashlight/fl/tensor/Init.h"
 
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 
 #include "flashlight/fl/common/Logging.h"
 #include "flashlight/fl/tensor/DefaultTensorType.h"

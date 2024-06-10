@@ -17,9 +17,10 @@
 
 #define FL_TENSOR_BACKENDS_MATCH_CHECK(...)             \
   if (!detail::areBackendsEqual(__VA_ARGS__)) {         \
-    throw std::invalid_argument(                        \
+    /*throw*/ std::invalid_argument(                        \
         std::string(__func__) +                         \
         " called with tensors of different backends."); \
+        return Tensor();                                          \
   }
 
 namespace fl {
@@ -146,16 +147,18 @@ TensorBackend& Tensor::backend() const {
 #define FL_CREATE_MEMORY_OPS(TYPE)                                          \
   template <>                                                               \
   FL_API TYPE Tensor::scalar() const {                                             \
+    TYPE out;                                                               \
     if (isEmpty()) {                                                        \
-      throw std::invalid_argument("Tensor::scalar called on empty tensor"); \
+      /*throw*/ std::invalid_argument("Tensor::scalar called on empty tensor"); \
+        return out;                                                             \
     }                                                                       \
     if (type() != dtype_traits<TYPE>::fl_type) {                            \
-      throw std::invalid_argument(                                          \
+      /*throw*/ std::invalid_argument(                                          \
           "Tensor::scalar: requested type of " +                            \
           std::string(dtype_traits<TYPE>::getName()) +                      \
           " doesn't match tensor type, which is " + dtypeToString(type())); \
+        return out;                                                             \
     }                                                                       \
-    TYPE out;                                                               \
     impl_->scalar(&out);                                                    \
     return out;                                                             \
   }                                                                         \
@@ -414,7 +417,8 @@ Tensor tile(const Tensor& tensor, const Shape& shape) {
 
 Tensor concatenate(const std::vector<Tensor>& tensors, const unsigned axis) {
   if (tensors.empty()) {
-    throw std::invalid_argument("concatenate: called on empty set of tensors");
+    /*throw*/ std::invalid_argument("concatenate: called on empty set of tensors");
+        return Tensor();
   }
 
   // Check all backends match
@@ -424,8 +428,8 @@ Tensor concatenate(const std::vector<Tensor>& tensors, const unsigned axis) {
         return t.backendType() == b;
       });
   if (!matches) {
-    throw std::invalid_argument(
-        "concatenate: tried to concatenate tensors of different backends");
+    /*throw*/ std::invalid_argument("concatenate: tried to concatenate tensors of different backends");
+        return Tensor();
   }
 
   return tensors.front().backend().concatenate(tensors, axis);
@@ -572,7 +576,7 @@ void topk(
     const unsigned k,
     const Dim axis,
     const SortMode sortMode /* = SortMode::Descending */) {
-  FL_TENSOR_BACKENDS_MATCH_CHECK(values, indices, input);
+  //FL_TENSOR_BACKENDS_MATCH_CHECK(values, indices, input);
   input.backend().topk(values, indices, input, k, axis, sortMode);
 }
 
@@ -727,7 +731,7 @@ void min(
     const Tensor& input,
     const unsigned axis,
     const bool keepDims) {
-  FL_TENSOR_BACKENDS_MATCH_CHECK(values, indices, input);
+  //FL_TENSOR_BACKENDS_MATCH_CHECK(values, indices, input);
   return input.backend().min(values, indices, input, axis, keepDims);
 }
 
@@ -737,7 +741,7 @@ void max(
     const Tensor& input,
     const unsigned axis,
     const bool keepDims /* = false */) {
-  FL_TENSOR_BACKENDS_MATCH_CHECK(values, indices, input);
+  //FL_TENSOR_BACKENDS_MATCH_CHECK(values, indices, input);
   return input.backend().max(values, indices, input, axis, keepDims);
 }
 
@@ -870,7 +874,8 @@ std::string tensorBackendTypeToString(const TensorBackendType type) {
     case TensorBackendType::Jit:
       return "Jit";
   }
-  throw std::runtime_error("Unreachable -- unrecognized tensor backend type");
+  /*throw*/ std::runtime_error("Unreachable -- unrecognized tensor backend type");
+        return "Jit";
 }
 
 std::ostream& operator<<(std::ostream& os, const TensorBackendType type) {

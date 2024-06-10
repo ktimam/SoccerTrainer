@@ -36,7 +36,7 @@ static inline af_array unwrap(const af_array in, const dim_t wx, const dim_t wy,
 af_err af_unwrap(af_array* out, const af_array in, const dim_t wx,
                  const dim_t wy, const dim_t sx, const dim_t sy, const dim_t px,
                  const dim_t py, const bool is_column) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af_dtype type         = info.getType();
         af::dim4 idims        = info.dims();

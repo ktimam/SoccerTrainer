@@ -19,7 +19,7 @@ DevicePtr::DevicePtr(const Tensor& in)
     ptr_ = nullptr;
   } else {
     if (!tensor_->isContiguous()) {
-      throw std::invalid_argument(
+      /*throw*/ std::invalid_argument(
           "can't get device pointer of non-contiguous Tensor");
     }
     ptr_ = tensor_->device<void>();

@@ -16,11 +16,12 @@ TopKMeter::TopKMeter(const int k) : k_(k), correct_(0), n_(0){};
 
 void TopKMeter::add(const Tensor& output, const Tensor& target) {
   if (output.dim(1) != target.dim(0)) {
-    throw std::invalid_argument("dimension mismatch in TopKMeter");
+    /*throw*/ std::invalid_argument("dimension mismatch in TopKMeter");
+        return;
   }
   if (target.ndim() != 1) {
-    throw std::invalid_argument(
-        "output/target must be 1-dimensional for TopKMeter");
+    /*throw*/ std::invalid_argument("output/target must be 1-dimensional for TopKMeter");
+        return;
   }
 
   Tensor maxVals, maxIds, match;

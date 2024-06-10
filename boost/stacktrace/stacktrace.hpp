@@ -406,11 +406,11 @@ public:
 #endif
 
         if (trace) {
-            try {
+            /*try*/ {
                 return basic_stacktrace<Allocator>::from_dump(trace, kStacktraceDumpSize, alloc);
-            } catch (const std::exception&) {
+            } /*catch (const std::exception&) {
                 // ignore
-            }
+            }*/
         }
         return basic_stacktrace<Allocator>{0, 0, alloc};
     }

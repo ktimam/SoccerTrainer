@@ -85,7 +85,7 @@ void af_wrap_common(af_array* out, const af_array in, const dim_t ox,
 af_err af_wrap(af_array* out, const af_array in, const dim_t ox, const dim_t oy,
                const dim_t wx, const dim_t wy, const dim_t sx, const dim_t sy,
                const dim_t px, const dim_t py, const bool is_column) {
-    try {
+    /*try*/ {
         af_wrap_common(out, in, ox, oy, wx, wy, sx, sy, px, py, is_column,
                        true);
     }
@@ -98,7 +98,7 @@ af_err af_wrap_v2(af_array* out, const af_array in, const dim_t ox,
                   const dim_t oy, const dim_t wx, const dim_t wy,
                   const dim_t sx, const dim_t sy, const dim_t px,
                   const dim_t py, const bool is_column) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, out != 0);  // need to dereference out in next call
         af_wrap_common(out, in, ox, oy, wx, wy, sx, sy, px, py, is_column,
                        *out == 0);

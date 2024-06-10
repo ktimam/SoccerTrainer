@@ -20,7 +20,7 @@
 
 #include <functional>
 #include <memory>
-#include <mutex>
+//#include <mutex>
 
 namespace spdlog {
 
@@ -39,8 +39,8 @@ struct async_factory_impl {
 
         // create global thread pool if not already exists..
 
-        auto &mutex = registry_inst.tp_mutex();
-        std::lock_guard<std::recursive_mutex> tp_lock(mutex);
+        //auto &mutex = registry_inst.tp_mutex();
+        //std::lock_guard<std::recursive_mutex> tp_lock(mutex);
         auto tp = registry_inst.get_tp();
         if (tp == nullptr) {
             tp = std::make_shared<details::thread_pool>(details::default_async_q_size, 1U);

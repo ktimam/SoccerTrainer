@@ -66,7 +66,8 @@ void RNN::initialize() {
 
 std::vector<Variable> RNN::forward(const std::vector<Variable>& inputs) {
   if (inputs.empty() || inputs.size() > 3) {
-    throw std::invalid_argument("Invalid inputs size");
+    /*throw*/ std::invalid_argument("Invalid inputs size");
+        return std::vector<Variable>();
   }
 
   const auto& input = inputs[0];

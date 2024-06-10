@@ -100,7 +100,7 @@ fg_chart setup_histogram(fg_window const window, const af_array in,
 af_err af_draw_hist(const af_window window, const af_array X,
                     const double minval, const double maxval,
                     const af_cell* const props) {
-    try {
+    /*try*/ {
         if (window == 0) { AF_ERROR("Not a valid window", AF_ERR_INTERNAL); }
 
         const ArrayInfo& Xinfo = getInfo(X);

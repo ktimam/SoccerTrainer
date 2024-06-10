@@ -22,8 +22,9 @@ TDSBlock::TDSBlock(
   if (rightPadding != -1) {
     int totalPadding = kernelSize - 1;
     if (rightPadding > totalPadding) {
-      throw std::invalid_argument(
+      /*throw*/ std::invalid_argument(
           "right padding exceeds the 'SAME' padding required for TDSBlock");
+        return;
     }
     conv.add(Padding(
         {std::pair<int, int>{totalPadding - rightPadding, rightPadding}}, 0.0));

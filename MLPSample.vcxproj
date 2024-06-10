@@ -116,7 +116,7 @@
     <ClCompile>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;OS_WIN;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_ARRAYFIRE;FL_ARRAYFIRE_USE_CPU;FL_USE_CPU;FL_BACKEND_CPU;FL_BACKEND_CUDA=false;AF_WITH_CPUID;AF_CPU;AF_DEBUG;SORT_TYPE=double;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AFDLL;SMALL_MATRIX_OPT;NO_AVX512;NO_WARMUP;MAX_CPU_NUMBER=32;MAX_PARALLEL_NUMBER=1;NO_AFFINITY;BUILD_SINGLE;FFTW_SINGLE;OS_WINNT;C_MSVC;OPENBLAS_OS_WINNT;OPENBLAS_C_MSVC;USE_FORGE_CPU_COPY_HELPERS;MULTITHREADING_DISABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;OS_WIN;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_ARRAYFIRE;FL_ARRAYFIRE_USE_CPU;FL_USE_CPU;FL_BACKEND_CPU;FL_BACKEND_CUDA=false;AF_WITH_CPUID;AF_CPU;AF_DEBUG;SORT_TYPE=double;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AFDLL;SMALL_MATRIX_OPT;NO_AVX512;NO_WARMUP;MAX_CPU_NUMBER=32;MAX_PARALLEL_NUMBER=1;NO_AFFINITY;BUILD_SINGLE;FFTW_SINGLE;OS_WINNT;C_MSVC;OPENBLAS_OS_WINNT;OPENBLAS_C_MSVC;USE_FORGE_CPU_COPY_HELPERS;MULTITHREADING_DISABLED;BOOST_NO_EXCEPTIONS;SPDLOG_DISABLE_DEFAULT_LOGGER;SPDLOG_NO_EXCEPTIONS;AF_DISABLE_CPU_ASYNC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
@@ -126,6 +126,7 @@
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <SYCLWarningLevel>DisableAllWarnings</SYCLWarningLevel>
       <FSYCLUnnamedLambda>No</FSYCLUnnamedLambda>
+      <ExceptionHandling>false</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -1049,8 +1050,6 @@
     <ClInclude Include="fftw\rdft\scalar\r2cfII.h" />
     <ClInclude Include="fftw\rdft\scalar\r2r.h" />
     <ClInclude Include="fftw\reodft\reodft.h" />
-    <ClInclude Include="fftw\threads\f77funcs.h" />
-    <ClInclude Include="fftw\threads\threads.h" />
     <ClInclude Include="flashlight\fl\autograd\autograd.h" />
     <ClInclude Include="flashlight\fl\autograd\Functions.h" />
     <ClInclude Include="flashlight\fl\autograd\tensor\AutogradExtension.h" />
@@ -1154,8 +1153,6 @@
     <ClInclude Include="flashlight\fl\tensor\backend\af\mem\MemoryManagerDeviceInterface.h" />
     <ClInclude Include="flashlight\fl\tensor\backend\af\mem\MemoryManagerInstaller.h" />
     <ClInclude Include="flashlight\fl\tensor\backend\af\Utils.h" />
-    <ClInclude Include="flashlight\fl\tensor\backend\stub\StubBackend.h" />
-    <ClInclude Include="flashlight\fl\tensor\backend\stub\StubTensor.h" />
     <ClInclude Include="flashlight\fl\tensor\Compute.h" />
     <ClInclude Include="flashlight\fl\tensor\DefaultTensorType.h" />
     <ClInclude Include="flashlight\fl\tensor\Index.h" />
@@ -1172,9 +1169,6 @@
     <ClInclude Include="nonstd\span.hpp" />
     <ClInclude Include="openblas\cblas.h" />
     <ClInclude Include="openblas\openblas_config.h" />
-    <ClInclude Include="spdlog\async.h" />
-    <ClInclude Include="spdlog\async_logger-inl.h" />
-    <ClInclude Include="spdlog\async_logger.h" />
     <ClInclude Include="spdlog\cfg\argv.h" />
     <ClInclude Include="spdlog\cfg\env.h" />
     <ClInclude Include="spdlog\cfg\helpers-inl.h" />
@@ -1237,48 +1231,11 @@
     <ClInclude Include="spdlog\mdc.h" />
     <ClInclude Include="spdlog\pattern_formatter-inl.h" />
     <ClInclude Include="spdlog\pattern_formatter.h" />
-    <ClInclude Include="spdlog\sinks\android_sink.h" />
-    <ClInclude Include="spdlog\sinks\ansicolor_sink-inl.h" />
-    <ClInclude Include="spdlog\sinks\ansicolor_sink.h" />
-    <ClInclude Include="spdlog\sinks\base_sink-inl.h" />
-    <ClInclude Include="spdlog\sinks\base_sink.h" />
-    <ClInclude Include="spdlog\sinks\basic_file_sink-inl.h" />
-    <ClInclude Include="spdlog\sinks\basic_file_sink.h" />
-    <ClInclude Include="spdlog\sinks\callback_sink.h" />
-    <ClInclude Include="spdlog\sinks\daily_file_sink.h" />
-    <ClInclude Include="spdlog\sinks\dist_sink.h" />
-    <ClInclude Include="spdlog\sinks\dup_filter_sink.h" />
-    <ClInclude Include="spdlog\sinks\hourly_file_sink.h" />
-    <ClInclude Include="spdlog\sinks\kafka_sink.h" />
-    <ClInclude Include="spdlog\sinks\mongo_sink.h" />
-    <ClInclude Include="spdlog\sinks\msvc_sink.h" />
-    <ClInclude Include="spdlog\sinks\null_sink.h" />
-    <ClInclude Include="spdlog\sinks\ostream_sink.h" />
-    <ClInclude Include="spdlog\sinks\qt_sinks.h" />
-    <ClInclude Include="spdlog\sinks\ringbuffer_sink.h" />
-    <ClInclude Include="spdlog\sinks\rotating_file_sink-inl.h" />
-    <ClInclude Include="spdlog\sinks\rotating_file_sink.h" />
-    <ClInclude Include="spdlog\sinks\sink-inl.h" />
-    <ClInclude Include="spdlog\sinks\sink.h" />
-    <ClInclude Include="spdlog\sinks\stdout_color_sinks-inl.h" />
-    <ClInclude Include="spdlog\sinks\stdout_color_sinks.h" />
-    <ClInclude Include="spdlog\sinks\stdout_sinks-inl.h" />
-    <ClInclude Include="spdlog\sinks\stdout_sinks.h" />
-    <ClInclude Include="spdlog\sinks\syslog_sink.h" />
-    <ClInclude Include="spdlog\sinks\systemd_sink.h" />
-    <ClInclude Include="spdlog\sinks\tcp_sink.h" />
-    <ClInclude Include="spdlog\sinks\udp_sink.h" />
-    <ClInclude Include="spdlog\sinks\wincolor_sink-inl.h" />
-    <ClInclude Include="spdlog\sinks\wincolor_sink.h" />
-    <ClInclude Include="spdlog\sinks\win_eventlog_sink.h" />
     <ClInclude Include="spdlog\spdlog-inl.h" />
     <ClInclude Include="spdlog\spdlog.h" />
     <ClInclude Include="spdlog\stopwatch.h" />
     <ClInclude Include="spdlog\tweakme.h" />
     <ClInclude Include="spdlog\version.h" />
-    <ClInclude Include="threads\async_queue.hpp" />
-    <ClInclude Include="threads\event.hpp" />
-    <ClInclude Include="threads\parallel.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cereal\external\rapidxml\manual.html" />
@@ -1997,15 +1954,6 @@
     <ClCompile Include="fftw\reodft\reodft11e-radix2.c" />
     <ClCompile Include="fftw\reodft\rodft00e-r2hc-pad.c" />
     <ClCompile Include="fftw\reodft\rodft00e-r2hc.c" />
-    <ClCompile Include="fftw\threads\api.c" />
-    <ClCompile Include="fftw\threads\conf.c" />
-    <ClCompile Include="fftw\threads\ct.c" />
-    <ClCompile Include="fftw\threads\dft-vrank-geq1.c" />
-    <ClCompile Include="fftw\threads\f77api.c" />
-    <ClCompile Include="fftw\threads\hc2hc.c" />
-    <ClCompile Include="fftw\threads\rdft-vrank-geq1.c" />
-    <ClCompile Include="fftw\threads\threads.c" />
-    <ClCompile Include="fftw\threads\vrank-geq1-rdft2.c" />
     <ClCompile Include="flashlight\fl\autograd\Functions.cpp" />
     <ClCompile Include="flashlight\fl\autograd\tensor\AutogradOps.cpp" />
     <ClCompile Include="flashlight\fl\autograd\Utils.cpp" />
@@ -2093,8 +2041,6 @@
     <ClCompile Include="flashlight\fl\tensor\backend\af\mem\MemoryManagerAdapter.cpp" />
     <ClCompile Include="flashlight\fl\tensor\backend\af\mem\MemoryManagerInstaller.cpp" />
     <ClCompile Include="flashlight\fl\tensor\backend\af\Utils.cpp" />
-    <ClCompile Include="flashlight\fl\tensor\backend\stub\StubBackend.cpp" />
-    <ClCompile Include="flashlight\fl\tensor\backend\stub\StubTensor.cpp" />
     <ClCompile Include="flashlight\fl\tensor\Compute.cpp" />
     <ClCompile Include="flashlight\fl\tensor\DefaultTensorType.cpp" />
     <ClCompile Include="flashlight\fl\tensor\Index.cpp" />

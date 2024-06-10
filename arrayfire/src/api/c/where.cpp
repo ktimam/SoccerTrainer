@@ -31,7 +31,7 @@ static inline af_array where(const af_array in) {
 }
 
 af_err af_where(af_array* idx, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo& i_info = getInfo(in);
         af_dtype type           = i_info.getType();
 

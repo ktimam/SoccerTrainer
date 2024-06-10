@@ -25,7 +25,7 @@ static inline af_array inverse(const af_array in) {
 }
 
 af_err af_inverse(af_array* out, const af_array in, const af_mat_prop options) {
-    try {
+    /*try*/ {
         const ArrayInfo& i_info = getInfo(in);
 
         if (i_info.ndims() > 2) {

@@ -30,7 +30,7 @@ static inline af_array solve(const af_array a, const af_array b,
 
 af_err af_solve(af_array* out, const af_array a, const af_array b,
                 const af_mat_prop options) {
-    try {
+    /*try*/ {
         const ArrayInfo& a_info = getInfo(a);
         const ArrayInfo& b_info = getInfo(b);
 
@@ -94,7 +94,7 @@ static inline af_array solve_lu(const af_array a, const af_array pivot,
 
 af_err af_solve_lu(af_array* out, const af_array a, const af_array piv,
                    const af_array b, const af_mat_prop options) {
-    try {
+    /*try*/ {
         const ArrayInfo& a_info   = getInfo(a);
         const ArrayInfo& b_info   = getInfo(b);
         const ArrayInfo& piv_info = getInfo(piv);

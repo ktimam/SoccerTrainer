@@ -38,7 +38,7 @@ Tensor tileAs(const Tensor& input, const Shape& rdims) {
       std::stringstream ss;
       ss << "Invalid dims for tileAs for input dims " << idims
          << " to output dims " << rdims;
-      throw std::invalid_argument(ss.str());
+      /*throw*/ std::invalid_argument(ss.str());
     }
     dims[i] = rdims[i] / idimsSize;
   }
@@ -567,7 +567,7 @@ Variable sumAs(const Variable& input, const Variable& reference) {
 
 Variable concatenate(const std::vector<Variable>& concatInputs, int dim) {
   if (concatInputs.empty()) {
-    throw std::invalid_argument("cannot concatenate zero variables");
+    /*throw*/ std::invalid_argument("cannot concatenate zero variables");
   }
 
   if (concatInputs.size() == 1) {
@@ -577,17 +577,17 @@ Variable concatenate(const std::vector<Variable>& concatInputs, int dim) {
   fl::dtype type = concatInputs[0].type();
   for (auto& var : concatInputs) {
     if (var.type() != type) {
-      throw std::invalid_argument(
-          "concatenate: all input Variables must be of the same type");
+      /*throw std::invalid_argument(
+          "concatenate: all input Variables must be of the same type");*/
     }
   }
   // All Variables must have the same number of dims
   unsigned numDims = concatInputs[0].ndim();
   for (auto& var : concatInputs) {
     if (numDims != var.ndim()) {
-      throw std::invalid_argument(
+     /* throw std::invalid_argument(
           "concatenate: all input Variables must "
-          "have the same number of dimensions");
+          "have the same number of dimensions");*/
     }
   }
 
@@ -599,8 +599,8 @@ Variable concatenate(const std::vector<Variable>& concatInputs, int dim) {
     concatSize += concatInputs[i].dim(dim);
     for (int d = 0; d < numDims; d++) {
       if (dim != d && concatInputs[i].dim(d) != dims[d]) {
-        throw std::invalid_argument(
-            "mismatch in dimension not being concatenated");
+        /*throw std::invalid_argument(
+            "mismatch in dimension not being concatenated");*/
       }
     }
   }
@@ -639,7 +639,7 @@ Variable concatenate(const std::vector<Variable>& concatInputs, int dim) {
 
 std::vector<Variable> split(const Variable& input, long splitSize, int dim) {
   if (splitSize <= 0) {
-    throw std::invalid_argument("split size must be a positive integer");
+    /*throw*/ std::invalid_argument("split size must be a positive integer");
   }
   auto dimSize = input.dim(dim);
   std::vector<long> splitSizes(dimSize / splitSize, splitSize);
@@ -653,9 +653,9 @@ std::vector<Variable> split(const Variable& input, long splitSize, int dim) {
 std::vector<Variable>
 split(const Variable& input, const std::vector<long>& splitSizes, int dim) {
   if (dim >= input.ndim()) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "split: passed dim is larger than the number of dimensions "
-        "of the input.");
+        "of the input.");*/
   }
   auto dimSize = input.dim(dim);
   auto N = splitSizes.size();
@@ -665,7 +665,7 @@ split(const Variable& input, const std::vector<long>& splitSizes, int dim) {
   int start = 0;
   for (int i = 0; i < N; ++i) {
     if (splitSizes[i] <= 0) {
-      throw std::invalid_argument("elements in split sizes has to be positive");
+      /*throw*/ std::invalid_argument("elements in split sizes has to be positive");
     }
     int end = start + splitSizes[i];
     sel[dim] = fl::range(start, end);
@@ -673,7 +673,7 @@ split(const Variable& input, const std::vector<long>& splitSizes, int dim) {
     start = end;
   }
   if (start != dimSize) {
-    throw std::invalid_argument("sum of split sizes must match split dim");
+    /*throw*/ std::invalid_argument("sum of split sizes must match split dim");
   }
   return outputs;
 }
@@ -756,8 +756,8 @@ Variable var(
     n *= input.dim(ax);
   }
   if (!isbiased && n == 1) {
-    throw std::invalid_argument(
-        "cannot compute unbiased variance with only one sample");
+    /*throw std::invalid_argument(
+        "cannot compute unbiased variance with only one sample");*/
   }
   auto val = 1.0f / (isbiased ? n : n - 1);
   result = val * (result - n * avg * avg);
@@ -787,7 +787,7 @@ Variable norm(
     float p /* = 2 */,
     bool keepDims /* = false */) {
   if (p <= 0) {
-    throw std::out_of_range("Lp norm: p must be > 0");
+    /*throw*/ std::out_of_range("Lp norm: p must be > 0");
   }
   auto result = fl::power(fl::abs(FL_ADJUST_INPUT_TYPE(input.tensor())), p);
   result = fl::sum(result, axes, /* keepDims = */ keepDims);
@@ -978,9 +978,9 @@ Variable moddims(const Variable& input, const Shape& dims) {
   // Check for inferred dims that are beyond the input's number of dims
   for (int i = 0; i < maxNDims; ++i) {
     if (i >= input.ndim() && inferDims[i] == 0) {
-      throw std::invalid_argument(
+      /*throw std::invalid_argument(
           "moddims: tried to infer dimension " + std::to_string(i) +
-          " which exceeds the number of dimensions of the input.");
+          " which exceeds the number of dimensions of the input.");*/
     }
   }
 
@@ -1001,11 +1001,11 @@ Variable moddims(const Variable& input, const Shape& dims) {
   }
 
   if (nInfer > 1) {
-    throw std::invalid_argument("moddims: too many dimensions infer");
+    /*throw*/ std::invalid_argument("moddims: too many dimensions infer");
   }
 
   if (inferDims.elements() != input.elements()) {
-    throw std::invalid_argument("moddims: mismatched # of elements");
+    /*throw*/ std::invalid_argument("moddims: mismatched # of elements");
   }
 
   auto result = fl::reshape(input.tensor(), inferDims);
@@ -1087,14 +1087,14 @@ Variable categoricalCrossEntropy(
   // input -- [C, X1, X2, X3]
   // target -- [X1, X2, X3, 1]
   if (input.ndim() != targets.ndim() + 1) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "dimension mismatch in categorical cross entropy: "
-        "target must have one fewer dimension than input");
+        "target must have one fewer dimension than input");*/
   }
   for (int i = 1; i < input.ndim(); i++) {
     if (input.dim(i) != targets.dim(i - 1)) {
-      throw std::invalid_argument(
-          "dimension mismatch in categorical cross entropy");
+      /*throw std::invalid_argument(
+          "dimension mismatch in categorical cross entropy");*/
     }
   }
 
@@ -1104,9 +1104,9 @@ Variable categoricalCrossEntropy(
           ((targets.tensor() < 0) || (targets.tensor() >= C)) &&
           (targets.tensor() != ignoreIndex))
           .scalar<char>()) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "target contains elements out of valid range [0, num_categories) "
-        "in categorical cross entropy");
+        "in categorical cross entropy");*/
   }
 
   auto x = fl::reshape(input.tensor(), Shape({C, X}));
@@ -1130,8 +1130,8 @@ Variable categoricalCrossEntropy(
   } else if (reduction == ReduceMode::SUM) {
     result = fl::sum(result, {0}); // [1]
   } else {
-    throw std::invalid_argument(
-        "unknown reduction method for categorical cross entropy");
+    /*throw std::invalid_argument(
+        "unknown reduction method for categorical cross entropy");*/
   }
 
   auto inputDims = input.shape();
@@ -1164,29 +1164,29 @@ Variable weightedCategoricalCrossEntropy(
   // input -- [C, X1, X2, X3]
   // target -- [X1, X2, X3]
   if (input.ndim() < targets.ndim() - 1) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "weightedCategoricalCrossEntropy: input must have one more than the "
-        "number of target dimensions minus 1");
+        "number of target dimensions minus 1");*/
   }
 
   for (int i = 1; i < targets.ndim() - 2; i++) {
     if (input.dim(i) != targets.dim(i - 1)) {
-      throw std::invalid_argument(
-          "weightedCategoricalCrossEntropy: dimension mismatch in categorical cross entropy");
+      /*throw std::invalid_argument(
+          "weightedCategoricalCrossEntropy: dimension mismatch in categorical cross entropy");*/
     }
   }
   if (weight.dim(0) != input.dim(0)) {
-    throw std::invalid_argument(
-        "weightedCategoricalCrossEntropy: dimension mismatch in categorical cross entropy");
+    /*throw std::invalid_argument(
+        "weightedCategoricalCrossEntropy: dimension mismatch in categorical cross entropy");*/
   }
 
   int C = input.dim(0);
   int X = targets.elements();
   if (fl::any((targets.tensor() < 0) || (targets.tensor() >= C))
           .scalar<char>()) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "weightedCategoricalCrossEntropy: target contains elements out of valid range "
-        "[0, num_categories) in categorical cross entropy");
+        "[0, num_categories) in categorical cross entropy");*/
   }
 
   auto x = fl::reshape(input.tensor(), {C, X});
@@ -1569,16 +1569,16 @@ Variable batchnorm(
 
 Variable gatedlinearunit(const Variable& input, const int dim) {
   if (dim >= input.ndim()) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "gatedlinearunit - passed dim is great than the "
-        "number of dimensions of the input.");
+        "number of dimensions of the input.");*/
   }
 
   auto inDims = input.shape();
   auto inType = input.type();
   auto inSize = inDims[dim];
   if (inSize % 2 == 1) {
-    throw std::invalid_argument("halving dimension must be even for GLU");
+    /*throw*/ std::invalid_argument("halving dimension must be even for GLU");
   }
 
   std::vector<fl::Index> fhalf(input.ndim(), fl::span);
@@ -1710,7 +1710,7 @@ std::tuple<Variable, Variable, Variable> rnn(
 Variable embedding(const Variable& input, const Variable& embeddings) {
   // TODO{fl::Tensor}{4-dims} - relax this
   if (input.ndim() >= 4) {
-    throw std::invalid_argument("embedding input must have 3 or fewer dims");
+    /*throw*/ std::invalid_argument("embedding input must have 3 or fewer dims");
   }
 
   auto idxs = input.tensor().flatten();
@@ -1756,9 +1756,9 @@ Variable padding(
     std::vector<std::pair<int, int>> pad,
     float val) {
   if (pad.size() > input.ndim()) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "padding: number of padding dimensions exceeds number "
-        "of input dimensions");
+        "of input dimensions");*/
   }
 
   Shape opDims = input.shape();
@@ -1800,9 +1800,9 @@ Variable gelu(const Variable& in) {
 
 fl::Variable relativePositionEmbeddingRotate(const fl::Variable& input) {
   if (input.ndim() != 3) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "relativePositionEmbeddingRotate - "
-        "input tensor must have 3 dimensions");
+        "input tensor must have 3 dimensions");*/
   }
 
   auto data = input.tensor();
@@ -1839,19 +1839,19 @@ fl::Variable multiheadAttention(
     const float pDropout,
     const int32_t offset /* = 0 */) {
   if (query.ndim() != 3) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "multiheadAttention - query input tensor should be 3 dimensions: "
-        "Time x (nHeads * headDim) x B");
+        "Time x (nHeads * headDim) x B");*/
   }
   if (key.ndim() != 3) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "multiheadAttention - key input tensor should be 3 dimensions: "
-        "Time x (nHeads * headDim) x B");
+        "Time x (nHeads * headDim) x B");*/
   }
   if (value.ndim() != 3) {
-    throw std::invalid_argument(
+    /*throw std::invalid_argument(
         "multiheadAttention - value input tensor should be 3 dimensions: "
-        "Time x (nHeads * headDim) x B");
+        "Time x (nHeads * headDim) x B");*/
   }
 
   int32_t bsz = query.dim(2);
@@ -1876,8 +1876,8 @@ fl::Variable multiheadAttention(
   }
   if (!padMask.isEmpty()) {
     if (padMask.dim(0) != query.dim(0)) {
-      throw std::invalid_argument(
-          "multiheadAttention: invalid padding mask size");
+      /*throw std::invalid_argument(
+          "multiheadAttention: invalid padding mask size");*/
     }
     auto padMaskTile = moddims(padMask, {1, padMask.dim(0), 1, bsz});
     padMaskTile =

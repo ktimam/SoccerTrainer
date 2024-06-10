@@ -12,7 +12,10 @@
 #include <common/graphics_common.hpp>
 #include <common/util.hpp>
 #include <platform.hpp>
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 #include <utility>
 
 using arrayfire::common::getEnvVar;

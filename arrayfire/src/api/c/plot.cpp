@@ -131,7 +131,7 @@ af_err plotWrapper(const af_window window, const af_array in,
                    const int order_dim, const af_cell* const props,
                    fg_plot_type ptype    = FG_PLOT_LINE,
                    fg_marker_type marker = FG_MARKER_NONE) {
-    try {
+    /*try*/ {
         if (window == 0) { AF_ERROR("Not a valid window", AF_ERR_INTERNAL); }
 
         const ArrayInfo& info = getInfo(in);
@@ -193,7 +193,7 @@ af_err plotWrapper(const af_window window, const af_array X, const af_array Y,
                    const af_array Z, const af_cell* const props,
                    fg_plot_type ptype    = FG_PLOT_LINE,
                    fg_marker_type marker = FG_MARKER_NONE) {
-    try {
+    /*try*/ {
         if (window == 0) { AF_ERROR("Not a valid window", AF_ERR_INTERNAL); }
 
         const ArrayInfo& xInfo = getInfo(X);
@@ -267,7 +267,7 @@ af_err plotWrapper(const af_window window, const af_array X, const af_array Y,
                    const af_cell* const props,
                    fg_plot_type ptype    = FG_PLOT_LINE,
                    fg_marker_type marker = FG_MARKER_NONE) {
-    try {
+    /*try*/ {
         if (window == 0) { AF_ERROR("Not a valid window", AF_ERR_INTERNAL); }
 
         const ArrayInfo& xInfo = getInfo(X);
@@ -354,7 +354,7 @@ af_err af_draw_plot(const af_window wind, const af_array X, const af_array Y,
 
 af_err af_draw_plot3(const af_window wind, const af_array P,
                      const af_cell* const props) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(P);
         af::dim4 dims         = info.dims();
 
@@ -385,7 +385,7 @@ af_err af_draw_plot3(const af_window wind, const af_array P,
 af_err af_draw_scatter_nd(const af_window wind, const af_array in,
                           const af_marker_type af_marker,
                           const af_cell* const props) {
-    try {
+    /*try*/ {
         fg_marker_type fg_marker = getFGMarker(af_marker);
         return plotWrapper(wind, in, 1, props, FG_PLOT_SCATTER, fg_marker);
     }
@@ -395,7 +395,7 @@ af_err af_draw_scatter_nd(const af_window wind, const af_array in,
 af_err af_draw_scatter_2d(const af_window wind, const af_array X,
                           const af_array Y, const af_marker_type af_marker,
                           const af_cell* const props) {
-    try {
+    /*try*/ {
         fg_marker_type fg_marker = getFGMarker(af_marker);
         return plotWrapper(wind, X, Y, props, FG_PLOT_SCATTER, fg_marker);
     }
@@ -406,7 +406,7 @@ af_err af_draw_scatter_3d(const af_window wind, const af_array X,
                           const af_array Y, const af_array Z,
                           const af_marker_type af_marker,
                           const af_cell* const props) {
-    try {
+    /*try*/ {
         fg_marker_type fg_marker = getFGMarker(af_marker);
         return plotWrapper(wind, X, Y, Z, props, FG_PLOT_SCATTER, fg_marker);
     }
@@ -417,7 +417,7 @@ af_err af_draw_scatter_3d(const af_window wind, const af_array X,
 af_err af_draw_scatter(const af_window wind, const af_array X, const af_array Y,
                        const af_marker_type af_marker,
                        const af_cell* const props) {
-    try {
+    /*try*/ {
         fg_marker_type fg_marker = getFGMarker(af_marker);
         return plotWrapper(wind, X, Y, props, FG_PLOT_SCATTER, fg_marker);
     }
@@ -427,7 +427,7 @@ af_err af_draw_scatter(const af_window wind, const af_array X, const af_array Y,
 af_err af_draw_scatter3(const af_window wind, const af_array P,
                         const af_marker_type af_marker,
                         const af_cell* const props) {
-    try {
+    /*try*/ {
         fg_marker_type fg_marker = getFGMarker(af_marker);
         const ArrayInfo& info    = getInfo(P);
         af::dim4 dims            = info.dims();

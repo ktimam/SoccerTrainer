@@ -124,6 +124,7 @@ void qr(Array<T> &q, Array<T> &r, Array<T> &t, const Array<T> &in) {
 template<typename T>
 Array<T> qr_inplace(Array<T> &in) {
     AF_ERROR("Linear Algebra is disabled on CPU", AF_ERR_NOT_CONFIGURED);
+    return createEmptyArray<T>(af::dim4());
 }
 
 }  // namespace cpu

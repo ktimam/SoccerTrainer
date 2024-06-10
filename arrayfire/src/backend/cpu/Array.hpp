@@ -215,7 +215,7 @@ class Array {
     INFO_IS_FUNC(isVector)
     INFO_IS_FUNC(isComplex)
     INFO_IS_FUNC(isReal)
-    INFO_IS_FUNC(isDouble)
+    //INFO_IS_FUNC(isDouble)
     INFO_IS_FUNC(isSingle)
     INFO_IS_FUNC(isHalf);
     INFO_IS_FUNC(isRealFloating)

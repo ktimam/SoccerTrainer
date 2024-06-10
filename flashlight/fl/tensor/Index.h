@@ -79,7 +79,7 @@ class FL_API range {
   Dim start() const;
   // std::nullopt represents `end_t`
   const std::optional<Dim>& end() const;
-  // throw if end is `end_t`
+  // //throw if end is `end_t`
   Dim endVal() const;
   Dim stride() const;
   bool operator==(const range& other) const;
@@ -152,7 +152,7 @@ struct FL_API Index {
 
   /**
    * Get the internal data for a particular Index. Parameterized by type. Will
-   * throw as per std::variant if the type doesn't match this Index's underlying
+   * //throw as per std::variant if the type doesn't match this Index's underlying
    * type.
    */
   template <typename T>

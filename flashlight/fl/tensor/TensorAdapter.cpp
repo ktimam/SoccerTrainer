@@ -29,9 +29,10 @@ DefaultTensorType::DefaultTensorType() {
 #if FL_DEFAULT_BACKEND_COMPILE_FLAG
   creationFunc_ = std::make_unique<TensorCreatorImpl<DefaultTensorType_t>>();
 #else
-  throw std::runtime_error(
+  /*throw*/ std::runtime_error(
       "Cannot construct DefaultTensorType singleton: Flashlight built "
       "without an available tensor backend.");
+        return;
 
 #endif
 }

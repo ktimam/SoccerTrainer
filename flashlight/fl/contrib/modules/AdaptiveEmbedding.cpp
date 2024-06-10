@@ -22,7 +22,8 @@ AdaptiveEmbedding::AdaptiveEmbedding(
     float divValue /*= 4 */)
     : embeddingDim_(embeddingDim), cutoff_(cutoff), divValue_(divValue) {
   if (cutoff_.empty()) {
-    throw std::invalid_argument("Invalid cutoff for AdaptiveEmbedding");
+    /*throw*/ std::invalid_argument("Invalid cutoff for AdaptiveEmbedding");
+    return;
   }
   double stdv = std::sqrt(1.0 / (double)embeddingDim_);
   // to be in agreement with the adaptive softmax to simplify
@@ -51,9 +52,10 @@ AdaptiveEmbedding::AdaptiveEmbedding(
 
 Variable AdaptiveEmbedding::forward(const Variable& input) {
   if (input.ndim() != 2) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "AdaptiveEmbedding::forward - input must "
         "have 2 dimensions - expect T x B");
+        return Variable();
   }
 
   auto flatInput = flat(input);
@@ -82,8 +84,9 @@ Variable AdaptiveEmbedding::forward(const Variable& input) {
     }
   }
   if (embeddings.empty()) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "Invalid input, no positions in the AdaptiveEmbedding layer");
+        return Variable();
   }
 
   Shape outShape({embeddingDim_, input.dim(0), input.dim(1)});

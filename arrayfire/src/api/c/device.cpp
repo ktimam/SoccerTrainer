@@ -54,7 +54,7 @@ using detail::uintl;
 using detail::ushort;
 
 af_err af_set_backend(const af_backend bknd) {
-    try {
+    /*try*/ {
         if (bknd != getBackend() && bknd != AF_BACKEND_DEFAULT) {
             return AF_ERR_ARG;
         }
@@ -70,7 +70,7 @@ af_err af_get_backend_count(unsigned* num_backends) {
 }
 
 af_err af_get_available_backends(int* result) {
-    try {
+    /*try*/ {
         *result = getBackend();
     }
     CATCHALL;
@@ -78,7 +78,7 @@ af_err af_get_available_backends(int* result) {
 }
 
 af_err af_get_backend_id(af_backend* result, const af_array in) {
-    try {
+    /*try*/ {
         if (in) {
             const ArrayInfo& info = getInfo(in, false);
             *result               = info.getBackendId();
@@ -91,7 +91,7 @@ af_err af_get_backend_id(af_backend* result, const af_array in) {
 }
 
 af_err af_get_device_id(int* device, const af_array in) {
-    try {
+    /*try*/ {
         if (in) {
             const ArrayInfo& info = getInfo(in, false);
             *device               = static_cast<int>(info.getDevId());
@@ -109,7 +109,7 @@ af_err af_get_active_backend(af_backend* result) {
 }
 
 af_err af_init() {
-    try {
+    /*try*/ {
         thread_local std::once_flag flag;
         std::call_once(flag, []() {
             init();
@@ -157,7 +157,7 @@ af_err af_init() {
 }
 
 af_err af_info() {
-    try {
+    /*try*/ {
         printf("%s", getDeviceInfo().c_str());  // NOLINT
     }
     CATCHALL;
@@ -166,7 +166,7 @@ af_err af_info() {
 
 af_err af_info_string(char** str, const bool verbose) {
     UNUSED(verbose);  // TODO(umar): Add something useful
-    try {
+    /*try*/ {
         std::string infoStr = getDeviceInfo();
         void* halloc_ptr    = nullptr;
         af_alloc_host(&halloc_ptr, sizeof(char) * (infoStr.size() + 1));
@@ -184,7 +184,7 @@ af_err af_info_string(char** str, const bool verbose) {
 
 af_err af_device_info(char* d_name, char* d_platform, char* d_toolkit,
                       char* d_compute) {
-    try {
+    /*try*/ {
         devprop(d_name, d_platform, d_toolkit, d_compute);
     }
     CATCHALL;
@@ -192,7 +192,7 @@ af_err af_device_info(char* d_name, char* d_platform, char* d_toolkit,
 }
 
 af_err af_get_dbl_support(bool* available, const int device) {
-    try {
+    /*try*/ {
         *available = isDoubleSupported(device);
     }
     CATCHALL;
@@ -200,7 +200,7 @@ af_err af_get_dbl_support(bool* available, const int device) {
 }
 
 af_err af_get_half_support(bool* available, const int device) {
-    try {
+    /*try*/ {
         *available = isHalfSupported(device);
     }
     CATCHALL;
@@ -208,7 +208,7 @@ af_err af_get_half_support(bool* available, const int device) {
 }
 
 af_err af_get_device_count(int* nDevices) {
-    try {
+    /*try*/ {
         *nDevices = getDeviceCount();
     }
     CATCHALL;
@@ -217,7 +217,7 @@ af_err af_get_device_count(int* nDevices) {
 }
 
 af_err af_get_device(int* device) {
-    try {
+    /*try*/ {
         *device = static_cast<int>(getActiveDeviceId());
     }
     CATCHALL;
@@ -225,7 +225,7 @@ af_err af_get_device(int* device) {
 }
 
 af_err af_set_device(const int device) {
-    try {
+    /*try*/ {
         ARG_ASSERT(0, device >= 0);
         if (setDevice(device) < 0) {
             int ndevices = getDeviceCount();
@@ -251,7 +251,7 @@ af_err af_set_device(const int device) {
 }
 
 af_err af_sync(const int device) {
-    try {
+    /*try*/ {
         int dev = device == -1 ? static_cast<int>(getActiveDeviceId()) : device;
         detail::sync(dev);
     }
@@ -270,7 +270,7 @@ static inline void sparseEval(af_array arr) {
 }
 
 af_err af_eval(af_array arr) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(arr, false);
         af_dtype type         = info.getType();
 
@@ -319,7 +319,7 @@ static inline void evalMultiple(int num, af_array* arrayPtrs) {
 }
 
 af_err af_eval_multiple(int num, af_array* arrays) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(arrays[0]);
         af_dtype type         = info.getType();
         const dim4& dims      = info.dims();
@@ -360,7 +360,7 @@ af_err af_eval_multiple(int num, af_array* arrays) {
 }
 
 af_err af_set_manual_eval_flag(bool flag) {
-    try {
+    /*try*/ {
         bool& backendFlag = evalFlag();
         backendFlag       = !flag;
     }
@@ -369,7 +369,7 @@ af_err af_set_manual_eval_flag(bool flag) {
 }
 
 af_err af_get_manual_eval_flag(bool* flag) {
-    try {
+    /*try*/ {
         bool backendFlag = evalFlag();
         *flag            = !backendFlag;
     }
@@ -378,7 +378,7 @@ af_err af_get_manual_eval_flag(bool* flag) {
 }
 
 af_err af_get_kernel_cache_directory(size_t* length, char* path) {
-    try {
+    /*try*/ {
         std::string& cache_path = getCacheDirectory();
         if (path == nullptr) {
             ARG_ASSERT(length != nullptr, 1);
@@ -400,7 +400,7 @@ af_err af_get_kernel_cache_directory(size_t* length, char* path) {
 }
 
 af_err af_set_kernel_cache_directory(const char* path, int override_env) {
-    try {
+    /*try*/ {
         ARG_ASSERT(path != nullptr, 1);
         if (override_env) {
             getCacheDirectory() = std::string(path);

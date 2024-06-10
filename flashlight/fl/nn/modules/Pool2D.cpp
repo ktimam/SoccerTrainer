@@ -48,7 +48,8 @@ Variable Pool2D::forward(const Variable& input) {
       /* dilation= */ 1);
 
   if (!(px >= 0 && py >= 0)) {
-    throw std::invalid_argument("invalid padding for Pool2D");
+    /*throw*/ std::invalid_argument("invalid padding for Pool2D");
+        return Variable();
   }
 
   return pool2d(input, xFilter_, yFilter_, xStride_, yStride_, px, py, mode_);

@@ -65,7 +65,7 @@ static To corrcoef(const af_array& X, const af_array& Y) {
 af_err af_corrcoef(double* realVal, double* imagVal, const af_array X,
                    const af_array Y) {
     UNUSED(imagVal);  // TODO(umar): implement for complex types
-    try {
+    /*try*/ {
         const ArrayInfo& xInfo = getInfo(X);
         const ArrayInfo& yInfo = getInfo(Y);
         dim4 xDims             = xInfo.dims();

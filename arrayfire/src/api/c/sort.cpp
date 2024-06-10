@@ -41,7 +41,7 @@ static inline af_array sort(const af_array in, const unsigned dim,
 
 af_err af_sort(af_array *out, const af_array in, const unsigned dim,
                const bool isAscending) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
@@ -86,7 +86,7 @@ static inline void sort_index(af_array *val, af_array *idx, const af_array in,
 
 af_err af_sort_index(af_array *out, af_array *indices, const af_array in,
                      const unsigned dim, const bool isAscending) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
@@ -198,7 +198,7 @@ void sort_by_key_tmplt(af_array *okey, af_array *oval, const af_array ikey,
 af_err af_sort_by_key(af_array *out_keys, af_array *out_values,
                       const af_array keys, const af_array values,
                       const unsigned dim, const bool isAscending) {
-    try {
+    /*try*/ {
         const ArrayInfo &kinfo = getInfo(keys);
         af_dtype ktype         = kinfo.getType();
 

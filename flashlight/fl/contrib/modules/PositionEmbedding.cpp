@@ -41,9 +41,10 @@ PositionEmbedding& PositionEmbedding::operator=(
 std::vector<Variable> PositionEmbedding::forward(
     const std::vector<Variable>& input) {
   if (input[0].ndim() != 3) {
-    throw std::invalid_argument(
+    /*throw*/ std::invalid_argument(
         "PositionEmbedding::forward - expect a tensor with "
         "3 dimensions - C x T x B");
+        return std::vector<Variable>();
   }
 
   int n = input[0].dim(1);

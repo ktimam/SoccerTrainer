@@ -19,7 +19,7 @@ namespace sinks {
 template <typename ConsoleMutex>
 class stdout_sink_base : public sink {
 public:
-    using mutex_t = typename ConsoleMutex::mutex_t;
+    //using mutex_t = typename ConsoleMutex::mutex_t;
     explicit stdout_sink_base(FILE *file);
     ~stdout_sink_base() override = default;
 
@@ -36,7 +36,7 @@ public:
     void set_formatter(std::unique_ptr<spdlog::formatter> sink_formatter) override;
 
 protected:
-    mutex_t &mutex_;
+    //mutex_t &mutex_;
     FILE *file_;
     std::unique_ptr<spdlog::formatter> formatter_;
 #ifdef _WIN32

@@ -114,7 +114,8 @@ Variable Sequential::forward(const Variable& input) {
     output = module->forward(output);
   }
   if (output.size() != 1) {
-    throw std::invalid_argument("Module output size is not 1");
+    /*throw*/ std::invalid_argument("Module output size is not 1");
+        return Variable();
   }
   return output.front();
 }

@@ -70,7 +70,7 @@ T det(const af_array a) {
 }
 
 af_err af_det(double *real_val, double *imag_val, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &i_info = getInfo(in);
 
         if (i_info.ndims() > 2) {

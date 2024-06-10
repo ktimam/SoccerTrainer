@@ -53,7 +53,7 @@ static af_features fast(af_array const &in, const float thr,
 af_err af_fast(af_features *out, const af_array in, const float thr,
                const unsigned arc_length, const bool non_max,
                const float feature_ratio, const unsigned edge) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af::dim4 dims         = info.dims();
 

@@ -43,7 +43,7 @@ using detail::ushort;
 // Strong Exception Guarantee
 af_err af_constant(af_array *result, const double value, const unsigned ndims,
                    const dim_t *const dims, const af_dtype type) {
-    try {
+    /*try*/ {
         af_array out;
         AF_CHECK(af_init());
 
@@ -82,7 +82,7 @@ static inline af_array createCplx(dim4 dims, const Ti real, const Ti imag) {
 af_err af_constant_complex(af_array *result, const double real,
                            const double imag, const unsigned ndims,
                            const dim_t *const dims, af_dtype type) {
-    try {
+    /*try*/ {
         af_array out;
         AF_CHECK(af_init());
 
@@ -103,7 +103,7 @@ af_err af_constant_complex(af_array *result, const double real,
 
 af_err af_constant_long(af_array *result, const intl val, const unsigned ndims,
                         const dim_t *const dims) {
-    try {
+    /*try*/ {
         af_array out;
         AF_CHECK(af_init());
 
@@ -121,7 +121,7 @@ af_err af_constant_long(af_array *result, const intl val, const unsigned ndims,
 
 af_err af_constant_ulong(af_array *result, const uintl val,
                          const unsigned ndims, const dim_t *const dims) {
-    try {
+    /*try*/ {
         af_array out;
         AF_CHECK(af_init());
 
@@ -144,7 +144,7 @@ static inline af_array identity_(const af::dim4 &dims) {
 
 af_err af_identity(af_array *out, const unsigned ndims, const dim_t *const dims,
                    const af_dtype type) {
-    try {
+    /*try*/ {
         af_array result;
         AF_CHECK(af_init());
 
@@ -186,7 +186,7 @@ static inline af_array range_(const dim4 &d, const int seq_dim) {
 // Strong Exception Guarantee
 af_err af_range(af_array *result, const unsigned ndims, const dim_t *const dims,
                 const int seq_dim, const af_dtype type) {
-    try {
+    /*try*/ {
         af_array out;
         AF_CHECK(af_init());
 
@@ -221,7 +221,7 @@ static inline af_array iota_(const dim4 &dims, const dim4 &tile_dims) {
 af_err af_iota(af_array *result, const unsigned ndims, const dim_t *const dims,
                const unsigned t_ndims, const dim_t *const tdims,
                const af_dtype type) {
-    try {
+    /*try*/ {
         af_array out;
         AF_CHECK(af_init());
 
@@ -263,7 +263,7 @@ static inline af_array diagExtract(const af_array in, const int num) {
 }
 
 af_err af_diag_create(af_array *out, const af_array in, const int num) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         DIM_ASSERT(1, in_info.ndims() <= 2);
         af_dtype type = in_info.getType();
@@ -302,7 +302,7 @@ af_err af_diag_create(af_array *out, const af_array in, const int num) {
 }
 
 af_err af_diag_extract(af_array *out, const af_array in, const int num) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         af_dtype type            = in_info.getType();
 
@@ -348,7 +348,7 @@ inline af_array triangle(const af_array in, const bool is_upper,
 }
 
 af_err af_lower(af_array *out, const af_array in, bool is_unit_diag) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
@@ -377,7 +377,7 @@ af_err af_lower(af_array *out, const af_array in, bool is_unit_diag) {
 }
 
 af_err af_upper(af_array *out, const af_array in, bool is_unit_diag) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
@@ -414,7 +414,7 @@ inline af_array pad(const af_array in, const dim4 &lPad, const dim4 &uPad,
 af_err af_pad(af_array *out, const af_array in, const unsigned begin_ndims,
               const dim_t *const begin_dims, const unsigned end_ndims,
               const dim_t *const end_dims, const af_border_type pad_type) {
-    try {
+    /*try*/ {
         DIM_ASSERT(2, begin_ndims > 0 && begin_ndims <= 4);
         DIM_ASSERT(4, end_ndims > 0 && end_ndims <= 4);
         ARG_ASSERT(3, begin_dims != NULL);

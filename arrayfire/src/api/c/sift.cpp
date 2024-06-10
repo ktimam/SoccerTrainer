@@ -56,7 +56,7 @@ af_err af_sift(af_features* feat, af_array* desc, const af_array in,
                const float edge_thr, const float init_sigma,
                const bool double_input, const float img_scale,
                const float feature_ratio) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af::dim4 dims         = info.dims();
 
@@ -99,7 +99,7 @@ af_err af_gloh(af_features* feat, af_array* desc, const af_array in,
                const float edge_thr, const float init_sigma,
                const bool double_input, const float img_scale,
                const float feature_ratio) {
-    try {
+    /*try*/ {
         const ArrayInfo& info = getInfo(in);
         af::dim4 dims         = info.dims();
 

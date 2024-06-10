@@ -130,7 +130,7 @@ bool isFreqDomain(const int rank, const af_array &signal, const af_array filter,
 
 af_err convolve(af_array *out, const af_array signal, const af_array filter,
                 const af_conv_mode mode, const int rank) {
-    try {
+    /*try*/ {
         const ArrayInfo &sInfo = getInfo(signal);
         const ArrayInfo &fInfo = getInfo(filter);
 
@@ -211,7 +211,7 @@ af_err convolve(af_array *out, const af_array signal, const af_array filter,
 
 af_err af_convolve1(af_array *out, const af_array signal, const af_array filter,
                     const af_conv_mode mode, af_conv_domain domain) {
-    try {
+    /*try*/ {
         if (isFreqDomain(1, signal, filter, domain)) {
             return af_fft_convolve1(out, signal, filter, mode);
         }
@@ -222,7 +222,7 @@ af_err af_convolve1(af_array *out, const af_array signal, const af_array filter,
 
 af_err af_convolve2(af_array *out, const af_array signal, const af_array filter,
                     const af_conv_mode mode, af_conv_domain domain) {
-    try {
+    /*try*/ {
         if (getInfo(signal).dims().ndims() < 2 ||
             getInfo(filter).dims().ndims() < 2) {
             return af_convolve1(out, signal, filter, mode, domain);
@@ -237,7 +237,7 @@ af_err af_convolve2(af_array *out, const af_array signal, const af_array filter,
 
 af_err af_convolve3(af_array *out, const af_array signal, const af_array filter,
                     const af_conv_mode mode, af_conv_domain domain) {
-    try {
+    /*try*/ {
         if (getInfo(signal).dims().ndims() < 3 ||
             getInfo(filter).dims().ndims() < 3) {
             return af_convolve2(out, signal, filter, mode, domain);
@@ -253,7 +253,7 @@ af_err af_convolve3(af_array *out, const af_array signal, const af_array filter,
 af_err af_convolve2_sep(af_array *out, const af_array col_filter,
                         const af_array row_filter, const af_array signal,
                         const af_conv_mode mode) {
-    try {
+    /*try*/ {
         const ArrayInfo &sInfo = getInfo(signal);
 
         const dim4 &sdims = sInfo.dims();
@@ -337,7 +337,7 @@ af_err af_convolve2_nn(af_array *out, const af_array signal,
                        const dim_t *strides, const unsigned padding_dims,
                        const dim_t *paddings, const unsigned dilation_dims,
                        const dim_t *dilations) {
-    try {
+    /*try*/ {
         const ArrayInfo &sInfo = getInfo(signal);
         const ArrayInfo &fInfo = getInfo(filter);
 
@@ -409,7 +409,7 @@ af_err af_convolve2_gradient_nn(
     const dim_t *strides, const unsigned padding_dims, const dim_t *paddings,
     const unsigned dilation_dims, const dim_t *dilations,
     af_conv_gradient_type grad_type) {
-    try {
+    /*try*/ {
         const ArrayInfo &iinfo = getInfo(incoming_gradient);
         const af::dim4 &iDims  = iinfo.dims();
 

@@ -30,20 +30,23 @@ SpecAugment::SpecAugment(
       numTimeMask_(nTMask),
       maskStrategy_(mStrategy) {
   if (numFreqMask_ > 0 && freqMaskF_ <= 0) {
-    throw std::invalid_argument("invalid arguments for frequency masking.");
+    /*throw*/ std::invalid_argument("invalid arguments for frequency masking.");
+        return;
   }
   if (numTimeMask_ > 0 && timeMaskT_ <= 0) {
-    throw std::invalid_argument("invalid arguments for time masking.");
+    /*throw*/ std::invalid_argument("invalid arguments for time masking.");
+        return;
   }
   if (numTimeMask_ > 0 && (timeMaskP_ <= 0 || timeMaskP_ > 1.0)) {
-    throw std::invalid_argument("invalid arguments for time masking.");
+    /*throw*/ std::invalid_argument("invalid arguments for time masking.");
+        return;
   }
 }
 
 Variable SpecAugment::forward(const Variable& input) {
   if (input.isCalcGrad()) {
-    throw std::invalid_argument(
-        "input gradient calculation is not supported for SpecAugment.");
+    /*throw*/ std::invalid_argument("input gradient calculation is not supported for SpecAugment.");
+        return Variable();
   }
 
   auto output = Variable(input.tensor(), false);
@@ -59,7 +62,8 @@ Variable SpecAugment::forward(const Variable& input) {
 
   auto numFreqChans = input.dim(1); // number of frequency channels
   if (numFreqChans < freqMaskF_) {
-    throw std::runtime_error("Invalid input frequency channels");
+    /*throw*/ std::runtime_error("Invalid input frequency channels");
+        return Variable();
   }
   for (int i = 0; i < numFreqMask_; ++i) {
     auto f = generateRandomInt(0, freqMaskF_);

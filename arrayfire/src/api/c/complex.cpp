@@ -39,7 +39,7 @@ static inline af_array cplx(const af_array lhs, const af_array rhs,
 
 af_err af_cplx2(af_array *out, const af_array lhs, const af_array rhs,
                 bool batchMode) {
-    try {
+    /*try*/ {
         af_dtype type = implicit(lhs, rhs);
 
         if (type == c32 /*|| type == c64*/) {
@@ -67,7 +67,7 @@ af_err af_cplx2(af_array *out, const af_array lhs, const af_array rhs,
 }
 
 af_err af_cplx(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
@@ -96,7 +96,7 @@ af_err af_cplx(af_array *out, const af_array in) {
 }
 
 af_err af_real(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
@@ -122,7 +122,7 @@ af_err af_real(af_array *out, const af_array in) {
 }
 
 af_err af_imag(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
@@ -150,7 +150,7 @@ af_err af_imag(af_array *out, const af_array in) {
 }
 
 af_err af_conjg(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &info = getInfo(in);
         af_dtype type         = info.getType();
 
@@ -176,7 +176,7 @@ af_err af_conjg(af_array *out, const af_array in) {
 }
 
 af_err af_abs(af_array *out, const af_array in) {
-    try {
+    /*try*/ {
         const ArrayInfo &in_info = getInfo(in);
         af_dtype in_type         = in_info.getType();
         af_array res;

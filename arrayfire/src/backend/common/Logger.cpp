@@ -18,7 +18,10 @@
 #include <array>
 #include <cstdlib>
 #include <memory>
+#ifndef MULTITHREADING_DISABLED
 #include <mutex>
+#endif // MULTITHREADING_DISABLED
+
 #include <string>
 
 using std::array;
