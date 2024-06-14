@@ -73,8 +73,8 @@ USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #if defined(OS_LINUX) || defined(OS_NETBSD) || defined(OS_DARWIN) || defined(OS_ANDROID) || defined(OS_SUNOS) || defined(OS_FREEBSD) || defined(OS_OPENBSD) || defined(OS_DRAGONFLY) || defined(OS_HAIKU)
 #include <dlfcn.h>
 #include <errno.h>
-#include <signal.h>
-#include <sys/resource.h>
+//#include <signal.h>
+//#include <sys/resource.h>
 #include <sys/time.h>
 #endif
 
@@ -204,7 +204,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb){
 	  /* REAL / Extended Double */
 	  void (*afunc)(BLASLONG, BLASLONG, BLASLONG, xdouble,
 			xdouble *, BLASLONG, xdouble *, BLASLONG,
-			xdouble *, BLASLONG, float *buffer) = func;
+			xdouble *, BLASLONG, void *) = func;
 
 	  afunc(args -> m, args -> n, args -> k,
 		((xdouble *)args -> alpha)[0],
@@ -217,8 +217,8 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb){
 	    /* REAL / Double */
 	    void (*afunc)(BLASLONG, BLASLONG, BLASLONG, double,
 			  double *, BLASLONG, double *, BLASLONG,
-			  double *, BLASLONG, float *buffer) =  (void (*)(BLASLONG, BLASLONG, BLASLONG, double, double *, BLASLONG, 
-			  double *, BLASLONG, double *, BLASLONG, float *buffer)) func;
+			  double *, BLASLONG, void *) =  (void (*)(BLASLONG, BLASLONG, BLASLONG, double, double *, BLASLONG, 
+			  double *, BLASLONG, double *, BLASLONG, void *)) func;
 
 	    afunc(args -> m, args -> n, args -> k,
 		  ((double *)args -> alpha)[0],
@@ -229,10 +229,10 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb){
             /* REAL / Single */
             void (*afunc)(BLASLONG, BLASLONG, BLASLONG, float,
                           float *, BLASLONG, float *, BLASLONG,
-                          float *, BLASLONG, float *buffer) = (void (*)
+                          float *, BLASLONG, void *) = (void (*)
                           (BLASLONG, BLASLONG, BLASLONG, float,
                           float *, BLASLONG, float *, BLASLONG,
-                          float *, BLASLONG, float *buffer)) func;
+                          float *, BLASLONG, void *)) func;
 
             afunc(args -> m, args -> n, args -> k,
                   ((float *)args -> alpha)[0],
@@ -244,9 +244,9 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb){
             /* REAL / BFLOAT16 */
             void (*afunc)(BLASLONG, BLASLONG, BLASLONG, bfloat16,
                           bfloat16 *, BLASLONG, bfloat16 *, BLASLONG,
-                          bfloat16 *, BLASLONG, float *buffer) = (void (*)(BLASLONG, BLASLONG, BLASLONG, bfloat16,
+                          bfloat16 *, BLASLONG, void *) = (void (*)(BLASLONG, BLASLONG, BLASLONG, bfloat16,
                           bfloat16 *, BLASLONG, bfloat16 *, BLASLONG,
-                          bfloat16 *, BLASLONG, float *buffer)) func;
+                          bfloat16 *, BLASLONG, void *)) func;
 
             afunc(args -> m, args -> n, args -> k,
                   ((bfloat16 *)args -> alpha)[0],
@@ -257,9 +257,9 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb){
             /* REAL / BLAS_STOBF16 */
             void (*afunc)(BLASLONG, BLASLONG, BLASLONG, float,
                           float *, BLASLONG, bfloat16 *, BLASLONG,
-                          float *, BLASLONG, float *buffer) = (void (*)(BLASLONG, BLASLONG, BLASLONG, float,
+                          float *, BLASLONG, void *) = (void (*)(BLASLONG, BLASLONG, BLASLONG, float,
                           float *, BLASLONG, bfloat16 *, BLASLONG,
-                          float *, BLASLONG, float *buffer)) func;
+                          float *, BLASLONG, void *)) func;
 
             afunc(args -> m, args -> n, args -> k,
                   ((float *)args -> alpha)[0],
@@ -270,9 +270,9 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb){
             /* REAL / BLAS_DTOBF16 */
             void (*afunc)(BLASLONG, BLASLONG, BLASLONG, double,
                           double *, BLASLONG, bfloat16 *, BLASLONG,
-                          double *, BLASLONG, float *buffer) = (void (*)(BLASLONG, BLASLONG, BLASLONG, double,
+                          double *, BLASLONG, void *) = (void (*)(BLASLONG, BLASLONG, BLASLONG, double,
                           double *, BLASLONG, bfloat16 *, BLASLONG,
-                          double *, BLASLONG, float *buffer)) func;
+                          double *, BLASLONG, void *)) func;
 
             afunc(args -> m, args -> n, args -> k,
                   ((double *)args -> alpha)[0],
@@ -289,9 +289,9 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb){
 	  /* COMPLEX / Extended Double */
 	  void (*afunc)(BLASLONG, BLASLONG, BLASLONG, xdouble, xdouble,
 			xdouble *, BLASLONG, xdouble *, BLASLONG,
-			xdouble *, BLASLONG, float *buffer) = (void (*)(BLASLONG, BLASLONG, BLASLONG, xdouble, xdouble,
+			xdouble *, BLASLONG, void *) = (void (*)(BLASLONG, BLASLONG, BLASLONG, xdouble, xdouble,
                         xdouble *, BLASLONG, xdouble *, BLASLONG,
-                        xdouble *, BLASLONG, float *buffer)) func;
+                        xdouble *, BLASLONG, void *)) func;
 
 	  afunc(args -> m, args -> n, args -> k,
 		((xdouble *)args -> alpha)[0],
@@ -305,9 +305,9 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb){
 	    /* COMPLEX / Double */
 	  void (*afunc)(BLASLONG, BLASLONG, BLASLONG, double, double,
 			double *, BLASLONG, double *, BLASLONG,
-			double *, BLASLONG, float *buffer) = (void (*)(BLASLONG, BLASLONG, BLASLONG, double, double,
+			double *, BLASLONG, void *) = (void (*)(BLASLONG, BLASLONG, BLASLONG, double, double,
                         double *, BLASLONG, double *, BLASLONG,
-                        double *, BLASLONG, float *buffer)) func;
+                        double *, BLASLONG, void *)) func;
 
 	  afunc(args -> m, args -> n, args -> k,
 		((double *)args -> alpha)[0],
@@ -319,9 +319,9 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb){
 	    /* COMPLEX / Single */
 	  void (*afunc)(BLASLONG, BLASLONG, BLASLONG, float, float,
 			float *, BLASLONG, float *, BLASLONG,
-			float *, BLASLONG, float *buffer) = (void (*)(BLASLONG, BLASLONG, BLASLONG, float, float,
+			float *, BLASLONG, void *) = (void (*)(BLASLONG, BLASLONG, BLASLONG, float, float,
                         float *, BLASLONG, float *, BLASLONG,
-                        float *, BLASLONG, float *buffer)) func;
+                        float *, BLASLONG, void *)) func;
 
 	  afunc(args -> m, args -> n, args -> k,
 		((float *)args -> alpha)[0],
@@ -346,34 +346,34 @@ static int increased_threads = 0;
 #ifdef OS_LINUX
 extern int openblas_get_num_threads(void);  
 
-int openblas_setaffinity(int thread_idx, size_t cpusetsize, cpu_set_t* cpu_set) {
-  const int active_threads = openblas_get_num_threads();
-
-  if (thread_idx < 0 || thread_idx >= active_threads) {
-    errno = EINVAL;
-    return -1;
-  }
-
-  pthread_t thread = (thread_idx == active_threads - 1)
-      ? pthread_self()
-      : blas_threads[thread_idx];
-
-  return pthread_setaffinity_np(thread, cpusetsize, cpu_set);
-}
-int openblas_getaffinity(int thread_idx, size_t cpusetsize, cpu_set_t* cpu_set) {
-  const int active_threads = openblas_get_num_threads();
-
-  if (thread_idx < 0 || thread_idx >= active_threads) {
-    errno = EINVAL;
-    return -1;
-  }
-
-  pthread_t thread = (thread_idx == active_threads - 1)
-      ? pthread_self()
-      : blas_threads[thread_idx];
-
-  return pthread_getaffinity_np(thread, cpusetsize, cpu_set);
-}
+//int openblas_setaffinity(int thread_idx, size_t cpusetsize, cpu_set_t* cpu_set) {
+//  const int active_threads = openblas_get_num_threads();
+//
+//  if (thread_idx < 0 || thread_idx >= active_threads) {
+//    errno = EINVAL;
+//    return -1;
+//  }
+//
+//  pthread_t thread = (thread_idx == active_threads - 1)
+//      ? pthread_self()
+//      : blas_threads[thread_idx];
+//
+//  return pthread_setaffinity_np(thread, cpusetsize, cpu_set);
+//}
+//int openblas_getaffinity(int thread_idx, size_t cpusetsize, cpu_set_t* cpu_set) {
+//  const int active_threads = openblas_get_num_threads();
+//
+//  if (thread_idx < 0 || thread_idx >= active_threads) {
+//    errno = EINVAL;
+//    return -1;
+//  }
+//
+//  pthread_t thread = (thread_idx == active_threads - 1)
+//      ? pthread_self()
+//      : blas_threads[thread_idx];
+//
+//  return pthread_getaffinity_np(thread, cpusetsize, cpu_set);
+//}
 #endif
 
 static void* blas_thread_server(void *arg){

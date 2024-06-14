@@ -192,18 +192,18 @@ int CNAME(BLASLONG m, BLASLONG n, FLOAT *alpha, FLOAT *a, BLASLONG lda, FLOAT *x
   args.m = m;
   args.n = n;
 
-  args.a = (float *)a;
-  args.b = (float *)x;
-  args.c = (float *)y;
+  args.a = (void *)a;
+  args.b = (void *)x;
+  args.c = (void *)y;
 
   args.lda = lda;
   args.ldb = incx;
   args.ldc = incy;
 
 #ifndef COMPLEX
-  args.alpha = (float *)&alpha;
+  args.alpha = (void *)&alpha;
 #else
-  args.alpha = (float *) alpha;
+  args.alpha = (void *) alpha;
 #endif
 
   num_cpu  = 0;
@@ -258,7 +258,7 @@ int CNAME(BLASLONG m, BLASLONG n, FLOAT *alpha, FLOAT *a, BLASLONG lda, FLOAT *x
     memset(y_dummy, 0, sizeof(FLOAT) * m * COMPSIZE * nthreads);
 
     args.ldc = 1;
-    args.c = (float *)y_dummy;
+    args.c = (void *)y_dummy;
 
     //split on row (n) and x
     i=n;

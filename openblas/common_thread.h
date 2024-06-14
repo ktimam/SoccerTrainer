@@ -186,7 +186,7 @@ int exec_blas_async_wait(BLASLONG, blas_queue_t *);
 #else
 int exec_blas_async(BLASLONG num_cpu, blas_param_t *param, pthread_t *);
 int exec_blas_async_wait(BLASLONG num_cpu, pthread_t *blas_threads);
-int exec_blas(BLASLONG num_cpu, blas_param_t *param, float *buffer);
+int exec_blas(BLASLONG num_cpu, blas_param_t *param, void *buffer);
 #endif
 
 #ifndef ASSEMBLER
@@ -207,14 +207,14 @@ int gemm_thread_variable(int mode, blas_arg_t *, BLASLONG *, BLASLONG *, int (*f
 int trsm_thread(int mode, BLASLONG m, BLASLONG n,
 		double alpha_r, double alpha_i,
 		void *a, BLASLONG lda,
-		void *c, BLASLONG ldc, int (*function)(void), float *buffer);
+		void *c, BLASLONG ldc, int (*function)(void), void *buffer);
 
 int syrk_thread(int mode, blas_arg_t *, BLASLONG *, BLASLONG *, int (*function)(blas_arg_t*, BLASLONG*, BLASLONG*, FLOAT *, FLOAT *, BLASLONG), void*, void*, BLASLONG);
 
 int getrf_thread(int mode, BLASLONG m, BLASLONG n, BLASLONG k,
 		 void *offsetA, BLASLONG lda,
 		 void *offsetB, BLASLONG jb,
-		 void *ipiv, BLASLONG offset, int (*function)(void), float *buffer);
+		 void *ipiv, BLASLONG offset, int (*function)(void), void *buffer);
 
 #endif  /* ENDIF ASSEMBLER */
 

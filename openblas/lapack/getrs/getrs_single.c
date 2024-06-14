@@ -42,7 +42,7 @@
 blasint CNAME(blas_arg_t *args, BLASLONG *range_m, BLASLONG *range_n, FLOAT *sa, FLOAT *sb, BLASLONG mypos) {
 
 #ifndef TRANS
-  LASWP_PLUS(args -> n, 1, args -> m, ZERO, args -> b, args -> ldb, NULL, 0, (blasint*)args -> c, 1);
+  LASWP_PLUS(args -> n, 1, args -> m, ZERO, args -> b, args -> ldb, NULL, 0, args -> c, 1);
 
   if (args -> n == 1){
     TRSV_NLU (args -> m, args -> a, args -> lda, args -> b, 1, sb);
@@ -62,7 +62,7 @@ blasint CNAME(blas_arg_t *args, BLASLONG *range_m, BLASLONG *range_n, FLOAT *sa,
     TRSM_LTLU  (args, range_m, range_n, sa, sb, 0);
   }
 
-  LASWP_MINUS(args -> n, 1, args -> m, ZERO, args -> b, args -> ldb, NULL, 0, (blasint*)args -> c, -1);
+  LASWP_MINUS(args -> n, 1, args -> m, ZERO, args -> b, args -> ldb, NULL, 0, args -> c, -1);
 #endif
 
   return 0;  }

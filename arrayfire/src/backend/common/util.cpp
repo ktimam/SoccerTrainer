@@ -85,7 +85,7 @@ string getEnvVar(const string& key) {
         return retVal;
     }
 #else
-    char* str = getenv(key.c_str());
+    char* str = NULL;// getenv(key.c_str());
     return str == NULL ? string("") : string(str);
 #endif
 }
@@ -153,7 +153,7 @@ string getHomeDirectory() {
     home = getEnvVar("HOME");
     if (!home.empty()) { return home; }
 
-    return getpwuid(getuid())->pw_dir;
+    return "getHomeDirectory";// getpwuid(getpid())->pw_dir;
 }
 #endif
 

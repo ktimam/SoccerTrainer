@@ -12,7 +12,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wattributes"
 #pragma GCC diagnostic ignored "-Wparentheses"
-#include <boost/stacktrace.hpp>
+//#include <boost/stacktrace.hpp>
 #pragma GCC diagnostic pop
 #include <common/defines.hpp>
 #include <af/defines.h>
@@ -26,19 +26,19 @@
 class AfError : public std::logic_error {
     std::string functionName;
     std::string fileName;
-    boost::stacktrace::stacktrace st_;
+    //boost::stacktrace::stacktrace st_;
     int lineNumber;
     af_err error;
     AfError();
 
    public:
     AfError(const char* const func, const char* const file, const int line,
-            const char* const message, af_err err,
-            boost::stacktrace::stacktrace st);
+            const char* const message, af_err err/*,
+            boost::stacktrace::stacktrace st*/);
 
     AfError(std::string func, std::string file, const int line,
-            const std::string& message, af_err err,
-            boost::stacktrace::stacktrace st);
+            const std::string& message, af_err err/*,
+            boost::stacktrace::stacktrace st*/);
 
     AfError(const AfError& other) noexcept = delete;
 
@@ -49,7 +49,7 @@ class AfError : public std::logic_error {
         : std::logic_error(std::forward<std::logic_error>(other))
         , functionName(std::forward<std::string>(other.functionName))
         , fileName(std::forward<std::string>(other.fileName))
-        , st_(std::forward<boost::stacktrace::stacktrace>(other.st_))
+        //, st_(std::forward<boost::stacktrace::stacktrace>(other.st_))
         , lineNumber(std::forward<int>(other.lineNumber))
         , error(std::forward<af_err>(other.error)) {}
 
@@ -57,9 +57,9 @@ class AfError : public std::logic_error {
 
     const std::string& getFileName() const noexcept;
 
-    const boost::stacktrace::stacktrace& getStacktrace() const noexcept {
+    /*const boost::stacktrace::stacktrace& getStacktrace() const noexcept {
         return st_;
-    };
+    };*/
 
     int getLine() const noexcept;
 
@@ -76,8 +76,8 @@ class TypeError : public AfError {
 
    public:
     TypeError(const char* const func, const char* const file, const int line,
-              const int index, const af_dtype type,
-              const boost::stacktrace::stacktrace st);
+              const int index, const af_dtype type/*,
+              const boost::stacktrace::stacktrace st*/);
 
     TypeError(TypeError&& other) noexcept = default;
 
@@ -96,8 +96,8 @@ class ArgumentError : public AfError {
    public:
     ArgumentError(const char* const func, const char* const file,
                   const int line, const int index,
-                  const char* const expectString,
-                  const boost::stacktrace::stacktrace st);
+                  const char* const expectString/*,
+                  const boost::stacktrace::stacktrace st*/);
     ArgumentError(ArgumentError&& other) noexcept = default;
 
     const std::string& getExpectedCondition() const noexcept;
@@ -113,8 +113,8 @@ class SupportError : public AfError {
 
    public:
     SupportError(const char* const func, const char* const file, const int line,
-                 const char* const back,
-                 const boost::stacktrace::stacktrace st);
+                 const char* const back/*,
+                 const boost::stacktrace::stacktrace st*/);
     SupportError(SupportError&& other) noexcept = default;
 
     ~SupportError() noexcept {}
@@ -130,8 +130,8 @@ class DimensionError : public AfError {
    public:
     DimensionError(const char* const func, const char* const file,
                    const int line, const int index,
-                   const char* const expectString,
-                   const boost::stacktrace::stacktrace& st);
+                   const char* const expectString/*,
+                   const boost::stacktrace::stacktrace& st*/);
     DimensionError(DimensionError&& other) noexcept = default;
 
     const std::string& getExpectedCondition() const noexcept;
@@ -150,8 +150,8 @@ af_err set_global_error_string(const std::string& msg,
     do {                                                                 \
         if ((COND) == false) {                                           \
             /* throw */ DimensionError(__AF_FUNC__, __AF_FILENAME__, __LINE__, \
-                                 INDEX, #COND,                           \
-                                 boost::stacktrace::stacktrace());       \
+                                 INDEX, #COND/*,*/                           \
+                                 /*boost::stacktrace::stacktrace()*/);       \
         }                                                                \
     } while (0)
 
@@ -159,7 +159,7 @@ af_err set_global_error_string(const std::string& msg,
     do {                                                                       \
         if ((COND) == false) {                                                 \
             /* throw */ ArgumentError(__AF_FUNC__, __AF_FILENAME__, __LINE__, INDEX, \
-                                #COND, boost::stacktrace::stacktrace());       \
+                                #COND/*, boost::stacktrace::stacktrace()*/);       \
         }                                                                      \
     } while (0)
 
@@ -181,7 +181,7 @@ af_err set_global_error_string(const std::string& msg,
         s << "Error in " << __AF_FUNC__ << "\n"                              \
           << "In file " << __AF_FILENAME__ << ":" << __LINE__ << ": " << MSG \
           << "\n"                                                            \
-          << boost::stacktrace::stacktrace();                                \
+          /*<< boost::stacktrace::stacktrace()*/;                                \
         return set_global_error_string(s.str(), ERR_TYPE);                   \
     } while (0)
 

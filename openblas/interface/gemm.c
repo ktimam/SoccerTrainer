@@ -223,16 +223,16 @@ void NAME(char *TRANSA, char *TRANSB,
   args.n = *N;
   args.k = *K;
 
-  args.a = (float *)a;
-  args.b = (float *)b;
-  args.c = (float *)c;
+  args.a = (void *)a;
+  args.b = (void *)b;
+  args.c = (void *)c;
 
   args.lda = *ldA;
   args.ldb = *ldB;
   args.ldc = *ldC;
 
-  args.alpha = (float *)alpha;
-  args.beta  = (float *)beta;
+  args.alpha = (void *)alpha;
+  args.beta  = (void *)beta;
 
   transA = *TRANSA;
   transB = *TRANSB;
@@ -355,11 +355,11 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_TRANSPOSE TransA, enum CBLAS_TRANS
 #endif
 
 #ifndef COMPLEX
-  args.alpha = (float *)&alpha;
-  args.beta  = (float *)&beta;
+  args.alpha = (void *)&alpha;
+  args.beta  = (void *)&beta;
 #else
-  args.alpha = (float *)alpha;
-  args.beta  = (float *)beta;
+  args.alpha = (void *)alpha;
+  args.beta  = (void *)beta;
 #endif
 
   transa = -1;
@@ -371,9 +371,9 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_TRANSPOSE TransA, enum CBLAS_TRANS
     args.n = n;
     args.k = k;
 
-    args.a = (float *)a;
-    args.b = (float *)b;
-    args.c = (float *)c;
+    args.a = (void *)a;
+    args.b = (void *)b;
+    args.c = (void *)c;
 
     args.lda = lda;
     args.ldb = ldb;
@@ -420,9 +420,9 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_TRANSPOSE TransA, enum CBLAS_TRANS
     args.n = m;
     args.k = k;
 
-    args.a = (float *)b;
-    args.b = (float *)a;
-    args.c = (float *)c;
+    args.a = (void *)b;
+    args.b = (void *)a;
+    args.c = (void *)c;
 
     args.lda = ldb;
     args.ldb = lda;

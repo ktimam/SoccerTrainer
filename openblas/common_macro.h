@@ -2639,7 +2639,7 @@ extern BLASLONG xgemm_r;
 #endif
 
 typedef struct {
-  float *a, *b, *c, *d, *alpha, *beta;
+  void *a, *b, *c, *d, *alpha, *beta;
   BLASLONG	m, n, k, lda, ldb, ldc, ldd;
 
 #ifdef SMP

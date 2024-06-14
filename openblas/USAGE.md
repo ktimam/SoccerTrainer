@@ -17,7 +17,7 @@ NUM_THREADS=32` or `make NUM_THREADS=64`.  In `Makefile.system`, we will set
 Despite its name, and due to the use of memory buffers in functions like SGEMM,
 the setting of NUM_THREADS can be relevant even for a single-threaded build 
 of OpenBLAS, if such functions get called by multiple threads of a program
-that uses OpenBLAS. In some cases, the affected code may simply crash or //throw 
+that uses OpenBLAS. In some cases, the affected code may simply crash or throw 
 a segmentation fault without displaying the above warning first.
 
 Note that the number of threads used at runtime can be altered to differ from the

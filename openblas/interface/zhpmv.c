@@ -51,7 +51,7 @@
 #define ERROR_NAME "CHPMV "
 #endif
 
-static  int (*hpmv[])(BLASLONG, FLOAT, FLOAT, FLOAT *, FLOAT *, BLASLONG, FLOAT *, BLASLONG, float *buffer) = {
+static  int (*hpmv[])(BLASLONG, FLOAT, FLOAT, FLOAT *, FLOAT *, BLASLONG, FLOAT *, BLASLONG, void *) = {
 #ifdef XDOUBLE
   xhpmv_U, xhpmv_L, xhpmv_V, xhpmv_M,
 #elif defined(DOUBLE)

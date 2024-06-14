@@ -79,11 +79,11 @@ int NAME(char *TRANS, blasint *N, blasint *NRHS, FLOAT *a, blasint *ldA,
 
   args.m    = *N;
   args.n    = *NRHS;
-  args.a    = (float *)a;
+  args.a    = (void *)a;
   args.lda  = *ldA;
-  args.b    = (float *)b;
+  args.b    = (void *)b;
   args.ldb  = *ldB;
-  args.c    = (float *)ipiv;
+  args.c    = (void *)ipiv;
 
   info = 0;
 

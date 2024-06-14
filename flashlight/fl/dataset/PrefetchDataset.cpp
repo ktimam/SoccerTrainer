@@ -4,6 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+#if defined(OS_WIN)
 
 #include <memory>
 #include <stdexcept>
@@ -73,3 +74,5 @@ int64_t PrefetchDataset::size() const {
   return dataset_->size();
 }
 } // namespace fl
+
+#endif

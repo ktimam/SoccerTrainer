@@ -1722,7 +1722,7 @@ inline int atoi(const char *str) { return 0; }
 #ifndef NO_SYSV_IPC
 #include <sys/shm.h>
 #endif
-#include <sys/ipc.h>
+//#include <sys/ipc.h>
 #endif
 
 #include <sys/types.h>
@@ -1733,7 +1733,7 @@ inline int atoi(const char *str) { return 0; }
 #include <errno.h>
 #include <sys/syscall.h>
 #include <sys/time.h>
-#include <sys/resource.h>
+//#include <sys/resource.h>
 #endif
 
 #if defined(OS_FREEBSD) || defined(OS_OPENBSD) || defined(OS_NETBSD) || defined(OS_DRAGONFLY) || defined(OS_DARWIN)
@@ -2537,121 +2537,121 @@ static void *alloc_shm(void *address){
   return map_address;
 }
 #endif
-
-#if defined OS_LINUX  || defined OS_AIX  || defined __sun__  || defined OS_WINDOWS
-
-static void alloc_hugetlb_free(struct release_t *release){
-
-#if defined(OS_LINUX) || defined(OS_AIX)
-  if (shmdt(release -> address)) {
-    printf("OpenBLAS : Hugepage unmap failed.\n");
-  }
-#endif
-
-#ifdef __sun__
-
-  munmap(release -> address, BUFFER_SIZE);
-
-#endif
-
-#ifdef OS_WINDOWS
-
-  VirtualFree(release -> address, 0, MEM_LARGE_PAGES | MEM_RELEASE);
-
-#endif
-
-}
-
-static void *alloc_hugetlb(void *address){
-
-  void *map_address = (void *)-1;
-
-#ifdef DEBUG
-fprintf(stderr,"alloc_hugetlb got called\n");
-#endif
-
-#if defined(OS_LINUX) || defined(OS_AIX)
-  int shmid;
-
-  shmid = shmget(IPC_PRIVATE, BUFFER_SIZE,
-#ifdef OS_LINUX
-                 SHM_HUGETLB |
-#endif
-#ifdef OS_AIX
-                 SHM_LGPAGE | SHM_PIN |
-#endif
-                 IPC_CREAT | SHM_R | SHM_W);
-
-  if (shmid != -1) {
-    map_address = (void *)shmat(shmid, address, SHM_RND);
-
-#ifdef OS_LINUX
-    my_mbind(map_address, BUFFER_SIZE, MPOL_PREFERRED, NULL, 0, 0);
-#endif
-
-    if (map_address != (void *)-1){
-      shmctl(shmid, IPC_RMID, 0);
-    }else printf("alloc_hugetlb failed\n");
-  }
-#endif
-
-#ifdef __sun__
-  struct memcntl_mha mha;
-
-  mha.mha_cmd = MHA_MAPSIZE_BSSBRK;
-  mha.mha_flags = 0;
-  mha.mha_pagesize = HUGE_PAGESIZE;
-  memcntl(NULL, 0, MC_HAT_ADVISE, (char *)&mha, 0, 0);
-
-  map_address = (BLASULONG)memalign(HUGE_PAGESIZE, BUFFER_SIZE);
-#endif
-
-#ifdef OS_WINDOWS
-
-  HANDLE hToken;
-  TOKEN_PRIVILEGES tp;
-
-  if (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hToken) != TRUE) return (void *) -1;
-
-  tp.PrivilegeCount = 1;
-  tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-  if (LookupPrivilegeValue(NULL, SE_LOCK_MEMORY_NAME, &tp.Privileges[0].Luid) != TRUE) {
-      CloseHandle(hToken);
-      return (void*)-1;
-  }
-
-  if (AdjustTokenPrivileges(hToken, FALSE, &tp, 0, NULL, NULL) != TRUE) {
-      CloseHandle(hToken);
-      return (void*)-1;
-  }
-
-  map_address  = (void *)VirtualAlloc(address,
-                                      BUFFER_SIZE,
-                                      MEM_LARGE_PAGES | MEM_RESERVE | MEM_COMMIT,
-                                      PAGE_READWRITE);
-
-  tp.Privileges[0].Attributes = 0;
-  AdjustTokenPrivileges(hToken, FALSE, &tp, 0, NULL, NULL);
-
-  if (map_address == (void *)NULL) map_address = (void *)-1;
-
-#endif
-
-  if (map_address != (void *)-1){
-    if (likely(release_pos < NUM_BUFFERS)) {
-    release_info[release_pos].address = map_address;
-    release_info[release_pos].func    = alloc_hugetlb_free;
-    } else {
-    new_release_info[release_pos-NUM_BUFFERS].address = map_address;
-    new_release_info[release_pos-NUM_BUFFERS].func    = alloc_hugetlb_free;
-    }
-    release_pos ++;
-  }
-
-  return map_address;
-}
-#endif
+//
+//#if defined OS_LINUX  || defined OS_AIX  || defined __sun__  || defined OS_WINDOWS
+//
+//static void alloc_hugetlb_free(struct release_t *release){
+//
+//#if defined(OS_LINUX) || defined(OS_AIX)
+//  if (shmdt(release -> address)) {
+//    printf("OpenBLAS : Hugepage unmap failed.\n");
+//  }
+//#endif
+//
+//#ifdef __sun__
+//
+//  munmap(release -> address, BUFFER_SIZE);
+//
+//#endif
+//
+//#ifdef OS_WINDOWS
+//
+//  VirtualFree(release -> address, 0, MEM_LARGE_PAGES | MEM_RELEASE);
+//
+//#endif
+//
+//}
+//
+//static void *alloc_hugetlb(void *address){
+//
+//  void *map_address = (void *)-1;
+//
+//#ifdef DEBUG
+//fprintf(stderr,"alloc_hugetlb got called\n");
+//#endif
+//
+//#if defined(OS_LINUX) || defined(OS_AIX)
+//  int shmid;
+//
+//  shmid = shmget(IPC_PRIVATE, BUFFER_SIZE,
+//#ifdef OS_LINUX
+//                 SHM_HUGETLB |
+//#endif
+//#ifdef OS_AIX
+//                 SHM_LGPAGE | SHM_PIN |
+//#endif
+//                 IPC_CREAT | SHM_R | SHM_W);
+//
+//  if (shmid != -1) {
+//    map_address = (void *)shmat(shmid, address, SHM_RND);
+//
+//#ifdef OS_LINUX
+//    my_mbind(map_address, BUFFER_SIZE, MPOL_PREFERRED, NULL, 0, 0);
+//#endif
+//
+//    if (map_address != (void *)-1){
+//      shmctl(shmid, IPC_RMID, 0);
+//    }else printf("alloc_hugetlb failed\n");
+//  }
+//#endif
+//
+//#ifdef __sun__
+//  struct memcntl_mha mha;
+//
+//  mha.mha_cmd = MHA_MAPSIZE_BSSBRK;
+//  mha.mha_flags = 0;
+//  mha.mha_pagesize = HUGE_PAGESIZE;
+//  memcntl(NULL, 0, MC_HAT_ADVISE, (char *)&mha, 0, 0);
+//
+//  map_address = (BLASULONG)memalign(HUGE_PAGESIZE, BUFFER_SIZE);
+//#endif
+//
+//#ifdef OS_WINDOWS
+//
+//  HANDLE hToken;
+//  TOKEN_PRIVILEGES tp;
+//
+//  if (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hToken) != TRUE) return (void *) -1;
+//
+//  tp.PrivilegeCount = 1;
+//  tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+//
+//  if (LookupPrivilegeValue(NULL, SE_LOCK_MEMORY_NAME, &tp.Privileges[0].Luid) != TRUE) {
+//      CloseHandle(hToken);
+//      return (void*)-1;
+//  }
+//
+//  if (AdjustTokenPrivileges(hToken, FALSE, &tp, 0, NULL, NULL) != TRUE) {
+//      CloseHandle(hToken);
+//      return (void*)-1;
+//  }
+//
+//  map_address  = (void *)VirtualAlloc(address,
+//                                      BUFFER_SIZE,
+//                                      MEM_LARGE_PAGES | MEM_RESERVE | MEM_COMMIT,
+//                                      PAGE_READWRITE);
+//
+//  tp.Privileges[0].Attributes = 0;
+//  AdjustTokenPrivileges(hToken, FALSE, &tp, 0, NULL, NULL);
+//
+//  if (map_address == (void *)NULL) map_address = (void *)-1;
+//
+//#endif
+//
+//  if (map_address != (void *)-1){
+//    if (likely(release_pos < NUM_BUFFERS)) {
+//    release_info[release_pos].address = map_address;
+//    release_info[release_pos].func    = alloc_hugetlb_free;
+//    } else {
+//    new_release_info[release_pos-NUM_BUFFERS].address = map_address;
+//    new_release_info[release_pos-NUM_BUFFERS].func    = alloc_hugetlb_free;
+//    }
+//    release_pos ++;
+//  }
+//
+//  return map_address;
+//}
+//#endif
 
 
 #ifdef  ALLOC_HUGETLBFILE

@@ -51,7 +51,7 @@
 #define ERROR_NAME "STBMV "
 #endif
 
-static int (*tbmv[])(BLASLONG, BLASLONG, FLOAT *, BLASLONG, FLOAT *, BLASLONG, float *buffer) = {
+static int (*tbmv[])(BLASLONG, BLASLONG, FLOAT *, BLASLONG, FLOAT *, BLASLONG, void *) = {
 #ifdef XDOUBLE
   qtbmv_NUU, qtbmv_NUN, qtbmv_NLU, qtbmv_NLN,
   qtbmv_TUU, qtbmv_TUN, qtbmv_TLU, qtbmv_TLN,

@@ -1,13 +1,10 @@
 #include "ICMLPSample.h"
 
+#include <sstream>
 #include <string>
 
-#include "ic_api.h"
-
-#include <json/json.hpp>
-
-//#include <iostream>
-
+#include "flashlight/fl/tensor/TensorBase.h"
+#include "flashlight/fl/tensor/Index.h"
 #include "flashlight/fl/tensor/Init.h"
 #include "flashlight/fl/dataset/datasets.h"
 #include "flashlight/fl/meter/meters.h"
@@ -15,7 +12,12 @@
 //#include "flashlight/fl/optim/optim.h"
 #include "flashlight/fl/optim/SGDOptimizer.h"
 #include "flashlight/fl/tensor/Random.h"
-#include "flashlight/fl/tensor/TensorBase.h"
+
+//#include "ic_api.h"
+
+#include <json/json.hpp>
+
+//#include <iostream>
 
 using namespace fl;
 
@@ -64,13 +66,15 @@ void train() {
 
     // Start training
 
-    std::cout << "[Multi-layer Perceptron] Started..." << std::endl;
+    //std::cout << "[Multi-layer Perceptron] Started..." << std::endl;
 
     const int nEpochs = 100;
 
     // Create a msg, to be passed back as Candid over the wire
-    std::string msg;
-    msg.append("Your principal is: " + caller.get_text() + "!\n");
+    std::string msg{ "" };
+    //IC_API ic_api(CanisterQuery{ std::string(__func__) }, false);
+    //CandidTypePrincipal caller = ic_api.get_caller();
+    //msg.append("Your principal is: " + caller.get_text() + "!\n");
     for (int e = 1; e <= nEpochs; ++e) {
         meter.reset();
         for (auto& sample : data) {
@@ -93,13 +97,13 @@ void train() {
         /*std::cout << "Epoch: " << e << " Mean Squared Error: " << meter.value()[0]
             << std::endl;*/
 
-        msg.append("Epoch: " + e + " Mean Squared Error: " + meter.value()[0] + "!\n");
+        std::stringstream ss;
+        ss << "Epoch: " << e << " Mean Squared Error: " << meter.value()[0] << "!\n";
+        msg.append(ss.str());
 
     }
     //std::cout << "[Multi-layer Perceptron] Done!" << std::endl;
-    msg.append("[Multi-layer Perceptron] Done!" + "\n");
+    msg.append("[Multi-layer Perceptron] Done!\n");
 
-
-    IC_API ic_api(CanisterQuery{std::string(__func__)}, false);
-    ic_api.to_wire(CandidTypeText{msg});
+    //ic_api.to_wire(CandidTypeText{msg});
 }

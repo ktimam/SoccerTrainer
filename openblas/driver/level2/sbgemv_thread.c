@@ -100,14 +100,14 @@ int CNAME(BLASLONG m, BLASLONG n, float alpha, bfloat16 *a, BLASLONG lda, bfloat
 
     args.m     = m;
     args.n     = n;
-    args.a     = (float *)a;
-    args.b     = (float *)x;
-    args.c     = (float *)y;
+    args.a     = (void *)a;
+    args.b     = (void *)x;
+    args.c     = (void *)y;
     args.lda   = lda;
     args.ldb   = incx;
     args.ldc   = incy;
-    args.alpha = (float *)&alpha;
-    args.beta  = (float *)&beta;
+    args.alpha = (void *)&alpha;
+    args.beta  = (void *)&beta;
 
     range[0] = 0;
 

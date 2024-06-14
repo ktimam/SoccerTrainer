@@ -6,6 +6,7 @@
  * The complete license agreement can be obtained at:
  * http://arrayfire.com/licenses/BSD-3-Clause
  ********************************************************/
+#ifndef OS_LINUX
 
 #include <common/defines.hpp>
 #include <common/module_loading.hpp>
@@ -42,3 +43,5 @@ string getErrorMessage() {
 
 }  // namespace common
 }  // namespace arrayfire
+
+#endif

@@ -133,7 +133,7 @@ af_err af_get_default_random_engine(af_random_engine *r) {
         // RandomEngine contains device buffers which are dependent on
         // context|stream/device. Since nor context or stream are available at
         // this level, we will only use the deviceId.
-        thread_local std::map<int /*deviceId*/, RandomEngine *>
+        /*thread_local*/ std::map<int /*deviceId*/, RandomEngine *>
             cachedDefaultRandomEngines;
         const int dependent = af::getDevice();
         auto it             = cachedDefaultRandomEngines.find(dependent);

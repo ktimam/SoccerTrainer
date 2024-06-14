@@ -29,7 +29,7 @@
 #include <sycl/sycl.hpp>
 #endif
 
-using boost::stacktrace::stacktrace;
+//using boost::stacktrace::stacktrace;
 using std::move;
 using std::string;
 using std::stringstream;
@@ -39,20 +39,20 @@ using arrayfire::common::getName;
 using arrayfire::common::is_stacktrace_enabled;
 
 AfError::AfError(const char *const func, const char *const file, const int line,
-                 const char *const message, af_err err, stacktrace st)
+                 const char *const message, af_err err/*, stacktrace st*/)
     : logic_error(message)
     , functionName(func)
     , fileName(file)
-    , st_(std::move(st))
+    //, st_(std::move(st))
     , lineNumber(line)
     , error(err) {}
 
 AfError::AfError(string func, string file, const int line,
-                 const string &message, af_err err, stacktrace st)
+                 const string &message, af_err err/*, stacktrace st*/)
     : logic_error(message)
     , functionName(std::move(func))
     , fileName(std::move(file))
-    , st_(std::move(st))
+    //, st_(std::move(st))
     , lineNumber(line)
     , error(err) {}
 
@@ -67,9 +67,9 @@ af_err AfError::getError() const noexcept { return error; }
 AfError::~AfError() noexcept = default;
 
 TypeError::TypeError(const char *const func, const char *const file,
-                     const int line, const int index, const af_dtype type,
-                     stacktrace st)
-    : AfError(func, file, line, "Invalid data type", AF_ERR_TYPE, std::move(st))
+                     const int line, const int index, const af_dtype type/*,
+                     stacktrace st*/)
+    : AfError(func, file, line, "Invalid data type", AF_ERR_TYPE/*, std::move(st)*/)
     , errTypeName(getName(type))
     , argIndex(index) {}
 
@@ -79,8 +79,8 @@ int TypeError::getArgIndex() const noexcept { return argIndex; }
 
 ArgumentError::ArgumentError(const char *const func, const char *const file,
                              const int line, const int index,
-                             const char *const expectString, stacktrace st)
-    : AfError(func, file, line, "Invalid argument", AF_ERR_ARG, std::move(st))
+                             const char *const expectString/*, stacktrace st*/)
+    : AfError(func, file, line, "Invalid argument", AF_ERR_ARG/*, std::move(st)*/)
     , expected(expectString)
     , argIndex(index) {}
 
@@ -91,19 +91,19 @@ const string &ArgumentError::getExpectedCondition() const noexcept {
 int ArgumentError::getArgIndex() const noexcept { return argIndex; }
 
 SupportError::SupportError(const char *const func, const char *const file,
-                           const int line, const char *const back,
-                           stacktrace st)
-    : AfError(func, file, line, "Unsupported Error", AF_ERR_NOT_SUPPORTED,
-              std::move(st))
+                           const int line, const char *const back/*,
+                           stacktrace st*/)
+    : AfError(func, file, line, "Unsupported Error", AF_ERR_NOT_SUPPORTED/*,
+              std::move(st)*/)
     , backend(back) {}
 
 const string &SupportError::getBackendName() const noexcept { return backend; }
 
 DimensionError::DimensionError(const char *const func, const char *const file,
                                const int line, const int index,
-                               const char *const expectString,
-                               const stacktrace &st)
-    : AfError(func, file, line, "Invalid size", AF_ERR_SIZE, st)
+                               const char *const expectString/*,
+                               const stacktrace &st*/)
+    : AfError(func, file, line, "Invalid size", AF_ERR_SIZE/*, st*/)
     , expected(expectString)
     , argIndex(index) {}
 

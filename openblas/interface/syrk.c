@@ -139,14 +139,14 @@ void NAME(char *UPLO, char *TRANS,
   args.n = *N;
   args.k = *K;
 
-  args.a = (float *)a;
-  args.c = (float *)c;
+  args.a = (void *)a;
+  args.c = (void *)c;
 
   args.lda = *ldA;
   args.ldc = *ldC;
 
-  args.alpha = (float *)alpha;
-  args.beta  = (float *)beta;
+  args.alpha = (void *)alpha;
+  args.beta  = (void *)beta;
 
   TOUPPER(uplo_arg);
   TOUPPER(trans_arg);
@@ -260,18 +260,18 @@ double NNK;
   args.n = n;
   args.k = k;
 
-  args.a = (float *)a;
-  args.c = (float *)c;
+  args.a = (void *)a;
+  args.c = (void *)c;
 
   args.lda = lda;
   args.ldc = ldc;
 
 #if !defined(COMPLEX) || defined(HEMM)
-  args.alpha = (float *)&alpha;
-  args.beta  = (float *)&beta;
+  args.alpha = (void *)&alpha;
+  args.beta  = (void *)&beta;
 #else
-  args.alpha = (float *)alpha;
-  args.beta  = (float *)beta;
+  args.alpha = (void *)alpha;
+  args.beta  = (void *)beta;
 #endif
 
   trans = -1;

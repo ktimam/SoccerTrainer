@@ -77,7 +77,7 @@ int NAME(char *UPLO, blasint *N, FLOAT *a, blasint *ldA, blasint *Info){
   PRINT_DEBUG_NAME;
 
   args.n    = *N;
-  args.a    = (float *)a;
+  args.a    = (void *)a;
   args.lda  = *ldA;
 
   TOUPPER(uplo_arg);

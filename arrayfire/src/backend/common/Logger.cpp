@@ -14,7 +14,7 @@
 #include <common/Logger.hpp>
 #include <common/util.hpp>
 
-#include <spdlog/sinks/stdout_sinks.h>
+//#include <spdlog/sinks/stdout_sinks.h>
 #include <array>
 #include <cstdlib>
 #include <memory>
@@ -30,26 +30,26 @@ using std::string;
 
 using spdlog::get;
 using spdlog::logger;
-using spdlog::stdout_logger_mt;
+//using spdlog::stdout_logger_mt;
 
 namespace arrayfire {
 namespace common {
 
 shared_ptr<logger> loggerFactory(const string& name) {
     shared_ptr<logger> logger;
-    if (!(logger = get(name))) {
-        logger = stdout_logger_mt(name);
-        logger->set_pattern("[%n][%E][%t] %v");
+    //if (!(logger = get(name))) {
+    //    logger = stdout_logger_mt(name);
+    //    logger->set_pattern("[%n][%E][%t] %v");
 
-        // Log mode
-        string env_var = getEnvVar("AF_TRACE");
-        if (env_var.find("all") != string::npos ||
-            env_var.find(name) != string::npos) {
-            logger->set_level(spdlog::level::trace);
-        } else {
-            logger->set_level(spdlog::level::off);
-        }
-    }
+    //    // Log mode
+    //    string env_var = getEnvVar("AF_TRACE");
+    //    if (env_var.find("all") != string::npos ||
+    //        env_var.find(name) != string::npos) {
+    //        logger->set_level(spdlog::level::trace);
+    //    } else {
+    //        logger->set_level(spdlog::level::off);
+    //    }
+    //}
     return logger;
 }
 

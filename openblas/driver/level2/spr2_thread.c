@@ -249,16 +249,16 @@ int CNAME(BLASLONG m, FLOAT *alpha, FLOAT *x, BLASLONG incx, FLOAT *y, BLASLONG 
 
   args.m = m;
 
-  args.a = (float *)x;
-  args.b = (float *)y;
-  args.c = (float *)a;
+  args.a = (void *)x;
+  args.b = (void *)y;
+  args.c = (void *)a;
 
   args.lda = incx;
   args.ldb = incy;
 #ifndef COMPLEX
-  args.alpha = (float *)&alpha;
+  args.alpha = (void *)&alpha;
 #else
-  args.alpha = (float *)alpha;
+  args.alpha = (void *)alpha;
 #endif
 
   dnum = (double)m * (double)m / (double)nthreads;

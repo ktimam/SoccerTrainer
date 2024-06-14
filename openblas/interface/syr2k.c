@@ -125,16 +125,16 @@ void NAME(char *UPLO, char *TRANS,
   args.n = *N;
   args.k = *K;
 
-  args.a = (float *)a;
-  args.b = (float *)b;
-  args.c = (float *)c;
+  args.a = (void *)a;
+  args.b = (void *)b;
+  args.c = (void *)c;
 
   args.lda = *ldA;
   args.ldb = *ldB;
   args.ldc = *ldC;
 
-  args.alpha = (float *)alpha;
-  args.beta  = (float *)beta;
+  args.alpha = (void *)alpha;
+  args.beta  = (void *)beta;
 
   TOUPPER(uplo_arg);
   TOUPPER(trans_arg);
@@ -250,24 +250,24 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_UPLO Uplo, enum CBLAS_TRANSPOSE Tr
   args.n = n;
   args.k = k;
 
-  args.a = (float *)a;
-  args.b = (float *)b;
-  args.c = (float *)c;
+  args.a = (void *)a;
+  args.b = (void *)b;
+  args.c = (void *)c;
 
   args.lda = lda;
   args.ldb = ldb;
   args.ldc = ldc;
 
 #ifndef COMPLEX
-  args.alpha = (float *)&alpha;
+  args.alpha = (void *)&alpha;
 #else
-  args.alpha = (float *)alpha;
+  args.alpha = (void *)alpha;
 #endif
 
 #if !defined(COMPLEX) || defined(HEMM)
-  args.beta  = (float *)&beta;
+  args.beta  = (void *)&beta;
 #else
-  args.beta  = (float *)beta;
+  args.beta  = (void *)beta;
 #endif
 
   trans = -1;
@@ -309,7 +309,7 @@ void CNAME(enum CBLAS_ORDER order, enum CBLAS_UPLO Uplo, enum CBLAS_TRANSPOSE Tr
     CAlpha[0] =  alpha[0];
     CAlpha[1] = -alpha[1];
 
-    args.alpha = (float *)CAlpha;
+    args.alpha = (void *)CAlpha;
 #endif
 
     if (Uplo == CblasUpper) uplo  = 1;

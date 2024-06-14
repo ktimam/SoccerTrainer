@@ -74,7 +74,7 @@ char *gotoblas_corename(void);
 #endif
 
 static char tmp_config_str[256];
-int openblas_get_parallel(void);
+//int openblas_get_parallel(void);
 
 char* CNAME(void) {
 char tmpstr[20];
@@ -82,7 +82,7 @@ char tmpstr[20];
 #ifdef DYNAMIC_ARCH
   strcat(tmp_config_str, gotoblas_corename());
 #endif
-  if (openblas_get_parallel() == 0)
+  if (/*openblas_get_parallel()*/0 == 0)
     sprintf(tmpstr, " SINGLE_THREADED");
   else
     snprintf(tmpstr,19," MAX_THREADS=%d",MAX_CPU_NUMBER);

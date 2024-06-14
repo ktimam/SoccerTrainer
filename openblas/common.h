@@ -73,7 +73,7 @@ extern "C" {
 #define OS_WINDOWS
 
 #ifdef DOUBLE
-//#define DOUBLE_DEFINED DOUBLE
+#define DOUBLE_DEFINED DOUBLE
 #undef  DOUBLE
 #endif
 #endif
@@ -93,6 +93,7 @@ extern "C" {
 #if defined(OS_LINUX) || defined(OS_QNX)
 #include <malloc.h>
 #include <sched.h>
+#define NO_SYSV_IPC
 #endif
 
 #if defined(OS_DARWIN) || defined(OS_FREEBSD) || defined(OS_NETBSD) || defined(OS_OPENBSD) || defined(OS_DRAGONFLY) || defined(OS_ANDROID)

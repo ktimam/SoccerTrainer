@@ -51,7 +51,7 @@
 #define ERROR_NAME "CTPSV "
 #endif
 
-static int (*tpsv[])(BLASLONG, FLOAT *, FLOAT *, BLASLONG, float *buffer) = {
+static int (*tpsv[])(BLASLONG, FLOAT *, FLOAT *, BLASLONG, void *) = {
 #ifdef XDOUBLE
   xtpsv_NUU, xtpsv_NUN, xtpsv_NLU, xtpsv_NLN,
   xtpsv_TUU, xtpsv_TUN, xtpsv_TLU, xtpsv_TLN,

@@ -51,7 +51,7 @@
 #endif
 
 static void (*gbmv[])(BLASLONG, BLASLONG, BLASLONG, BLASLONG, FLOAT, FLOAT,
-		      FLOAT *, BLASLONG, FLOAT *, BLASLONG, FLOAT *, BLASLONG, float *buffer) = {
+		      FLOAT *, BLASLONG, FLOAT *, BLASLONG, FLOAT *, BLASLONG, void *) = {
 #ifdef XDOUBLE
       xgbmv_n, xgbmv_t, xgbmv_r, xgbmv_c,
       xgbmv_o, xgbmv_u, xgbmv_s, xgbmv_d,

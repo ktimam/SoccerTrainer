@@ -50,7 +50,7 @@
 
 void CNAME(BLASLONG m, BLASLONG n, BLASLONG ku, BLASLONG kl, FLOAT alpha,
 	  FLOAT *a, BLASLONG lda,
-	  FLOAT *x, BLASLONG incx, FLOAT *y, BLASLONG incy, float *buffer){
+	  FLOAT *x, BLASLONG incx, FLOAT *y, BLASLONG incy, void *buffer){
 
   BLASLONG i, offset_u, offset_l, start, end, length;
   FLOAT *X = x;

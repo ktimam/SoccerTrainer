@@ -65,9 +65,9 @@ int NAME(blasint *M, blasint *N, FLOAT *a, blasint *ldA, blasint *ipiv, blasint 
 
   args.m    = *M;
   args.n    = *N;
-  args.a    = (float *)a;
+  args.a    = (void *)a;
   args.lda  = *ldA;
-  args.c    = (float *)ipiv;
+  args.c    = (void *)ipiv;
 
   info  =    0;
   if (args.lda < MAX(1,args.m)) info = 4;

@@ -43,13 +43,6 @@
 
 #ifdef C_MSVC
 #include <intrin.h>
-#else
-#include <chrono>
-
-inline uint64_t rdtsc() {
-	return std::chrono::high_resolution_clock::now().time_since_epoch().count();
-}
-}
 #endif
 
 #ifdef C_SUN
@@ -86,7 +79,7 @@ static __inline void blas_lock(volatile BLASULONG *address){
   BLASULONG ret;
 #endif
 
-  do {
+  /*do {
     while (*address) {YIELDING;}
 
 #ifndef C_MSVC
@@ -98,20 +91,22 @@ static __inline void blas_lock(volatile BLASULONG *address){
 #else
     ret=InterlockedExchange64((volatile LONG64 *)(address), 1);
 #endif
-  } while (ret);
+  } while (ret);*/
 
 }
 #define BLAS_LOCK_DEFINED
 
 static __inline BLASULONG rpcc(void){
-#if defined(C_MSVC) || defined(OPENBLAS_OS_LINUX)
+#ifdef C_MSVC
   return __rdtsc();
-#else
+#elif !defined(OPENBLAS_OS_LINUX)
   BLASULONG a, d;
 
   __asm__ __volatile__ ("rdtsc" : "=a" (a), "=d" (d));
 
   return ((BLASULONG)a + ((BLASULONG)d << 32));
+#else
+	return 0;
 #endif
 }
 #define RPCC_DEFINED
@@ -138,7 +133,7 @@ static __inline void cpuid(int op, int *eax, int *ebx, int *ecx, int *edx){
   *ebx=cpuinfo[1];
   *ecx=cpuinfo[2];
   *edx=cpuinfo[3];
-#else
+#elif !defined(OPENBLAS_OS_LINUX)
         __asm__ __volatile__("mov $0, %%ecx;"
 			     "cpuid"
 			     : "=a" (*eax),
@@ -165,7 +160,7 @@ static __inline void cpuid_count(int op, int count, int *eax, int *ebx, int *ecx
       "cpuid;"
       "xchgl %%ebx, %%edi;"
       : "=a" (*eax), "=D" (*ebx), "=c" (*ecx), "=d" (*edx) : "0" (op), "2" (count) : "cc");
-#else
+#elif !defined(OPENBLAS_OS_LINUX)
   __asm__ __volatile__
     ("cpuid": "=a" (*eax), "=b" (*ebx), "=c" (*ecx), "=d" (*edx) : "0" (op), "2" (count) : "cc");
 #endif

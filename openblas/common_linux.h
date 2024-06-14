@@ -77,7 +77,7 @@ static inline int my_mbind(void *addr, unsigned long len, int mode,
 #else
 //Fixed randomly SEGFAULT when nodemask==NULL with above Linux 2.6.34
 //	unsigned long null_nodemask=0;
-	return syscall(SYS_mbind, addr, len, mode, nodemask, maxnode, flags);
+	return 0;// syscall(SYS_mbind, addr, len, mode, nodemask, maxnode, flags);
 #endif
 }
 
@@ -87,7 +87,7 @@ static inline int my_set_mempolicy(int mode, const unsigned long *addr, unsigned
 // https://lsbbugs.linuxfoundation.org/show_bug.cgi?id=3482
   return 0;
 #else
-  return syscall(SYS_set_mempolicy, mode, addr, flag);
+	return 0;// syscall(SYS_set_mempolicy, mode, addr, flag);
 #endif
 }
 
@@ -95,7 +95,7 @@ static inline int my_gettid(void) {
 #ifdef SYS_gettid
 return syscall(SYS_gettid);
 #else
-return getpid();
+	return 0;// getpid();
 #endif
 }
 

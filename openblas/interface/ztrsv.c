@@ -51,7 +51,7 @@
 #define ERROR_NAME "CTRSV "
 #endif
 
-static int (*trsv[])(BLASLONG, FLOAT *, BLASLONG, FLOAT *, BLASLONG, float *buffer) = {
+static int (*trsv[])(BLASLONG, FLOAT *, BLASLONG, FLOAT *, BLASLONG, void *) = {
 #ifdef XDOUBLE
   xtrsv_NUU, xtrsv_NUN, xtrsv_NLU, xtrsv_NLN,
   xtrsv_TUU, xtrsv_TUN, xtrsv_TLU, xtrsv_TLN,

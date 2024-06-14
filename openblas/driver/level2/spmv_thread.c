@@ -211,9 +211,9 @@ int CNAME(BLASLONG m, FLOAT *alpha, FLOAT *a, FLOAT *x, BLASLONG incx, FLOAT *y,
 
   args.m = m;
 
-  args.a = (float *)a;
-  args.b = (float *)x;
-  args.c = (float *)buffer;
+  args.a = (void *)a;
+  args.b = (void *)x;
+  args.c = (void *)buffer;
 
   args.ldb = incx;
   args.ldc = incy;

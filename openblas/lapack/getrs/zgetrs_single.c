@@ -42,7 +42,7 @@
 blasint CNAME(blas_arg_t *args, BLASLONG *range_m, BLASLONG *range_n, FLOAT *sa, FLOAT *sb, BLASLONG mypos) {
 
 #if TRANS == 1
-    LASWP_PLUS (args -> n, 1, args -> m, ZERO, ZERO, args -> b, args -> ldb, NULL, 0, (blasint *)args -> c, 1);
+    LASWP_PLUS (args -> n, 1, args -> m, ZERO, ZERO, args -> b, args -> ldb, NULL, 0, args -> c, 1);
 
     TRSM_LNLU(args, range_m, range_n, sa, sb, 0);
     TRSM_LNUN(args, range_m, range_n, sa, sb, 0);
@@ -50,9 +50,9 @@ blasint CNAME(blas_arg_t *args, BLASLONG *range_m, BLASLONG *range_n, FLOAT *sa,
     TRSM_LTUN(args, range_m, range_n, sa, sb, 0);
     TRSM_LTLU(args, range_m, range_n, sa, sb, 0);
 
-    LASWP_MINUS(args -> n, 1, args -> m, ZERO, ZERO, args -> b, args -> ldb, NULL, 0, (blasint*)args -> c, -1);
+    LASWP_MINUS(args -> n, 1, args -> m, ZERO, ZERO, args -> b, args -> ldb, NULL, 0, args -> c, -1);
 #elif TRANS == 3
-    LASWP_PLUS (args -> n, 1, args -> m, ZERO, ZERO, args -> b, args -> ldb, NULL, 0, (blasint*)args -> c, 1);
+    LASWP_PLUS (args -> n, 1, args -> m, ZERO, ZERO, args -> b, args -> ldb, NULL, 0, args -> c, 1);
 
     TRSM_LRLU(args, range_m, range_n, sa, sb, 0);
     TRSM_LRUN(args, range_m, range_n, sa, sb, 0);
@@ -60,7 +60,7 @@ blasint CNAME(blas_arg_t *args, BLASLONG *range_m, BLASLONG *range_n, FLOAT *sa,
     TRSM_LCUN(args, range_m, range_n, sa, sb, 0);
     TRSM_LCLU(args, range_m, range_n, sa, sb, 0);
 
-    LASWP_MINUS(args -> n, 1,    args -> m, ZERO, ZERO, args -> b, args -> ldb, NULL, 0, (blasint*)args -> c, -1);
+    LASWP_MINUS(args -> n, 1,    args -> m, ZERO, ZERO, args -> b, args -> ldb, NULL, 0, args -> c, -1);
 #endif
    return 0;
   }

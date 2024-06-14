@@ -92,7 +92,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb) {
 	  /* REAL / Extended Double */
 	  void (*afunc)(BLASLONG, BLASLONG, BLASLONG, xdouble,
 			xdouble *, BLASLONG, xdouble *, BLASLONG,
-			xdouble *, BLASLONG, float *buffer) = func;
+			xdouble *, BLASLONG, void *) = func;
 
 	  afunc(args -> m, args -> n, args -> k,
 		((xdouble *)args -> alpha)[0],
@@ -105,7 +105,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb) {
 	    /* REAL / Double */
 	    void (*afunc)(BLASLONG, BLASLONG, BLASLONG, double,
 			  double *, BLASLONG, double *, BLASLONG,
-			  double *, BLASLONG, float *buffer) = func;
+			  double *, BLASLONG, void *) = func;
 
 	    afunc(args -> m, args -> n, args -> k,
 		  ((double *)args -> alpha)[0],
@@ -116,7 +116,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb) {
 	    /* REAL / Single */
 	    void (*afunc)(BLASLONG, BLASLONG, BLASLONG, float,
 			  float *, BLASLONG, float *, BLASLONG,
-			  float *, BLASLONG, float *buffer) = func;
+			  float *, BLASLONG, void *) = func;
 
 	    afunc(args -> m, args -> n, args -> k,
 		  ((float *)args -> alpha)[0],
@@ -128,7 +128,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb) {
             /* REAL / BFLOAT16 */
             void (*afunc)(BLASLONG, BLASLONG, BLASLONG, bfloat16,
                           bfloat16 *, BLASLONG, bfloat16 *, BLASLONG,
-                          bfloat16 *, BLASLONG, float *buffer) = func;
+                          bfloat16 *, BLASLONG, void *) = func;
 
             afunc(args -> m, args -> n, args -> k,
                   ((bfloat16 *)args -> alpha)[0],
@@ -139,7 +139,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb) {
             /* REAL / BLAS_STOBF16 */
             void (*afunc)(BLASLONG, BLASLONG, BLASLONG, float,
                           float *, BLASLONG, bfloat16 *, BLASLONG,
-                          float *, BLASLONG, float *buffer) = func;
+                          float *, BLASLONG, void *) = func;
 
             afunc(args -> m, args -> n, args -> k,
                   ((float *)args -> alpha)[0],
@@ -150,7 +150,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb) {
             /* REAL / BLAS_DTOBF16 */
             void (*afunc)(BLASLONG, BLASLONG, BLASLONG, double,
                           double *, BLASLONG, bfloat16 *, BLASLONG,
-                          double *, BLASLONG, float *buffer) = func;
+                          double *, BLASLONG, void *) = func;
 
             afunc(args -> m, args -> n, args -> k,
                   ((double *)args -> alpha)[0],
@@ -167,7 +167,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb) {
 	  /* COMPLEX / Extended Double */
 	  void (*afunc)(BLASLONG, BLASLONG, BLASLONG, xdouble, xdouble,
 			xdouble *, BLASLONG, xdouble *, BLASLONG,
-			xdouble *, BLASLONG, float *buffer) = func;
+			xdouble *, BLASLONG, void *) = func;
 
 	  afunc(args -> m, args -> n, args -> k,
 		((xdouble *)args -> alpha)[0],
@@ -181,7 +181,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb) {
 	    /* COMPLEX / Double */
 	  void (*afunc)(BLASLONG, BLASLONG, BLASLONG, double, double,
 			double *, BLASLONG, double *, BLASLONG,
-			double *, BLASLONG, float *buffer) = func;
+			double *, BLASLONG, void *) = func;
 
 	  afunc(args -> m, args -> n, args -> k,
 		((double *)args -> alpha)[0],
@@ -193,7 +193,7 @@ static void legacy_exec(void *func, int mode, blas_arg_t *args, void *sb) {
 	    /* COMPLEX / Single */
 	  void (*afunc)(BLASLONG, BLASLONG, BLASLONG, float, float,
 			float *, BLASLONG, float *, BLASLONG,
-			float *, BLASLONG, float *buffer) = func;
+			float *, BLASLONG, void *) = func;
 
 	  afunc(args -> m, args -> n, args -> k,
 		((float *)args -> alpha)[0],

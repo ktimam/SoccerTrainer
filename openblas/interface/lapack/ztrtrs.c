@@ -81,9 +81,9 @@ int NAME(char *UPLO, char* TRANS, char* DIAG, blasint *N, blasint *NRHS, FLOAT *
 
   args.m    = *N;
   args.n    = *NRHS;
-  args.a    = (float *)a;
+  args.a    = (void *)a;
   args.lda  = *ldA;
-  args.b    = (float *)b;
+  args.b    = (void *)b;
   args.ldb  = *ldB;
 
   info = 0;

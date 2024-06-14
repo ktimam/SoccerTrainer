@@ -314,7 +314,7 @@ SPDLOG_INLINE size_t _thread_id() SPDLOG_NOEXCEPT {
     #if defined(__ANDROID__) && defined(__ANDROID_API__) && (__ANDROID_API__ < 21)
         #define SYS_gettid __NR_gettid
     #endif
-    return static_cast<size_t>(::syscall(SYS_gettid));
+    return 111;// static_cast<size_t>(::syscall(SYS_gettid));
 #elif defined(_AIX)
     struct __pthrdsinfo buf;
     int reg_size = 0;

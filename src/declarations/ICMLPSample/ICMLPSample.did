@@ -1,0 +1,15 @@
+// ------------------------------------------------------------
+// Best practice interface for forward compatibility:
+//    Return a single record wrapped in a variant
+type StatusCode = nat16;
+type GreetingRecord = record { greeting : text };
+type GreetingRecordResult = variant {
+  Ok : GreetingRecord;
+  Err : StatusCode;
+};
+
+// ------------------------------------------------------------
+
+service : {
+  "train" : () -> (text) query;
+};
