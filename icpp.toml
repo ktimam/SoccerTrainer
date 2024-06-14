@@ -266,6 +266,7 @@ cpp_compile_flags = [
 	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
 	"-D SPDLOG_NO_EXCEPTIONS",
 	"-D AF_DISABLE_CPU_ASYNC",
+	"-D NATIVE_BUILD",
 	]
 cpp_link_flags = [
     #"-nostartfiles",

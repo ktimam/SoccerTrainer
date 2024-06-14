@@ -13,7 +13,7 @@
 #include "flashlight/fl/optim/SGDOptimizer.h"
 #include "flashlight/fl/tensor/Random.h"
 
-//#include "ic_api.h"
+#include "ic_api.h"
 
 //#include <json/json.hpp>
 
@@ -72,9 +72,9 @@ void train() {
 
     // Create a msg, to be passed back as Candid over the wire
     std::string msg{ "" };
-    //IC_API ic_api(CanisterQuery{ std::string(__func__) }, false);
-    //CandidTypePrincipal caller = ic_api.get_caller();
-    //msg.append("Your principal is: " + caller.get_text() + "!\n");
+    IC_API ic_api(CanisterQuery{ std::string(__func__) }, false);
+    CandidTypePrincipal caller = ic_api.get_caller();
+    msg.append("Your principal is: " + caller.get_text() + "!\n");
     for (int e = 1; e <= nEpochs; ++e) {
         meter.reset();
         for (auto& sample : data) {
@@ -104,6 +104,9 @@ void train() {
     }
     //std::cout << "[Multi-layer Perceptron] Done!" << std::endl;
     msg.append("[Multi-layer Perceptron] Done!\n");
+#ifdef NATIVE_BUILD
+    std::cout << msg << std::endl;
+#endif
 
-    //ic_api.to_wire(CandidTypeText{msg});
+    ic_api.to_wire(CandidTypeText{msg});
 }

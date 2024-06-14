@@ -25,8 +25,8 @@ int main() {
 
   // -----------------------------------------------------------------------------
   // '()' -> '("hello!")'
-  mockIC.run_test("train", train, "4449444c0000",
-                  "4449444c0001710668656c6c6f21", silent_on_trap, my_principal);
+  mockIC.run_test("train", train, "",
+                  "", silent_on_trap, my_principal);
 
   
   // returns 1 if any tests failed
