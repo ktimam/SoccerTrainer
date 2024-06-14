@@ -85,13 +85,13 @@ static double elapsed_since(crude_time t0)
    on the clock() function is Windows, for which CLOCKS_PER_SEC is 1000
    and thus the clock wraps once every 50 days.  This should hopefully
    be longer than the time required to create any single plan! */
-crude_time X(get_crude_time)(void) { return clock(); }
+crude_time X(get_crude_time)(void) { return 0/*clock()*/; }
 
 #define elapsed_sec(t1,t0) ((double) ((t1) - (t0)) / CLOCKS_PER_SEC)
 
 static double elapsed_since(crude_time t0)
 {
-     return elapsed_sec(clock(), t0);
+     return elapsed_sec(/*clock()*/0, t0);
 }
 
 #  define TIME_MIN_SEC 2.0e-1 /* from fftw2 */
