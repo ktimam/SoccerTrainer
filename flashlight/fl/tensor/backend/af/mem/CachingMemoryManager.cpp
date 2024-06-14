@@ -84,7 +84,7 @@ std::string formatMemory(size_t bytes) {
  * defaultVal on failure to read the variable or parse its value.
  */
 size_t getEnvAsBytesFromFloatMb(const char* name, size_t defaultVal) {
-  const char* env = std::getenv(name);
+    const char* env = NULL;// std::getenv(name);
   if (env) {
     /*try*/ {
       const double mb = std::stod(env);

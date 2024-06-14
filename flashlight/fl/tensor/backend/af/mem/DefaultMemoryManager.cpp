@@ -91,7 +91,7 @@ DefaultMemoryManager::DefaultMemoryManager(
       memory(numDevices) {
   // Check for environment variables
   // Debug mode
-  if (const char* c = std::getenv("AF_MEM_DEBUG")) {
+  if (const char* c = NULL/*std::getenv("AF_MEM_DEBUG")*/) {
     this->debugMode = (std::string(c) != "0");
   }
   if (this->debugMode) {
@@ -99,7 +99,7 @@ DefaultMemoryManager::DefaultMemoryManager(
   }
 
   // Max Buffer count
-  if (const char* c = std::getenv("AF_MAX_BUFFERS")) {
+  if (const char* c = NULL/*std::getenv("AF_MAX_BUFFERS")*/) {
     this->maxBuffers = std::max(1, std::stoi(std::string(c)));
   }
 }

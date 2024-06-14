@@ -404,7 +404,7 @@ SPDLOG_INLINE bool is_color_terminal() SPDLOG_NOEXCEPT {
 #else
 
     static const bool result = []() {
-        const char *env_colorterm_p = std::getenv("COLORTERM");
+        const char* env_colorterm_p = NULL;/* std::getenv("COLORTERM");*/
         if (env_colorterm_p != nullptr) {
             return true;
         }
@@ -413,7 +413,7 @@ SPDLOG_INLINE bool is_color_terminal() SPDLOG_NOEXCEPT {
             {"ansi", "color", "console", "cygwin", "gnome", "konsole", "kterm", "linux", "msys",
              "putty", "rxvt", "screen", "vt100", "xterm", "alacritty", "vt102"}};
 
-        const char *env_term_p = std::getenv("TERM");
+        const char* env_term_p = NULL;// std::getenv("TERM");
         if (env_term_p == nullptr) {
             return false;
         }
@@ -574,7 +574,7 @@ std::string SPDLOG_INLINE getenv(const char *field) {
     return ok ? buf : std::string{};
     #endif
 #else  // revert to getenv
-    char *buf = ::getenv(field);
+    char* buf = NULL;// ::getenv(field);
     return buf ? buf : std::string{};
 #endif
 }

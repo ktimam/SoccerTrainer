@@ -24,7 +24,7 @@ void* getFunctionPointer(LibHandle handle, const char* symbolName) {
 }
 
 LibHandle loadLibrary(const char* library_name) {
-    return LoadLibrary(library_name);
+    return NULL;// LoadLibrary(library_name);
 }
 
 void unloadLibrary(LibHandle handle) { FreeLibrary(handle); }
