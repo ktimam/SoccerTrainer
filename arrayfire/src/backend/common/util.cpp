@@ -51,7 +51,7 @@ using std::accumulate;
 using std::array;
 using std::hash;
 using std::ofstream;
-using std::once_flag;
+//using std::once_flag;
 using std::rename;
 using std::size_t;
 using std::string;
@@ -200,10 +200,10 @@ bool isDirectoryWritable(const string& path) {
 
 #ifndef NOSPDLOG
 string& getCacheDirectory() {
-    static once_flag flag;
+    //static once_flag flag;
     static string cacheDirectory;
 
-    call_once(flag, []() {
+    //call_once(flag, []() {
         string pathList[] = {
 #if defined(OS_WIN)
             getTemporaryDirectory() + "\\ArrayFire"
@@ -231,14 +231,14 @@ string& getCacheDirectory() {
         } else {
             cacheDirectory = env_path;
         }
-    });
+    //});
 
     return cacheDirectory;
 }
 #endif
 
 string makeTempFilename() {
-    thread_local size_t fileCount = 0u;
+    /*thread_local*/ size_t fileCount = 0u;
 
     ++fileCount;
     const size_t threadID = 666;// hash<thread::id>{}(std::this_thread::get_id());

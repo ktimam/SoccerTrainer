@@ -362,7 +362,7 @@ SPDLOG_INLINE size_t thread_id() SPDLOG_NOEXCEPT {
 #if defined(SPDLOG_NO_TLS)
     return _thread_id();
 #else  // cache thread id in tls
-    static thread_local const size_t tid = _thread_id();
+    static /*thread_local*/ const size_t tid = _thread_id();
     return tid;
 #endif
 }

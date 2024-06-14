@@ -110,8 +110,8 @@ af_err af_get_active_backend(af_backend* result) {
 
 af_err af_init() {
     /*try*/ {
-        thread_local std::once_flag flag;
-        std::call_once(flag, []() {
+        ///*thread_local*/ std::once_flag flag;
+        //std::call_once(flag, []() {
             init();
 #if defined(USE_MKL) && !defined(USE_STATIC_MKL)
             int errCode = -1;
@@ -150,7 +150,7 @@ af_err af_init() {
                     AF_ERR_RUNTIME);
             }
 #endif
-        });
+        //});
     }
     CATCHALL;
     return AF_SUCCESS;

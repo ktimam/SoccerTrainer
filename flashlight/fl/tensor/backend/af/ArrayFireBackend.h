@@ -30,7 +30,7 @@ namespace fl {
 class ArrayFireBackend : public TensorBackend {
   // TODO: consolidate the ArrayFire memory manager here so its global state can
   // be stored/we can reduce the number of singletons.
-  std::once_flag memoryInitFlag;
+  //std::once_flag memoryInitFlag;
 
   // These help ensure we are using native device id in public methods.
   std::unordered_map<int, int> nativeIdToId_;

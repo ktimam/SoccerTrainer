@@ -19,7 +19,7 @@ namespace forge
 {
 
 /// \brief Error is exception object thrown by forge for internal errors
-class FGAPI Error : public std::exception
+class FGAPI Error /*: public std::exception*/
 {
 private:
 
@@ -48,8 +48,8 @@ public:
 
     virtual const char * what() const /* d_throw() */ { return mMessage; }
 
-    friend inline std::ostream& operator<<(std::ostream &s, const Error &e)
-    { return s << e.what(); }
+    /*friend inline std::ostream& operator<<(std::ostream &s, const Error &e)
+    { return s << e.what(); }*/
 };
 
 } // namespace forge

@@ -996,9 +996,6 @@
     <ClInclude Include="boost\stacktrace\detail\frame_unwind.ipp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="boost\stacktrace\detail\libbacktrace_impls.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="boost\stacktrace\detail\location_from_symbol.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

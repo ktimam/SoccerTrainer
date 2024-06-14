@@ -101,7 +101,7 @@ void devprop(char* d_name, char* d_platform, char* d_toolkit, char* d_compute) {
 
 int& getMaxJitSize() {
     constexpr int MAX_JIT_LEN = 100;
-    thread_local int length   = 0;
+    /*thread_local*/ int length   = 0;
     if (length <= 0) {
         string env_var = getEnvVar("AF_CPU_MAX_JIT_LEN");
         if (!env_var.empty()) {
@@ -117,7 +117,7 @@ int& getMaxJitSize() {
 int getDeviceCount() { return DeviceManager::NUM_DEVICES; }
 
 void init() {
-    thread_local const auto& instance = DeviceManager::getInstance();
+    /*thread_local*/ const auto& instance = DeviceManager::getInstance();
     UNUSED(instance);
 }
 
@@ -132,7 +132,7 @@ size_t getDeviceMemorySize(int device) {
 size_t getHostMemorySize() { return common::getHostMemorySize(); }
 
 int setDevice(int device) {
-    thread_local bool flag = false;
+    /*thread_local*/ bool flag = false;
     if (!flag && device != 0) {
 #ifndef NDEBUG
         fprintf(
@@ -153,7 +153,7 @@ queue* getQueueHandle(int device) { return &getQueue(device); }
 void sync(int device) { getQueue(device).sync(); }
 
 bool& evalFlag() {
-    thread_local bool flag = true;
+    /*thread_local*/ bool flag = true;
     return flag;
 }
 

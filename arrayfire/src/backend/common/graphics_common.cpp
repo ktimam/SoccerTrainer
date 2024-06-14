@@ -248,7 +248,7 @@ ForgeManager::ForgeManager() : mPlugin(new ForgeModule()) {}
 ForgeModule& ForgeManager::plugin() { return *mPlugin; }
 
 fg_window ForgeManager::getMainWindow() {
-    static std::once_flag flag;
+    //static std::once_flag flag;
 
     // Define AF_DISABLE_GRAPHICS with any value to disable initialization
     std::string noGraphicsENV = getEnvVar("AF_DISABLE_GRAPHICS");
@@ -256,20 +256,20 @@ fg_window ForgeManager::getMainWindow() {
     af_err error      = AF_SUCCESS;
     fg_err forgeError = FG_ERR_NONE;
     if (noGraphicsENV.empty()) {  // If AF_DISABLE_GRAPHICS is not defined
-        std::call_once(flag, [this, &error, &forgeError] {
+        //std::call_once(flag, [this, &error, &forgeError] {
             if (!this->mPlugin->isLoaded()) {
                 error = AF_ERR_LOAD_LIB;
-                return;
+                //return;
             }
             fg_window w = nullptr;
             forgeError  = this->mPlugin->fg_create_window(
                 &w, WIDTH, HEIGHT, "ArrayFire", NULL, true);
-            if (forgeError != FG_ERR_NONE) { return; }
+            //if (forgeError != FG_ERR_NONE) { return; }
             this->setWindowChartGrid(w, 1, 1);
             this->mPlugin->fg_make_window_current(w);
             this->mMainWindow.reset(new Window({w}));
             if (!gladLoadGL()) { error = AF_ERR_LOAD_LIB; }
-        });
+        //});
         if (error == AF_ERR_LOAD_LIB) {
             string error_message =
                 "Error loading Forge: " + this->mPlugin->getErrorMessage() +

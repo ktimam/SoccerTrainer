@@ -839,7 +839,6 @@
     <ClInclude Include="boost\stacktrace\detail\frame_msvc.ipp" />
     <ClInclude Include="boost\stacktrace\detail\frame_noop.ipp" />
     <ClInclude Include="boost\stacktrace\detail\frame_unwind.ipp" />
-    <ClInclude Include="boost\stacktrace\detail\libbacktrace_impls.hpp" />
     <ClInclude Include="boost\stacktrace\detail\location_from_symbol.hpp" />
     <ClInclude Include="boost\stacktrace\detail\pop_options.h" />
     <ClInclude Include="boost\stacktrace\detail\push_options.h" />

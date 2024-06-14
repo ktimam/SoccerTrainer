@@ -38,7 +38,7 @@ public:
     static void clear() { get_context().clear(); }
 
     static mdc_map_t &get_context() {
-        static thread_local mdc_map_t context;
+        static /*thread_local*/ mdc_map_t context;
         return context;
     }
 };

@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#include "../src/greet.h"
+#include "../src/ICMLPSample.h"
 
 // The Mock IC
 #include "mock_ic.h"

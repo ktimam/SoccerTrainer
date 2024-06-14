@@ -28,7 +28,7 @@ FileBlobDataset::FileBlobDataset(
 }
 
 std::shared_ptr<std::fstream> FileBlobDataset::getStream() const {
-  static thread_local std::shared_ptr<
+  static /*thread_local*/ std::shared_ptr<
       std::unordered_map<uintptr_t, std::shared_ptr<std::fstream>>>
       threadFileHandles = std::make_shared<
           std::unordered_map<uintptr_t, std::shared_ptr<std::fstream>>>();

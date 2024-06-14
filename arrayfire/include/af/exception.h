@@ -18,7 +18,7 @@ namespace af {
 
 /// An ArrayFire exception class
 /// \ingroup arrayfire_class
-class AFAPI exception : public std::exception
+class AFAPI exception /*: public std::exception*/
 {
 private:
     char m_msg[1024];
@@ -46,8 +46,8 @@ public:
     virtual const char *what() const /* d_throw() */ { return m_msg; }
 
     /// Writes the exception to a stream
-    friend inline std::ostream& operator<<(std::ostream &s, const exception &e)
-    { return s << e.what(); }
+    /*friend inline std::ostream& operator<<(std::ostream &s, const exception &e)
+    { return s << e.what(); }*/
 };
 
 }  // namespace af

@@ -183,7 +183,7 @@ public:
     static com_holder< ::IDebugSymbols>& get_thread_local_debug_inst() noexcept {
         // [class.mfct]: A static local variable or local type in a member function always refers to the same entity, whether
         // or not the member function is inline.
-        static thread_local com_holder< ::IDebugSymbols> idebug;
+        static /*thread_local*/ com_holder< ::IDebugSymbols> idebug;
 
         if (!idebug.is_inited()) {
             try_init_com(idebug);

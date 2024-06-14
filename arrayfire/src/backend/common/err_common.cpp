@@ -203,7 +203,7 @@ af_err processException() {
 }
 
 std::string &get_global_error_string() noexcept {
-    thread_local auto *global_error_string = new std::string("");
+    /*thread_local*/ auto *global_error_string = new std::string("");
     return *global_error_string;
 }
 

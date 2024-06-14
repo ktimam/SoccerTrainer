@@ -67,7 +67,7 @@ const Stream& getOrWrapAfDeviceStream(
 ArrayFireBackend::ArrayFireBackend() {
     AF_CHECK(af_init());
 
-    std::call_once(memoryInitFlag, []() {
+    //std::call_once(memoryInitFlag, []() {
         // TODO: remove this temporary workaround for TextDatasetTest crash on CPU
         // backend when tearing down the test environment. This is possibly due to
         // AF race conditions when tearing down our custom memory manager.
@@ -76,7 +76,7 @@ ArrayFireBackend::ArrayFireBackend() {
         if (FL_BACKEND_CUDA) {
             MemoryManagerInstaller::installDefaultMemoryManager();
         }
-        });
+        //});
 
     for (int id = 0; id < af::getDeviceCount(); id++) {
         int nativeId = id; // TODO investigate how OpenCL fits into this.
