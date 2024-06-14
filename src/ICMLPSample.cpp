@@ -13,7 +13,11 @@
 #include "flashlight/fl/optim/SGDOptimizer.h"
 #include "flashlight/fl/tensor/Random.h"
 
+#define NO_IC_API
+
+#ifndef NO_IC_API
 #include "ic_api.h"
+#endif
 
 //#include <json/json.hpp>
 
@@ -72,9 +76,11 @@ void train() {
 
     // Create a msg, to be passed back as Candid over the wire
     std::string msg{ "" };
+#ifndef NO_IC_API
     IC_API ic_api(CanisterQuery{ std::string(__func__) }, false);
     CandidTypePrincipal caller = ic_api.get_caller();
     msg.append("Your principal is: " + caller.get_text() + "!\n");
+#endif
     for (int e = 1; e <= nEpochs; ++e) {
         meter.reset();
         for (auto& sample : data) {
@@ -108,5 +114,7 @@ void train() {
     std::cout << msg << std::endl;
 #endif
 
+#ifndef NO_IC_API
     ic_api.to_wire(CandidTypeText{msg});
+#endif
 }
