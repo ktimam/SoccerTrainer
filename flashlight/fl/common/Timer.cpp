@@ -11,7 +11,7 @@ namespace fl {
 
 Timer Timer::start() {
   Timer t;
-  t.startTime_ = std::chrono::high_resolution_clock::now();
+  // t.startTime_ = std::chrono::high_resolution_clock::now();
   return t;
 }
 

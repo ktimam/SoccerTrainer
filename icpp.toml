@@ -28,9 +28,10 @@ cpp_include_dirs = [
 	"./",
 	]
 cpp_compile_flags = [
+	"-Os",
     #"-O3",
-    #"-flto",
-	"-fno-lto",
+    "-flto",
+	#"-fno-lto",
     "-fno-exceptions", # required for IC
     "-fvisibility=hidden",
 	"-std=c++17",
@@ -78,6 +79,7 @@ cpp_compile_flags = [
 	"-D BOOST_NO_EXCEPTIONS",
 	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
 	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
 	"-D AF_DISABLE_CPU_ASYNC",
 	]
 cpp_link_flags = [
@@ -86,8 +88,8 @@ cpp_link_flags = [
 	"-lwasi-emulated-mman",
 	"-Wl,--error-limit=0",
     "-Wl,--no-entry",
-    #"-Wl,--strip-all",
-    #"-Wl,--strip-debug",
+    "-Wl,--strip-all",
+    "-Wl,--strip-debug",
     "-Wl,--stack-first",
     "-Wl,--export-dynamic", # required for IC
     "-Wl,-z,stack-size=1048576",
@@ -131,9 +133,10 @@ c_include_dirs = [
 	"./",
 	]
 c_compile_flags = [
+    "-Os",
     #"-O3",
-    #"-flto",
-	"-fno-lto",
+    "-flto",
+	#"-fno-lto",
     "-fno-exceptions", # required for IC
     "-fvisibility=hidden",
 	#"-std=c++17",

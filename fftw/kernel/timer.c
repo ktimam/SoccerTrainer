@@ -87,7 +87,7 @@ static double elapsed_since(crude_time t0)
    be longer than the time required to create any single plan! */
 crude_time X(get_crude_time)(void) { return 0/*clock()*/; }
 
-#define elapsed_sec(t1,t0) ((double) ((t1) - (t0)) / CLOCKS_PER_SEC)
+#define elapsed_sec(t1,t0) ((double) ((t1) - (t0)) / ((long)1000))
 
 static double elapsed_since(crude_time t0)
 {

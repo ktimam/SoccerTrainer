@@ -4061,9 +4061,6 @@
     <ClCompile Include="arrayfire\src\api\cpp\susan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="arrayfire\src\api\cpp\timing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="arrayfire\src\api\cpp\topk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

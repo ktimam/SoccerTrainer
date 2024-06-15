@@ -294,6 +294,7 @@ IFFTW_EXTERN void *X(malloc_plain)(size_t sz);
 /*-----------------------------------------------------------------------*/
 /* low-resolution clock */
 
+#define FAKE_CRUDE_TIME
 #ifdef FAKE_CRUDE_TIME
  typedef int crude_time;
 #else

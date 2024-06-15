@@ -116,7 +116,7 @@
     <ClCompile>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;OS_WIN;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_ARRAYFIRE;FL_ARRAYFIRE_USE_CPU;FL_USE_CPU;FL_BACKEND_CPU;FL_BACKEND_CUDA=false;AF_WITH_CPUID;AF_CPU;AF_DEBUG;SORT_TYPE=double;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AFDLL;SMALL_MATRIX_OPT;NO_AVX512;NO_WARMUP;MAX_CPU_NUMBER=32;MAX_PARALLEL_NUMBER=1;NO_AFFINITY;BUILD_SINGLE;FFTW_SINGLE;OS_WINNT;C_MSVC;OPENBLAS_OS_WINNT;OPENBLAS_C_MSVC;USE_FORGE_CPU_COPY_HELPERS;MULTITHREADING_DISABLED;BOOST_NO_EXCEPTIONS;SPDLOG_DISABLE_DEFAULT_LOGGER;SPDLOG_NO_EXCEPTIONS;AF_DISABLE_CPU_ASYNC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;OS_WIN;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_ARRAYFIRE;FL_ARRAYFIRE_USE_CPU;FL_USE_CPU;FL_BACKEND_CPU;FL_BACKEND_CUDA=false;AF_WITH_CPUID;AF_CPU;AF_DEBUG;SORT_TYPE=double;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AFDLL;SMALL_MATRIX_OPT;NO_AVX512;NO_WARMUP;MAX_CPU_NUMBER=32;MAX_PARALLEL_NUMBER=1;NO_AFFINITY;BUILD_SINGLE;FFTW_SINGLE;OS_WINNT;C_MSVC;OPENBLAS_OS_WINNT;OPENBLAS_C_MSVC;USE_FORGE_CPU_COPY_HELPERS;MULTITHREADING_DISABLED;BOOST_NO_EXCEPTIONS;SPDLOG_DISABLE_DEFAULT_LOGGER;SPDLOG_NO_EXCEPTIONS;AF_DISABLE_CPU_ASYNC;NOSPDLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
@@ -1308,7 +1308,6 @@
     <ClCompile Include="arrayfire\src\api\cpp\sparse.cpp" />
     <ClCompile Include="arrayfire\src\api\cpp\stdev.cpp" />
     <ClCompile Include="arrayfire\src\api\cpp\susan.cpp" />
-    <ClCompile Include="arrayfire\src\api\cpp\timing.cpp" />
     <ClCompile Include="arrayfire\src\api\cpp\topk.cpp" />
     <ClCompile Include="arrayfire\src\api\cpp\transform.cpp" />
     <ClCompile Include="arrayfire\src\api\cpp\transform_coordinates.cpp" />

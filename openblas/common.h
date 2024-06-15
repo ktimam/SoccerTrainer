@@ -88,7 +88,7 @@ extern "C" {
 #elif _MSC_VER < 1900
 #define snprintf _snprintf
 #endif
-#include <time.h>
+// #include <time.h>
 
 #if defined(OS_LINUX) || defined(OS_QNX)
 #include <malloc.h>
@@ -128,15 +128,15 @@ extern "C" {
 #ifndef NO_SYSV_IPC
 #include <sys/shm.h>
 #endif
-#include <sys/time.h>
-#include <time.h>
+// #include <sys/time.h>
+// #include <time.h>
 #include <unistd.h>
 #include <math.h>
 #if defined(SMP) || defined(USE_LOCKING)
 #include <pthread.h>
 #endif
 #else
-#include <time.h>
+// #include <time.h>
 #include <math.h>
 #endif
 

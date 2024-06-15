@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <chrono>
+// #include <chrono>
 
 #include "flashlight/fl/common/Defines.h"
 
@@ -58,7 +58,7 @@ class FL_API TimeMeter {
   void stopAndIncUnit(int64_t num = 1);
 
  private:
-  std::chrono::time_point<std::chrono::system_clock> start_;
+  // std::chrono::time_point<std::chrono::system_clock> start_;
   double curValue_;
   int64_t curN_;
   bool isStopped_;

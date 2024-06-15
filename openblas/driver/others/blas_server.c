@@ -75,7 +75,7 @@ USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <errno.h>
 //#include <signal.h>
 //#include <sys/resource.h>
-#include <sys/time.h>
+//#include <sys/time.h>
 #endif
 
 #ifndef likely

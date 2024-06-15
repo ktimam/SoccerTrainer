@@ -19,10 +19,11 @@
 #include <tuple>
 #include <utility>
 #include <vector>
+#include <functional>
 
-namespace spdlog {
-class logger;
-}
+//namespace spdlog {
+//class logger;
+//}
 namespace arrayfire {
 namespace common {
 
@@ -34,7 +35,7 @@ namespace common {
 /// we use in ArrayFire
 class DependencyModule {
     LibHandle handle;
-    std::shared_ptr<spdlog::logger> logger;
+    //std::shared_ptr<spdlog::logger> logger;
     std::vector<void*> functions;
     Version version;
 
@@ -76,7 +77,7 @@ class DependencyModule {
     /// library
     static std::string getErrorMessage() noexcept;
 
-    spdlog::logger* getLogger() const noexcept;
+    //spdlog::logger* getLogger() const noexcept;
 };
 
 }  // namespace common

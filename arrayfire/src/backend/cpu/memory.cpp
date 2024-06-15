@@ -15,7 +15,7 @@
 #include <err_cpu.hpp>
 #include <platform.hpp>
 #include <queue.hpp>
-#include <spdlog/spdlog.h>
+//#include <spdlog/spdlog.h>
 #include <types.hpp>
 #include <af/dim4.hpp>
 
@@ -121,7 +121,7 @@ void *pinnedAlloc<void>(const size_t &elements) {
     return ptr;
 }
 
-Allocator::Allocator() { logger = common::loggerFactory("mem"); }
+Allocator::Allocator() {/* logger = common::loggerFactory("mem");*/ }
 
 void Allocator::shutdown() {
     for (int n = 0; n < cpu::getDeviceCount(); n++) {

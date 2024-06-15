@@ -30,7 +30,7 @@
 /* Other */
 #endif
 
-#include <spdlog/spdlog.h>
+//#include <spdlog/spdlog.h>
 
 #if defined(__clang__)
 /* Clang/LLVM */
@@ -50,7 +50,8 @@
 
 namespace arrayfire {
 namespace common {
-std::shared_ptr<spdlog::logger> loggerFactory(const std::string& name);
+//std::shared_ptr<spdlog::logger> loggerFactory(const std::string& name);
+#define loggerFactory(name) (void)0
 std::string bytesToString(size_t bytes);
 }  // namespace common
 }  // namespace arrayfire

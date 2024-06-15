@@ -24,34 +24,36 @@
 
 #include <string>
 
+#include <spdlog/fmt/fmt.h>
+
 using std::array;
 using std::shared_ptr;
 using std::string;
 
-using spdlog::get;
-using spdlog::logger;
+//using spdlog::get;
+//using spdlog::logger;
 //using spdlog::stdout_logger_mt;
 
 namespace arrayfire {
 namespace common {
 
-shared_ptr<logger> loggerFactory(const string& name) {
-    shared_ptr<logger> logger;
-    //if (!(logger = get(name))) {
-    //    logger = stdout_logger_mt(name);
-    //    logger->set_pattern("[%n][%E][%t] %v");
-
-    //    // Log mode
-    //    string env_var = getEnvVar("AF_TRACE");
-    //    if (env_var.find("all") != string::npos ||
-    //        env_var.find(name) != string::npos) {
-    //        logger->set_level(spdlog::level::trace);
-    //    } else {
-    //        logger->set_level(spdlog::level::off);
-    //    }
-    //}
-    return logger;
-}
+//shared_ptr<logger> loggerFactory(const string& name) {
+//    shared_ptr<logger> logger;
+//    //if (!(logger = get(name))) {
+//    //    logger = stdout_logger_mt(name);
+//    //    logger->set_pattern("[%n][%E][%t] %v");
+//
+//    //    // Log mode
+//    //    string env_var = getEnvVar("AF_TRACE");
+//    //    if (env_var.find("all") != string::npos ||
+//    //        env_var.find(name) != string::npos) {
+//    //        logger->set_level(spdlog::level::trace);
+//    //    } else {
+//    //        logger->set_level(spdlog::level::off);
+//    //    }
+//    //}
+//    return logger;
+//}
 
 string bytesToString(size_t bytes) {
     constexpr array<const char*, 7> units{

@@ -33,10 +33,10 @@ class AllocatorInterface {
     virtual size_t getMaxMemorySize(int id)       = 0;
     virtual void *nativeAlloc(const size_t bytes) = 0;
     virtual void nativeFree(void *ptr)            = 0;
-    virtual spdlog::logger *getLogger() final { return this->logger.get(); }
+    //virtual spdlog::logger *getLogger() final { return this->logger.get(); }
 
    protected:
-    std::shared_ptr<spdlog::logger> logger;
+    //std::shared_ptr<spdlog::logger> logger;
 };
 
 }  // namespace common

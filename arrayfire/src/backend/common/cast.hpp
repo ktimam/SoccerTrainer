@@ -65,11 +65,11 @@ constexpr bool canOptimizeCast(af::dtype outer, af::dtype inner) {
 #ifdef AF_CPU
 template<typename To, typename Ti>
 struct CastWrapper {
-    static spdlog::logger *getLogger() noexcept {
+    /*static spdlog::logger *getLogger() noexcept {
         static std::shared_ptr<spdlog::logger> logger =
             common::loggerFactory("ast");
         return logger.get();
-    }
+    }*/
 
     detail::Array<To> operator()(const detail::Array<Ti> &in) {
         using detail::jit::UnaryNode;

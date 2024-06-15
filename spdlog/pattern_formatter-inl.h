@@ -767,8 +767,8 @@ public:
     using DurationUnits = Units;
 
     explicit elapsed_formatter(padding_info padinfo)
-        : flag_formatter(padinfo),
-          last_message_time_(log_clock::now()) {}
+        : flag_formatter(padinfo)/* ,
+          last_message_time_(log_clock::now()) */ {}
 
     void format(const details::log_msg &msg, const std::tm &, memory_buf_t &dest) override {
         auto delta = (std::max)(msg.time - last_message_time_, log_clock::duration::zero());

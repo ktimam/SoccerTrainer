@@ -379,21 +379,21 @@ af_err af_get_manual_eval_flag(bool* flag) {
 
 af_err af_get_kernel_cache_directory(size_t* length, char* path) {
     /*try*/ {
-        std::string& cache_path = getCacheDirectory();
-        if (path == nullptr) {
-            ARG_ASSERT(length != nullptr, 1);
-            *length = cache_path.size();
-        } else {
-            size_t min_len = cache_path.size();
-            if (length) {
-                if (*length < cache_path.size()) {
-                    AF_ERROR("Length not sufficient to store the path",
-                             AF_ERR_SIZE);
-                }
-                min_len = std::min(*length, cache_path.size());
-            }
-            memcpy(path, cache_path.c_str(), min_len);
-        }
+        //std::string& cache_path = std::string("");// getCacheDirectory();
+        //if (path == nullptr) {
+        //    ARG_ASSERT(length != nullptr, 1);
+        //    *length = cache_path.size();
+        //} else {
+        //    size_t min_len = cache_path.size();
+        //    if (length) {
+        //        if (*length < cache_path.size()) {
+        //            AF_ERROR("Length not sufficient to store the path",
+        //                     AF_ERR_SIZE);
+        //        }
+        //        min_len = std::min(*length, cache_path.size());
+        //    }
+        //    memcpy(path, cache_path.c_str(), min_len);
+        //}
     }
     CATCHALL
     return AF_SUCCESS;
@@ -403,10 +403,10 @@ af_err af_set_kernel_cache_directory(const char* path, int override_env) {
     /*try*/ {
         ARG_ASSERT(path != nullptr, 1);
         if (override_env) {
-            getCacheDirectory() = std::string(path);
+            //getCacheDirectory() = std::string(path);
         } else {
-            auto env_path = getEnvVar(JIT_KERNEL_CACHE_DIRECTORY_ENV_NAME);
-            if (env_path.empty()) { getCacheDirectory() = std::string(path); }
+            /*auto env_path = getEnvVar(JIT_KERNEL_CACHE_DIRECTORY_ENV_NAME);
+            if (env_path.empty()) { getCacheDirectory() = std::string(path); }*/
         }
     }
     CATCHALL

@@ -156,7 +156,7 @@ USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <errno.h>
 #include <linux/unistd.h>
 #include <sys/syscall.h>
-#include <sys/time.h>
+// #include <sys/time.h>
 #include <sys/resource.h>
 #endif
 
@@ -1732,7 +1732,7 @@ inline int atoi(const char *str) { return 0; }
 #include <sched.h>
 #include <errno.h>
 #include <sys/syscall.h>
-#include <sys/time.h>
+// #include <sys/time.h>
 //#include <sys/resource.h>
 #endif
 

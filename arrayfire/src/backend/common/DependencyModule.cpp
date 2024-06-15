@@ -93,7 +93,7 @@ namespace common {
 DependencyModule::DependencyModule(const char* plugin_file_name,
                                    const char** paths)
     : handle(nullptr)
-    , logger(common::loggerFactory("platform"))
+    /*, logger(common::loggerFactory("platform"))*/
     , version(-1, -1) {
     // TODO(umar): Implement handling of non-standard paths
     UNUSED(paths);
@@ -115,7 +115,7 @@ DependencyModule::DependencyModule(
     const Version* versions,
     std::function<Version(const LibHandle&)> versionFunction)
     : handle(nullptr)
-    , logger(common::loggerFactory("platform"))
+    /*, logger(common::loggerFactory("platform"))*/
     , version(-1, -1) {
     for (const string& base_name : plugin_base_file_name) {
         for (const string& path : paths) {
@@ -178,9 +178,9 @@ string DependencyModule::getErrorMessage() noexcept {
     return common::getErrorMessage();
 }
 
-spdlog::logger* DependencyModule::getLogger() const noexcept {
-    return logger.get();
-}
+//spdlog::logger* DependencyModule::getLogger() const noexcept {
+//    return logger.get();
+//}
 
 }  // namespace common
 }  // namespace arrayfire
