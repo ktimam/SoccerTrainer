@@ -27,7 +27,7 @@ cpp_include_dirs = [
 	"fftw",
 	"./",
 	]
-cpp_compile_flags = [
+cpp_compile_flags_defaults = [
 	"-Os",
     #"-O3",
     "-flto",
@@ -37,10 +37,26 @@ cpp_compile_flags = [
 	"-std=c++17",
 	"-Wno-everything",
 	#"-mno-soft-float",
-    #"-D NDEBUG",
+    "-D NDEBUG",
     "-D ICPP_VERBOSE=0",
     "-MMD", 
     "-MP", 
+]
+cpp_link_flags_defaults = [
+    "-nostartfiles",
+	"-fno-lto",
+	"-lwasi-emulated-mman",
+	"-Wl,--error-limit=0",
+    "-Wl,--no-entry",
+    "-Wl,--strip-all",
+    "-Wl,--strip-debug",
+    "-Wl,--stack-first",
+    "-Wl,--export-dynamic", # required for IC
+    "-Wl,-z,stack-size=1048576",
+	#"-Wl,--wasi-emulated-mman",
+    "-std=c++17",
+]
+cpp_compile_flags = [
 	"-D DECLARE_LIBRARY_RENAMES",
 	"-D _WASI_EMULATED_MMAN",
 	"-D _WASI_EMULATED_GETPID",
@@ -83,18 +99,6 @@ cpp_compile_flags = [
 	"-D AF_DISABLE_CPU_ASYNC",
 	]
 cpp_link_flags = [
-    "-nostartfiles",
-	"-fno-lto",
-	"-lwasi-emulated-mman",
-	"-Wl,--error-limit=0",
-    "-Wl,--no-entry",
-    "-Wl,--strip-all",
-    "-Wl,--strip-debug",
-    "-Wl,--stack-first",
-    "-Wl,--export-dynamic", # required for IC
-    "-Wl,-z,stack-size=1048576",
-	#"-Wl,--wasi-emulated-mman",
-    "-std=c++17",
 	]
 c_paths = [
 	"af_glad/src/*.c",
@@ -132,20 +136,21 @@ c_include_dirs = [
 	"fftw",
 	"./",
 	]
-c_compile_flags = [
-    "-Os",
+c_compile_flags_defaults = [
+	"-Os",
     #"-O3",
     "-flto",
 	#"-fno-lto",
     "-fno-exceptions", # required for IC
     "-fvisibility=hidden",
-	#"-std=c++17",
 	"-Wno-everything",
 	#"-mno-soft-float",
-    #"-D NDEBUG",
+    "-D NDEBUG",
     "-D ICPP_VERBOSE=0",
     "-MMD", 
     "-MP", 
+]
+c_compile_flags = [
 	"-D DECLARE_LIBRARY_RENAMES",
 	"-D _WASI_EMULATED_MMAN",
 	"-D _WASI_EMULATED_GETPID",

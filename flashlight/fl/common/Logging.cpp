@@ -132,7 +132,7 @@ Logging::~Logging() {
     (*outputStreamPtr_) << stringStream_.str();
     outputStreamPtr_->flush();
     if (level_ == LogLevel::FATAL) {
-      exit(-1);
+      //exit(-1);
     }
   }
 }
