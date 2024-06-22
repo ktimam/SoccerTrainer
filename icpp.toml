@@ -28,10 +28,10 @@ cpp_include_dirs = [
 	"./",
 	]
 cpp_compile_flags_defaults = [
-	"-Os",
+	#"-Oz",
     #"-O3",
-    "-flto",
-	#"-fno-lto",
+    #"-flto",
+	"-fno-lto",
     "-fno-exceptions", # required for IC
     "-fvisibility=hidden",
 	"-std=c++17",
@@ -137,10 +137,10 @@ c_include_dirs = [
 	"./",
 	]
 c_compile_flags_defaults = [
-	"-Os",
+	#"-Oz",
     #"-O3",
-    "-flto",
-	#"-fno-lto",
+    #"-flto",
+	"-fno-lto",
     "-fno-exceptions", # required for IC
     "-fvisibility=hidden",
 	"-Wno-everything",

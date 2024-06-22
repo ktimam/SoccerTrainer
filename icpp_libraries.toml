@@ -15,10 +15,8 @@ cpp_include_dirs = [
 	"openblas",
 	"fftw",
 	"./",]
-cpp_paths = [
-		"src/*.cpp",
-	]
-cpp_compile_flags = [
+cpp_compile_flags_defaults = [
+	#"-Oz",
     #"-O3",
     #"-flto",
 	"-fno-lto",
@@ -27,10 +25,43 @@ cpp_compile_flags = [
 	"-std=c++17",
 	"-Wno-everything",
 	#"-mno-soft-float",
-    #"-D NDEBUG",
+    "-D NDEBUG",
     "-D ICPP_VERBOSE=0",
     "-MMD", 
     "-MP", 
+]
+c_compile_flags_defaults = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+]
+cpp_link_flags_defaults = [
+    "-nostartfiles",
+	"-fno-lto",
+	"-lwasi-emulated-mman",
+	"-Wl,--error-limit=0",
+    "-Wl,--no-entry",
+    #"-Wl,--strip-all",
+    #"-Wl,--strip-debug",
+    "-Wl,--stack-first",
+    "-Wl,--export-dynamic", # required for IC
+    "-Wl,-z,stack-size=1048576",
+	#"-Wl,--wasi-emulated-mman",
+    "-std=c++17",
+]
+cpp_paths = [
+		"src/*.cpp",
+	]
+cpp_compile_flags = [	
 	"-D DECLARE_LIBRARY_RENAMES",
 	"-D _WASI_EMULATED_MMAN",
 	"-D _WASI_EMULATED_GETPID",
@@ -69,25 +100,8 @@ cpp_compile_flags = [
 	"-D BOOST_NO_EXCEPTIONS",
 	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
 	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
 	"-D AF_DISABLE_CPU_ASYNC",
-	]
-cpp_link_flags = [
-    "-nostartfiles",
-	"-fno-lto",
-	"-lwasi-emulated-mman",
-	"-Wl,--error-limit=0",
-    "-Wl,--no-entry",
-    #"-Wl,--strip-all",
-    #"-Wl,--strip-debug",
-    "-Wl,--stack-first",
-    "-Wl,--export-dynamic", # required for IC
-    "-Wl,-z,stack-size=1048576",
-	#"-Wl,--wasi-emulated-mman",
-    "-std=c++17",
-	]
-c_paths = []
-c_include_dirs = []
-c_compile_flags = [
 	]
 
 [[build-library]]
@@ -107,71 +121,9 @@ cpp_include_dirs = [
 	]
 cpp_paths = [
 	]
-cpp_compile_flags = [
-    #"-O3",
-    #"-flto",
-	"-fno-lto",
-    "-fno-exceptions", # required for IC
-    "-fvisibility=hidden",
-	"-std=c++17",
-	"-Wno-everything",
-	#"-mno-soft-float",
-    #"-D NDEBUG",
-    "-D ICPP_VERBOSE=0",
-    "-MMD", 
-    "-MP", 
-	"-D DECLARE_LIBRARY_RENAMES",
-	#"-D _WASI_EMULATED_MMAN",
-	"-D _WASI_EMULATED_GETPID",
-	"-D _USE_MATH_DEFINES",
-	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
-	"-D FL_USE_ARRAYFIRE",
-	"-D FL_ARRAYFIRE_USE_CPU",
-	"-D FL_USE_CPU",
-	"-D FL_BACKEND_CPU",
-	"-D FL_BACKEND_CUDA=false",
-	"-D AF_WITH_CPUID",
-	"-D AF_CPU",
-	"-D AF_DEBUG",
-	"-D SORT_TYPE=double",
-	"-D _CRT_SECURE_NO_WARNINGS",
-	"-D NOMINMAX",
-	"-D AFDLL",
-	"-D SMALL_MATRIX_OPT",
-	"-D NO_AVX512",
-	"-D NO_WARMUP",
-	"-D MAX_CPU_NUMBER=32",
-	"-D MAX_PARALLEL_NUMBER=1",
-	"-D NO_AFFINITY",
-	"-D BUILD_SINGLE",
-	"-D BUILD_DOUBLE",
-	"-D BUILD_COMPLEX",
-	"-D BUILD_COMPLEX16",
-	"-D FFTW_SINGLE",
-	"-D OS_LINUX",
-	"-D OS_LNX",
-	"-D __linux__",
-	"-D OPENBLAS_OS_LINUX",
-	"-D NO_SYSV_IPC",
-	"-D USE_FORGE_CPU_COPY_HELPERS",
-	"-D MULTITHREADING_DISABLED",
-	"-D BOOST_NO_EXCEPTIONS",
-	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
-	"-D SPDLOG_NO_EXCEPTIONS",
-	"-D AF_DISABLE_CPU_ASYNC",
+cpp_compile_flags = [	
 	]
 cpp_link_flags = [
-    "-nostartfiles",
-	"-fno-lto",
-	"-Wl,--error-limit=0",
-    "-Wl,--no-entry",
-    "-Wl,--strip-all",
-    "-Wl,--strip-debug",
-    "-Wl,--stack-first",
-    "-Wl,--export-dynamic", # required for IC
-    "-Wl,-z,stack-size=1048576",
-	#"-Wl,--wasi-emulated-mman",
-    "-std=c++17",
 	]
 c_paths = [
 	"af_glad/src/*.c",
@@ -190,6 +142,18 @@ c_include_dirs = [
 	"./",
 	]
 c_compile_flags = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
 	]
 	
 [[build-library]]
@@ -198,71 +162,9 @@ cpp_include_dirs = [
 	]
 cpp_paths = [
 	]
-cpp_compile_flags = [
-    #"-O3",
-    #"-flto",
-	"-fno-lto",
-    "-fno-exceptions", # required for IC
-    "-fvisibility=hidden",
-	"-std=c++17",
-	"-Wno-everything",
-	#"-mno-soft-float",
-    #"-D NDEBUG",
-    "-D ICPP_VERBOSE=0",
-    "-MMD", 
-    "-MP", 
-	"-D DECLARE_LIBRARY_RENAMES",
-	#"-D _WASI_EMULATED_MMAN",
-	"-D _WASI_EMULATED_GETPID",
-	"-D _USE_MATH_DEFINES",
-	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
-	"-D FL_USE_ARRAYFIRE",
-	"-D FL_ARRAYFIRE_USE_CPU",
-	"-D FL_USE_CPU",
-	"-D FL_BACKEND_CPU",
-	"-D FL_BACKEND_CUDA=false",
-	"-D AF_WITH_CPUID",
-	"-D AF_CPU",
-	"-D AF_DEBUG",
-	"-D SORT_TYPE=double",
-	"-D _CRT_SECURE_NO_WARNINGS",
-	"-D NOMINMAX",
-	"-D AFDLL",
-	"-D SMALL_MATRIX_OPT",
-	"-D NO_AVX512",
-	"-D NO_WARMUP",
-	"-D MAX_CPU_NUMBER=32",
-	"-D MAX_PARALLEL_NUMBER=1",
-	"-D NO_AFFINITY",
-	"-D BUILD_SINGLE",
-	"-D BUILD_DOUBLE",
-	"-D BUILD_COMPLEX",
-	"-D BUILD_COMPLEX16",
-	"-D FFTW_SINGLE",
-	"-D OS_LINUX",
-	"-D OS_LNX",
-	"-D __linux__",
-	"-D OPENBLAS_OS_LINUX",
-	"-D NO_SYSV_IPC",
-	"-D USE_FORGE_CPU_COPY_HELPERS",
-	"-D MULTITHREADING_DISABLED",
-	"-D BOOST_NO_EXCEPTIONS",
-	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
-	"-D SPDLOG_NO_EXCEPTIONS",
-	"-D AF_DISABLE_CPU_ASYNC",
+cpp_compile_flags = [	
 	]
 cpp_link_flags = [
-    "-nostartfiles",
-	"-fno-lto",
-	"-Wl,--error-limit=0",
-    "-Wl,--no-entry",
-    "-Wl,--strip-all",
-    "-Wl,--strip-debug",
-    "-Wl,--stack-first",
-    "-Wl,--export-dynamic", # required for IC
-    "-Wl,-z,stack-size=1048576",
-	#"-Wl,--wasi-emulated-mman",
-    "-std=c++17",
 	]
 c_paths = [
 	"fftw/api/*.c",
@@ -290,6 +192,18 @@ c_include_dirs = [
 	"./",
 	]
 c_compile_flags = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
 	]
 
 [[build-library]]
@@ -301,17 +215,6 @@ cpp_paths = [
 cpp_compile_flags = [
 	]
 cpp_link_flags = [
-    "-nostartfiles",
-	"-fno-lto",
-	"-Wl,--error-limit=0",
-    "-Wl,--no-entry",
-    "-Wl,--strip-all",
-    "-Wl,--strip-debug",
-    "-Wl,--stack-first",
-    "-Wl,--export-dynamic", # required for IC
-    "-Wl,-z,stack-size=1048576",
-	#"-Wl,--wasi-emulated-mman",
-    "-std=c++17",
 	]
 c_paths = [
     "openblas/driver/others/blas_server.c",
@@ -338,6 +241,7 @@ c_include_dirs = [
 	"fftw",
 	]
 c_compile_flags = [
+	#"-Oz",
     #"-O3",
     #"-flto",
 	"-fno-lto",
@@ -345,7 +249,7 @@ c_compile_flags = [
     "-fvisibility=hidden",
 	"-Wno-everything",
 	#"-mno-soft-float",
-    #"-D NDEBUG",
+    "-D NDEBUG",
     "-D ICPP_VERBOSE=0",
     "-MMD", 
     "-MP", 
@@ -387,6 +291,7 @@ c_compile_flags = [
 	"-D BOOST_NO_EXCEPTIONS",
 	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
 	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
 	"-D AF_DISABLE_CPU_ASYNC",
 	]
 	
@@ -413,6 +318,7 @@ cpp_paths = [
 	"arrayfire/*/*/*/*/*/*/*.cpp",
 	]
 cpp_compile_flags = [
+	#"-Oz",
     #"-O3",
     #"-flto",
 	"-fno-lto",
@@ -421,12 +327,12 @@ cpp_compile_flags = [
 	"-std=c++17",
 	"-Wno-everything",
 	#"-mno-soft-float",
-    #"-D NDEBUG",
+    "-D NDEBUG",
     "-D ICPP_VERBOSE=0",
     "-MMD", 
     "-MP", 
 	"-D DECLARE_LIBRARY_RENAMES",
-	#"-D _WASI_EMULATED_MMAN",
+	"-D _WASI_EMULATED_MMAN",
 	"-D _WASI_EMULATED_GETPID",
 	"-D _USE_MATH_DEFINES",
 	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
@@ -463,20 +369,10 @@ cpp_compile_flags = [
 	"-D BOOST_NO_EXCEPTIONS",
 	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
 	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
 	"-D AF_DISABLE_CPU_ASYNC",
 	]
 cpp_link_flags = [
-    "-nostartfiles",
-	"-fno-lto",
-	"-Wl,--error-limit=0",
-    "-Wl,--no-entry",
-    "-Wl,--strip-all",
-    "-Wl,--strip-debug",
-    "-Wl,--stack-first",
-    "-Wl,--export-dynamic", # required for IC
-    "-Wl,-z,stack-size=1048576",
-	#"-Wl,--wasi-emulated-mman",
-    "-std=c++17",
 	]
 c_paths = []
 c_include_dirs = []
@@ -507,6 +403,7 @@ cpp_paths = [
 	"flashlight/fl/*/*/*/*/*/*.cpp",
 	]
 cpp_compile_flags = [
+	#"-Oz",
     #"-O3",
     #"-flto",
 	"-fno-lto",
@@ -515,12 +412,12 @@ cpp_compile_flags = [
 	"-std=c++17",
 	"-Wno-everything",
 	#"-mno-soft-float",
-    #"-D NDEBUG",
+    "-D NDEBUG",
     "-D ICPP_VERBOSE=0",
     "-MMD", 
     "-MP", 
 	"-D DECLARE_LIBRARY_RENAMES",
-	#"-D _WASI_EMULATED_MMAN",
+	"-D _WASI_EMULATED_MMAN",
 	"-D _WASI_EMULATED_GETPID",
 	"-D _USE_MATH_DEFINES",
 	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
@@ -557,20 +454,10 @@ cpp_compile_flags = [
 	"-D BOOST_NO_EXCEPTIONS",
 	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
 	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
 	"-D AF_DISABLE_CPU_ASYNC",
 	]
 cpp_link_flags = [
-    "-nostartfiles",
-	"-fno-lto",
-	"-Wl,--error-limit=0",
-    "-Wl,--no-entry",
-    "-Wl,--strip-all",
-    "-Wl,--strip-debug",
-    "-Wl,--stack-first",
-    "-Wl,--export-dynamic", # required for IC
-    "-Wl,-z,stack-size=1048576",
-	#"-Wl,--wasi-emulated-mman",
-    "-std=c++17",
 	]
 c_paths = []
 c_include_dirs = []
@@ -578,7 +465,10 @@ c_compile_flags = [
 	]
 	
 [build-native]
-cpp_paths = ["native/main.cpp"]
+cpp_paths = [
+	"native/main.cpp",
+	"src/*.cpp",
+	]
 cpp_include_dirs = [
 	"af_glad", "arrayfire", "fftw", "openblas", "flashlight", "src/vendors/*",
 	"af_forge/include/",
@@ -595,15 +485,16 @@ cpp_include_dirs = [
 	"./",
 	]
 cpp_compile_flags = [
+	#"-Oz",
     #"-O3",
     #"-flto",
-	"-fno-lto",
+	#"-fno-lto",
     #"-fno-exceptions", # required for IC
     "-fvisibility=hidden",
 	"-std=c++17",
 	"-Wno-everything",
 	#"-mno-soft-float",
-    #"-D NDEBUG",
+    "-D NDEBUG",
     "-D ICPP_VERBOSE=0",
     "-MMD", 
     "-MP", 
@@ -645,21 +536,25 @@ cpp_compile_flags = [
 	"-D BOOST_NO_EXCEPTIONS",
 	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
 	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
 	"-D AF_DISABLE_CPU_ASYNC",
 	]
-cpp_link_flags = []
+cpp_link_flags_defaults = [
+    "-std=c++17",
+	"-fuse-ld=lld",
+	]
 c_paths = []
 c_include_dirs = []
 c_compile_flags = [
+	#"-Oz",
     #"-O3",
     #"-flto",
-	"-fno-lto",
+	#"-fno-lto",
     #"-fno-exceptions", # required for IC
     "-fvisibility=hidden",
-	#"-std=c++17",
 	"-Wno-everything",
 	#"-mno-soft-float",
-    #"-D NDEBUG",
+    "-D NDEBUG",
     "-D ICPP_VERBOSE=0",
     "-MMD", 
     "-MP", 
@@ -701,5 +596,6 @@ c_compile_flags = [
 	"-D BOOST_NO_EXCEPTIONS",
 	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
 	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
 	"-D AF_DISABLE_CPU_ASYNC",
 	]
