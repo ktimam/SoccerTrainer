@@ -39,14 +39,14 @@ void train() {
     const int nSamples = 5;// 10000;
     const int nFeat = 3;// 10;
     auto X = fl::rand({ nFeat, nSamples }) + 1; // X elements in [1, 2]
-    //auto Y = /* signal */ fl::transpose(fl::sum(fl::power(X, 3), { 0 }));// +
-        ///* noise */ fl::sin(2 * M_PI * fl::rand({ nSamples }));
+    auto Y = /* signal */ fl::transpose(fl::sum(fl::power(X, 3), { 0 })) +
+        /* noise */ fl::sin(2 * (float)M_PI * fl::rand({ nSamples }));
 
 
     /* signal */
-    auto Y = fl::power(X, 3);
+    //auto Y = fl::power(X, 3);
     //std::cout << "Tensor Y : " << Y << std::endl;
-    Y = fl::sum(Y, { 0 });
+    //Y = fl::sum(Y, { 0 });
     //std::cout << "Tensor Y : " << Y << std::endl;
     //std::cout << "Y shape : " << Y.shape() << std::endl;
     //Y = fl::transpose(Y);
