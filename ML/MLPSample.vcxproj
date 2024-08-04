@@ -77,7 +77,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)oneDNN\src;$(SolutionDir)oneDNN;$(SolutionDir)/arrayfire/src/api/c;$(SolutionDir)/arrayfire/include;$(SolutionDir)/arrayfire/extern/half/include;$(SolutionDir)/arrayfire/src/backend/cpu;$(SolutionDir)/arrayfire/src/backend;$(SolutionDir)/af_glad/include;$(SolutionDir)/af_forge/include;$(SolutionDir)openblas;$(SolutionDir)fftw;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)oneDNN\src;$(ProjectDir)oneDNN;$(ProjectDir)/arrayfire/src/api/c;$(ProjectDir)/arrayfire/include;$(ProjectDir)/arrayfire/extern/half/include;$(ProjectDir)/arrayfire/src/backend/cpu;$(ProjectDir)/arrayfire/src/backend;$(ProjectDir)/af_glad/include;$(ProjectDir)/af_forge/include;$(ProjectDir)openblas;$(ProjectDir)fftw;$(ProjectDir);$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(VC_IncludePath);$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
