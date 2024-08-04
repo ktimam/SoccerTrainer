@@ -5,6 +5,7 @@ cpp_paths         = [
     "SimSoccerServer.cpp",
     "./Common/*/*.cpp", 
     "./SimSoccer/*.cpp",
+    "./SimSoccer/*/*.cpp",
     "./Jolt/*.cpp",
     "./Jolt/*/*.cpp",
     "./Jolt/*/*/*.cpp",
@@ -25,17 +26,18 @@ c_paths           = []
 c_header_paths    = []
 c_compile_flags   = []
 cpp_compile_flags_defaults = [
-    "-O3",
+    "-Oz",
+    #"-O3",
     "-flto",
     "-fno-exceptions", # required for IC
     "-fvisibility=hidden",
-    #"-D NDEBUG",
+    "-D NDEBUG",
     "-D ICPP_VERBOSE=0",
 ]
 cpp_link_flags_defaults = [
     "-nostartfiles",
     "-Wl,--no-entry",
-    "-Wl,--lto-O3",
+    #"-Wl,--lto-O3",
     "-Wl,--strip-all",
     "-Wl,--strip-debug",
     "-Wl,--stack-first",
