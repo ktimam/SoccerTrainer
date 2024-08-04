@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleSoccer", "SimpleSoccer.vcxproj", "{85F3C67A-DF19-486D-9814-9E09E93BCA74}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D} = {DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ICMLPSample", "ML\MLPSample.vcxproj", "{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}"
 EndProject
