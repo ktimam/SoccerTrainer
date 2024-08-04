@@ -1,0 +1,601 @@
+[build-wasm]
+canister = "ICMLPSample"
+did_path = "src/ICMLPSample.did"
+cpp_include_dirs = [
+	"af_glad", "arrayfire", "fftw", "openblas", "flashlight", "src/vendors/*",
+	"af_forge/include/",
+	"arrayfire/include/",
+	"arrayfire/src/api/c",
+	"arrayfire/include",
+	"arrayfire/extern/half/include",
+	"arrayfire/src/backend/cpu",
+	"arrayfire/src/backend",
+	"af_glad/include",
+	"af_forge/include",
+	"openblas",
+	"fftw",
+	"./",]
+cpp_compile_flags_defaults = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-std=c++17",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+]
+c_compile_flags_defaults = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+]
+cpp_link_flags_defaults = [
+    "-nostartfiles",
+	"-fno-lto",
+	"-lwasi-emulated-mman",
+	"-Wl,--error-limit=0",
+    "-Wl,--no-entry",
+    #"-Wl,--strip-all",
+    #"-Wl,--strip-debug",
+    "-Wl,--stack-first",
+    "-Wl,--export-dynamic", # required for IC
+    "-Wl,-z,stack-size=1048576",
+	#"-Wl,--wasi-emulated-mman",
+    "-std=c++17",
+]
+cpp_paths = [
+		"src/*.cpp",
+	]
+cpp_compile_flags = [	
+	"-D DECLARE_LIBRARY_RENAMES",
+	"-D _WASI_EMULATED_MMAN",
+	"-D _WASI_EMULATED_GETPID",
+	"-D _USE_MATH_DEFINES",
+	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
+	"-D FL_USE_ARRAYFIRE",
+	"-D FL_ARRAYFIRE_USE_CPU",
+	"-D FL_USE_CPU",
+	"-D FL_BACKEND_CPU",
+	"-D FL_BACKEND_CUDA=false",
+	"-D AF_WITH_CPUID",
+	"-D AF_CPU",
+	"-D AF_DEBUG",
+	"-D SORT_TYPE=double",
+	"-D _CRT_SECURE_NO_WARNINGS",
+	"-D NOMINMAX",
+	"-D AFDLL",
+	"-D SMALL_MATRIX_OPT",
+	"-D NO_AVX512",
+	"-D NO_WARMUP",
+	"-D MAX_CPU_NUMBER=32",
+	"-D MAX_PARALLEL_NUMBER=1",
+	"-D NO_AFFINITY",
+	"-D BUILD_SINGLE",
+	"-D BUILD_DOUBLE",
+	"-D BUILD_COMPLEX",
+	"-D BUILD_COMPLEX16",
+	"-D FFTW_SINGLE",
+	"-D OS_LINUX",
+	"-D OS_LNX",
+	"-D __linux__",
+	"-D OPENBLAS_OS_LINUX",
+	"-D NO_SYSV_IPC",
+	"-D USE_FORGE_CPU_COPY_HELPERS",
+	"-D MULTITHREADING_DISABLED",
+	"-D BOOST_NO_EXCEPTIONS",
+	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
+	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
+	"-D AF_DISABLE_CPU_ASYNC",
+	]
+
+[[build-library]]
+lib_name = "af_glad"
+cpp_include_dirs = [
+	"arrayfire/include/",
+	"arrayfire/src/api/c",
+	"arrayfire/include",
+	"arrayfire/extern/half/include",
+	"arrayfire/src/backend/cpu",
+	"arrayfire/src/backend",
+	"af_glad/include",
+	"af_forge/include",
+	"openblas",
+	"fftw",
+	"./",
+	]
+cpp_paths = [
+	]
+cpp_compile_flags = [	
+	]
+cpp_link_flags = [
+	]
+c_paths = [
+	"af_glad/src/*.c",
+	]
+c_include_dirs = [
+	"arrayfire/include/",
+	"arrayfire/src/api/c",
+	"arrayfire/include",
+	"arrayfire/extern/half/include",
+	"arrayfire/src/backend/cpu",
+	"arrayfire/src/backend",
+	"af_glad/include",
+	"af_forge/include",
+	"openblas",
+	"fftw",
+	"./",
+	]
+c_compile_flags = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+	]
+	
+[[build-library]]
+lib_name = "fftw"
+cpp_include_dirs = [
+	]
+cpp_paths = [
+	]
+cpp_compile_flags = [	
+	]
+cpp_link_flags = [
+	]
+c_paths = [
+	"fftw/api/*.c",
+	"fftw/dft/*.c",
+	"fftw/dft/scalar/*.c",
+	"fftw/dft/scalar/codelets/*.c",
+	"fftw/kernel/*.c",
+	"fftw/rdft/*.c",
+	"fftw/rdft/scalar/*.c",
+	"fftw/rdft/scalar/*/*.c",
+	"fftw/reodft/*.c",
+	]
+c_include_dirs = [
+	"af_forge/include/",
+	"arrayfire/include/",
+	"arrayfire/src/api/c",
+	"arrayfire/include",
+	"arrayfire/extern/half/include",
+	"arrayfire/src/backend/cpu",
+	"arrayfire/src/backend",
+	"af_glad/include",
+	"af_forge/include",
+	"openblas",
+	"fftw",
+	"./",
+	]
+c_compile_flags = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+	]
+
+[[build-library]]
+lib_name = "openblas"
+cpp_include_dirs = [
+	]
+cpp_paths = [
+	]
+cpp_compile_flags = [
+	]
+cpp_link_flags = [
+	]
+c_paths = [
+    "openblas/driver/others/blas_server.c",
+    "openblas/driver/others/divtable.c",
+    "openblas/driver/others/memory.c",
+    "openblas/driver/others/openblas_env.c",
+    "openblas/driver/others/openblas_error_handle.c",
+    "openblas/driver/others/parameter.c",
+    "openblas/driver/others/xerbla.c",
+	"openblas/src/*/*.c",
+	"openblas/src/*/*/*.c",
+	]
+c_include_dirs = [
+	"af_forge/include/",
+	"arrayfire/include/",
+	"arrayfire/src/api/c",
+	"arrayfire/include",
+	"arrayfire/extern/half/include",
+	"arrayfire/src/backend/cpu",
+	"arrayfire/src/backend",
+	"af_glad/include",
+	"af_forge/include",
+	"openblas",
+	"fftw",
+	]
+c_compile_flags = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+	"-D DECLARE_LIBRARY_RENAMES",
+	"-D _WASI_EMULATED_MMAN",
+	"-D _WASI_EMULATED_GETPID",
+	"-D _USE_MATH_DEFINES",
+	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
+	"-D FL_USE_ARRAYFIRE",
+	"-D FL_ARRAYFIRE_USE_CPU",
+	"-D FL_USE_CPU",
+	"-D FL_BACKEND_CPU",
+	"-D FL_BACKEND_CUDA=false",
+	"-D AF_WITH_CPUID",
+	"-D AF_CPU",
+	"-D AF_DEBUG",
+	"-D SORT_TYPE=double",
+	"-D _CRT_SECURE_NO_WARNINGS",
+	"-D NOMINMAX",
+	"-D AFDLL",
+	"-D SMALL_MATRIX_OPT",
+	"-D NO_AVX512",
+	"-D NO_WARMUP",
+	"-D MAX_CPU_NUMBER=32",
+	"-D MAX_PARALLEL_NUMBER=1",
+	"-D NO_AFFINITY",
+	"-D BUILD_SINGLE",
+	"-D BUILD_DOUBLE",
+	"-D BUILD_COMPLEX",
+	"-D BUILD_COMPLEX16",
+	"-D FFTW_SINGLE",
+	"-D OS_LINUX",
+	"-D OS_LNX",
+	"-D __linux__",
+	"-D OPENBLAS_OS_LINUX",
+	"-D NO_SYSV_IPC",
+	"-D USE_FORGE_CPU_COPY_HELPERS",
+	"-D MULTITHREADING_DISABLED",
+	"-D BOOST_NO_EXCEPTIONS",
+	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
+	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
+	"-D AF_DISABLE_CPU_ASYNC",
+	]
+	
+[[build-library]]
+lib_name = "arrayfire"
+cpp_include_dirs = [
+	"af_forge/include/",
+	"arrayfire/include/",
+	"arrayfire/src/api/c",
+	"arrayfire/include",
+	"arrayfire/extern/half/include",
+	"arrayfire/src/backend/cpu",
+	"arrayfire/src/backend",
+	"af_glad/include",
+	"af_forge/include",
+	"openblas",
+	"fftw",
+	"./",
+	]
+cpp_paths = [
+	"arrayfire/*/*/*/*.cpp",
+	"arrayfire/*/*/*/*/*.cpp",
+	"arrayfire/*/*/*/*/*/*.cpp",
+	"arrayfire/*/*/*/*/*/*/*.cpp",
+	]
+cpp_compile_flags = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-std=c++17",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+	"-D DECLARE_LIBRARY_RENAMES",
+	"-D _WASI_EMULATED_MMAN",
+	"-D _WASI_EMULATED_GETPID",
+	"-D _USE_MATH_DEFINES",
+	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
+	"-D FL_USE_ARRAYFIRE",
+	"-D FL_ARRAYFIRE_USE_CPU",
+	"-D FL_USE_CPU",
+	"-D FL_BACKEND_CPU",
+	"-D FL_BACKEND_CUDA=false",
+	"-D AF_WITH_CPUID",
+	"-D AF_CPU",
+	"-D AF_DEBUG",
+	"-D SORT_TYPE=double",
+	"-D _CRT_SECURE_NO_WARNINGS",
+	"-D NOMINMAX",
+	"-D AFDLL",
+	"-D SMALL_MATRIX_OPT",
+	"-D NO_AVX512",
+	"-D NO_WARMUP",
+	"-D MAX_CPU_NUMBER=32",
+	"-D MAX_PARALLEL_NUMBER=1",
+	"-D NO_AFFINITY",
+	"-D BUILD_SINGLE",
+	"-D BUILD_DOUBLE",
+	"-D BUILD_COMPLEX",
+	"-D BUILD_COMPLEX16",
+	"-D FFTW_SINGLE",
+	"-D OS_LINUX",
+	"-D OS_LNX",
+	"-D __linux__",
+	"-D OPENBLAS_OS_LINUX",
+	"-D NO_SYSV_IPC",
+	"-D USE_FORGE_CPU_COPY_HELPERS",
+	"-D MULTITHREADING_DISABLED",
+	"-D BOOST_NO_EXCEPTIONS",
+	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
+	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
+	"-D AF_DISABLE_CPU_ASYNC",
+	]
+cpp_link_flags = [
+	]
+c_paths = []
+c_include_dirs = []
+c_compile_flags = [
+	]
+
+[[build-library]]
+lib_name = "flashlight"
+cpp_include_dirs = [
+	"af_forge/include/",
+	"arrayfire/include/",
+	"arrayfire/src/api/c",
+	"arrayfire/include",
+	"arrayfire/extern/half/include",
+	"arrayfire/src/backend/cpu",
+	"arrayfire/src/backend",
+	"af_glad/include",
+	"af_forge/include",
+	"openblas",
+	"fftw",
+	"./",
+	]
+cpp_paths = [
+	"flashlight/fl/*/*.cpp",
+	"flashlight/fl/*/*/*.cpp",
+	"flashlight/fl/*/*/*/*.cpp",
+	"flashlight/fl/*/*/*/*/*.cpp",
+	"flashlight/fl/*/*/*/*/*/*.cpp",
+	]
+cpp_compile_flags = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-std=c++17",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+	"-D DECLARE_LIBRARY_RENAMES",
+	"-D _WASI_EMULATED_MMAN",
+	"-D _WASI_EMULATED_GETPID",
+	"-D _USE_MATH_DEFINES",
+	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
+	"-D FL_USE_ARRAYFIRE",
+	"-D FL_ARRAYFIRE_USE_CPU",
+	"-D FL_USE_CPU",
+	"-D FL_BACKEND_CPU",
+	"-D FL_BACKEND_CUDA=false",
+	"-D AF_WITH_CPUID",
+	"-D AF_CPU",
+	"-D AF_DEBUG",
+	"-D SORT_TYPE=double",
+	"-D _CRT_SECURE_NO_WARNINGS",
+	"-D NOMINMAX",
+	"-D AFDLL",
+	"-D SMALL_MATRIX_OPT",
+	"-D NO_AVX512",
+	"-D NO_WARMUP",
+	"-D MAX_CPU_NUMBER=32",
+	"-D MAX_PARALLEL_NUMBER=1",
+	"-D NO_AFFINITY",
+	"-D BUILD_SINGLE",
+	"-D BUILD_DOUBLE",
+	"-D BUILD_COMPLEX",
+	"-D BUILD_COMPLEX16",
+	"-D FFTW_SINGLE",
+	"-D OS_LINUX",
+	"-D OS_LNX",
+	"-D __linux__",
+	"-D OPENBLAS_OS_LINUX",
+	"-D NO_SYSV_IPC",
+	"-D USE_FORGE_CPU_COPY_HELPERS",
+	"-D MULTITHREADING_DISABLED",
+	"-D BOOST_NO_EXCEPTIONS",
+	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
+	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
+	"-D AF_DISABLE_CPU_ASYNC",
+	]
+cpp_link_flags = [
+	]
+c_paths = []
+c_include_dirs = []
+c_compile_flags = [
+	]
+	
+[build-native]
+cpp_paths = [
+	"native/main.cpp",
+	"src/*.cpp",
+	]
+cpp_include_dirs = [
+	"af_glad", "arrayfire", "fftw", "openblas", "flashlight", "src/vendors/*",
+	"af_forge/include/",
+	"arrayfire/include/",
+	"arrayfire/src/api/c",
+	"arrayfire/include",
+	"arrayfire/extern/half/include",
+	"arrayfire/src/backend/cpu",
+	"arrayfire/src/backend",
+	"af_glad/include",
+	"af_forge/include",
+	"openblas",
+	"fftw",
+	"./",
+	]
+cpp_compile_flags = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	#"-fno-lto",
+    #"-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-std=c++17",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+	"-D DECLARE_LIBRARY_RENAMES",
+	"-D _WASI_EMULATED_MMAN",
+	"-D _WASI_EMULATED_GETPID",
+	"-D _USE_MATH_DEFINES",
+	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
+	"-D FL_USE_ARRAYFIRE",
+	"-D FL_ARRAYFIRE_USE_CPU",
+	"-D FL_USE_CPU",
+	"-D FL_BACKEND_CPU",
+	"-D FL_BACKEND_CUDA=false",
+	"-D AF_WITH_CPUID",
+	"-D AF_CPU",
+	"-D AF_DEBUG",
+	"-D SORT_TYPE=double",
+	"-D _CRT_SECURE_NO_WARNINGS",
+	"-D NOMINMAX",
+	"-D AFDLL",
+	"-D SMALL_MATRIX_OPT",
+	"-D NO_AVX512",
+	"-D NO_WARMUP",
+	"-D MAX_CPU_NUMBER=32",
+	"-D MAX_PARALLEL_NUMBER=1",
+	"-D NO_AFFINITY",
+	"-D BUILD_SINGLE",
+	"-D BUILD_DOUBLE",
+	"-D BUILD_COMPLEX",
+	"-D BUILD_COMPLEX16",
+	"-D FFTW_SINGLE",
+	"-D OS_LINUX",
+	"-D OS_LNX",
+	"-D __linux__",
+	"-D OPENBLAS_OS_LINUX",
+	"-D NO_SYSV_IPC",
+	"-D USE_FORGE_CPU_COPY_HELPERS",
+	"-D MULTITHREADING_DISABLED",
+	"-D BOOST_NO_EXCEPTIONS",
+	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
+	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
+	"-D AF_DISABLE_CPU_ASYNC",
+	]
+cpp_link_flags_defaults = [
+    "-std=c++17",
+	"-fuse-ld=lld",
+	]
+c_paths = []
+c_include_dirs = []
+c_compile_flags = [
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	#"-fno-lto",
+    #"-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+	"-D DECLARE_LIBRARY_RENAMES",
+	"-D _WASI_EMULATED_MMAN",
+	"-D _WASI_EMULATED_GETPID",
+	"-D _USE_MATH_DEFINES",
+	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
+	"-D FL_USE_ARRAYFIRE",
+	"-D FL_ARRAYFIRE_USE_CPU",
+	"-D FL_USE_CPU",
+	"-D FL_BACKEND_CPU",
+	"-D FL_BACKEND_CUDA=false",
+	"-D AF_WITH_CPUID",
+	"-D AF_CPU",
+	"-D AF_DEBUG",
+	"-D SORT_TYPE=double",
+	"-D _CRT_SECURE_NO_WARNINGS",
+	"-D NOMINMAX",
+	"-D AFDLL",
+	"-D SMALL_MATRIX_OPT",
+	"-D NO_AVX512",
+	"-D NO_WARMUP",
+	"-D MAX_CPU_NUMBER=32",
+	"-D MAX_PARALLEL_NUMBER=1",
+	"-D NO_AFFINITY",
+	"-D BUILD_SINGLE",
+	"-D BUILD_DOUBLE",
+	"-D BUILD_COMPLEX",
+	"-D BUILD_COMPLEX16",
+	"-D FFTW_SINGLE",
+	"-D OS_LINUX",
+	"-D OS_LNX",
+	"-D __linux__",
+	"-D OPENBLAS_OS_LINUX",
+	"-D NO_SYSV_IPC",
+	"-D USE_FORGE_CPU_COPY_HELPERS",
+	"-D MULTITHREADING_DISABLED",
+	"-D BOOST_NO_EXCEPTIONS",
+	"-D SPDLOG_DISABLE_DEFAULT_LOGGER",
+	"-D SPDLOG_NO_EXCEPTIONS",
+	"-D NOSPDLOG",
+	"-D AF_DISABLE_CPU_ASYNC",
+	]

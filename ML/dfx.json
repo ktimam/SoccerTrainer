@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "canisters": {
+    "ICMLPSample": {
+      "type": "custom",
+      "candid": "src/ICMLPSample.did",
+      "wasm": "build/ICMLPSample.wasm"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  }
+}
