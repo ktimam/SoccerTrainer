@@ -21,6 +21,7 @@
 #include "../Common/Game/Region.h"
 #include "SupportSpotCalculator.h"
 #include "../Common/FSM/StateMachine.h"
+#include "PlayerBase.h"
 
 class FieldGoal;
 class PlayerBase;
@@ -221,6 +222,16 @@ public:
 
   std::string Name()const{if (m_Color == blue) return "Blue"; return "Red";}
 
+
+  void SetAIType(PlayerBase::ai_type aitype) {
+
+      std::vector<PlayerBase*>::iterator it = m_Players.begin();
+
+      for (it; it != m_Players.end(); ++it)
+      {
+          (*it)->SetAIType(aitype);
+      }
+  }
 };
 
 #endif

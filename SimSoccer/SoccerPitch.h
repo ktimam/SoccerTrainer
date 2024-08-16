@@ -21,6 +21,7 @@
 #include "../Common/2D/Vector2D.h"
 #include <Common/Game/PhysicsManager.h>
 #include "constants.h"
+#include "../Common/NN/FieldPlayerMLP.h"
 
 class Region;
 class FieldGoal;
@@ -68,6 +69,9 @@ public:
                        m_cyClient;  
 
   PhysicsManager* m_PhysicsManager;
+
+  // Meter definition
+  static AverageValueMeter* meter;
 
   //this instantiates the regions the players utilize to  position
   //themselves

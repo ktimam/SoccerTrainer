@@ -40,7 +40,8 @@ public:
               BodyInterface& bodyInterface, BodyID body_id,
               double              max_force,
               double              max_speed,
-              double              max_turn_rate);
+              double              max_turn_rate,
+              FieldPlayerMLP* brain);
 
    ~GoalKeeper(){delete m_pStateMachine;}
 

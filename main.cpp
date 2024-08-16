@@ -6,6 +6,10 @@
 #include <windows.h>
 //#include <time.h>
 
+#define WIN32_LEAN_AND_MEAN      // Exclude rarely-used stuff from Windows headers
+
+#include <iostream>
+
 #include "SimSoccer/constants.h"
 #include "Common/misc/utils.h"
 #include "Common/Time/PrecisionTimer.h"
@@ -26,6 +30,19 @@
 #include "Common/Debug/DebugConsole.h"
 #include "Common/misc/WinHttpWrapper.h"
 #include <Common/Game/PhysicsManager.h>
+
+#include "flashlight/fl/tensor/Init.h"
+#include "flashlight/fl/dataset/datasets.h"
+#include "flashlight/fl/meter/meters.h"
+#include "flashlight/fl/nn/nn.h"
+//#include "flashlight/fl/optim/optim.h"
+#include "flashlight/fl/optim/SGDOptimizer.h"
+#include "flashlight/fl/tensor/Random.h"
+#include "flashlight/fl/tensor/TensorBase.h"
+
+using namespace fl;
+
+//#include <flashlight/fl/flashlight.h>
 
 using namespace WinHttpWrapper;
 using namespace std;
@@ -206,6 +223,7 @@ bool RenderSoccerPitch()
             gdi->BrownBrush();
 #ifdef LIVE_MODE
             if (Prm.bHighlightIfThreatened && (player->Team()->ControllingPlayer() == player) && player->isThreatened()) gdi->YellowBrush();
+            if (player->AIType() == PlayerBase::nn) gdi->LightPinkPen();
 #endif
             gdi->Circle(entity_position, 6);
 
@@ -691,7 +709,9 @@ int WINAPI WinMain (HINSTANCE hInstance,
   {
     MessageBox(NULL, "CreateWindowEx Failed!", "Error!", 0);
   }
-  
+
+  fl::init();
+
   //start the timer
   timer.Start();
 

@@ -39,6 +39,7 @@ OneVsOne::~OneVsOne()
 {
 }
 
+FieldPlayerMLP* OneVsOne::playerMLP = new FieldPlayerMLP();
 //------------------------- CreatePlayers --------------------------------
 //
 //  creates the players
@@ -60,6 +61,8 @@ void OneVsOne::CreatePlayers()
     settings->mMass = Prm.PlayerMass;
     Character* character;
 
+    playerMLP->meter = m_pPitch->meter;
+
     if (Color() == blue)
     {
         //create the players
@@ -72,7 +75,8 @@ void OneVsOne::CreatePlayers()
             Prm.PlayerMaxForce,
             Prm.PlayerMaxSpeedWithoutBall,
             Prm.PlayerMaxTurnRate,
-            PlayerBase::defender));
+            PlayerBase::defender,
+            playerMLP));
 
     }
 
@@ -88,7 +92,8 @@ void OneVsOne::CreatePlayers()
             Prm.PlayerMaxForce,
             Prm.PlayerMaxSpeedWithoutBall,
             Prm.PlayerMaxTurnRate,
-            PlayerBase::attacker));
+            PlayerBase::attacker,
+            playerMLP));
 
     }
 

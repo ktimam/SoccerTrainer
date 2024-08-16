@@ -35,13 +35,15 @@ FieldPlayer::FieldPlayer(SoccerTeam* home_team,
                       double    max_force,
                       double    max_speed,
                       double    max_turn_rate,
-                      player_role role): PlayerBase(home_team,
+                      player_role role,
+                      FieldPlayerMLP* brain): PlayerBase(home_team,
                                                     home_region,
                                                     bodyInterface, body_id,
                                                     max_force,
                                                     max_speed,
                                                     max_turn_rate,
-                                                    role)                                    
+                                                    role,
+                                                    brain)                                    
 {
   //set up the state machine
   m_pStateMachine =  new StateMachine<FieldPlayer>(this);
@@ -70,6 +72,39 @@ void FieldPlayer::Update()
   //run the logic for the current state
   m_pStateMachine->Update();
 
+  Action target_action;
+
+  target_action.KickBall = m_ActionKickBall;
+  target_action.KickForce = 0;
+  target_action.KickDirection = Vec3();
+  if (m_ActionKickBall) {
+      target_action.KickForce = m_ActionKickBallForce;
+      target_action.KickDirection = m_ActionKickBallDirection;
+  }
+
+  target_action.TrackBall = m_ActionTrackBall;
+
+  //calculate the combined steering force
+  m_pSteering->Calculate();
+  double ForwardForce = m_pSteering->ForwardComponent();
+  double TurningForce = m_pSteering->SideComponent();
+  target_action.ForwardForce = ForwardForce;
+  target_action.TurningForce = TurningForce;
+
+  //Deep Learning Logic
+  Action action = m_Brain->Process(GetObservation(), true, target_action);
+  if (m_AIType == nn) {
+      ForwardForce = action.ForwardForce;
+      TurningForce = target_action.TurningForce;
+
+      m_ActionKickBall = target_action.KickBall;
+      m_ActionKickBallForce = target_action.KickForce;
+      m_ActionKickBallDirection = target_action.KickDirection;
+
+      m_ActionTrackBall = target_action.TrackBall;
+  }
+  //End Deep Learning
+  
   //Perform Actions
   if (m_ActionKickBall) {
       m_ActionKickBall = false;
@@ -79,12 +114,6 @@ void FieldPlayer::Update()
       m_ActionTrackBall = false;
       TrackBall();
   }
-
-  //calculate the combined steering force
-  m_pSteering->Calculate();
-  double ForwardForce = m_pSteering->ForwardComponent();
-  double TurningForce = m_pSteering->SideComponent();
-
   //if no steering force is produced decelerate the player by applying a
   //braking force
   if (m_pSteering->Force().IsNearZero())

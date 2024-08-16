@@ -51,7 +51,8 @@ public:
              double         max_force,
              double         max_speed,
              double         max_turn_rate,
-             player_role    role);   
+             player_role    role,
+             FieldPlayerMLP* brain);
   
   ~FieldPlayer();
 

@@ -20,6 +20,7 @@
 #include "../Common/misc/autolist.h"
 #include "../Common/2D/Vector2D.h"
 #include "../Common/Game/MovingEntity.h"
+#include "../Common/NN/FieldPlayerMLP.h"
 
 class SoccerTeam;
 class SoccerPitch;
@@ -37,10 +38,14 @@ public:
   
   enum player_role{goal_keeper, attacker, defender};
 
+  enum ai_type{script, nn};
+
 protected:
 
   //this player's role in the team
   player_role             m_PlayerRole;
+
+  ai_type                 m_AIType;
 
   //a pointer to this player's team
   SoccerTeam*             m_pTeam;
@@ -64,6 +69,8 @@ protected:
 
   bool m_ActionTrackBall = false;
 
+  FieldPlayerMLP* m_Brain;
+
 public:
 
 
@@ -73,7 +80,8 @@ public:
              double          max_force,
              double          max_speed,
              double          max_turn_rate,
-             player_role    role);
+             player_role    role,
+             FieldPlayerMLP* brain);
 
   virtual ~PlayerBase();
 
@@ -131,6 +139,9 @@ public:
 
   player_role Role()const{return m_PlayerRole;}
 
+  ai_type AIType()const { return m_AIType; }
+  void SetAIType(ai_type aitype) { m_AIType = aitype; }
+
   double       DistSqToBall()const{return m_dDistSqToBall;}
   void        SetDistSqToBall(double val){m_dDistSqToBall = val;}
 
@@ -157,6 +168,8 @@ public:
   SoccerTeam*const         Team()const{return m_pTeam;}
   
   virtual std::string GetCurrentStateName()const = 0;
+
+  Observation GetObservation();
 };
 
 

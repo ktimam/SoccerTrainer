@@ -19,13 +19,15 @@ GoalKeeper::GoalKeeper(SoccerTeam*        home_team,
                        BodyInterface& bodyInterface, BodyID body_id,
                        double              max_force,
                        double              max_speed,
-                       double              max_turn_rate): PlayerBase(home_team,
+                       double              max_turn_rate,
+                       FieldPlayerMLP* brain): PlayerBase(home_team,
                                                              home_region,
                                                              bodyInterface, body_id,
                                                              max_force,
                                                              max_speed,
                                                              max_turn_rate,
-                                                             PlayerBase::goal_keeper)
+                                                             PlayerBase::goal_keeper,
+                                                             brain)
                                          
                                         
 {   

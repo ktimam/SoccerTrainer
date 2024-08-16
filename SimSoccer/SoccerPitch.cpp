@@ -16,6 +16,8 @@
 const int NumRegionsHorizontal = 6; 
 const int NumRegionsVertical   = 3;
 
+AverageValueMeter* SoccerPitch::meter;
+
 //------------------------------- ctor -----------------------------------
 //------------------------------------------------------------------------
 SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
@@ -51,7 +53,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 
   //create the soccer ball
   float ball_radius = 0.11f;// 3.0f;
-  RefConst<Shape> sphere_shape = new SphereShape(ball_radius);
+  RefConst<JPH::Shape> sphere_shape = new SphereShape(ball_radius);
   BodyCreationSettings bcs(sphere_shape, Vec3((double)m_cxClient / 2.0, ball_radius/2, (double)m_cyClient / 2.0), Quat::sIdentity(), EMotionType::Dynamic, Layers::MOVING);
   bcs.mOverrideMassProperties = EOverrideMassProperties::CalculateInertia;
   bcs.mMassPropertiesOverride.mMass = Prm.BallMass;
@@ -62,7 +64,8 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
   m_pBall = new SoccerBall(m_PhysicsManager->GetBodyInterface(), ball_id,
       m_vecWalls);
 
-  
+  meter = new AverageValueMeter();
+
   //create the teams 
   if (mode == five_vs_five_match) {	  
 	  m_pRedTeam  = new SoccerTeam(m_pRedGoal, m_pBlueGoal, this, SoccerTeam::red);
@@ -227,12 +230,21 @@ void SoccerPitch::Update()
 
   static int tick = 0;
 
+  meter->reset();
+
   //update the teams
   m_pRedTeam->Update();
   m_pBlueTeam->Update();
 
   //update the balls
   m_pBall->Update();
+
+  if (meter->value()[0] < 0.01) {
+	  m_pBlueTeam->SetAIType(PlayerBase::nn);
+  }
+  if(tick%10)
+	  std::cout << "Epoch: " << tick++ << " Mean Squared Error: " << meter->value()[0]
+		  << std::endl << std::endl;
 
   //PhysicsManager::Instance()->Update();
   //CheckGoal();

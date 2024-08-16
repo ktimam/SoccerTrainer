@@ -34,7 +34,8 @@ PlayerBase::PlayerBase(SoccerTeam* home_team,
                        double    max_force,
                        double    max_speed,
                        double    max_turn_rate,
-                       player_role role):    
+                       player_role role,
+                       FieldPlayerMLP* brain):
 
     MovingEntity(bodyInterface, body_id, 
                  max_speed,
@@ -44,7 +45,8 @@ PlayerBase::PlayerBase(SoccerTeam* home_team,
    m_dDistSqToBall(MaxFloat),
    m_iHomeRegion(home_region),
    m_iDefaultRegion(home_region),
-   m_PlayerRole(role)
+   m_PlayerRole(role),
+   m_Brain(brain)
 {
   //set up the steering behavior class
   m_pSteering = new SteeringBehaviors(this,
@@ -269,6 +271,28 @@ SoccerPitch* const PlayerBase::Pitch()const
 const Region* const PlayerBase::HomeRegion()const
 {
   return Pitch()->GetRegionFromIndex(m_iHomeRegion);
+}
+
+Observation PlayerBase::GetObservation()
+{
+    Observation observation;
+    observation.BallPosition = Team()->Pitch()->Ball()->Pos();
+    observation.AgentPosition = Pos();
+
+    std::vector<PlayerBase*>::const_iterator plrs_itr = Team()->Members().begin();
+    for (plrs_itr; plrs_itr != Team()->Members().end(); ++plrs_itr)
+    {
+        if (*plrs_itr != this) {
+            observation.TeamPositions.push_back((*plrs_itr)->Pos());
+        }
+    }
+    plrs_itr = Team()->Opponents()->Members().begin();
+    for (plrs_itr; plrs_itr != Team()->Opponents()->Members().end(); ++plrs_itr)
+    {
+        observation.OpponentPositions.push_back((*plrs_itr)->Pos());
+    }
+
+    return observation;
 }
 
 

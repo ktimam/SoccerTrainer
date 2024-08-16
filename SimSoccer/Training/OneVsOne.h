@@ -1,5 +1,7 @@
 #pragma once
 #include "../SoccerTeam.h"
+#include "../Common/NN/FieldPlayerMLP.h"
+
 class OneVsOne :
     public SoccerTeam
 {
@@ -8,6 +10,7 @@ protected:
     virtual void CreatePlayers() override;
 
 public:
+    static FieldPlayerMLP* playerMLP;
 
     OneVsOne(FieldGoal* home_goal,
         FieldGoal* opponents_goal,
