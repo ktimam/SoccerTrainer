@@ -690,12 +690,22 @@ void Dribble::Execute(FieldPlayer* player)
     player->SetActionKickBall(Vec3(direction.x, 0, direction.y), KickingForce);
   }
 
-  //kick the ball down the field
+  //kick the ball down the field and away from opponents
   else
   {
+      Vec3 kick_direction = player->Team()->HomeGoal()->Facing();
+      kick_direction = kick_direction - player->Pos();
+      kick_direction = kick_direction.Normalized();
+
+      Vec3 close_plr = player->Team()->Opponents()->PlayerClosestToBall()->Pos();
+      close_plr = close_plr - player->Pos();
+      close_plr = close_plr.Normalized();
+
+      kick_direction += close_plr;
+
     /*player->Ball()->Kick(player->Team()->HomeGoal()->Facing(),
                          Prm.MaxDribbleForce);*/
-    player->SetActionKickBall(player->Team()->HomeGoal()->Facing(),
+    player->SetActionKickBall(kick_direction,
         Prm.MaxDribbleForce);
   }
 
