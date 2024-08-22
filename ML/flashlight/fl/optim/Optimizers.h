@@ -35,7 +35,7 @@ class FL_API FirstOrderOptimizer {
 
  protected:
   std::vector<Variable> parameters_;
-  double lr_;
+  float lr_;
 
   FirstOrderOptimizer() = default;
 
@@ -51,12 +51,12 @@ class FL_API FirstOrderOptimizer {
   virtual void step() = 0;
 
   /** Get the learning rate. */
-  double getLr() const {
+  float getLr() const {
     return lr_;
   }
 
   /** Set the learning rate. */
-  void setLr(double lr) {
+  void setLr(float lr) {
     lr_ = lr;
   }
 

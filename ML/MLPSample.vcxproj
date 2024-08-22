@@ -13,6 +13,14 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseDll|Win32">
+      <Configuration>ReleaseDll</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseDll|x64">
+      <Configuration>ReleaseDll</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -47,6 +55,12 @@
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDll|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -76,6 +90,17 @@
     <UseILP64Interfaces1A>false</UseILP64Interfaces1A>
     <UseIntelIPP1A>false</UseIntelIPP1A>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDll|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseInteloneTBB>false</UseInteloneTBB>
+    <UseMpiLibrary1A>INTELMPI</UseMpiLibrary1A>
+    <UseInteloneMKL>No</UseInteloneMKL>
+    <UseILP64Interfaces1A>false</UseILP64Interfaces1A>
+    <UseIntelIPP1A>false</UseIntelIPP1A>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -94,6 +119,9 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDll|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -101,6 +129,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDll|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -113,6 +144,11 @@
     <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|x64'">
+    <IncludePath>$(ProjectDir)oneDNN\src;$(ProjectDir)oneDNN;$(ProjectDir)/arrayfire/src/api/c;$(ProjectDir)/arrayfire/include;$(ProjectDir)/arrayfire/extern/half/include;$(ProjectDir)/arrayfire/src/backend/cpu;$(ProjectDir)/arrayfire/src/backend;$(ProjectDir)/af_glad/include;$(ProjectDir)/af_forge/include;$(ProjectDir)openblas;$(ProjectDir)fftw;$(ProjectDir);$(IncludePath)</IncludePath>
+    <ExternalIncludePath>$(VC_IncludePath);$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDll|x64'">
     <IncludePath>$(ProjectDir)oneDNN\src;$(ProjectDir)oneDNN;$(ProjectDir)/arrayfire/src/api/c;$(ProjectDir)/arrayfire/include;$(ProjectDir)/arrayfire/extern/half/include;$(ProjectDir)/arrayfire/src/backend/cpu;$(ProjectDir)/arrayfire/src/backend;$(ProjectDir)/af_glad/include;$(ProjectDir)/af_forge/include;$(ProjectDir)openblas;$(ProjectDir)fftw;$(ProjectDir);$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(VC_IncludePath);$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
@@ -133,6 +169,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDll|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDll|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
@@ -187,6 +235,28 @@
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;OS_WIN;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_ARRAYFIRE;FL_ARRAYFIRE_USE_CPU;FL_USE_CPU;FL_BACKEND_CPU;FL_BACKEND_CUDA=false;AF_WITH_CPUID;AF_CPU;AF_DEBUG;SORT_TYPE=double;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AFDLL;SMALL_MATRIX_OPT;NO_AVX512;NO_WARMUP;MAX_CPU_NUMBER=32;MAX_PARALLEL_NUMBER=1;NO_AFFINITY;BUILD_SINGLE;FFTW_SINGLE;OS_WINNT;C_MSVC;OPENBLAS_OS_WINNT;OPENBLAS_C_MSVC;USE_FORGE_CPU_COPY_HELPERS;MULTITHREADING_DISABLED;BOOST_NO_EXCEPTIONS;SPDLOG_DISABLE_DEFAULT_LOGGER;SPDLOG_NO_EXCEPTIONS;AF_DISABLE_CPU_ASYNC;NOSPDLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <AdditionalOptions>/bigobj /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <SYCLWarningLevel>DisableAllWarnings</SYCLWarningLevel>
+      <FSYCLUnnamedLambda>No</FSYCLUnnamedLambda>
+      <ExceptionHandling>false</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDll|x64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>_CONSOLE;OS_WIN;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_ARRAYFIRE;FL_ARRAYFIRE_USE_CPU;FL_USE_CPU;FL_BACKEND_CPU;FL_BACKEND_CUDA=false;AF_WITH_CPUID;AF_CPU;SORT_TYPE=double;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AFDLL;SMALL_MATRIX_OPT;NO_AVX512;NO_WARMUP;MAX_CPU_NUMBER=32;MAX_PARALLEL_NUMBER=1;NO_AFFINITY;BUILD_SINGLE;FFTW_SINGLE;OS_WINNT;C_MSVC;OPENBLAS_OS_WINNT;OPENBLAS_C_MSVC;USE_FORGE_CPU_COPY_HELPERS;MULTITHREADING_DISABLED;BOOST_NO_EXCEPTIONS;SPDLOG_DISABLE_DEFAULT_LOGGER;SPDLOG_NO_EXCEPTIONS;AF_DISABLE_CPU_ASYNC;NOSPDLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
@@ -1200,8 +1270,15 @@
     <ClInclude Include="flashlight\fl\nn\modules\WeightNorm.h" />
     <ClInclude Include="flashlight\fl\nn\nn.h" />
     <ClInclude Include="flashlight\fl\nn\Utils.h" />
+    <ClInclude Include="flashlight\fl\optim\AdadeltaOptimizer.h" />
+    <ClInclude Include="flashlight\fl\optim\AdagradOptimizer.h" />
+    <ClInclude Include="flashlight\fl\optim\AdamOptimizer.h" />
+    <ClInclude Include="flashlight\fl\optim\AMSgradOptimizer.h" />
+    <ClInclude Include="flashlight\fl\optim\NAGOptimizer.h" />
+    <ClInclude Include="flashlight\fl\optim\NovogradOptimizer.h" />
     <ClInclude Include="flashlight\fl\optim\optim.h" />
     <ClInclude Include="flashlight\fl\optim\Optimizers.h" />
+    <ClInclude Include="flashlight\fl\optim\RMSPropOptimizer.h" />
     <ClInclude Include="flashlight\fl\optim\SGDOptimizer.h" />
     <ClInclude Include="flashlight\fl\optim\Utils.h" />
     <ClInclude Include="flashlight\fl\runtime\Device.h" />
@@ -2085,7 +2162,14 @@
     <ClCompile Include="flashlight\fl\nn\modules\View.cpp" />
     <ClCompile Include="flashlight\fl\nn\modules\WeightNorm.cpp" />
     <ClCompile Include="flashlight\fl\nn\Utils.cpp" />
+    <ClCompile Include="flashlight\fl\optim\AdadeltaOptimizer.cpp" />
+    <ClCompile Include="flashlight\fl\optim\AdagradOptimizer.cpp" />
+    <ClCompile Include="flashlight\fl\optim\AdamOptimizer.cpp" />
+    <ClCompile Include="flashlight\fl\optim\AMSgradOptimizer.cpp" />
+    <ClCompile Include="flashlight\fl\optim\NAGOptimizer.cpp" />
+    <ClCompile Include="flashlight\fl\optim\NovogradOptimizer.cpp" />
     <ClCompile Include="flashlight\fl\optim\Optimizers.cpp" />
+    <ClCompile Include="flashlight\fl\optim\RMSPropOptimizer.cpp" />
     <ClCompile Include="flashlight\fl\optim\SGDOptimizer.cpp" />
     <ClCompile Include="flashlight\fl\optim\Utils.cpp" />
     <ClCompile Include="flashlight\fl\runtime\Device.cpp" />
