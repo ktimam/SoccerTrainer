@@ -79,6 +79,7 @@ public:
   Vec3  Heading()const{
       return m_BodyInterface.GetRotation(m_EntityPhysicsID) * Vec3(0, 0, 1);
   }
+  //Rotate degrees in radians
   void Rotate(float degrees) {
       //float degrees_rad = DegreesToRadians(degrees);
       float heading_degrees = m_BodyInterface.GetRotation(m_EntityPhysicsID).GetRotationAngle(Vec3(0, -1, 0));

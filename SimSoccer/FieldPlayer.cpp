@@ -93,27 +93,30 @@ void FieldPlayer::Update()
 
   //Deep Learning Logic
   Action action = m_Brain->Process(GetObservation(), true, target_action);
+  if (action.ForwardForce == INFINITY) {
+      std::cout << "NAN : " << INFINITY << std::endl;
+  }
   if (m_AIType == nn) {
       ForwardForce = action.ForwardForce;
-      TurningForce = target_action.TurningForce;
+      TurningForce = action.TurningForce;
 
-      m_ActionKickBall = target_action.KickBall;
-      m_ActionKickBallForce = target_action.KickForce;
-      m_ActionKickBallDirection = target_action.KickDirection;
+      m_ActionKickBall = action.KickBall;
+      m_ActionKickBallForce = action.KickForce;
+      m_ActionKickBallDirection = action.KickDirection;
 
-      m_ActionTrackBall = target_action.TrackBall;
+      m_ActionTrackBall = action.TrackBall;
   }
   //End Deep Learning
   
   //Perform Actions
-  if (m_ActionKickBall) {
-      m_ActionKickBall = false;
+  if (m_ActionKickBall && BallWithinKickingRange()) {
       Ball()->Kick(m_ActionKickBallDirection, m_ActionKickBallForce);
   }
+  m_ActionKickBall = false;
   if (m_ActionTrackBall) {
-      m_ActionTrackBall = false;
       TrackBall();
   }
+  m_ActionTrackBall = false;
   //if no steering force is produced decelerate the player by applying a
   //braking force
   if (m_pSteering->Force().IsNearZero())
@@ -123,10 +126,12 @@ void FieldPlayer::Update()
       SetVelocity(Velocity() * BrakingRate);
   }
 
+  ForwardForce = Clamp(ForwardForce, -m_dMaxForce, m_dMaxForce);
+
   //the steering force's side component is a force that rotates the 
   //player about its axis. We must limit the rotation so that a player
   //can only turn by PlayerMaxTurnRate rads per update.
-  TurningForce = Clamp(TurningForce, -Prm.PlayerMaxTurnRate, Prm.PlayerMaxTurnRate);
+  TurningForce = Clamp(TurningForce, -m_dMaxTurnRate, m_dMaxTurnRate);
 
   //rotate the heading vector
   //Vec2DRotateAroundOrigin(m_vHeading, TurningForce);

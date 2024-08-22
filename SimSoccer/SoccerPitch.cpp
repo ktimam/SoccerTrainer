@@ -83,6 +83,9 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
   m_pRedTeam->SetOpponents(m_pBlueTeam);
   m_pBlueTeam->SetOpponents(m_pRedTeam); 
 
+  //Set blue team to use Neural Network
+  //m_pBlueTeam->SetAIType(PlayerBase::nn);
+
   //create the field outside lines
   Vector2D TopLeft(m_pPlayingArea->Left(), m_pPlayingArea->Top());                                        
   Vector2D TopRight(m_pPlayingArea->Right(), m_pPlayingArea->Top());
@@ -229,6 +232,7 @@ void SoccerPitch::Update()
   if (m_bPaused) return;
 
   static int tick = 0;
+  static int ball_freeze_duration = 0;
 
   meter->reset();
 
@@ -238,12 +242,23 @@ void SoccerPitch::Update()
 
   //update the balls
   m_pBall->Update();
+  //Hack to get ball out of stuck areas
+  if (GameOn() && m_pBall->Pos() == m_pBall->OldPos()) {
+	  ball_freeze_duration++;
+  }
+  else {
+	  ball_freeze_duration = 0;
+  }
+  if (ball_freeze_duration > 2000) {
+	  m_pBall->SetPos(PlayingArea()->Center());
+	  ball_freeze_duration = 0;
+  }
 
   if (meter->value()[0] < 0.01) {
 	  m_pBlueTeam->SetAIType(PlayerBase::nn);
   }
-  if(tick%10)
-	  std::cout << "Epoch: " << tick++ << " Mean Squared Error: " << meter->value()[0]
+  if(tick++%1000 == 0)
+	  std::cout << "Epoch: " << tick << " Mean Squared Error: " << meter->value()[0]
 		  << std::endl << std::endl;
 
   //PhysicsManager::Instance()->Update();

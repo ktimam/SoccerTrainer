@@ -48,7 +48,7 @@ using namespace WinHttpWrapper;
 using namespace std;
 using json = nlohmann::json;
 
-#define PLAYER_STATE_INFO_ON
+//#define PLAYER_STATE_INFO_ON
 
 //#define SERVER_MODE
 //#define CLIENT_MODE
@@ -58,7 +58,7 @@ using json = nlohmann::json;
 //
 //------------------------------------------------------------------------
 
-const int MATCH_DURATION = 45;
+const int MATCH_DURATION = 2000;// 45;
 const int MATCH_RATE = 6;
 
 const int MILLI_IN_SECOND = 20;
@@ -68,6 +68,8 @@ const int SECOND_MAX_VALUE = 60;
 const bool LOG_MATCH_OUTPUT = true;
 
 const int SNAPSHOT_RATE = 5;
+
+int RENDERING_RATE = 100;
 
 int mTickCount = 0;
 bool mMatchFinished = false;
@@ -796,31 +798,33 @@ int WINAPI WinMain (HINSTANCE hInstance,
       IncrementTime(SNAPSHOT_RATE);
       g_LastSnapshot = (*it);
 #else
-      if (!mMatchFinished)
+      //Don't render every step.
+      int steps = 0;
+      while (!mMatchFinished && steps++ < RENDERING_RATE)
       {
-          if (g_SoccerPitch->GameOn())
-          {
-            IncrementTime(1);
-          }
-          g_SoccerPitch->Update();
-          PhysicsManager::Instance()->Update();
-          g_SoccerPitch->CheckGoal();
-         
-          if (LOG_MATCH_OUTPUT)
-          {
-            updates_count++;
-            //Don't take snapshot for every move
-            if (updates_count % SNAPSHOT_RATE == 1 || updates_count == 1)
-            {
-                g_LastSnapshot = g_MatchReplay->AddSnapshot(g_SoccerPitch);
-            }
-            if (mMatchFinished)
-            {
-              json raw_data = g_MatchReplay->Snapshots();
-              std::ofstream o("match_client.json");
-              o << std::setw(4) << raw_data.dump() << std::endl;
-            }
-          }
+		  if (g_SoccerPitch->GameOn())
+		  {
+			  IncrementTime(1);
+		  }
+		  g_SoccerPitch->Update();
+		  PhysicsManager::Instance()->Update();
+		  g_SoccerPitch->CheckGoal();
+
+		  if (LOG_MATCH_OUTPUT)
+		  {
+			  updates_count++;
+			  //Don't take snapshot for every move
+			  if (updates_count % SNAPSHOT_RATE == 1 || updates_count == 1)
+			  {
+				  g_LastSnapshot = g_MatchReplay->AddSnapshot(g_SoccerPitch);
+			  }
+			  if (mMatchFinished)
+			  {
+				  json raw_data = g_MatchReplay->Snapshots();
+				  std::ofstream o("match_client.json");
+				  o << std::setw(4) << raw_data.dump() << std::endl;
+			  }
+		  }
       }
 #endif // LIVE_MODE
 

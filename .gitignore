@@ -386,3 +386,6 @@ FodyWeavers.xsd
 /DebugLog.txt
 
 build-library/
+/DawnCache
+/Intel® VTune™ Profiler Results/SimpleSoccer
+/GPUCache

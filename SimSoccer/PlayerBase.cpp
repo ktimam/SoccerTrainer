@@ -276,8 +276,15 @@ const Region* const PlayerBase::HomeRegion()const
 Observation PlayerBase::GetObservation()
 {
     Observation observation;
-    observation.BallPosition = Team()->Pitch()->Ball()->Pos();
+    observation.BallPosition  = Team()->Pitch()->Ball()->Pos();
+    observation.BallVelocity = Team()->Pitch()->Ball()->Velocity();
+    observation.BallKickable = BallWithinKickingRange();
     observation.AgentPosition = Pos();
+    observation.AgentHeading = Heading();
+    observation.AgentVelocity = Velocity();
+    observation.AgentTarget   = Steering()->Target();
+    observation.ClosestToBall = isClosestPlayerOnPitchToBall();
+    observation.TeamInControl = Team()->InControl();
 
     std::vector<PlayerBase*>::const_iterator plrs_itr = Team()->Members().begin();
     for (plrs_itr; plrs_itr != Team()->Members().end(); ++plrs_itr)

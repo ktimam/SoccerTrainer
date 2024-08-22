@@ -5,15 +5,26 @@ AverageValueMeter* FieldPlayerMLP::meter;
 FieldPlayerMLP::FieldPlayerMLP() {
 
 	// Model definition - 2-layer Perceptron with ReLU activation
-	model.add(Linear(nInputCount, 100));
+	model.add(Linear(nInputCount, 1024));
 	model.add(ReLU());
-	model.add(Linear(100, nOutputCount));
+	model.add(Linear(1024, 512));
+	model.add(ReLU());
+	model.add(Linear(512, 256));
+	model.add(ReLU());
+	model.add(Linear(256, 256));
+	model.add(ReLU());
+	model.add(Linear(256, 128));
+	model.add(ReLU());
+	model.add(Linear(128, 128));
+	model.add(ReLU());
+	model.add(Linear(128, nOutputCount));
 
 	// MSE loss
 	loss = MeanSquaredError();
 
 	// Optimizer definition
-	sgd = new SGDOptimizer(model.params(), learningRate, momentum);
+	//optimizer = new SGDOptimizer(model.params(), learningRate, momentum);
+	optimizer = new AdagradOptimizer(model.params(), learningRate);
 
 
 }
@@ -25,7 +36,7 @@ Action FieldPlayerMLP::Process(Observation observation, bool backpropagate, Acti
 	//std::cout << "observation_tensor : " << observation_tensor << std::endl;
 	//std::cout << "decision : " << decision << std::endl;
 
-	sgd->zeroGrad();
+	optimizer->zeroGrad();
 
 	// Forward propagation
 	auto result = model(input(observation_tensor));
@@ -39,7 +50,7 @@ Action FieldPlayerMLP::Process(Observation observation, bool backpropagate, Acti
 		l.backward();
 
 		// Update parameters
-		sgd->step();
+		optimizer->step();
 
 		//std::cout << "l.scalar<float>() : " << l.scalar<float>() << std::endl;
 		meter->add(l.scalar<float>());

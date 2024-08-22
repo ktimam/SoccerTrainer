@@ -50,7 +50,7 @@ private:
         Friction = -0.015;//GetNextParameterDouble(); 
 
         KeeperInBallRange = 1;// 10;//GetNextParameterDouble();    
-        PlayerInTargetRange = 0.2;// 10;//GetNextParameterDouble(); 
+        PlayerInTargetRange = 0.25;// 10;//GetNextParameterDouble(); 
         PlayerKickingDistance = 0.85;// 1;// 6;//GetNextParameterDouble(); 
         PlayerKickFrequency = 8;//GetNextParameterDouble();
 
@@ -90,7 +90,7 @@ private:
         bViewTargets = 1;//GetNextParameterBool();
         bHighlightIfThreatened = 0;//GetNextParameterBool();
 
-        FrameRate = 240;//GetNextParameterInt();
+        FrameRate = 0;// 240 * 4;//GetNextParameterInt();
 
         SeparationCoefficient = 3;//erDouble(); 
         ViewDistance = 3;// 30;//GetNextParameterDouble(); 
