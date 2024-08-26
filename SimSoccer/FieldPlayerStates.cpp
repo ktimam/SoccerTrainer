@@ -266,9 +266,10 @@ void SupportAttacker::Execute(FieldPlayer* player)
     }
 
   //if his team loses control go back home
-  if (!player->Team()->InControl())
+  if (!player->Team()->InControl() || !player->Pitch()->GameOn())
   {
-    player->GetFSM()->ChangeState(ReturnToHomeRegion::Instance()); return;
+    player->GetFSM()->ChangeState(ReturnToHomeRegion::Instance()); 
+    return;
   } 
 
 

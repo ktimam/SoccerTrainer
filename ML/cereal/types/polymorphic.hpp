@@ -185,7 +185,7 @@ namespace cereal
   {
     //! Error message used for unregistered polymorphic types
     /*! @internal */
-    #define UNREGISTERED_POLYMORPHIC_EXCEPTION(LoadSave, Name)                                                                                      \
+    //#define UNREGISTERED_POLYMORPHIC_EXCEPTION(LoadSave, Name)                                                                                      \
       //throw cereal::Exception("Trying to " #LoadSave " an unregistered polymorphic type (" + Name + ").\n"                                          \
                               "Make sure your type is registered with CEREAL_REGISTER_TYPE and that the archive "                                   \
                               "you are using was included (and registered with CEREAL_REGISTER_ARCHIVE) prior to calling CEREAL_REGISTER_TYPE.\n"   \
@@ -217,8 +217,8 @@ namespace cereal
       auto const & bindingMap = detail::StaticObject<detail::InputBindingMap<Archive>>::getInstance().map;
 
       auto binding = bindingMap.find(name);
-      if(binding == bindingMap.end())
-        UNREGISTERED_POLYMORPHIC_EXCEPTION(load, name)
+      /*if(binding == bindingMap.end())
+        UNREGISTERED_POLYMORPHIC_EXCEPTION(load, name)*/
       return binding->second;
     }
 
@@ -273,7 +273,7 @@ namespace cereal
                              || std::is_abstract<T>::value, bool>::type
     serialize_wrapper(Archive &, std::shared_ptr<T> &, std::uint32_t const nameid)
     {
-      if(nameid & detail::msb2_32bit)
+      //if(nameid & detail::msb2_32bit)
         //throw cereal::Exception("Cannot load a polymorphic type that is not default constructable and does not have a load_and_construct function");
       return false;
     }
@@ -290,7 +290,7 @@ namespace cereal
                                || std::is_abstract<T>::value, bool>::type
     serialize_wrapper(Archive &, std::unique_ptr<T, D> &, std::uint32_t const nameid)
     {
-      if(nameid & detail::msb2_32bit)
+      //if(nameid & detail::msb2_32bit)
         //throw cereal::Exception("Cannot load a polymorphic type that is not default constructable and does not have a load_and_construct function");
       return false;
     }
@@ -320,8 +320,8 @@ namespace cereal
     auto const & bindingMap = detail::StaticObject<detail::OutputBindingMap<Archive>>::getInstance().map;
 
     auto binding = bindingMap.find(std::type_index(ptrinfo));
-    if(binding == bindingMap.end())
-      UNREGISTERED_POLYMORPHIC_EXCEPTION(save, cereal::util::demangle(ptrinfo.name()))
+    /*if(binding == bindingMap.end())
+      UNREGISTERED_POLYMORPHIC_EXCEPTION(save, cereal::util::demangle(ptrinfo.name()))*/
 
     binding->second.shared_ptr(&ar, ptr.get(), tinfo);
   }
@@ -355,8 +355,8 @@ namespace cereal
     auto const & bindingMap = detail::StaticObject<detail::OutputBindingMap<Archive>>::getInstance().map;
 
     auto binding = bindingMap.find(std::type_index(ptrinfo));
-    if(binding == bindingMap.end())
-      UNREGISTERED_POLYMORPHIC_EXCEPTION(save, cereal::util::demangle(ptrinfo.name()))
+    /*if(binding == bindingMap.end())
+      UNREGISTERED_POLYMORPHIC_EXCEPTION(save, cereal::util::demangle(ptrinfo.name()))*/
 
     binding->second.shared_ptr(&ar, ptr.get(), tinfo);
   }
@@ -419,8 +419,8 @@ namespace cereal
     auto const & bindingMap = detail::StaticObject<detail::OutputBindingMap<Archive>>::getInstance().map;
 
     auto binding = bindingMap.find(std::type_index(ptrinfo));
-    if(binding == bindingMap.end())
-      UNREGISTERED_POLYMORPHIC_EXCEPTION(save, cereal::util::demangle(ptrinfo.name()))
+    /*if(binding == bindingMap.end())
+      UNREGISTERED_POLYMORPHIC_EXCEPTION(save, cereal::util::demangle(ptrinfo.name()))*/
 
     binding->second.unique_ptr(&ar, ptr.get(), tinfo);
   }
@@ -454,8 +454,8 @@ namespace cereal
     auto const & bindingMap = detail::StaticObject<detail::OutputBindingMap<Archive>>::getInstance().map;
 
     auto binding = bindingMap.find(std::type_index(ptrinfo));
-    if(binding == bindingMap.end())
-      UNREGISTERED_POLYMORPHIC_EXCEPTION(save, cereal::util::demangle(ptrinfo.name()))
+    /*if(binding == bindingMap.end())
+      UNREGISTERED_POLYMORPHIC_EXCEPTION(save, cereal::util::demangle(ptrinfo.name()))*/
 
     binding->second.unique_ptr(&ar, ptr.get(), tinfo);
   }

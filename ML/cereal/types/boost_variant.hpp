@@ -152,7 +152,7 @@ namespace cereal
     using LoadFuncType = void(*)(Archive &, boost::variant<VariantTypes...> &);
     CEREAL_CONSTEXPR_LAMBDA LoadFuncType loadFuncArray[] = {&boost_variant_detail::load_variant_wrapper<VariantTypes>::load_variant...};
 
-    if(which >= int32_t(sizeof(loadFuncArray)/sizeof(loadFuncArray[0])))
+    //if(which >= int32_t(sizeof(loadFuncArray)/sizeof(loadFuncArray[0])))
       //throw Exception("Invalid 'which' selector when deserializing boost::variant");
 
     loadFuncArray[which](ar, variant);

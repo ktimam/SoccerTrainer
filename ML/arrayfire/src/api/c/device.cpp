@@ -112,7 +112,11 @@ af_err af_init() {
     /*try*/ {
         ///*thread_local*/ std::once_flag flag;
         //std::call_once(flag, []() {
-            init();
+        static bool initialized = false;
+        if(initialized) return AF_SUCCESS;
+
+        init();
+        initialized = true;
 #if defined(USE_MKL) && !defined(USE_STATIC_MKL)
             int errCode = -1;
             // Have used the AF_MKL_INTERFACE_SIZE as regular if's so that

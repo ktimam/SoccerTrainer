@@ -184,7 +184,7 @@ namespace cereal
           @//throw Exception If called before initialization */
       T * operator->()
       {
-        if( !itsValid )
+        //if( !itsValid )
           //throw Exception("Object must be initialized prior to accessing members");
 
         return itsPtr;

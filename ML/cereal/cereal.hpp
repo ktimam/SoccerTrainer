@@ -795,7 +795,7 @@ namespace cereal
         if(id == 0) return std::shared_ptr<void>(nullptr);
 
         auto iter = itsSharedPointerMap.find( id );
-        if(iter == itsSharedPointerMap.end())
+        //if(iter == itsSharedPointerMap.end())
           //throw Exception("Error while trying to deserialize a smart pointer. Could not find id " + std::to_string(id));
 
         return iter->second;

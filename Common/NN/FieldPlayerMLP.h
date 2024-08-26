@@ -36,7 +36,7 @@ static float normalize(float val, float min_val, float max_val) {
 }
 
 static float normalizedXPos(float absolute_x_pos, bool team_in_control) {
-	float tolerance_x = .1 * PitchLength;
+	float tolerance_x = .2 * PitchLength;
 	//if (team_in_control) 
 	{
 		return normalize(absolute_x_pos, -tolerance_x, PitchLength + tolerance_x);
@@ -47,7 +47,7 @@ static float normalizedXPos(float absolute_x_pos, bool team_in_control) {
 }
 
 static float normalizedYPos(float absolute_y_pos) {
-	float tolerance_y = .1 * PitchWidth;
+	float tolerance_y = .2 * PitchWidth;
 	return normalize(absolute_y_pos, -PitchWidth - tolerance_y,
 		PitchWidth + tolerance_y);
 }
@@ -157,9 +157,9 @@ struct Action {
 class FieldPlayerMLP
 {
 private:
-	Sequential model;
+	std::shared_ptr<Sequential>  model;
+	std::shared_ptr < AdagradOptimizer> optimizer;
 	MeanSquaredError loss;
-	FirstOrderOptimizer* optimizer;
 
 public:
 	FieldPlayerMLP();
@@ -175,5 +175,8 @@ public:
 	/// <param name="target">The correct target to train agent against. backpropagate needs to be set to true.</param>
 	/// <returns>Action that the agent should take</returns>
 	Action Process(Observation observation, bool backpropagate, Action target);
+
+	bool Save(string aFileName);
+	bool Load(string aFileName);
 };
 

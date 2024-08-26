@@ -3,29 +3,27 @@
 AverageValueMeter* FieldPlayerMLP::meter;
 
 FieldPlayerMLP::FieldPlayerMLP() {
-
 	// Model definition - 2-layer Perceptron with ReLU activation
-	model.add(Linear(nInputCount, 1024));
-	model.add(ReLU());
-	model.add(Linear(1024, 512));
-	model.add(ReLU());
-	model.add(Linear(512, 256));
-	model.add(ReLU());
-	model.add(Linear(256, 256));
-	model.add(ReLU());
-	model.add(Linear(256, 128));
-	model.add(ReLU());
-	model.add(Linear(128, 128));
-	model.add(ReLU());
-	model.add(Linear(128, nOutputCount));
+	model = std::make_shared <Sequential>();
+	model->add(Linear(nInputCount, 1024));
+	model->add(ReLU());
+	model->add(Linear(1024, 512));
+	model->add(ReLU());
+	model->add(Linear(512, 256));
+	model->add(ReLU());
+	model->add(Linear(256, 256));
+	model->add(ReLU());
+	model->add(Linear(256, 128));
+	model->add(ReLU());
+	model->add(Linear(128, 128));
+	model->add(ReLU());
+	model->add(Linear(128, nOutputCount));
+	// Optimizer definition
+	//optimizer = new SGDOptimizer(model->params(), learningRate, momentum);
+	optimizer = std::make_shared < AdagradOptimizer>(model->params(), learningRate);
 
 	// MSE loss
 	loss = MeanSquaredError();
-
-	// Optimizer definition
-	//optimizer = new SGDOptimizer(model.params(), learningRate, momentum);
-	optimizer = new AdagradOptimizer(model.params(), learningRate);
-
 
 }
 
@@ -39,7 +37,7 @@ Action FieldPlayerMLP::Process(Observation observation, bool backpropagate, Acti
 	optimizer->zeroGrad();
 
 	// Forward propagation
-	auto result = model(input(observation_tensor));
+	auto result = model->forward(input(observation_tensor));
 	//std::cout << "result : " << result.tensor() << std::endl;
 
 	if (backpropagate) {
@@ -57,4 +55,18 @@ Action FieldPlayerMLP::Process(Observation observation, bool backpropagate, Acti
 	}
 
 	return Action::toAction(result.tensor());
+}
+
+bool FieldPlayerMLP::Save(string aFileName)
+{
+	fl::save(aFileName, model);
+	return true;
+}
+
+bool FieldPlayerMLP::Load(string aFileName)
+{
+	model = std::make_shared <Sequential>();
+	fl::load(aFileName, model);
+	optimizer = std::make_shared < AdagradOptimizer>(model->params(), learningRate);
+	return true;
 }

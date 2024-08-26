@@ -61,6 +61,7 @@ void OneVsOne::CreatePlayers()
     settings->mMass = Prm.PlayerMass;
     Character* character;
 
+    playerMLP->Load("Models/model2");
     playerMLP->meter = m_pPitch->meter;
 
     if (Color() == blue)

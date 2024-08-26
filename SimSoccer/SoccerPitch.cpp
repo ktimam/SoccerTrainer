@@ -240,19 +240,24 @@ void SoccerPitch::Update()
   m_pRedTeam->Update();
   m_pBlueTeam->Update();
 
-  //update the balls
-  m_pBall->Update();
   //Hack to get ball out of stuck areas
-  if (GameOn() && m_pBall->Pos() == m_pBall->OldPos()) {
+  if (GameOn() && 
+	  isEqual(m_pBall->Pos().GetX(), m_pBall->OldPos().GetX(), 0.01) && 
+	  isEqual(m_pBall->Pos().GetZ(), m_pBall->OldPos().GetZ(), 0.01)
+	  ) {
 	  ball_freeze_duration++;
   }
   else {
+	  if(ball_freeze_duration != 0)
+				std::cout << "ball_freeze_duration : " << ball_freeze_duration << std::endl;
 	  ball_freeze_duration = 0;
   }
-  if (ball_freeze_duration > 2000) {
+  if (ball_freeze_duration > 1000) {
 	  m_pBall->SetPos(PlayingArea()->Center());
 	  ball_freeze_duration = 0;
   }
+  //update the balls
+  m_pBall->Update();
 
   if (meter->value()[0] < 0.01) {
 	  m_pBlueTeam->SetAIType(PlayerBase::nn);

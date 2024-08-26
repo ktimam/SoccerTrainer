@@ -513,6 +513,7 @@ void SoccerTeam::CreatePlayers()
     Character* character;
 
     static FieldPlayerMLP *playerMLP = new FieldPlayerMLP();
+    playerMLP->Load("Models/model2");
     playerMLP->meter = m_pPitch->meter;
 
   if (Color() == blue)

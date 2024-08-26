@@ -563,6 +563,20 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
             break;
 
+          case 'F':
+          {
+              RENDERING_RATE = 100;
+          }
+
+          break;
+
+          case 'N':
+          {
+              RENDERING_RATE = 1;
+          }
+
+          break;
+
         }//end switch
         
       }//end WM_KEYUP
@@ -663,6 +677,8 @@ int WINAPI WinMain (HINSTANCE hInstance,
     freopen("CONOUT$", "w", stdout);
     freopen("CONOUT$", "w", stderr);
 
+    fl::init();
+
   //handle to our window
   HWND						hWnd;
     
@@ -711,8 +727,6 @@ int WINAPI WinMain (HINSTANCE hInstance,
   {
     MessageBox(NULL, "CreateWindowEx Failed!", "Error!", 0);
   }
-
-  fl::init();
 
   //start the timer
   timer.Start();

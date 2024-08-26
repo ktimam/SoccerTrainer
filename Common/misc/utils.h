@@ -218,14 +218,20 @@ inline int RoundUnderOffset(double val, double offset)
 }
 
 //compares two real numbers. Returns true if they are equal
-inline bool isEqual(float a, float b)
+inline bool isEqual(float a, float b, float accuracy)
 {
-  if (fabs(a-b) < 1E-12)
+  if (fabs(a-b) < accuracy)
   {
     return true;
   }
 
   return false;
+}
+
+//compares two real numbers. Returns true if they are equal
+inline bool isEqual(float a, float b)
+{
+	return isEqual(a, b, 1E-12);
 }
 
 inline bool isEqual(double a, double b)

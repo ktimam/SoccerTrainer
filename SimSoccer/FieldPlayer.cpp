@@ -22,6 +22,8 @@ using std::vector;
 //----------------------------------------------------------------------------
 FieldPlayer::~FieldPlayer()
 {
+    m_Brain->Save("Models/model" + to_string(ID()));
+
   //delete m_pKickLimiter;
   delete m_pStateMachine;
 }

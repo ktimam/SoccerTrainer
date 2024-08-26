@@ -57,9 +57,10 @@ int main() {
 
     // Model definition - 2-layer Perceptron with ReLU activation
     Sequential model;
-    model.add(Linear(nFeat, 100));
+    /*model.add(Linear(nFeat, 100));
     model.add(ReLU());
-    model.add(Linear(100, 1));
+    model.add(Linear(100, 1));*/
+    fl::load("Models/mlpmodel", model);
     // MSE loss
     auto loss = MeanSquaredError();
 
@@ -98,6 +99,7 @@ int main() {
         std::cout << "Epoch: " << e << " Mean Squared Error: " << meter.value()[0]
             << std::endl;
     }
+    fl::save("Models/mlpmodel", model);
     std::cout << "[Multi-layer Perceptron] Done!" << std::endl;
     return 0;
 }
