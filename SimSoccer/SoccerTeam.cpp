@@ -512,9 +512,13 @@ void SoccerTeam::CreatePlayers()
     settings->mMass = Prm.PlayerMass;
     Character* character;
 
-    static FieldPlayerMLP *playerMLP = new FieldPlayerMLP();
-    playerMLP->Load("Models/model2");
-    playerMLP->meter = m_pPitch->meter;
+    static FieldPlayerMLP *playerMLP_Red = new FieldPlayerMLP();
+    playerMLP_Red->Load("Models/Match_FiveVsFive_7LayersNN/model6_Epoch558001");
+    playerMLP_Red->meter = m_pPitch->meter;
+
+    static FieldPlayerMLP* playerMLP_Blue = new FieldPlayerMLP();
+    playerMLP_Blue->Load("Models/Match_FiveVsFive_2LayersNN/model6_Epoch2231001");
+    playerMLP_Blue->meter = m_pPitch->meter;
 
   if (Color() == blue)
   {
@@ -528,7 +532,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               playerMLP));
+                               playerMLP_Blue));
  
     //create the players
     character = new Character(settings, Vec3(8, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
@@ -541,7 +545,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::attacker,
-                               playerMLP));
+                               playerMLP_Blue));
 
 
 
@@ -555,7 +559,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::attacker,
-                               playerMLP));
+                               playerMLP_Blue));
 
 
  
@@ -571,7 +575,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::defender,
-                               playerMLP));
+                               playerMLP_Blue));
 
 
     character = new Character(settings, Vec3(14, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
@@ -584,7 +588,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::defender,
-                               playerMLP));
+                               playerMLP_Blue));
 
   }
 
@@ -600,7 +604,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               playerMLP));
+                               playerMLP_Red));
 
 
     //create the players
@@ -614,7 +618,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::attacker,
-                               playerMLP));
+                               playerMLP_Red));
 
     character = new Character(settings, Vec3(24, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
@@ -626,7 +630,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::attacker,
-                               playerMLP));
+                               playerMLP_Red));
 
 
 
@@ -640,7 +644,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::defender,
-                               playerMLP));
+                               playerMLP_Red));
 
 
     character = new Character(settings, Vec3(28, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
@@ -653,7 +657,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::defender,
-                               playerMLP));
+                               playerMLP_Red));
                       
   }
 

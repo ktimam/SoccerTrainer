@@ -90,7 +90,7 @@ private:
         bViewTargets = 1;//GetNextParameterBool();
         bHighlightIfThreatened = 0;//GetNextParameterBool();
 
-        FrameRate = 0;// 240 * 4;//GetNextParameterInt();
+        FrameRate = 120;// 240 * 4;//GetNextParameterInt();
 
         SeparationCoefficient = 3;//erDouble(); 
         ViewDistance = 3;// 30;//GetNextParameterDouble(); 

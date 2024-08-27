@@ -10,39 +10,7 @@
 
 #include <iostream>
 
-#include "SimSoccer/constants.h"
-#include "Common/misc/utils.h"
-#include "Common/Time/PrecisionTimer.h"
-#include "Common/Game/EntityManager.h"
-#include "SimSoccer/SoccerPitch.h"
-#include "SimSoccer/SoccerTeam.h"
-#include "SimSoccer/PlayerBase.h"
-#include "SimSoccer/Goalkeeper.h"
-#include "SimSoccer/FieldPlayer.h"
-#include "SimSoccer/FieldGoal.h"
-#include "SimSoccer/SteeringBehaviors.h"
-#include "Common/misc/Snapshot.h"
-#include "Common/json/json.hpp"
-#include "Common/misc/Cgdi.h"
-#include "SimSoccer/ParamLoader.h"
-#include "Resource.h"
-#include "Common/misc/WindowUtils.h"
-#include "Common/Debug/DebugConsole.h"
-#include "Common/misc/WinHttpWrapper.h"
-#include <Common/Game/PhysicsManager.h>
-
-#include "flashlight/fl/tensor/Init.h"
-#include "flashlight/fl/dataset/datasets.h"
-#include "flashlight/fl/meter/meters.h"
-#include "flashlight/fl/nn/nn.h"
-//#include "flashlight/fl/optim/optim.h"
-#include "flashlight/fl/optim/SGDOptimizer.h"
-#include "flashlight/fl/tensor/Random.h"
-#include "flashlight/fl/tensor/TensorBase.h"
-
-using namespace fl;
-
-//#include <flashlight/fl/flashlight.h>
+#include "SimSoccer/PitchManager.h"
 
 using namespace WinHttpWrapper;
 using namespace std;
@@ -54,25 +22,11 @@ using json = nlohmann::json;
 //#define CLIENT_MODE
 #define LIVE_MODE
 //#define REMOTE_MODE
-//--------------------------------- Globals ------------------------------
-//
-//------------------------------------------------------------------------
+////--------------------------------- Globals ------------------------------
+////
+////------------------------------------------------------------------------
 
-const int MATCH_DURATION = 2000;// 45;
-const int MATCH_RATE = 6;
-
-const int MILLI_IN_SECOND = 20;
-const int MILLI_IN_MINUTE = 60 * 20;
-const int SECOND_MAX_VALUE = 60;
-
-const bool LOG_MATCH_OUTPUT = true;
-
-const int SNAPSHOT_RATE = 5;
-
-int RENDERING_RATE = 100;
-
-int mTickCount = 0;
-bool mMatchFinished = false;
+int RENDERING_RATE = 1;
 
 const char* g_szApplicationName = "Simple Soccer";
 const char*	g_szWindowClassName = "MyWindowClass";
@@ -82,12 +36,7 @@ int REMOTE_API_SERVER_PORT = 3010;
 bool REMOTE_API_SERVER_HTTPS = false;
 const wstring requestHeader = L"Content-Type: application/json";
 
-SoccerPitch* g_SoccerPitch;
-Snapshot*    g_MatchReplay;
-json         g_LastSnapshot;
-
-int g_FinalScore1 = 0;
-int g_FinalScore2 = 0;
+PitchManager* g_PitchManager;
 
 //the vertex buffer
 std::vector<Vector2D>   g_vecPlayerVB;
@@ -96,27 +45,6 @@ std::vector<Vector2D>   g_vecPlayerVBTrans;
 
 //create a timer
 PrecisionTimer timer(Prm.FrameRate);
-
-void IncrementTime(int rate)
-{
-    mTickCount += MATCH_RATE * rate;
-
-    int minutes = mTickCount / MILLI_IN_MINUTE;
-
-    if (minutes >= MATCH_DURATION)
-    {
-        mMatchFinished = true;
-    }
-}
-std::string GetCurrentTimeString()
-{
-    int seconds = (mTickCount / MILLI_IN_SECOND) % SECOND_MAX_VALUE;
-    int minutes = mTickCount / MILLI_IN_MINUTE;
-    std::ostringstream stringStream;
-    stringStream << minutes << " : "  << seconds;
-    std::string time = stringStream.str();
-    return time;
-}
 
 //used when a user clicks on a menu item to ensure the option is 'checked'
 //correctly
@@ -132,6 +60,7 @@ void CheckAllMenuItemsAppropriately(HWND hwnd)
 
 bool RenderSoccerPitch()
 {
+    SoccerPitch* g_SoccerPitch = g_PitchManager->GetSoccerPitch();
     //draw the grass
     gdi->DarkGreenPen();
     gdi->DarkGreenBrush();
@@ -172,6 +101,7 @@ bool RenderSoccerPitch()
     gdi->WhitePen();
     gdi->WhiteBrush();
 
+    json g_LastSnapshot = g_PitchManager->LastSnapshot();
     bool empty = g_LastSnapshot.empty();
     if ( !empty)
     {
@@ -286,7 +216,7 @@ bool RenderSoccerPitch()
         }
     }
     gdi->TextColor(Cgdi::black);
-    gdi->TextAtPos((int)(g_SoccerPitch->cxClient() * PitchWindowRate / 2) - 10, 2, GetCurrentTimeString());
+    gdi->TextAtPos((int)(g_SoccerPitch->cxClient() * PitchWindowRate / 2) - 10, 2, g_PitchManager->GetCurrentTimeString());
 
 #ifdef LIVE_MODE
     //render the sweet spots
@@ -443,10 +373,8 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          //don't forget to release the DC
          ReleaseDC(hwnd, hdc); 
          
-         PhysicsManager::Instance()->init();
+         g_PitchManager = new PitchManager();
 
-         g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth);
-         g_MatchReplay = new Snapshot();
          //setup the vertex buffers and calculate the bounding radius
          const int NumPlayerVerts = 4;
          const Vector2D player[NumPlayerVerts] = { Vector2D(-3, 8),
@@ -549,16 +477,15 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
           case 'R':
             {
-               delete g_SoccerPitch;
-           
-               g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth);
+              delete g_PitchManager;
+              g_PitchManager = new PitchManager();
             }
 
             break;
 
           case 'P':
             {
-              g_SoccerPitch->TogglePause();
+              g_PitchManager->TogglePause();
             }
 
             break;
@@ -677,8 +604,6 @@ int WINAPI WinMain (HINSTANCE hInstance,
     freopen("CONOUT$", "w", stdout);
     freopen("CONOUT$", "w", stderr);
 
-    fl::init();
-
   //handle to our window
   HWND						hWnd;
     
@@ -732,28 +657,11 @@ int WINAPI WinMain (HINSTANCE hInstance,
   timer.Start();
 
   MSG msg;
-  int updates_count = 0;
 
 #ifdef SERVER_MODE
-  while(!mMatchFinished)
+  while(!g_PitchManager->Finished())
   {
-      /*while (!timer.ReadyForNextFrame())
-      {
-          Sleep(2);
-      }*/
-
-      IncrementTime(1);
-
-      //update game states
-      g_SoccerPitch->Update();
-      PhysicsManager::Instance()->Update();
-      g_SoccerPitch->CheckGoal();
-      updates_count++;
-      //Don't take snapshot for every move
-      if (updates_count % SNAPSHOT_RATE == 1 || updates_count == 1) 
-      {
-        g_LastSnapshot = g_MatchReplay->AddSnapshot(g_SoccerPitch);
-      }   					
+      g_PitchManager->Step();
   }//end while
   // write prettified JSON to another file// , std::ios::out | std::ios::binary | std::ios::ate);
   json raw_data = g_MatchReplay->Snapshots();
@@ -774,7 +682,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
   //enter the message loop
   bool bDone = false; 
 
-  mTickCount = 0;
+  //mTickCount = 0;
 
 #ifdef CLIENT_MODE
   std::ifstream ifs("match.json");// , std::ios::in | std::ios::binary | std::ios::ate);
@@ -805,7 +713,7 @@ int WINAPI WinMain (HINSTANCE hInstance,
 
       while (Prm.FrameRate != 0 && !timer.ReadyForNextFrame() && msg.message != WM_QUIT)
       {
-          Sleep(2);
+          Sleep(1);
       }
       //update game states
 #ifdef CLIENT_MODE
@@ -814,31 +722,9 @@ int WINAPI WinMain (HINSTANCE hInstance,
 #else
       //Don't render every step.
       int steps = 0;
-      while (!mMatchFinished && steps++ < RENDERING_RATE)
+      while (!g_PitchManager->Finished() && steps++ < RENDERING_RATE)
       {
-		  if (g_SoccerPitch->GameOn())
-		  {
-			  IncrementTime(1);
-		  }
-		  g_SoccerPitch->Update();
-		  PhysicsManager::Instance()->Update();
-		  g_SoccerPitch->CheckGoal();
-
-		  if (LOG_MATCH_OUTPUT)
-		  {
-			  updates_count++;
-			  //Don't take snapshot for every move
-			  if (updates_count % SNAPSHOT_RATE == 1 || updates_count == 1)
-			  {
-				  g_LastSnapshot = g_MatchReplay->AddSnapshot(g_SoccerPitch);
-			  }
-			  if (mMatchFinished)
-			  {
-				  json raw_data = g_MatchReplay->Snapshots();
-				  std::ofstream o("match_client.json");
-				  o << std::setw(4) << raw_data.dump() << std::endl;
-			  }
-		  }
+          g_PitchManager->Step();
       }
 #endif // LIVE_MODE
 
@@ -847,7 +733,11 @@ int WINAPI WinMain (HINSTANCE hInstance,
 
   }//end while
 
-  delete g_SoccerPitch;
+  json raw_data = g_PitchManager->MatchReplay()->Snapshots();
+  std::ofstream o("match_client.json");
+  o << std::setw(4) << raw_data.dump() << std::endl;
+
+  delete g_PitchManager;
 
   UnregisterClass( g_szWindowClassName, winclass.hInstance );
 

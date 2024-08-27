@@ -1001,6 +1001,9 @@
     <ClCompile Include="Common\NN\FieldPlayerMLP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SimSoccer\PitchManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimSoccer\SoccerBall.h">
@@ -2516,6 +2519,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\NN\FieldPlayerMLP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimSoccer\PitchManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

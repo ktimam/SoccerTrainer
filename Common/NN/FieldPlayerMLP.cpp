@@ -5,9 +5,9 @@ AverageValueMeter* FieldPlayerMLP::meter;
 FieldPlayerMLP::FieldPlayerMLP() {
 	// Model definition - 2-layer Perceptron with ReLU activation
 	model = std::make_shared <Sequential>();
-	model->add(Linear(nInputCount, 1024));
+	model->add(Linear(nInputCount, 512));
 	model->add(ReLU());
-	model->add(Linear(1024, 512));
+	/*model->add(Linear(1024, 512));
 	model->add(ReLU());
 	model->add(Linear(512, 256));
 	model->add(ReLU());
@@ -16,8 +16,8 @@ FieldPlayerMLP::FieldPlayerMLP() {
 	model->add(Linear(256, 128));
 	model->add(ReLU());
 	model->add(Linear(128, 128));
-	model->add(ReLU());
-	model->add(Linear(128, nOutputCount));
+	model->add(ReLU());*/
+	model->add(Linear(512, nOutputCount));
 	// Optimizer definition
 	//optimizer = new SGDOptimizer(model->params(), learningRate, momentum);
 	optimizer = std::make_shared < AdagradOptimizer>(model->params(), learningRate);

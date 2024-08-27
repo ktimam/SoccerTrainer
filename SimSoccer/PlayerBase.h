@@ -166,6 +166,8 @@ public:
   const Region* const      HomeRegion()const;
   void                     SetHomeRegion(int NewRegion){m_iHomeRegion = NewRegion;}
   SoccerTeam*const         Team()const{return m_pTeam;}
+
+  FieldPlayerMLP* const     Brain()const { return m_Brain; }
   
   virtual std::string GetCurrentStateName()const = 0;
 

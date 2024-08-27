@@ -84,6 +84,7 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
   m_pBlueTeam->SetOpponents(m_pRedTeam); 
 
   //Set blue team to use Neural Network
+  //m_pRedTeam->SetAIType(PlayerBase::nn);
   //m_pBlueTeam->SetAIType(PlayerBase::nn);
 
   //create the field outside lines
@@ -233,6 +234,7 @@ void SoccerPitch::Update()
 
   static int tick = 0;
   static int ball_freeze_duration = 0;
+  static float best_ml_score = 10000;
 
   meter->reset();
 
@@ -259,18 +261,28 @@ void SoccerPitch::Update()
   //update the balls
   m_pBall->Update();
 
-  if (meter->value()[0] < 0.01) {
-	  m_pBlueTeam->SetAIType(PlayerBase::nn);
+  float current_ml_score = meter->value()[0];
+  if (current_ml_score < 0.01) {
+	  //m_pBlueTeam->SetAIType(PlayerBase::nn);
   }
-  if(tick++%1000 == 0)
-	  std::cout << "Epoch: " << tick << " Mean Squared Error: " << meter->value()[0]
+  if (tick++ % 1000 == 0) {
+	  std::cout << "Epoch: " << tick << " Mean Squared Error: " << current_ml_score
 		  << std::endl << std::endl;
+
+	  if (current_ml_score < best_ml_score)
+	  {
+		  best_ml_score = current_ml_score;
+		  m_pBlueTeam->Members()[0]->Brain()->Save("Models/model" + to_string(m_pBlueTeam->Members()[0]->ID())
+			  + "_Epoch" + to_string(tick));
+
+	  }
+  }
 
   //PhysicsManager::Instance()->Update();
   //CheckGoal();
 }
 
-void SoccerPitch::CheckGoal()
+bool SoccerPitch::CheckGoal()
 {
 	//if a goal has been detected reset the pitch ready for kickoff
 	if (m_pBlueGoal->Scored(m_pBall) || m_pRedGoal->Scored(m_pBall))
@@ -283,7 +295,10 @@ void SoccerPitch::CheckGoal()
 		//get the teams ready for kickoff
 		m_pRedTeam->GetFSM()->ChangeState(PrepareForKickOff::Instance());
 		m_pBlueTeam->GetFSM()->ChangeState(PrepareForKickOff::Instance());
+
+		return true;
 	}
+	return false;
 }
 
 //------------------------- CreateRegions --------------------------------
