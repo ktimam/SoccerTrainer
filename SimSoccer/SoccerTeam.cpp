@@ -13,6 +13,7 @@
 #include "../Common/Messaging/MessageDispatcher.h"
 #include "SoccerMessages.h"
 #include "TeamStates.h"
+#include "PitchManager.h"
 //#include "Debug/DebugConsole.h"
 //#include <windows.h>
 
@@ -513,12 +514,13 @@ void SoccerTeam::CreatePlayers()
     Character* character;
 
     static FieldPlayerMLP *playerMLP_Red = new FieldPlayerMLP();
-    playerMLP_Red->Load("Models/Match_FiveVsFive_7LayersNN/model6_Epoch558001");
-    playerMLP_Red->meter = m_pPitch->meter;
+    //playerMLP_Red->Load("Models/Match_FiveVsFive_7LayersNN/model6_Epoch558001");
+    //playerMLP_Red->Load("Models/latest_model");
+    playerMLP_Red->meter = PitchManager::meter;
 
-    static FieldPlayerMLP* playerMLP_Blue = new FieldPlayerMLP();
-    playerMLP_Blue->Load("Models/Match_FiveVsFive_2LayersNN/model6_Epoch2231001");
-    playerMLP_Blue->meter = m_pPitch->meter;
+    static FieldPlayerMLP* playerMLP_Blue = playerMLP_Red;// new FieldPlayerMLP();
+    //playerMLP_Blue->Load("Models/Match_FiveVsFive_2LayersNN/model6_Epoch2231001");
+    playerMLP_Blue->meter = PitchManager::meter;
 
   if (Color() == blue)
   {

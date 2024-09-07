@@ -10,7 +10,6 @@ protected:
     virtual void CreatePlayers() override;
 
 public:
-    static FieldPlayerMLP* playerMLP;
 
     OneVsOne(FieldGoal* home_goal,
         FieldGoal* opponents_goal,

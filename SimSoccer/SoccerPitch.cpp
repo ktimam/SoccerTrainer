@@ -16,8 +16,6 @@
 const int NumRegionsHorizontal = 6; 
 const int NumRegionsVertical   = 3;
 
-AverageValueMeter* SoccerPitch::meter;
-
 //------------------------------- ctor -----------------------------------
 //------------------------------------------------------------------------
 SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
@@ -63,8 +61,6 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
   BodyID ball_id = m_PhysicsManager->GetBodyInterface().CreateAndAddBody(bcs, EActivation::Activate);
   m_pBall = new SoccerBall(m_PhysicsManager->GetBodyInterface(), ball_id,
       m_vecWalls);
-
-  meter = new AverageValueMeter();
 
   //create the teams 
   if (mode == five_vs_five_match) {	  
@@ -232,12 +228,7 @@ void SoccerPitch::Update()
 {
   if (m_bPaused) return;
 
-  static int tick = 0;
   static int ball_freeze_duration = 0;
-  static float best_ml_score = 10000;
-
-  meter->reset();
-
   //update the teams
   m_pRedTeam->Update();
   m_pBlueTeam->Update();
@@ -250,8 +241,8 @@ void SoccerPitch::Update()
 	  ball_freeze_duration++;
   }
   else {
-	  if(ball_freeze_duration != 0)
-				std::cout << "ball_freeze_duration : " << ball_freeze_duration << std::endl;
+	  /*if(ball_freeze_duration != 0)
+				std::cout << "ball_freeze_duration : " << ball_freeze_duration << std::endl;*/
 	  ball_freeze_duration = 0;
   }
   if (ball_freeze_duration > 1000) {
@@ -261,22 +252,6 @@ void SoccerPitch::Update()
   //update the balls
   m_pBall->Update();
 
-  float current_ml_score = meter->value()[0];
-  if (current_ml_score < 0.01) {
-	  //m_pBlueTeam->SetAIType(PlayerBase::nn);
-  }
-  if (tick++ % 1000 == 0) {
-	  std::cout << "Epoch: " << tick << " Mean Squared Error: " << current_ml_score
-		  << std::endl << std::endl;
-
-	  if (current_ml_score < best_ml_score)
-	  {
-		  best_ml_score = current_ml_score;
-		  m_pBlueTeam->Members()[0]->Brain()->Save("Models/model" + to_string(m_pBlueTeam->Members()[0]->ID())
-			  + "_Epoch" + to_string(tick));
-
-	  }
-  }
 
   //PhysicsManager::Instance()->Update();
   //CheckGoal();

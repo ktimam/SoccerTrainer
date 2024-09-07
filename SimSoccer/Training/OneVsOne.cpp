@@ -8,6 +8,7 @@
 #include "../ParamLoader.h"
 #include "../GoalKeeperStates.h"
 #include "../../Common/Game/EntityManager.h"
+#include "../PitchManager.h"
 
 #include <Jolt/Physics/Character/Character.h>
 #include <Jolt/Physics/Collision/Shape/CapsuleShape.h>
@@ -39,7 +40,6 @@ OneVsOne::~OneVsOne()
 {
 }
 
-FieldPlayerMLP* OneVsOne::playerMLP = new FieldPlayerMLP();
 //------------------------- CreatePlayers --------------------------------
 //
 //  creates the players
@@ -61,11 +61,14 @@ void OneVsOne::CreatePlayers()
     settings->mMass = Prm.PlayerMass;
     Character* character;
 
-    //playerMLP->Load("Models/model2");
-    playerMLP->meter = m_pPitch->meter;
+    static FieldPlayerMLP* playerMLP = new FieldPlayerMLP();
+    playerMLP->meter = PitchManager::meter;
 
     if (Color() == blue)
     {
+        //playerMLP_Blue->Load("Models/Match_FiveVsFive_2LayersNN/model6_Epoch2231001");
+        //playerMLP->Load("Models/AbsoluteObservations/latest_model");
+        
         //create the players
         character = new Character(settings, Vec3(12, player_elevation, 5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
         character->AddToPhysicsSystem(EActivation::Activate);
@@ -83,6 +86,9 @@ void OneVsOne::CreatePlayers()
 
     else
     {
+        //playerMLP_Red->Load("Models/Match_FiveVsFive_7LayersNN/model6_Epoch558001");
+        //playerMLP->Load("Models/RelativeObservations/latest_model");
+        
         //create the players
         character = new Character(settings, Vec3(22, player_elevation, 5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
         character->AddToPhysicsSystem(EActivation::Activate);
@@ -97,6 +103,11 @@ void OneVsOne::CreatePlayers()
             playerMLP));
 
     }
+    playerMLP->Load("Models/latest_model");
+    //playerMLP->Load("Models/AbsoluteObservations/latest_model");
+    //playerMLP->Load("Models/RelativeObservations/latest_model");
+    playerMLP->setTrainingOn(false);
+    SetAIType(PlayerBase::nn);
 
     //register the players with the entity manager
     std::vector<PlayerBase*>::iterator it = m_Players.begin();

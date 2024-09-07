@@ -8,26 +8,26 @@ FieldPlayerMLP::FieldPlayerMLP() {
 	model->add(Linear(nInputCount, 512));
 	model->add(ReLU());
 	/*model->add(Linear(1024, 512));
+	model->add(ReLU());*/
+	model->add(Linear(512, 128));
 	model->add(ReLU());
-	model->add(Linear(512, 256));
-	model->add(ReLU());
-	model->add(Linear(256, 256));
+	/*model->add(Linear(256, 256));
 	model->add(ReLU());
 	model->add(Linear(256, 128));
 	model->add(ReLU());
 	model->add(Linear(128, 128));
 	model->add(ReLU());*/
-	model->add(Linear(512, nOutputCount));
+	model->add(Linear(128, nOutputCount));
 	// Optimizer definition
-	//optimizer = new SGDOptimizer(model->params(), learningRate, momentum);
-	optimizer = std::make_shared < AdagradOptimizer>(model->params(), learningRate);
+	optimizer = std::make_shared < SGDOptimizer>(model->params(), learningRate, momentum);
+	//optimizer = std::make_shared < AdagradOptimizer>(model->params(), learningRate);
 
 	// MSE loss
 	loss = MeanSquaredError();
 
 }
 
-Action FieldPlayerMLP::Process(Observation observation, bool backpropagate, Action target)
+Action FieldPlayerMLP::Process(Observation observation, Action target)
 {
 	Tensor observation_tensor = Tensor::fromVector(observation.toVector());
 	Tensor decision = Tensor::fromVector(target.toVector());
@@ -40,7 +40,7 @@ Action FieldPlayerMLP::Process(Observation observation, bool backpropagate, Acti
 	auto result = model->forward(input(observation_tensor));
 	//std::cout << "result : " << result.tensor() << std::endl;
 
-	if (backpropagate) {
+	if (trainingOn) {
 		// Calculate loss
 		auto l = loss(result, noGrad(decision));
 
@@ -65,8 +65,12 @@ bool FieldPlayerMLP::Save(string aFileName)
 
 bool FieldPlayerMLP::Load(string aFileName)
 {
-	model = std::make_shared <Sequential>();
-	fl::load(aFileName, model);
-	optimizer = std::make_shared < AdagradOptimizer>(model->params(), learningRate);
-	return true;
+	if (std::filesystem::exists(aFileName)) {
+		model = std::make_shared <Sequential>();
+		fl::load(aFileName, model);
+		optimizer = std::make_shared < SGDOptimizer>(model->params(), learningRate, momentum);
+		//optimizer = std::make_shared < AdagradOptimizer>(model->params(), learningRate);
+		return true;
+	}
+	return false;
 }

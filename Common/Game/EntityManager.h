@@ -55,7 +55,7 @@ public:
   void            RemoveEntity(BaseGameEntity* pEntity);
 
   //clears all entities from the entity map
-  void            Reset(){m_EntityMap.clear();}
+  void            Reset();
 };
 
 
