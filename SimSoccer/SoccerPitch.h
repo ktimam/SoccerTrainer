@@ -70,9 +70,6 @@ public:
 
   PhysicsManager* m_PhysicsManager;
 
-  // Meter definition
-  static AverageValueMeter* meter;
-
   //this instantiates the regions the players utilize to  position
   //themselves
   void CreateRegions(double width, double height);

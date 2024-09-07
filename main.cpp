@@ -22,6 +22,10 @@ using json = nlohmann::json;
 //#define CLIENT_MODE
 #define LIVE_MODE
 //#define REMOTE_MODE
+
+//#define TRAIN_FROM_OBSERVATION_FILE
+//#define DUMP_FROM_BINARY_TO_TEXT
+
 ////--------------------------------- Globals ------------------------------
 ////
 ////------------------------------------------------------------------------
@@ -46,6 +50,26 @@ std::vector<Vector2D>   g_vecPlayerVBTrans;
 //create a timer
 PrecisionTimer timer(Prm.FrameRate);
 
+bool g_singleStepEnabled = true;
+enum StepType{STEP, NO_STEP, STEP_SAVE_OBSERVATION, STEP_NO_SAVE_OBSERVATION};
+StepType g_stepType = NO_STEP;
+bool g_updateConsole = true;
+
+struct ObservationAction {
+    vector<float> ObservationEntry;
+    vector<float> ActionEntry;
+};
+
+Observation g_LastObservation[11];
+Action g_LastTargetAction[11];
+
+void PrintVectorLine(ostream& output_stream, vector<float>& vec) {
+    vector<float>::iterator vec_itr = vec.begin();
+    for (; vec_itr != vec.end(); vec_itr++) {
+        output_stream << fixed << setprecision(4) << setw(7) << setfill(' ') << (float)*vec_itr << " ";
+    }
+    output_stream << std::endl;
+}
 //used when a user clicks on a menu item to ensure the option is 'checked'
 //correctly
 void CheckAllMenuItemsAppropriately(HWND hwnd)
@@ -119,6 +143,53 @@ bool RenderSoccerPitch()
 
             int id = it.value()["id"];// .begin().value();
             PlayerBase* player = (PlayerBase*)EntityMgr->GetEntityFromID(id);
+
+            //Persist Observation
+            if (g_singleStepEnabled && g_stepType == STEP_SAVE_OBSERVATION && player->Brain()) {
+                //static int count = 0;
+                std::ofstream o("Models/observations", ios::app | ios::binary);
+                o.write((char*)&g_LastObservation[id], sizeof(g_LastObservation[id]));
+                o.write((char*)&g_LastTargetAction[id], sizeof(g_LastTargetAction[id]));
+                o.close();
+
+
+                std::ofstream obs_ofs("Models/observations.txt", ios::app);
+                vector<float> observation_vec = g_LastObservation[id].toVector();
+                PrintVectorLine(obs_ofs, observation_vec);
+                obs_ofs.close();
+
+                std::ofstream act_ofs("Models/actions.txt", ios::app);
+                vector<float> decision_vec = g_LastTargetAction[id].toVector();
+                PrintVectorLine(act_ofs, decision_vec);
+                act_ofs.close();
+
+                g_stepType = STEP;
+            }
+            if (g_singleStepEnabled && player->Brain() && g_updateConsole) {
+
+                g_updateConsole = false;
+
+                cout << "Player ID : " << id << endl;
+
+                g_LastObservation[id] = player->GetLastObservation();
+                vector<float> observation_vec = g_LastObservation[id].toVector();
+                PrintVectorLine(cout, observation_vec);
+
+                g_LastTargetAction[id] = player->GetLastTargetAction();
+                vector<float> decision_vec = g_LastTargetAction[id].toVector();
+                PrintVectorLine(cout, decision_vec);
+
+                vector<float> action_vec = player->Brain()->Process(g_LastObservation[id], g_LastTargetAction[id]).toVector();
+                PrintVectorLine(cout, action_vec);
+            }
+            /*Tensor observation_tensor = Tensor::fromVector(last_observation.toVector());
+            Tensor decision = Tensor::fromVector(last_target_action.toVector());
+            std::cout << "observation_tensor : " << observation_tensor << std::endl;
+            std::cout << "decision : " << decision << std::endl;
+            std::cout << "count : " << count++ << std::endl;*/
+
+            //End Persist Observation
+
             entity_position_json = it.value()["p"].begin();
             entity_position_x = entity_position_json.value();
             entity_position_y = (++entity_position_json).value();
@@ -504,11 +575,36 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
           break;
 
+          case 'S':
+          {
+              g_stepType = STEP_SAVE_OBSERVATION;
+          }
+
+          break;
+
         }//end switch
         
       }//end WM_KEYUP
 
       break;
+
+    case WM_KEYDOWN:
+    {
+        switch (wParam)
+        {
+
+        case 'D':
+        {
+            g_stepType = STEP_NO_SAVE_OBSERVATION;
+        }
+
+        break;
+
+        }//end switch
+
+    }//end WM_KEYDOWN
+
+    break;
 
     
     case WM_PAINT:
@@ -679,6 +775,154 @@ int WINAPI WinMain (HINSTANCE hInstance,
   o << std::setw(4) << raw_data << std::endl;
 #endif
 
+
+#ifdef TRAIN_FROM_OBSERVATION_FILE
+  const int EPOCHS_COUNT = 1000000;
+  int current_epoch = 0;
+  float best_ml_score = 10000;
+  float start_ml_score = 0;
+  float target_score = 0.005;// 0.012;
+
+  FieldPlayerMLP* mlp = new FieldPlayerMLP();
+  mlp->Load("Models/latest_model");
+  AverageValueMeter* meter = new AverageValueMeter();
+  mlp->meter = meter;
+
+  vector<ObservationAction> observation_action_entries;
+
+#ifdef DUMP_FROM_BINARY_TO_TEXT
+  Observation observation;
+  Action target;
+
+  std::ofstream obs_ofs("Models/observations.txt");
+  std::ofstream act_ofs("Models/actions.txt");
+
+  std::ifstream ifs("Models/observations", ios::binary);
+  ifs.read((char*)&observation, sizeof(observation));
+  ifs.read((char*)&target, sizeof(target));
+
+  while (!ifs.eof()) {
+      ifs.read((char*)&observation, sizeof(observation));
+      ifs.read((char*)&target, sizeof(target));
+
+      //Tensor observation_tensor = Tensor::fromVector(observation_vec);
+      //Tensor decision = Tensor::fromVector(decision_vec);
+      //Tensor action_tensor = Tensor::fromVector(action.toVector());
+      //ofs << "observation_tensor : " << observation_tensor << std::endl;
+      //ofs << "decision : " << decision << std::endl << std::endl;
+      //std::cout << "result : " << action_tensor << std::endl;
+      //std::cout << "count : " << count++ << std::endl;
+
+      vector<float> observation_vec = observation.toVector();
+      vector<float> decision_vec = target.toVector();
+
+      vector<float>::iterator observation_itr = observation_vec.begin();
+      for (; observation_itr != observation_vec.end(); observation_itr++) {
+          obs_ofs << fixed << setprecision(4) << setw(7) << setfill(' ') << (float)*observation_itr << " ";
+      }
+      obs_ofs << std::endl ;
+
+      vector<float>::iterator decision_itr = decision_vec.begin();
+      for (; decision_itr != decision_vec.end(); decision_itr++) {
+          act_ofs << fixed << setprecision(4) << setw(7) << setfill(' ') << (float)*decision_itr << " ";
+      }
+      act_ofs << std::endl ;
+  }
+  ifs.close();
+  obs_ofs.close();
+  act_ofs.close();
+#endif
+
+  ifstream obs_ifs("Models/observations.txt");
+  ifstream act_ifs("Models/actions.txt");
+
+  string obs_line;
+  string act_line;
+
+while (std::getline(obs_ifs, obs_line), std::getline(act_ifs, act_line)) {
+
+      vector<float> obs_data;
+      vector<float> act_data;
+
+      istringstream obs_iss(obs_line);
+      float word;
+      while (obs_iss >> word) {
+          obs_data.push_back(word);
+      }
+
+      istringstream act_iss(act_line);
+      while (act_iss >> word) {
+          act_data.push_back(word);
+      }
+
+      ObservationAction observation_action;
+      observation_action.ObservationEntry = obs_data;
+      observation_action.ActionEntry = act_data;
+
+      observation_action_entries.push_back(observation_action);
+  }
+
+  time_t start_time = time(NULL);
+  time_t last_time  = time(NULL);
+  float last_score = 0;
+  while (++current_epoch < EPOCHS_COUNT) {
+
+      vector<ObservationAction>::iterator observation_action_itr = observation_action_entries.begin();
+      for (; observation_action_itr != observation_action_entries.end(); observation_action_itr++) {
+          ObservationAction observation_action = (ObservationAction)*observation_action_itr;
+          Action action = mlp->Process(observation_action.ObservationEntry, observation_action.ActionEntry);
+      }
+
+      float current_ml_score = meter->value()[0];
+      if (start_ml_score == 0) {
+          start_ml_score = current_ml_score;
+      }
+      std::cout << "Epoch: " << current_epoch << " Mean Squared Error: " << current_ml_score
+          << std::endl;
+
+      float target_score_difference = current_ml_score - target_score;
+      float last_score_difference = last_score - current_ml_score;
+      if (last_score == 0) last_score_difference = current_ml_score;
+      float score_jumps_needed = target_score_difference / last_score_difference;
+      time_t current_time = time(NULL);
+      double seconds = difftime(current_time, last_time);
+      seconds = seconds * score_jumps_needed;
+      int hour = seconds / 3600;
+      int min = (seconds - hour * 3600) / 60;
+      int sec = seconds - hour * 3600 - min * 60;
+      std::cout << "Time Remaining: " << hour << ":" << min << ":" << sec
+          << std::endl << std::endl;
+
+      float total_difference = start_ml_score - current_ml_score;
+      score_jumps_needed = target_score_difference / total_difference;
+      seconds = difftime(current_time, start_time);
+      seconds = seconds * score_jumps_needed;
+      hour = seconds / 3600;
+      min = (seconds - hour * 3600) / 60;
+      sec = seconds - hour * 3600 - min * 60;
+      std::cout << "Average Time Remaining: " << hour << ":" << min << ":" << sec
+          << std::endl << std::endl;
+
+      last_time = time(NULL);
+      last_score = current_ml_score;
+
+      if (current_epoch == 1) {
+          best_ml_score = current_ml_score;
+      }
+      if (current_ml_score < best_ml_score && current_epoch % 1000 == 0)
+      {
+          best_ml_score = current_ml_score;
+          mlp->Save("Models/latest_model");
+      }
+      if (current_ml_score < target_score) {
+          mlp->Save("Models/latest_model");
+          break;
+      }
+      meter->reset();
+
+  }
+#endif
+
   //enter the message loop
   bool bDone = false; 
 
@@ -724,7 +968,11 @@ int WINAPI WinMain (HINSTANCE hInstance,
       int steps = 0;
       while (!g_PitchManager->Finished() && steps++ < RENDERING_RATE)
       {
-          g_PitchManager->Step();
+          if (!g_singleStepEnabled || g_stepType == STEP || g_stepType == STEP_NO_SAVE_OBSERVATION) {
+            g_PitchManager->Step();
+            g_stepType = NO_STEP;
+            g_updateConsole = true;
+          }
       }
 #endif // LIVE_MODE
 

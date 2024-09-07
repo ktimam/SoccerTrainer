@@ -21,6 +21,14 @@
       <Configuration>Release2D</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseAcl|Win32">
+      <Configuration>ReleaseAcl</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseAcl|x64">
+      <Configuration>ReleaseAcl</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -922,6 +930,12 @@
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAcl|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug3D|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -942,6 +956,12 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2D|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAcl|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
@@ -972,6 +992,9 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2D|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAcl|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug3D|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -982,6 +1005,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release2D|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAcl|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug3D|x64'" Label="PropertySheets">
@@ -995,14 +1021,21 @@
     <IncludePath>$(SolutionDir);$(SolutionDir)Utils;$(SolutionDir)Tests;$(SolutionDir)3rdparty;$(SolutionDir)TestFramework;$(SolutionDir)ML;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release2D|x64'">
     <IncludePath>$(SolutionDir);$(SolutionDir)Utils;$(SolutionDir)Tests;$(SolutionDir)3rdparty;$(SolutionDir)TestFramework;$(SolutionDir)ML;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAcl|x64'">
+    <IncludePath>$(SolutionDir);$(SolutionDir)Utils;$(SolutionDir)Tests;$(SolutionDir)3rdparty;$(SolutionDir)TestFramework;$(SolutionDir)ML;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <LibraryPath>$(SolutionDir)libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug3D|x64'">
-    <IncludePath>$(SolutionDir)TestFramework;$(SolutionDir);$(SolutionDir)3rdparty;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)TestFramework;$(SolutionDir);$(SolutionDir)3rdparty;$(SolutionDir)ML;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
   </PropertyGroup>
@@ -1022,6 +1055,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release2D|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAcl|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
@@ -1065,7 +1110,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;JPH_PLATFORM_WASM;JPH_PLATFORM_SINGLE_THREAD;CMAKE_INTDIR="Debug";OS_WIN;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_ARRAYFIRE;FL_ARRAYFIRE_USE_CPU;FL_USE_CPU;FL_BACKEND_CPU;FL_BACKEND_CUDA=false;AF_WITH_CPUID;AF_CPU;AF_DEBUG;SORT_TYPE=double;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AFDLL;SMALL_MATRIX_OPT;NO_AVX512;NO_WARMUP;MAX_CPU_NUMBER=32;MAX_PARALLEL_NUMBER=1;NO_AFFINITY;BUILD_SINGLE;FFTW_SINGLE;OS_WINNT;C_MSVC;OPENBLAS_OS_WINNT;OPENBLAS_C_MSVC;USE_FORGE_CPU_COPY_HELPERS;MULTITHREADING_DISABLED;BOOST_NO_EXCEPTIONS;SPDLOG_DISABLE_DEFAULT_LOGGER;SPDLOG_NO_EXCEPTIONS;AF_DISABLE_CPU_ASYNC;NOSPDLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;JPH_PLATFORM_WASM;JPH_PLATFORM_SINGLE_THREAD;CMAKE_INTDIR="Debug";OS_WIN;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_ARRAYFIRE;FL_ARRAYFIRE_USE_CPU;FL_USE_CPU;FL_BACKEND_CPU;FL_BACKEND_CUDA=false;AF_WITH_CPUID;AF_CPU;SORT_TYPE=double;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AFDLL;SMALL_MATRIX_OPT;NO_AVX512;NO_WARMUP;MAX_CPU_NUMBER=32;MAX_PARALLEL_NUMBER=1;NO_AFFINITY;BUILD_SINGLE;FFTW_SINGLE;OS_WINNT;C_MSVC;OPENBLAS_OS_WINNT;OPENBLAS_C_MSVC;USE_FORGE_CPU_COPY_HELPERS;MULTITHREADING_DISABLED;BOOST_NO_EXCEPTIONS;SPDLOG_DISABLE_DEFAULT_LOGGER;SPDLOG_NO_EXCEPTIONS;AF_DISABLE_CPU_ASYNC;NOSPDLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
       <AdditionalOptions>/bigobj /utf-8 /Zc:__cplusplus %(AdditionalOptions) </AdditionalOptions>
       <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
@@ -1098,12 +1143,40 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d12.lib;shcore.lib;dxguid.lib;dinput8.lib;dxgi.lib;d3dcompiler.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseAcl|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>_CONSOLE;JPH_PLATFORM_WASM;JPH_PLATFORM_SINGLE_THREAD;CMAKE_INTDIR="Debug";OS_WIN;_USE_MATH_DEFINES;_SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING;FL_USE_ARRAYFIRE;FL_ARRAYFIRE_USE_CPU;FL_USE_CPU;FL_BACKEND_CPU;FL_BACKEND_CUDA=false;AF_WITH_CPUID;AF_CPU;SORT_TYPE=double;_CRT_SECURE_NO_WARNINGS;NOMINMAX;AFDLL;SMALL_MATRIX_OPT;NO_AVX512;NO_WARMUP;MAX_CPU_NUMBER=32;MAX_PARALLEL_NUMBER=1;NO_AFFINITY;BUILD_SINGLE;FFTW_SINGLE;OS_WINNT;C_MSVC;OPENBLAS_OS_WINNT;OPENBLAS_C_MSVC;USE_FORGE_CPU_COPY_HELPERS;MULTITHREADING_DISABLED;BOOST_NO_EXCEPTIONS;SPDLOG_DISABLE_DEFAULT_LOGGER;SPDLOG_NO_EXCEPTIONS;AF_DISABLE_CPU_ASYNC;NOSPDLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>Default</ConformanceMode>
+      <AdditionalOptions>/bigobj /utf-8 /Zc:__cplusplus %(AdditionalOptions) </AdditionalOptions>
+      <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d12.lib;shcore.lib;dxguid.lib;dinput8.lib;dxgi.lib;d3dcompiler.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;flashlight.lib;C:\Program Files\ArrayFire\v3\lib\afcpu.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>ICMLPSample.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug3D|x64'">
     <ClCompile>

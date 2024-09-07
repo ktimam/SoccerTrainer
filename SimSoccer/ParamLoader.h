@@ -16,6 +16,8 @@
 //#include <cassert>
 
 
+#include <math.h>
+
 #include "constants.h"
 //#include "iniFileLoaderBase.h"
 
@@ -105,6 +107,10 @@ private:
         PlayerComfortZoneSq = PlayerComfortZone * PlayerComfortZone;
         GoalKeeperInterceptRangeSq = GoalKeeperInterceptRange * GoalKeeperInterceptRange;
         WithinRangeOfSupportSpotSq = WithinRangeOfSupportSpot * WithinRangeOfSupportSpot;
+
+        MaxFieldDistance = sqrt(PitchLength * PitchLength +
+            PitchWidth * PitchWidth);
+
     }
 
 public:
@@ -218,6 +224,7 @@ public:
     //zero this to turn the constraint off
     bool bNonPenetrationConstraint;
 
+    int MaxFieldDistance;
 };
 
 #endif

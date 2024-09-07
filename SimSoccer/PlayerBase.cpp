@@ -283,20 +283,23 @@ Observation PlayerBase::GetObservation()
     observation.AgentHeading = Heading();
     observation.AgentVelocity = Velocity();
     observation.AgentTarget   = Steering()->Target();
-    observation.ClosestToBall = isClosestPlayerOnPitchToBall();
+    observation.ClosestToBall = isClosestPlayerOnPitchToBall() && Team()->Pitch()->GameOn();
     observation.TeamInControl = Team()->InControl();
+    observation.OpponentGoalCenter = Team()->OpponentsGoal()->Center();
 
     std::vector<PlayerBase*>::const_iterator plrs_itr = Team()->Members().begin();
-    for (plrs_itr; plrs_itr != Team()->Members().end(); ++plrs_itr)
+    int count = 0;
+    for (plrs_itr; plrs_itr != Team()->Members().end(); ++plrs_itr, count++)
     {
         if (*plrs_itr != this) {
-            observation.TeamPositions.push_back((*plrs_itr)->Pos());
+            observation.TeamPositions[count] = (*plrs_itr)->Pos();
         }
     }
     plrs_itr = Team()->Opponents()->Members().begin();
-    for (plrs_itr; plrs_itr != Team()->Opponents()->Members().end(); ++plrs_itr)
+    count = 0;
+    for (plrs_itr; plrs_itr != Team()->Opponents()->Members().end(); ++plrs_itr, count++)
     {
-        observation.OpponentPositions.push_back((*plrs_itr)->Pos());
+        observation.OpponentPositions[count] = (*plrs_itr)->Pos();
     }
 
     return observation;

@@ -22,6 +22,8 @@ Global
 		Release|x86 = Release|x86
 		Release2D|x64 = Release2D|x64
 		Release2D|x86 = Release2D|x86
+		ReleaseAcl|x64 = ReleaseAcl|x64
+		ReleaseAcl|x86 = ReleaseAcl|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{85F3C67A-DF19-486D-9814-9E09E93BCA74}.Debug|x64.ActiveCfg = Debug3D|x64
@@ -43,6 +45,10 @@ Global
 		{85F3C67A-DF19-486D-9814-9E09E93BCA74}.Release2D|x64.Build.0 = Release2D|x64
 		{85F3C67A-DF19-486D-9814-9E09E93BCA74}.Release2D|x86.ActiveCfg = Release2D|Win32
 		{85F3C67A-DF19-486D-9814-9E09E93BCA74}.Release2D|x86.Build.0 = Release2D|Win32
+		{85F3C67A-DF19-486D-9814-9E09E93BCA74}.ReleaseAcl|x64.ActiveCfg = ReleaseAcl|x64
+		{85F3C67A-DF19-486D-9814-9E09E93BCA74}.ReleaseAcl|x64.Build.0 = ReleaseAcl|x64
+		{85F3C67A-DF19-486D-9814-9E09E93BCA74}.ReleaseAcl|x86.ActiveCfg = ReleaseAcl|Win32
+		{85F3C67A-DF19-486D-9814-9E09E93BCA74}.ReleaseAcl|x86.Build.0 = ReleaseAcl|Win32
 		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}.Debug|x64.ActiveCfg = Debug|x64
 		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}.Debug|x64.Build.0 = Debug|x64
 		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}.Debug|x86.ActiveCfg = Debug|Win32
@@ -63,6 +69,9 @@ Global
 		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}.Release2D|x64.Build.0 = ReleaseDll|x64
 		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}.Release2D|x86.ActiveCfg = Release|Win32
 		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}.Release2D|x86.Build.0 = Release|Win32
+		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}.ReleaseAcl|x64.ActiveCfg = ReleaseAcl|x64
+		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}.ReleaseAcl|x86.ActiveCfg = ReleaseAcl|Win32
+		{DAD3E1AB-B01B-49C4-B4AB-7FCBDBB14F9D}.ReleaseAcl|x86.Build.0 = ReleaseAcl|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

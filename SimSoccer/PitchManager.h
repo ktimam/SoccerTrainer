@@ -71,6 +71,9 @@ class PitchManager
 	int g_FinalScore1 = 0;
 	int g_FinalScore2 = 0;
 
+	float mBestMLScore = 10000;
+	int mEpochNumber = 1;
+
 	void IncrementTime(int rate)
 	{
 		mTickCount += MATCH_RATE * rate;
@@ -83,6 +86,9 @@ class PitchManager
 		}
 	}
 public:
+	// Meter definition
+	static AverageValueMeter* meter;
+
 	PitchManager();
 	~PitchManager();
 

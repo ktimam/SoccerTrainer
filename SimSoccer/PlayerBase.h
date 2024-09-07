@@ -70,6 +70,8 @@ protected:
   bool m_ActionTrackBall = false;
 
   FieldPlayerMLP* m_Brain;
+  Observation m_lastObservation;
+  Action m_lastTargetAction;
 
 public:
 
@@ -172,6 +174,9 @@ public:
   virtual std::string GetCurrentStateName()const = 0;
 
   Observation GetObservation();
+
+  Observation GetLastObservation() { return m_lastObservation; }
+  Action GetLastTargetAction() { return m_lastTargetAction; }
 };
 
 

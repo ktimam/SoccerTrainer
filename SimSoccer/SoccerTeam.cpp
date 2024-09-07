@@ -13,6 +13,7 @@
 #include "../Common/Messaging/MessageDispatcher.h"
 #include "SoccerMessages.h"
 #include "TeamStates.h"
+#include "PitchManager.h"
 //#include "Debug/DebugConsole.h"
 //#include <windows.h>
 
@@ -513,12 +514,13 @@ void SoccerTeam::CreatePlayers()
     Character* character;
 
     static FieldPlayerMLP *playerMLP_Red = new FieldPlayerMLP();
-    playerMLP_Red->Load("Models/Match_FiveVsFive_7LayersNN/model6_Epoch558001");
-    playerMLP_Red->meter = m_pPitch->meter;
+    //playerMLP_Red->Load("Models/Match_FiveVsFive_7LayersNN/model6_Epoch558001");
+    //playerMLP_Red->Load("Models/latest_model");
+    playerMLP_Red->meter = PitchManager::meter;
 
-    static FieldPlayerMLP* playerMLP_Blue = new FieldPlayerMLP();
-    playerMLP_Blue->Load("Models/Match_FiveVsFive_2LayersNN/model6_Epoch2231001");
-    playerMLP_Blue->meter = m_pPitch->meter;
+    static FieldPlayerMLP* playerMLP_Blue = playerMLP_Red;// new FieldPlayerMLP();
+    //playerMLP_Blue->Load("Models/Match_FiveVsFive_2LayersNN/model6_Epoch2231001");
+    playerMLP_Blue->meter = PitchManager::meter;
 
   if (Color() == blue)
   {
@@ -559,7 +561,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::attacker,
-                               playerMLP_Blue));
+                               NULL));
 
 
  
@@ -575,7 +577,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::defender,
-                               playerMLP_Blue));
+                               NULL));
 
 
     character = new Character(settings, Vec3(14, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
@@ -588,7 +590,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::defender,
-                               playerMLP_Blue));
+                               NULL));
 
   }
 
@@ -604,7 +606,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               playerMLP_Red));
+                               NULL));
 
 
     //create the players
@@ -618,7 +620,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::attacker,
-                               playerMLP_Red));
+                               NULL));
 
     character = new Character(settings, Vec3(24, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
     character->AddToPhysicsSystem(EActivation::Activate);
@@ -630,7 +632,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::attacker,
-                               playerMLP_Red));
+                               NULL));
 
 
 
@@ -644,7 +646,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::defender,
-                               playerMLP_Red));
+                               NULL));
 
 
     character = new Character(settings, Vec3(28, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
@@ -657,9 +659,14 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
                                PlayerBase::defender,
-                               playerMLP_Red));
+                               NULL));
                       
   }
+  playerMLP_Red->Load("Models/latest_model");
+  //playerMLP->Load("Models/AbsoluteObservations/latest_model");
+  //playerMLP->Load("Models/RelativeObservations/latest_model");
+  playerMLP_Red->setTrainingOn(false);
+  SetAIType(PlayerBase::nn);
 
   //register the players with the entity manager
   std::vector<PlayerBase*>::iterator it = m_Players.begin();
