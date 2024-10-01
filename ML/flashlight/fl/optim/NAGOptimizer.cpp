@@ -26,8 +26,8 @@ NAGOptimizer::NAGOptimizer(
       velocities_(),
       oldLr_(learningRate) {
   if (momentum <= 0) {
-    throw std::runtime_error(
-        "Invalid momentum for NAG optimizer, it should be > 0");
+    /*throw std::runtime_error(
+        "Invalid momentum for NAG optimizer, it should be > 0");*/
   }
   velocities_.reserve(parameters.size());
   for (const auto& parameter : parameters_) {
