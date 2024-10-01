@@ -19,7 +19,7 @@ namespace arrayfire {
 namespace common {
 
 void* getFunctionPointer(LibHandle handle, const char* symbolName) {
-    return dlsym(handle, symbolName);
+    return NULL;// dlsym(handle, symbolName);
 }
 
 LibHandle loadLibrary(const char* library_name) {
@@ -28,7 +28,7 @@ LibHandle loadLibrary(const char* library_name) {
 void unloadLibrary(LibHandle handle) { /*dlclose(handle);*/ }
 
 string getErrorMessage() {
-    char* errMsg = dlerror();
+    char* errMsg = NULL;// dlerror();
     if (errMsg) { return string(errMsg); }
     // constructing std::basic_string from NULL/0 address is
     // invalid and has undefined behavior
