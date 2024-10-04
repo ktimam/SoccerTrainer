@@ -666,7 +666,7 @@ void SoccerTeam::CreatePlayers()
   //playerMLP->Load("Models/AbsoluteObservations/latest_model");
   //playerMLP->Load("Models/RelativeObservations/latest_model");
   playerMLP_Red->setTrainingOn(false);
-  SetAIType(PlayerBase::nn);
+  //SetAIType(PlayerBase::nn);
 
   //register the players with the entity manager
   std::vector<PlayerBase*>::iterator it = m_Players.begin();

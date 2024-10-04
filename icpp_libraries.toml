@@ -2,7 +2,7 @@
 canister = "SimSoccerServer"
 did_path = "SimSoccerServer.did"
 cpp_include_dirs = [
-	"af_glad", "arrayfire", "fftw", "openblas", "flashlight", "ML/src/vendors/*",
+	"jolt", "af_glad", "arrayfire", "fftw", "openblas", "flashlight", "ML/src/vendors/*",
 	"ML/af_forge/include/",
 	"ML/arrayfire/include/",
 	"ML/arrayfire/src/api/c",
@@ -65,10 +65,6 @@ cpp_paths = [
     "./Common/*/*.cpp", 
     "./SimSoccer/*.cpp",
     "./SimSoccer/*/*.cpp",
-    "./Jolt/*.cpp",
-    "./Jolt/*/*.cpp",
-    "./Jolt/*/*/*.cpp",
-    "./Jolt/*/*/*/*.cpp",
 	]
 cpp_compile_flags = [	
 	"-D DECLARE_LIBRARY_RENAMES",
@@ -116,6 +112,49 @@ cpp_compile_flags = [
     "-D JPH_PLATFORM_SINGLE_THREAD",
 	]
 
+[[build-library]]
+lib_name = "jolt"
+cpp_include_dirs = [
+    "./Jolt/",
+	"./",
+	]
+cpp_paths = [
+    "./Jolt/*.cpp",
+    "./Jolt/*/*.cpp",
+    "./Jolt/*/*/*.cpp",
+    "./Jolt/*/*/*/*.cpp",
+	]
+cpp_compile_flags = [	
+	#"-Oz",
+    #"-O3",
+    #"-flto",
+	"-fno-lto",
+    "-fno-exceptions", # required for IC
+    "-fvisibility=hidden",
+	"-std=c++17",
+	"-Wno-everything",
+	#"-mno-soft-float",
+    "-D NDEBUG",
+    "-D ICPP_VERBOSE=0",
+    "-MMD", 
+    "-MP", 
+	"-D DECLARE_LIBRARY_RENAMES",
+	"-D _WASI_EMULATED_MMAN",
+	"-D _WASI_EMULATED_GETPID",
+	"-D _USE_MATH_DEFINES",
+	"-D _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING",
+    "-D JPH_PLATFORM_WASM",
+    "-D JPH_PLATFORM_SINGLE_THREAD",
+	]
+cpp_link_flags = [
+	]
+c_paths = [
+	]
+c_include_dirs = [
+	]
+c_compile_flags = [
+	]
+	
 [[build-library]]
 lib_name = "af_glad"
 cpp_include_dirs = [
@@ -484,10 +523,13 @@ c_compile_flags = [
 [build-native]
 cpp_paths = [
 	"native/main.cpp",
-	"src/*.cpp",
+    "SimSoccerServer.cpp",
+    "./Common/*/*.cpp", 
+    "./SimSoccer/*.cpp",
+    "./SimSoccer/*/*.cpp",
 	]
 cpp_include_dirs = [
-	"af_glad", "arrayfire", "fftw", "openblas", "flashlight", "ML/src/vendors/*",
+	"jolt", "af_glad", "arrayfire", "fftw", "openblas", "flashlight", "ML/src/vendors/*",
 	"ML/af_forge/include/",
 	"ML/arrayfire/include/",
 	"ML/arrayfire/src/api/c",
@@ -500,7 +542,7 @@ cpp_include_dirs = [
 	"ML/openblas",
 	"ML/fftw",
 	"ML/",
-	"ML/",
+    "./Jolt/",
 	"./",
 	]
 cpp_compile_flags = [
@@ -557,6 +599,9 @@ cpp_compile_flags = [
 	"-D SPDLOG_NO_EXCEPTIONS",
 	"-D NOSPDLOG",
 	"-D AF_DISABLE_CPU_ASYNC",
+    "-D LINUX",
+    "-D JPH_PLATFORM_WASM",
+    "-D JPH_PLATFORM_SINGLE_THREAD",
 	]
 cpp_link_flags_defaults = [
     "-std=c++17",

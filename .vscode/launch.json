@@ -2,6 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+        "type": "lldb",
+        "request": "launch",
+        "name": "Debug mokic.exe",
+        "program": "${workspaceFolder}/build-native/mockic.exe",
+        "args": [],
+        "cwd": "${workspaceFolder}"
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppvsdbg",
       "request": "launch",

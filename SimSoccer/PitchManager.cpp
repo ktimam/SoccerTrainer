@@ -24,8 +24,8 @@ void PitchManager::Reset()
 {
 	float current_ml_score = meter->value()[0];
 	mEpochNumber++;
-	std::cout << "Epoch: " << mEpochNumber << " Mean Squared Error: " << current_ml_score
-		<< std::endl << std::endl;
+	// std::cout << "Epoch: " << mEpochNumber << " Mean Squared Error: " << current_ml_score
+	// 	<< std::endl << std::endl;
 
 	if (mEpochNumber == 1) {
 		mBestMLScore = current_ml_score;

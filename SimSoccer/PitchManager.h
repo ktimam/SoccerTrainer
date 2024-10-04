@@ -52,8 +52,8 @@ class PitchManager
 	const int MILLI_IN_MINUTE = 60 * 20;
 	const int SECOND_MAX_VALUE = 60;
 
-	const bool RESET_ON_FINISH = true;
-	const bool RESET_ON_GOAL = true;
+	const bool RESET_ON_FINISH = false;
+	const bool RESET_ON_GOAL = false;
 
 	const bool LOG_MATCH_OUTPUT = true;
 
