@@ -391,3 +391,5 @@ build-library/
 /GPUCache
 /Models/Archive
 /libs
+/build-library-native
+/build-native
