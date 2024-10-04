@@ -50,7 +50,7 @@ std::vector<Vector2D>   g_vecPlayerVBTrans;
 //create a timer
 PrecisionTimer timer(Prm.FrameRate);
 
-bool g_singleStepEnabled = true;
+bool g_singleStepEnabled = false;
 enum StepType{STEP, NO_STEP, STEP_SAVE_OBSERVATION, STEP_NO_SAVE_OBSERVATION};
 StepType g_stepType = NO_STEP;
 bool g_updateConsole = true;

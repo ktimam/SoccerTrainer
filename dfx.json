@@ -12,5 +12,11 @@
       "args": "",
       "packtool": ""
     }
+  },
+  "no_networks": {
+    "local": {
+      "bind": "localhost:40435",
+      "type": "ephemeral"
+    }
   }
 }
