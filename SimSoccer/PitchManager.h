@@ -45,8 +45,8 @@ class PitchManager
 //
 //------------------------------------------------------------------------
 
-	const int MATCH_DURATION = 1;// 20000;// 45;
-	const int MATCH_RATE = 6;// 1;
+	const int MATCH_DURATION_SECONDS = 1;// 20000;// 45;
+	const int MATCH_RATE = 1;
 
 	const int MILLI_IN_SECOND = 20;
 	const int MILLI_IN_MINUTE = 60 * 20;
@@ -78,9 +78,9 @@ class PitchManager
 	{
 		mTickCount += MATCH_RATE * rate;
 
-		int minutes = mTickCount / MILLI_IN_MINUTE;
+		int seconds = mTickCount / MILLI_IN_SECOND;
 
-		if (minutes >= MATCH_DURATION)
+		if (seconds >= MATCH_DURATION_SECONDS)
 		{
 			mMatchFinished = true;
 		}

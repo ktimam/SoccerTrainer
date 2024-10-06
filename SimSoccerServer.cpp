@@ -19,12 +19,21 @@ using json = nlohmann::json;
 
 PitchManager* g_PitchManager;
 
+void start_match() {
+   IC_API ic_api(CanisterUpdate{std::string(__func__)}, false);
+   g_PitchManager = new PitchManager();
+
+   // Create a msg, to be passed back as Candid over the wire
+  std::string msg;
+  msg.append("Success");
+  ic_api.to_wire(CandidTypeText{msg});
+}
 /* ---------------------------------------------------------
   Extract a 'std::string" from an incoming CandidTypeText
   Respond with an 'std::string' wrapped in a CandidTypeText
 */
 void play_match() {
-  IC_API ic_api(CanisterQuery{std::string(__func__)}, false);
+  IC_API ic_api(CanisterUpdate{std::string(__func__)}, false);
 
   // Get the principal of the caller, as cryptographically verified by the IC
   CandidTypePrincipal caller = ic_api.get_caller();
@@ -38,11 +47,13 @@ void play_match() {
     //seed random number generator
     srand(seed);
 
-   g_PitchManager = new PitchManager();
+   //g_PitchManager = new PitchManager();
 
     //std::cout << "Starting Match..." << std::endl;
+    int counter = 0;
     while (!g_PitchManager->Finished())
     {
+      std::cout << "Step : " << counter++ << std::endl;
        g_PitchManager->Step();
     }
 

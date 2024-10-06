@@ -33,14 +33,18 @@ Action FieldPlayerMLP::Process(Observation observation, Action target)
 }
 Action FieldPlayerMLP::Process(vector<float> observation_vec, vector<float> target_vec)
 {
+	std::cout << "FieldPlayerMLP::Process....." << std::endl;
 	Tensor observation_tensor = Tensor::fromVector(observation_vec);
+	std::cout << "Tensor decision....." << std::endl;
 	Tensor decision = Tensor::fromVector(target_vec);
 	//std::cout << "observation_tensor : " << observation_tensor << std::endl;
 	//std::cout << "decision : " << decision << std::endl;
 
+	std::cout << "optimizer->zeroGrad()....." << std::endl;
 	optimizer->zeroGrad();
 
 	// Forward propagation
+	//std::cout << "model->forward....." << std::endl;
 	auto result = model->forward(input(observation_tensor));
 	//std::cout << "result : " << result.tensor() << std::endl;
 
@@ -58,6 +62,7 @@ Action FieldPlayerMLP::Process(vector<float> observation_vec, vector<float> targ
 		meter->add(l.scalar<float>());
 	}
 
+	//std::cout << "Action::toAction....." << std::endl;
 	return Action::toAction(result.tensor());
 }
 

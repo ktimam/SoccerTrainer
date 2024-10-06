@@ -5,5 +5,6 @@ type Result =
    ok: text;
  };
 service : {
-    play_match : (nat64) -> (text) query;
+    start_match : () -> (text);
+    play_match : (nat64) -> (text);
 }
