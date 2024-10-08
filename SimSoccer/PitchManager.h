@@ -45,7 +45,7 @@ class PitchManager
 //
 //------------------------------------------------------------------------
 
-	const int MATCH_DURATION_SECONDS = 1;// 20000;// 45;
+	const int MATCH_DURATION_SECONDS = 15;// 20000;// 45;
 	const int MATCH_RATE = 1;
 
 	const int MILLI_IN_SECOND = 20;

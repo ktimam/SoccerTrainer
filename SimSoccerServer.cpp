@@ -53,7 +53,7 @@ void play_match() {
     int counter = 0;
     while (!g_PitchManager->Finished())
     {
-      std::cout << "Step : " << counter++ << std::endl;
+      //std::cout << "Step : " << counter++ << std::endl;
        g_PitchManager->Step();
     }
 
@@ -76,9 +76,9 @@ void play_match() {
   msg.append(result.dump());
   //msg.append("Your principal is: " + caller.get_text());
 
-  std::cout << "score1 : " << score1 << std::endl;
-  std::cout << "score2 : " << score2 << std::endl;
-  std::cout << "Match : "  << msg << std::endl;
+  //std::cout << "score1 : " << score1 << std::endl;
+  //std::cout << "score2 : " << score2 << std::endl;
+  //std::cout << "Match : "  << msg << std::endl;
 
   // Send the response back
   ic_api.to_wire(CandidTypeText{msg});

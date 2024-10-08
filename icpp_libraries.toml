@@ -47,7 +47,7 @@ c_compile_flags_defaults = [
     "-MP", 
 ]
 cpp_link_flags_defaults = [
-    "-nostartfiles",
+    #"-nostartfiles",
 	"-fno-lto",
 	"-lwasi-emulated-mman",
 	"-Wl,--error-limit=0",
@@ -59,6 +59,7 @@ cpp_link_flags_defaults = [
     "-Wl,-z,stack-size=1048576",
 	#"-Wl,--wasi-emulated-mman",
     "-std=c++17",
+    "-mexec-model=reactor",
 ]
 cpp_paths = [
     "SimSoccerServer.cpp",
