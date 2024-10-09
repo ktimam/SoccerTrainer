@@ -2,7 +2,7 @@
 
 AverageValueMeter* PitchManager::meter;
 
-PitchManager::PitchManager()
+PitchManager::PitchManager(SoccerPitch::game_mode aGameMode) : mGameMode(aGameMode)
 {
     //Init AI and Physics
     fl::init();
@@ -10,7 +10,7 @@ PitchManager::PitchManager()
 
 	meter = new AverageValueMeter();
 
-    g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth, mGameMode);
+    g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth, aGameMode);
     g_MatchReplay = new Snapshot();
 }
 
@@ -67,10 +67,10 @@ void PitchManager::Step()
 	PhysicsManager::Instance()->Update();
 	bool goal_scored = g_SoccerPitch->CheckGoal();
 
-	if (LOG_MATCH_OUTPUT)
+	if (mLogMatchOutput)
 	{
 		//Don't take snapshot for every move
-		if (SNAPSHOT_RATE == 1 || mTickCount % SNAPSHOT_RATE == 1 || mTickCount == 1)
+		if (mSnapshotRate == 1 || mTickCount % mSnapshotRate == 1 || mTickCount == 1)
 		{
 			g_LastSnapshot = g_MatchReplay->AddSnapshot(g_SoccerPitch);
 		}
@@ -80,9 +80,20 @@ void PitchManager::Step()
 		//Reset();
 		IncrementTime(1);
 	}
-	if ((goal_scored && RESET_ON_GOAL) ||
-		(mMatchFinished && RESET_ON_FINISH)) {
+	if ((goal_scored && mResetOnGoal) ||
+		(mMatchFinished && mResetOnFinish)) {
 		Reset();
 	}
 
+}
+
+void PitchManager::Run(int seconds)
+{
+	int start_seconds = mTickCount / MILLI_IN_SECOND;
+	int end_seconds = start_seconds + seconds;
+	int current_seconds = mTickCount / MILLI_IN_SECOND;
+	while (!mMatchFinished && current_seconds <= end_seconds) {
+		Step();
+		current_seconds = mTickCount / MILLI_IN_SECOND;
+	}
 }

@@ -6,5 +6,5 @@ type Result =
  };
 service : {
     start_match : () -> (text);
-    play_match : (nat64) -> (text);
+    play_match : (nat64, nat64) -> (text);
 }

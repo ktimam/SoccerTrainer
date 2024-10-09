@@ -45,25 +45,25 @@ class PitchManager
 //
 //------------------------------------------------------------------------
 
-	const int MATCH_DURATION_SECONDS = 15;// 20000;// 45;
+	int mMatchDurationSeconds = 60;// 20000;// 45;
 	const int MATCH_RATE = 1;
 
 	const int MILLI_IN_SECOND = 20;
 	const int MILLI_IN_MINUTE = 60 * 20;
 	const int SECOND_MAX_VALUE = 60;
 
-	const bool RESET_ON_FINISH = false;
-	const bool RESET_ON_GOAL = false;
+	bool mResetOnFinish = false;
+	bool mResetOnGoal = false;
 
-	const bool LOG_MATCH_OUTPUT = true;
+	bool mLogMatchOutput = true;
 
-	const int SNAPSHOT_RATE = 1 * MATCH_RATE;
+	int mSnapshotRate = 1 * MATCH_RATE;
 
 	SoccerPitch* g_SoccerPitch;
 	Snapshot* g_MatchReplay;
 	json         g_LastSnapshot;
 
-	SoccerPitch::game_mode mGameMode = SoccerPitch::one_vs_one;
+	SoccerPitch::game_mode mGameMode;
 
 	int mTickCount = 1;
 	bool mMatchFinished = false;
@@ -74,22 +74,23 @@ class PitchManager
 	float mBestMLScore = 10000;
 	int mEpochNumber = 1;
 
-	void IncrementTime(int rate)
+	int IncrementTime(int rate)
 	{
 		mTickCount += MATCH_RATE * rate;
 
 		int seconds = mTickCount / MILLI_IN_SECOND;
 
-		if (seconds >= MATCH_DURATION_SECONDS)
+		if (seconds >= mMatchDurationSeconds)
 		{
 			mMatchFinished = true;
 		}
+		return seconds;
 	}
 public:
 	// Meter definition
 	static AverageValueMeter* meter;
 
-	PitchManager();
+	PitchManager(SoccerPitch::game_mode aGameMode);
 	~PitchManager();
 
 	void TogglePause(){
@@ -115,7 +116,9 @@ public:
 		std::string time = stringStream.str();
 		return time;
 	}
+	void SetMatchDurationSeconds(int seconds) { mMatchDurationSeconds = seconds; }
 	void Step();
 	void Reset();
+	void Run(int seconds);
 };
 

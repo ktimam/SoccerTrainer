@@ -41,6 +41,7 @@ bool REMOTE_API_SERVER_HTTPS = false;
 const wstring requestHeader = L"Content-Type: application/json";
 
 PitchManager* g_PitchManager;
+SoccerPitch::game_mode gGameMode = SoccerPitch::one_vs_one;
 
 //the vertex buffer
 std::vector<Vector2D>   g_vecPlayerVB;
@@ -444,7 +445,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          //don't forget to release the DC
          ReleaseDC(hwnd, hdc); 
          
-         g_PitchManager = new PitchManager();
+         g_PitchManager = new PitchManager(gGameMode);
 
          //setup the vertex buffers and calculate the bounding radius
          const int NumPlayerVerts = 4;
@@ -549,7 +550,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
           case 'R':
             {
               delete g_PitchManager;
-              g_PitchManager = new PitchManager();
+              g_PitchManager = new PitchManager(gGameMode);
             }
 
             break;

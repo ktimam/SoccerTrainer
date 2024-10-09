@@ -6,7 +6,7 @@ export type Result = { 'ok' : string } |
   { 'err' : StatusCode };
 export type StatusCode = number;
 export interface _SERVICE {
-  'play_match' : ActorMethod<[bigint], string>,
+  'play_match' : ActorMethod<[bigint, bigint], string>,
   'start_match' : ActorMethod<[], string>,
 }
 export declare const idlFactory: IDL.InterfaceFactory;

@@ -21,7 +21,7 @@ PitchManager* g_PitchManager;
 
 void start_match() {
    IC_API ic_api(CanisterUpdate{std::string(__func__)}, false);
-   g_PitchManager = new PitchManager();
+   g_PitchManager = new PitchManager(SoccerPitch::one_vs_one);
 
    // Create a msg, to be passed back as Candid over the wire
   std::string msg;
@@ -40,40 +40,44 @@ void play_match() {
 
   // Get the name, passed as a Candid parameter to this method
   uint64_t seed{0};
-  ic_api.from_wire(CandidTypeNat64{&seed});
+  uint64_t time{ 0 };
+  CandidArgs args_in;
+  args_in.append(CandidTypeNat64{&seed});
+  args_in.append(CandidTypeNat64{&time});
+  ic_api.from_wire(args_in);
+  //ic_api.from_wire(CandidTypeNat64{&seed});
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //std::cout << "Seed Generated : " << seed << std::endl;
+  std::cout << "Time : " << time << std::endl;
+  //std::cout << "Seed Generated : " << seed << std::endl;
     //seed random number generator
     srand(seed);
 
-   //g_PitchManager = new PitchManager();
+   //g_PitchManager = new PitchManager(SoccerPitch::one_vs_one);
 
     //std::cout << "Starting Match..." << std::endl;
-    int counter = 0;
-    while (!g_PitchManager->Finished())
-    {
-      //std::cout << "Step : " << counter++ << std::endl;
-       g_PitchManager->Step();
-    }
+    g_PitchManager->Run(time);
 
-    json result;
-    json raw_data = g_PitchManager->MatchReplay()->Snapshots();
-    result["snapshot"] = raw_data.dump();
-    //std::ofstream o("match_server.json");
-    //o << std::setw(4) << raw_data.dump() << std::endl;
+   std::string msg = "Resume";
+   if(g_PitchManager->Finished()){
+         json result;
+         json raw_data = g_PitchManager->MatchReplay()->Snapshots();
+         result["snapshot"] = raw_data.dump();
+         //std::ofstream o("match_server.json");
+         //o << std::setw(4) << raw_data.dump() << std::endl;
 
-    auto score1 = g_PitchManager->GetSoccerPitch()->HomeTeam()->OpponentsGoal()->NumGoalsScored();
-    auto score2 = g_PitchManager->GetSoccerPitch()->AwayTeam()->OpponentsGoal()->NumGoalsScored();
+         auto score1 = g_PitchManager->GetSoccerPitch()->HomeTeam()->OpponentsGoal()->NumGoalsScored();
+         auto score2 = g_PitchManager->GetSoccerPitch()->AwayTeam()->OpponentsGoal()->NumGoalsScored();
 
-    //result["seed"]   = seed;
-    result["score1"] = score1;
-    result["score2"] = score2;
+         //result["seed"]   = seed;
+         result["score1"] = score1;
+         result["score2"] = score2;
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Create a msg, to be passed back as Candid over the wire
-  std::string msg;
-  msg.append(result.dump());
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // Create a msg, to be passed back as Candid over the wire
+      msg.append(result.dump());
+      
+   }
   //msg.append("Your principal is: " + caller.get_text());
 
   //std::cout << "score1 : " << score1 << std::endl;

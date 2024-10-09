@@ -25,7 +25,7 @@ int main() {
 
   // -----------------------------------------------------------------------------
   // '()' -> '("hello!")'
-  mockIC.run_test("play_match", play_match, "4449444c0001786472ca6300000000",
+  mockIC.run_test("play_match", play_match, "4449444c000278786472ca63000000000f00000000000000",
                   "", silent_on_trap, my_principal);
 
   
