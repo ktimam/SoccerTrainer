@@ -75,11 +75,11 @@ void PitchManager::Step()
 			g_LastSnapshot = g_MatchReplay->AddSnapshot(g_SoccerPitch);
 		}
 	}
-	if (g_SoccerPitch->GameOn())
+	/*if (g_SoccerPitch->GameOn())
 	{
-		//Reset();
-		IncrementTime(1);
-	}
+		Reset();
+	}*/
+	IncrementTime(1);
 	if ((goal_scored && mResetOnGoal) ||
 		(mMatchFinished && mResetOnFinish)) {
 		Reset();

@@ -27,9 +27,9 @@ namespace SoccerSim.SoccerSimClient
 			return reply.ToObjects<string>(this.Converter);
 		}
 
-		public async Task<string> PlayMatch(ulong arg0)
+		public async Task<string> PlayMatch(ulong arg0, ulong arg1)
 		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter), CandidTypedValue.FromObject(arg1, this.Converter));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "play_match", arg);
 			return reply.ToObjects<string>(this.Converter);
 		}

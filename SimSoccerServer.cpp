@@ -48,7 +48,7 @@ void play_match() {
   //ic_api.from_wire(CandidTypeNat64{&seed});
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  std::cout << "Time : " << time << std::endl;
+  //std::cout << "Time : " << time << std::endl;
   //std::cout << "Seed Generated : " << seed << std::endl;
     //seed random number generator
     srand(seed);
@@ -75,6 +75,7 @@ void play_match() {
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // Create a msg, to be passed back as Candid over the wire
+      msg = "";
       msg.append(result.dump());
       
    }
