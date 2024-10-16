@@ -26,7 +26,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--canister",
         type=str,
-        default="llama_cpp",
+        default="SimSoccerServer",
         help="canister name in dfx.json",
     )
     parser.add_argument(
@@ -38,7 +38,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--candid",
         type=str,
-        default="src/llama_cpp.did",
+        default="SimSoccerServer.did",
         help="canister's candid file",
     )
     parser.add_argument(

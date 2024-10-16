@@ -160,7 +160,7 @@ def main() -> int:
         offset += len(chunk)
 
     # ---------------------------------------------------------------------------
-    # Do something special if we're uploading a llama_cpp_canister model (gguf)
+    # Do something special if we're uploading a SimSoccerServer_canister model (gguf)
     if uploading_gguf:
         # load the model inside the canister into Orthogonal Persisted memory
         print(

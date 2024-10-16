@@ -66,7 +66,7 @@ def main() -> int:
 
                 typer.echo(f"--\nUpload {filename}")
                 run_shell_cmd(
-                    f" python -m scripts.upload --network local --canister llama_cpp "
+                    f" python -m scripts.upload --network local --canister SimSoccerServer "
                     f" --canister-filename {canister_filename} {filename}",
                     cwd=ROOT_PATH,
                 )

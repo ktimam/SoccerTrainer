@@ -1,0 +1,4 @@
+-r scripts/requirements.txt
+icpp-pro==4.2.0
+ic-py==1.0.1
+binaryen.py
