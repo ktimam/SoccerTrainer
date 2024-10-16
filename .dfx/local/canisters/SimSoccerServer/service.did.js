@@ -36,6 +36,7 @@ export const idlFactory = ({ IDL }) => {
     'Err' : ApiError,
   });
   return IDL.Service({
+    'delete_file' : IDL.Func([IDL.Text], [IDL.Text], []),
     'file_download_chunk' : IDL.Func(
         [FileDownloadInputRecord],
         [FileDownloadRecordResult],
@@ -49,6 +50,11 @@ export const idlFactory = ({ IDL }) => {
     'health' : IDL.Func([], [StatusCodeRecordResult], ['query']),
     'play_match' : IDL.Func([IDL.Nat64, IDL.Nat64], [IDL.Text], []),
     'start_match' : IDL.Func([], [IDL.Text], []),
+    'train' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Nat64, IDL.Float32],
+        [IDL.Text],
+        [],
+      ),
   });
 };
 export const init = ({ IDL }) => { return []; };

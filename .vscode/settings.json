@@ -92,7 +92,10 @@
     "__verbose_abort": "cpp",
     "ios": "cpp",
     "locale": "cpp",
-    "__nullptr": "cpp"
+    "__nullptr": "cpp",
+    "filesystem": "cpp",
+    "sstream": "cpp",
+    "vector": "cpp"
   },
   "makefile.configureOnOpen": false
 }

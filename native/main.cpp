@@ -25,9 +25,11 @@ int main() {
 
   // -----------------------------------------------------------------------------
   // '()' -> '("hello!")'
-  mockIC.run_test("play_match", play_match, "4449444c000278786472ca63000000000f00000000000000",
-                  "", silent_on_trap, my_principal);
+  // mockIC.run_test("play_match", play_match, "4449444c000278786472ca63000000000f00000000000000",
+  //                 "", silent_on_trap, my_principal);
 
+  mockIC.run_test("train", train, "4449444c00057171717873134d6f64656c732f6c61746573745f6d6f64656c174d6f64656c732f6f62736572766174696f6e732e747874124d6f64656c732f616374696f6e732e747874e803000000000000bc74133c",
+                  "", silent_on_trap, my_principal);
   
   // returns 1 if any tests failed
   return mockIC.test_summary();

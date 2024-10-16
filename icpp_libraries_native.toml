@@ -62,6 +62,7 @@ cpp_link_flags_defaults = [
 ]
 cpp_paths = [
     "SimSoccerServer.cpp",
+	"./src/*.cpp",
     "./Common/*/*.cpp", 
     "./SimSoccer/*.cpp",
     "./SimSoccer/*/*.cpp",

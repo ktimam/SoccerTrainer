@@ -29,9 +29,11 @@ FieldPlayerMLP::FieldPlayerMLP() {
 
 Action FieldPlayerMLP::Process(Observation observation, Action target)
 {
-	return Process(observation.toVector(), target.toVector());
+	vector<float> obsv_vec = observation.toVector();
+	vector<float> targ_vec = target.toVector();
+	return Process(obsv_vec, targ_vec);
 }
-Action FieldPlayerMLP::Process(vector<float> observation_vec, vector<float> target_vec)
+Action FieldPlayerMLP::Process(vector<float> &observation_vec, vector<float> &target_vec)
 {
 	Tensor observation_tensor = Tensor::fromVector(observation_vec);
 	Tensor decision = Tensor::fromVector(target_vec);

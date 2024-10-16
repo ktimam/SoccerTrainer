@@ -64,6 +64,8 @@ service : {
 
   start_match : () -> (text);
   play_match : (nat64, nat64) -> (text);
+  delete_file : (text) -> (text);
+  train : (text, text, text, nat64, float32) -> (text);
 
   // canister
   health : () -> (StatusCodeRecordResult) query;

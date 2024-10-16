@@ -131,7 +131,7 @@ struct Observation {
 
 #ifdef ABSOLUTE_OBSERVATIONS
 	vector<float> toVector() {
-		ObservationVector.clear();
+		vector<float> ObservationVector;
 
 		ObservationVector.push_back(normalizedXPos(BallPosition.GetX(), TeamInControl));
 		//ObservationVector.push_back(BallPosition.GetY());
@@ -174,9 +174,8 @@ struct Observation {
 	}
 #else
 
-	vector<float>& toVector() {
-		static vector<float> ObservationVector;
-		ObservationVector.clear();
+	vector<float> toVector() {
+		vector<float> ObservationVector;
 
 		//Ball Proximity/Angle
 		AddAgentObservation(BallPosition, ObservationVector);
@@ -275,6 +274,11 @@ struct Action {
 	}
 };
 
+struct ObservationAction {
+	vector<float> ObservationEntry;
+	vector<float> ActionEntry;
+};
+
 class FieldPlayerMLP
 {
 private:
@@ -297,7 +301,7 @@ public:
 	/// <param name="target">The correct target to train agent against. trainingOn needs to be set to true.</param>
 	/// <returns>Action that the agent should take</returns>
 	Action Process(Observation observation, Action target);
-	Action Process(vector<float> observation_vec, vector<float> target_vec);
+	Action Process(vector<float>& observation_vec, vector<float>& target_vec);
 
 	bool Save(string aFileName);
 	bool Load(string aFileName);

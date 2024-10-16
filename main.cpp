@@ -23,7 +23,7 @@ using json = nlohmann::json;
 #define LIVE_MODE
 //#define REMOTE_MODE
 
-//#define TRAIN_FROM_OBSERVATION_FILE
+#define TRAIN_FROM_OBSERVATION_FILE
 //#define DUMP_FROM_BINARY_TO_TEXT
 
 ////--------------------------------- Globals ------------------------------
@@ -55,11 +55,6 @@ bool g_singleStepEnabled = false;
 enum StepType{STEP, NO_STEP, STEP_SAVE_OBSERVATION, STEP_NO_SAVE_OBSERVATION};
 StepType g_stepType = NO_STEP;
 bool g_updateConsole = true;
-
-struct ObservationAction {
-    vector<float> ObservationEntry;
-    vector<float> ActionEntry;
-};
 
 Observation g_LastObservation[11];
 Action g_LastTargetAction[11];
@@ -841,6 +836,8 @@ int WINAPI WinMain (HINSTANCE hInstance,
   string act_line;
 
 while (std::getline(obs_ifs, obs_line), std::getline(act_ifs, act_line)) {
+
+      if (obs_line == "") break;
 
       vector<float> obs_data;
       vector<float> act_data;

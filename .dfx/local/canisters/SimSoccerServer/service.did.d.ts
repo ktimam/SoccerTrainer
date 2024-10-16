@@ -37,6 +37,7 @@ export interface StatusCodeRecord { 'status_code' : number }
 export type StatusCodeRecordResult = { 'Ok' : StatusCodeRecord } |
   { 'Err' : ApiError };
 export interface _SERVICE {
+  'delete_file' : ActorMethod<[string], string>,
   'file_download_chunk' : ActorMethod<
     [FileDownloadInputRecord],
     FileDownloadRecordResult
@@ -48,6 +49,7 @@ export interface _SERVICE {
   'health' : ActorMethod<[], StatusCodeRecordResult>,
   'play_match' : ActorMethod<[bigint, bigint], string>,
   'start_match' : ActorMethod<[], string>,
+  'train' : ActorMethod<[string, string, string, bigint, number], string>,
 }
 export declare const idlFactory: IDL.InterfaceFactory;
 export declare const init: (args: { IDL: typeof IDL }) => IDL.Type[];
