@@ -32,6 +32,9 @@ void PrintVectorLine(ostream& output_stream, vector<float>& vec) {
 
 void start_match() {
    IC_API ic_api(CanisterUpdate{std::string(__func__)}, false);
+   if (g_PitchManager != NULL) {
+       delete g_PitchManager;
+   }
    g_PitchManager = new PitchManager(SoccerPitch::one_vs_one);
 
    // Create a msg, to be passed back as Candid over the wire

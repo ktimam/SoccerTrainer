@@ -23,7 +23,7 @@ using json = nlohmann::json;
 #define LIVE_MODE
 //#define REMOTE_MODE
 
-#define TRAIN_FROM_OBSERVATION_FILE
+//#define TRAIN_FROM_OBSERVATION_FILE
 //#define DUMP_FROM_BINARY_TO_TEXT
 
 ////--------------------------------- Globals ------------------------------

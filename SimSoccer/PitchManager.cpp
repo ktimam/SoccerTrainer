@@ -8,6 +8,8 @@ PitchManager::PitchManager(SoccerPitch::game_mode aGameMode) : mGameMode(aGameMo
     fl::init();
     PhysicsManager::Instance()->init();
 
+	EntityManager::Instance()->Reset();
+
 	meter = new AverageValueMeter();
 
     g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth, aGameMode);
