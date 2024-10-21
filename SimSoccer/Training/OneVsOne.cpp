@@ -61,7 +61,7 @@ void OneVsOne::CreatePlayers()
     settings->mMass = Prm.PlayerMass;
     Character* character;
 
-    static FieldPlayerMLP* playerMLP = new FieldPlayerMLP();
+    FieldPlayerMLP* playerMLP = new FieldPlayerMLP();
     playerMLP->meter = PitchManager::meter;
 
     if (Color() == blue)

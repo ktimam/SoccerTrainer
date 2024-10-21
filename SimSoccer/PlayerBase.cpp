@@ -24,6 +24,10 @@ using std::vector;
 PlayerBase::~PlayerBase()
 {
   delete m_pSteering;
+  if (m_Brain != NULL) {
+    delete m_Brain;
+    m_Brain = NULL;
+  }
 }
 
 //----------------------------- ctor -------------------------------------
