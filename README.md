@@ -30,6 +30,9 @@ ICP Build Steps (Workaround to ICP exports Limit):
 ### Local
 Usage examples for local query:
 
+Frontend:
+https://gb4ri-5yaaa-aaaal-ac3hq-cai.raw.icp0.io/
+
 ```bash
 $ dfx canister --network local call SimSoccerServer start
 $ dfx canister --network local call SimSoccerServer play_match '(1674211940: nat64, 60: nat64)'
