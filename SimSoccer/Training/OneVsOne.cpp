@@ -44,7 +44,7 @@ OneVsOne::~OneVsOne()
 //
 //  creates the players
 //------------------------------------------------------------------------
-void OneVsOne::CreatePlayers()
+void OneVsOne::CreatePlayers(TeamData teamData)
 {
     float player_elevation = 0.2f;
     // Character size
@@ -64,56 +64,26 @@ void OneVsOne::CreatePlayers()
     FieldPlayerMLP* playerMLP = new FieldPlayerMLP();
     playerMLP->meter = PitchManager::meter;
 
-    if (Color() == blue)
-    {
-        //playerMLP_Blue->Load("Models/Match_FiveVsFive_2LayersNN/model6_Epoch2231001");
-        //playerMLP->Load("Models/AbsoluteObservations/latest_model");
-        
-        //create the players
-        character = new Character(settings, 
-            //Vec3(12, player_elevation, 5), 
-            Pitch()->GetRegionFromIndex(4)->Center(), 
-            Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
-        character->AddToPhysicsSystem(EActivation::Activate);
-        m_Players.push_back(new FieldPlayer(this,
-            4,
-            Wait::Instance(),
-            m_pPitch->m_PhysicsManager->GetBodyInterface(), character->GetBodyID(),
-            Prm.PlayerMaxForce,
-            Prm.PlayerMaxSpeedWithoutBall,
-            Prm.PlayerMaxTurnRate,
-            PlayerBase::defender,
-            NULL));
+    //create the players
+    character = new Character(settings,
+        Pitch()->GetRegionFromIndex(teamData.MatchPlayersData[0].HomeRegion)->Center(),
+        Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
+    character->AddToPhysicsSystem(EActivation::Activate);
+    m_Players.push_back(new FieldPlayer(this,
+        teamData.MatchPlayersData[0].HomeRegion,
+        Wait::Instance(),
+        m_pPitch->m_PhysicsManager->GetBodyInterface(), character->GetBodyID(),
+        teamData.MatchPlayersData[0].Data.PlayerMaxForce,
+        teamData.MatchPlayersData[0].Data.PlayerMaxSpeedWithoutBall,
+        teamData.MatchPlayersData[0].Data.PlayerMaxTurnRate,
+        teamData.MatchPlayersData[0].PlayerRole,
+        teamData.MatchPlayersData[0].AIType == ai_type::nn ? playerMLP : NULL));
+    SetAIType(teamData.MatchPlayersData[0].AIType);
 
-    }
-
-    else
-    {
-        //playerMLP_Red->Load("Models/Match_FiveVsFive_7LayersNN/model6_Epoch558001");
-        //playerMLP->Load("Models/RelativeObservations/latest_model");
-        
-        //create the players
-        character = new Character(settings, 
-            //Vec3(22, player_elevation, 5), 
-            Pitch()->GetRegionFromIndex(10)->Center(),
-            Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
-        character->AddToPhysicsSystem(EActivation::Activate);
-        m_Players.push_back(new FieldPlayer(this,
-            10,
-            Wait::Instance(),
-            m_pPitch->m_PhysicsManager->GetBodyInterface(), character->GetBodyID(),
-            Prm.PlayerMaxForce,
-            Prm.PlayerMaxSpeedWithoutBall,
-            Prm.PlayerMaxTurnRate,
-            PlayerBase::attacker,
-            playerMLP));
-
-    }
-    playerMLP->Load("Models/latest_model");
+    playerMLP->Load(string("Models/") + to_string(teamData.MatchPlayersData[0].Data.ID));
     //playerMLP->Load("Models/AbsoluteObservations/latest_model");
     //playerMLP->Load("Models/RelativeObservations/latest_model");
     playerMLP->setTrainingOn(false);
-    SetAIType(PlayerBase::nn);
 
     //register the players with the entity manager
     std::vector<PlayerBase*>::iterator it = m_Players.begin();

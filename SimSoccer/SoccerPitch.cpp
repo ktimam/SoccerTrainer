@@ -18,7 +18,8 @@ const int NumRegionsVertical   = 3;
 
 //------------------------------- ctor -----------------------------------
 //------------------------------------------------------------------------
-SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
+SoccerPitch::SoccerPitch(int cx, int cy,
+	TeamData homeTeamData, TeamData awayTeamData, game_mode mode):m_cxClient(cx),
                                          m_cyClient(cy),
                                          m_bPaused(false),
                                          m_bGoalKeeperHasBall(false),
@@ -72,8 +73,8 @@ SoccerPitch::SoccerPitch(int cx, int cy, game_mode mode):m_cxClient(cx),
 	 m_pBlueTeam = new OneVsOne(m_pBlueGoal, m_pRedGoal, this, SoccerTeam::blue);
   }
 
-  m_pRedTeam->Init();
-  m_pBlueTeam->Init();
+  m_pRedTeam->Init(homeTeamData);
+  m_pBlueTeam->Init(awayTeamData);
 
   //make sure each team knows who their opponents are
   m_pRedTeam->SetOpponents(m_pBlueTeam);

@@ -2,7 +2,8 @@
 
 AverageValueMeter* PitchManager::meter;
 
-PitchManager::PitchManager(SoccerPitch::game_mode aGameMode) : mGameMode(aGameMode)
+PitchManager::PitchManager(TeamData homeTeamData, TeamData awayTeamData, SoccerPitch::game_mode aGameMode) 
+	: mHomeTeamData(homeTeamData), mAwayTeamData(awayTeamData), mGameMode(aGameMode)
 {
     //Init AI and Physics
     fl::init();
@@ -12,7 +13,7 @@ PitchManager::PitchManager(SoccerPitch::game_mode aGameMode) : mGameMode(aGameMo
 
 	meter = new AverageValueMeter();
 
-    g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth, aGameMode);
+    g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth, homeTeamData, awayTeamData, aGameMode);
     g_MatchReplay = new Snapshot();
 }
 
@@ -53,7 +54,7 @@ void PitchManager::Reset()
 	delete g_MatchReplay;
 	delete g_SoccerPitch;
 
-    g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth, mGameMode);
+    g_SoccerPitch = new SoccerPitch(PitchLength, PitchWidth, mHomeTeamData, mAwayTeamData, mGameMode);
 
 	if (current_ml_score < 0.01) {
 		//g_SoccerPitch->m_pBlueTeam->SetAIType(PlayerBase::nn);

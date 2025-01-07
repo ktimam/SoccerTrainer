@@ -20,6 +20,7 @@
 #include "../Common/misc/autolist.h"
 #include "../Common/2D/Vector2D.h"
 #include "../Common/Game/MovingEntity.h"
+#include "../Common/Game/PlayerData.h"
 #include "../Common/NN/FieldPlayerMLP.h"
 
 class SoccerTeam;
@@ -36,11 +37,9 @@ class PlayerBase : public MovingEntity,
 
 public:
   
-  enum player_role{goal_keeper, attacker, defender};
-
-  enum ai_type{script, nn};
-
 protected:
+
+  MatchPlayerData m_MatchPlayerData;
 
   //this player's role in the team
   player_role             m_PlayerRole;
@@ -138,6 +137,8 @@ public:
   //returns true if the player is located in the designated 'hot region' --
   //the area close to the opponent's goal
   bool        InHotRegion()const;
+
+  MatchPlayerData MatchPlayerData()const{ return m_MatchPlayerData; }
 
   player_role Role()const{return m_PlayerRole;}
 

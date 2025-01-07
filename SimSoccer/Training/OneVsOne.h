@@ -7,7 +7,7 @@ class OneVsOne :
 {
 protected:
     //creates all the players for this team
-    virtual void CreatePlayers() override;
+    virtual void CreatePlayers(TeamData teamData) override;
 
 public:
 

@@ -62,11 +62,11 @@ SoccerTeam::SoccerTeam(FieldGoal*        home_goal,
 //----------------------- Init -------------------------------------------
 //
 //------------------------------------------------------------------------
-void SoccerTeam::Init()
+void SoccerTeam::Init(TeamData teamData)
 {
 
     //create the players and goalkeeper
-    CreatePlayers();
+    CreatePlayers(teamData);
 
     //set default steering behaviors
     std::vector<PlayerBase*>::iterator it = m_Players.begin();
@@ -170,7 +170,7 @@ PlayerBase* SoccerTeam::DetermineBestSupportingAttacker()
   for (it; it != m_Players.end(); ++it)
   {
     //only attackers utilize the BestSupportingSpot
-    if ( ((*it)->Role() == PlayerBase::attacker) && ((*it) != m_pControllingPlayer) )
+    if ( ((*it)->Role() == player_role::attacker) && ((*it) != m_pControllingPlayer) )
     {
       //calculate the dist. Use the squared value to avoid sqrt
       double dist = ((*it)->Pos()- m_pSupportSpotCalc->GetBestSupportingSpot()).LengthSq();
@@ -481,7 +481,7 @@ void SoccerTeam::ReturnAllFieldPlayersToHome()const
 
   for (it; it != m_Players.end(); ++it)
   {
-    if ((*it)->Role() != PlayerBase::goal_keeper)
+    if ((*it)->Role() != player_role::goal_keeper)
     {
       Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
                             1,
@@ -496,7 +496,7 @@ void SoccerTeam::ReturnAllFieldPlayersToHome()const
 //
 //  creates the players
 //------------------------------------------------------------------------
-void SoccerTeam::CreatePlayers()
+void SoccerTeam::CreatePlayers(TeamData teamData)
 {
     float player_elevation = 0.2f;
     // Character size
@@ -546,7 +546,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               PlayerBase::attacker,
+                               player_role::attacker,
                                playerMLP_Blue));
 
 
@@ -560,7 +560,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               PlayerBase::attacker,
+                               player_role::attacker,
                                NULL));
 
 
@@ -576,7 +576,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               PlayerBase::defender,
+                               player_role::defender,
                                NULL));
 
 
@@ -589,7 +589,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               PlayerBase::defender,
+                               player_role::defender,
                                NULL));
 
   }
@@ -619,7 +619,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               PlayerBase::attacker,
+                               player_role::attacker,
                                NULL));
 
     character = new Character(settings, Vec3(24, player_elevation,5), Quat::sIdentity(), 0, &m_pPitch->m_PhysicsManager->GetPhysicsSystem());
@@ -631,7 +631,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               PlayerBase::attacker,
+                               player_role::attacker,
                                NULL));
 
 
@@ -645,7 +645,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               PlayerBase::defender,
+                               player_role::defender,
                                NULL));
 
 
@@ -658,7 +658,7 @@ void SoccerTeam::CreatePlayers()
                                Prm.PlayerMaxForce,
                                Prm.PlayerMaxSpeedWithoutBall,
                                Prm.PlayerMaxTurnRate,
-                               PlayerBase::defender,
+                               player_role::defender,
                                NULL));
                       
   }
@@ -666,7 +666,7 @@ void SoccerTeam::CreatePlayers()
   //playerMLP->Load("Models/AbsoluteObservations/latest_model");
   //playerMLP->Load("Models/RelativeObservations/latest_model");
   playerMLP_Red->setTrainingOn(false);
-  //SetAIType(PlayerBase::nn);
+  //SetAIType(ai_type::nn);
 
   //register the players with the entity manager
   std::vector<PlayerBase*>::iterator it = m_Players.begin();
@@ -708,7 +708,7 @@ void SoccerTeam::UpdateTargetsOfWaitingPlayers()const
 
   for (it; it != m_Players.end(); ++it)
   {  
-    if ( (*it)->Role() != PlayerBase::goal_keeper )
+    if ( (*it)->Role() != player_role::goal_keeper )
     {
       //cast to a field player
       FieldPlayer* plyr = static_cast<FieldPlayer*>(*it);
