@@ -26,7 +26,7 @@ GoalKeeper::GoalKeeper(SoccerTeam*        home_team,
                                                              max_force,
                                                              max_speed,
                                                              max_turn_rate,
-                                                             player_role::goal_keeper,
+                                                             PlayerBase::goal_keeper,
                                                              brain)
                                          
                                         

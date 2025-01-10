@@ -22,7 +22,6 @@
 #include <Common/Game/PhysicsManager.h>
 #include "constants.h"
 #include "../Common/NN/FieldPlayerMLP.h"
-#include "../Common/Game/PlayerData.h"
 
 class Region;
 class FieldGoal;
@@ -78,7 +77,7 @@ public:
 
 public:
 
-  SoccerPitch(int cxClient, int cyClient, TeamData homeTeamData, TeamData awayTeamData, game_mode mode = five_vs_five_match);
+  SoccerPitch(int cxClient, int cyClient, game_mode mode = five_vs_five_match);
 
   ~SoccerPitch();
 

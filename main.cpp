@@ -42,8 +42,6 @@ const wstring requestHeader = L"Content-Type: application/json";
 
 PitchManager* g_PitchManager;
 SoccerPitch::game_mode gGameMode = SoccerPitch::one_vs_one;
-TeamData gHomeTeam;
-TeamData gAwayTeam;
 
 //the vertex buffer
 std::vector<Vector2D>   g_vecPlayerVB;
@@ -224,7 +222,7 @@ bool RenderSoccerPitch()
             gdi->BrownBrush();
 #ifdef LIVE_MODE
             if (Prm.bHighlightIfThreatened && (player->Team()->ControllingPlayer() == player) && player->isThreatened()) gdi->YellowBrush();
-            if (player->AIType() == ai_type::nn) gdi->LightPinkPen();
+            if (player->AIType() == PlayerBase::nn) gdi->LightPinkPen();
 #endif
             gdi->Circle(entity_position, 6);
 
@@ -442,35 +440,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
          //don't forget to release the DC
          ReleaseDC(hwnd, hdc); 
          
-         {
-             PlayerData player_data;
-             player_data.ID = 55;
-             player_data.PlayerMaxForce = Prm.PlayerMaxForce;
-             player_data.PlayerMaxSpeedWithoutBall = Prm.PlayerMaxSpeedWithoutBall;
-             player_data.PlayerMaxTurnRate = Prm.PlayerMaxTurnRate;
-             MatchPlayerData match_player_data;
-             match_player_data.Data = player_data;
-             match_player_data.AIType = ai_type::nn;
-             match_player_data.HomeRegion = 10;
-             match_player_data.Number = 10;
-             match_player_data.PlayerRole = player_role::attacker;
-             gHomeTeam.MatchPlayersData.push_back(match_player_data);
-         }
-         {
-             PlayerData player_data;
-             player_data.ID = 66;
-             player_data.PlayerMaxForce = Prm.PlayerMaxForce;
-             player_data.PlayerMaxSpeedWithoutBall = Prm.PlayerMaxSpeedWithoutBall;
-             player_data.PlayerMaxTurnRate = Prm.PlayerMaxTurnRate;
-             MatchPlayerData match_player_data;
-             match_player_data.Data = player_data;
-             match_player_data.AIType = ai_type::script;
-             match_player_data.HomeRegion = 4;
-             match_player_data.Number = 5;
-             match_player_data.PlayerRole = player_role::defender;
-             gAwayTeam.MatchPlayersData.push_back(match_player_data);
-         }
-         g_PitchManager = new PitchManager(gHomeTeam, gAwayTeam, gGameMode);
+         g_PitchManager = new PitchManager(gGameMode);
 
          //setup the vertex buffers and calculate the bounding radius
          const int NumPlayerVerts = 4;
@@ -575,7 +545,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
           case 'R':
             {
               delete g_PitchManager;
-              g_PitchManager = new PitchManager(gHomeTeam, gAwayTeam, gGameMode);
+              g_PitchManager = new PitchManager(gGameMode);
             }
 
             break;

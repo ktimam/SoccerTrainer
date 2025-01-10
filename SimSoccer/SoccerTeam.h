@@ -81,7 +81,7 @@ protected:
 
 
   //creates all the players for this team
-  virtual void CreatePlayers(TeamData teamData);
+  virtual void CreatePlayers();
 
   //called each frame. Sets m_pClosestPlayerToBall to point to the player
   //closest to the ball. 
@@ -97,7 +97,7 @@ public:
 
   ~SoccerTeam();
 
-  virtual void Init(TeamData teamData);
+  virtual void Init();
 
   //the usual suspects
   void        Update();
@@ -223,7 +223,7 @@ public:
   std::string Name()const{if (m_Color == blue) return "Blue"; return "Red";}
 
 
-  void SetAIType(ai_type aitype) {
+  void SetAIType(PlayerBase::ai_type aitype) {
 
       std::vector<PlayerBase*>::iterator it = m_Players.begin();
 

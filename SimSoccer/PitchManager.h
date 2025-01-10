@@ -64,8 +64,6 @@ class PitchManager
 	json         g_LastSnapshot;
 
 	SoccerPitch::game_mode mGameMode;
-	TeamData mHomeTeamData;
-	TeamData mAwayTeamData;
 
 	int mTickCount = 1;
 	bool mMatchFinished = false;
@@ -92,7 +90,7 @@ public:
 	// Meter definition
 	static AverageValueMeter* meter;
 
-	PitchManager(TeamData homeTeamData, TeamData awayTeamData, SoccerPitch::game_mode aGameMode);
+	PitchManager(SoccerPitch::game_mode aGameMode);
 	~PitchManager();
 
 	void TogglePause(){
